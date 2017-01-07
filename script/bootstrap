@@ -12,7 +12,7 @@ if [ -f "Brewfile" ] && [ "$(uname -s)" = "Darwin" ]; then
 
   brew bundle check 2>&1 >/dev/null || {
     echo "==> Installing Homebrew dependencies…"
-    brew bundle
+    # brew bundle
   }
 fi
 

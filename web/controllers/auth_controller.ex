@@ -6,6 +6,8 @@ defmodule AtomStyleTweaks.AuthController do
 
   require Logger
 
+  alias AtomStyleTweaks.User
+
   @doc """
   Signs the user in by redirecting to the GitHub authorization URL.
   """
@@ -29,13 +31,28 @@ defmodule AtomStyleTweaks.AuthController do
   """
   def callback(conn, %{"code" => code}) do
     token = GitHub.get_token!(code: code)
-    user = get_user!(token)
+    github_user = get_user!(token)
+    create_user(github_user)
 
     conn
-    |> put_session(:current_user, user)
+    |> put_session(:current_user, github_user)
     |> put_session(:access_token, token.token)
-    |> put_flash(:info, "Signed in as #{user.name}")
+    |> put_flash(:info, "Signed in as #{github_user.name}")
     |> redirect(to: page_path(conn, :index))
+  end
+
+  defp update_user_record(github_user) do
+    github_user
+    |> to_changeset
+    |> get_record
+    |> update_record
+  end
+
+  defp create_user(github_user) do
+    case Repo.get_by(User, name: github_user.name) do
+      nil -> Repo.insert!(User.changeset(%User{}, github_user))
+      _ -> nil
+    end
   end
 
   defp get_user!(token) do
@@ -45,7 +62,7 @@ defmodule AtomStyleTweaks.AuthController do
     %{
       name: user["login"],
       avatar: user["avatar_url"],
-      site_admin: user["site_admin"]
+      site_admin: false
     }
   end
 
