@@ -1,0 +1,92 @@
+$color-blue: #4078c0;
+$color-green: #6cc644;
+$color-red: #bd2c00;
+$color-orange: #c9510c;
+$color-purple: #6e5494;
+$color-gray-light: #999;
+$color-gray: #767676;
+$color-gray-dark: #333;
+$color-white: #fff;
+
+
+.masthead {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  background-color: $color-blue;
+
+  a {
+    color:rgba(255,255,255,0.5);
+
+    &.btn {
+      color: $color-gray-dark;
+    }
+
+    &:hover {
+      color: $color-white;
+      text-decoration: none;
+    }
+  }
+
+  .masthead-logo {
+    display: inline-block;
+    font-size: 1.7rem;
+    color: $color-white;
+
+    .mega-octicon {
+      float: left;
+      margin-right: .5rem;
+    }
+  }
+}
+
+@media (min-width: 34em) {
+  .masthead {
+    text-align:left
+  }
+
+  .masthead .masthead-logo {
+    float:left
+  }
+}
+
+.masthead-nav {
+  margin-top: 1rem;
+  font-size: 1rem;
+
+  a {
+    display: inline-block;
+
+    &:not(:last-child) {
+      margin-right: 1.25rem;
+    }
+  }
+
+  .active {
+    color: $color-white;
+    font-weight: 500;
+  }
+}
+
+@media (max-width: 34em) {
+  .masthead-nav {
+    padding-top: 1rem;
+    border-top: 0.075rem solid rgba(255,255,255,0.25);
+  }
+}
+
+@media (min-width: 34em) {
+  .masthead-nav {
+    float: right;
+    margin-top: 0.5rem;
+
+    .btn {
+      margin-top: -0.4rem;
+    }
+
+    img {
+      margin-top: -0.5rem;
+    }
+  }
+}

@@ -1,0 +1,12 @@
+<%= if @current_user do %>
+  <a href="<%= auth_path(@conn, :delete) %>"><span class="octicon octicon-sign-out"></span> <%= gettext "Sign Out" %></a>
+  <a href="#">
+    <%= @current_user.name %>
+    <img class="avatar" src="<%= @current_user.avatar %>" width="36" height="36">
+  </a>
+<% else %>
+  <a class="btn" href="<%= auth_path(@conn, :index) %>">
+    <%= gettext "Sign in with" %>
+    <span class="octicon octicon-mark-github"></span>
+  </a>
+<% end %>
