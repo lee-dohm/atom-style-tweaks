@@ -41,19 +41,18 @@ defmodule AtomStyleTweaks.AuthController do
   end
 
   defp get_user!(token) do
-    {:ok, %{body: user}} = OAuth2.AccessToken.get(token, "/user")
+    {:ok, %{body: user}} = OAuth2.Client.get(token, "/user")
     Logger.debug("user = #{inspect user}")
 
     %{
       name: user["login"],
       avatar: user["avatar_url"],
-      member: member?(token),
       site_admin: user["site_admin"]
     }
   end
 
   defp get_orgs!(token) do
-    {:ok, %{body: orgs}} = OAuth2.AccessToken.get(token, "/user/orgs")
+    {:ok, %{body: orgs}} = OAuth2.Client.get(token, "/user/orgs")
     org_names = Enum.map(orgs, fn(org) -> org["login"] end)
     Logger.debug("orgs = #{inspect org_names}")
 

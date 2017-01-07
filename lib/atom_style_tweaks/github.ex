@@ -22,16 +22,16 @@ defmodule AtomStyleTweaks.GitHub do
 
   def client do
     Application.get_env(:pain_view, GitHub)
-    |> Keyword.merge(config)
+    |> Keyword.merge(config())
     |> OAuth2.Client.new
   end
 
   def authorize_url!(params \\ []) do
-    OAuth2.Client.authorize_url!(client, Keyword.merge(params, scope: "read:org"))
+    OAuth2.Client.authorize_url!(client(), Keyword.merge(params, scope: "read:org"))
   end
 
   def get_token!(params \\ [], _headers \\ []) do
-    OAuth2.Client.get_token!(client, params)
+    OAuth2.Client.get_token!(client(), params)
   end
 
   # Strategy Callbacks
