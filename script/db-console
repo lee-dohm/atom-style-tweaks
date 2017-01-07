@@ -1,0 +1,9 @@
+#!/bin/sh
+
+set -e
+
+cd "$(dirname "$0")/.."
+
+[ -z "$DEBUG" ] || set -x
+
+psql -d pain_view_dev -U postgres
