@@ -1,0 +1,33 @@
+doctype html
+html lang="en"
+  head
+    meta charset="utf-8"
+    meta http-equiv="X-UA-Compatible" content="IE=edge"
+    meta name="viewport" content="width=device-width, initial-scale=1"
+    meta name="description" content="A database of tweaks for the Atom text editor"
+    meta name="author" content="Lee Dohm"
+
+    title = gettext "Atom Tweaks"
+    link rel="stylesheet" href="#{static_path(@conn, "/css/app.css")}"
+
+  body
+    header.masthead
+      .container
+        a.masthead-logo href="/"
+          span.mega-octicon.octicon-paintcan
+          = gettext "Atom Tweaks"
+
+        nav.masthead-nav
+          = render(AtomStyleTweaks.SharedView, "login_button.html", assigns)
+
+    .container
+      = if get_flash(@conn, :info) do
+        p.flash role="alert" = get_flash(@conn, :info)
+
+      = if get_flash(@conn, :error) do
+        p.flash.flash-error role="alert" = get_flash(@conn, :info)
+
+      main role="main"
+        = render @view_module, @view_template, assigns
+
+    script src="#{static_path(@conn, "/js/app.js")}"

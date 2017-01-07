@@ -22,7 +22,7 @@ config :atom_style_tweaks, AtomStyleTweaks.Endpoint,
       ~r{priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$},
       ~r{priv/gettext/.*(po)$},
       ~r{web/views/.*(ex)$},
-      ~r{web/templates/.*(eex)$}
+      ~r{web/templates/.*(eex|slim|slime)$}
     ]
   ]
 
@@ -32,6 +32,8 @@ config :logger, :console, format: "[$level] $message\n"
 # Set a higher stacktrace during development. Avoid configuring such
 # in production as building large stacktraces may be expensive.
 config :phoenix, :stacktrace_depth, 20
+
+config :slime, :keep_lines, true
 
 # Configure your database
 config :atom_style_tweaks, AtomStyleTweaks.Repo,

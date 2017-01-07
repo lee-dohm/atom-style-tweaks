@@ -32,6 +32,11 @@ config :atom_style_tweaks, GitHub,
 config :phoenix, :generators,
   binary_id: true
 
+# Configure Phoenix template engines
+config :phoenix, :template_engines,
+  slim: PhoenixSlime.Engine,
+  slime: PhoenixSlime.Engine
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env}.exs"
