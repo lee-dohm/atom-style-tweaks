@@ -51,7 +51,8 @@ defmodule AtomStyleTweaks.Mixfile do
       {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:gettext, "~> 0.11"},
       {:cowboy, "~> 1.0"},
-      {:ex_doc, "~> 0.14.5", only: :dev}
+      {:ex_doc, "~> 0.14.5", only: :dev},
+      {:dotenv, "~> 2.0.0", only: :dev}
     ]
   end
 
