@@ -32,26 +32,19 @@ defmodule AtomStyleTweaks.AuthController do
   def callback(conn, %{"code" => code}) do
     token = GitHub.get_token!(code: code)
     github_user = get_user!(token)
-    create_user(github_user)
+    user = create_user(github_user)
 
     conn
-    |> put_session(:current_user, github_user)
+    |> put_session(:current_user, user)
     |> put_session(:access_token, token.token)
-    |> put_flash(:info, "Signed in as #{github_user.name}")
+    |> put_flash(:info, "Signed in as #{user.name}")
     |> redirect(to: page_path(conn, :index))
-  end
-
-  defp update_user_record(github_user) do
-    github_user
-    |> to_changeset
-    |> get_record
-    |> update_record
   end
 
   defp create_user(github_user) do
     case Repo.get_by(User, name: github_user.name) do
       nil -> Repo.insert!(User.changeset(%User{}, github_user))
-      _ -> nil
+      user -> Map.merge(user, github_user)
     end
   end
 
