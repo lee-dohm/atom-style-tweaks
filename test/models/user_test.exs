@@ -3,7 +3,7 @@ defmodule AtomStyleTweaks.UserTest do
 
   alias AtomStyleTweaks.User
 
-  @valid_attrs %{name: "a-site-admin", site_admin: true}
+  @valid_attrs %{name: "some content", site_admin: true}
   @invalid_attrs %{}
 
   test "changeset with valid attributes" do

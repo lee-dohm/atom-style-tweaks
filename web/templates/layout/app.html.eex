@@ -4,10 +4,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="<%= gettext "A database of style tweaks for the Atom text editor" %>">
+    <meta name="description" content="<%= gettext "A database of tweaks for the Atom text editor" %>">
     <meta name="author" content="Lee Dohm">
 
-    <title><%= gettext "Atom Style Tweaks" %></title>
+    <title><%= gettext "Atom Tweaks" %></title>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
   </head>
 
@@ -16,7 +16,7 @@
       <div class="container">
         <a href="/" class="masthead-logo">
           <span class="mega-octicon octicon-paintcan"></span>
-          <%= gettext "Atom Style Tweaks" %>
+          <%= gettext "Atom Tweaks" %>
         </a>
 
         <nav class="masthead-nav">
