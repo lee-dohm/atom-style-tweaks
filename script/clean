@@ -1,0 +1,11 @@
+#!/bin/sh
+
+set -e
+cd "$(dirname "$0")/.."
+
+script/update
+mix clean
+rm -rf bin
+rm -rf deps
+rm -rf doc
+rm -rf priv/static
