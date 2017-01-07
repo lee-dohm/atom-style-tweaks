@@ -9,6 +9,7 @@ defmodule AtomStyleTweaks.Repo.Migrations.CreateUser do
 
       timestamps()
     end
+    create unique_index(:users, [:name])
 
   end
 end

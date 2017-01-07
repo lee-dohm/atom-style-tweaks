@@ -1,4 +1,4 @@
-defmodule AtomStyleTweaks.User.Test do
+defmodule AtomStyleTweaks.UserTest do
   use AtomStyleTweaks.ModelCase
 
   alias AtomStyleTweaks.User
