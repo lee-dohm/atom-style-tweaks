@@ -1,6 +1,8 @@
 defmodule AtomStyleTweaks.User do
   use AtomStyleTweaks.Web, :model
 
+  @primary_key {:id, :binary_id, autogenerate: true}
+
   schema "users" do
     field :name, :string
     field :site_admin, :boolean, default: false

@@ -33,6 +33,7 @@ defmodule AtomStyleTweaks.AuthController do
     token = GitHub.get_token!(code: code)
     github_user = get_user!(token)
     user = create_user(github_user)
+    user = %{user | avatar: github_user.avatar}
 
     conn
     |> put_session(:current_user, user)
@@ -50,26 +51,10 @@ defmodule AtomStyleTweaks.AuthController do
 
   defp get_user!(token) do
     {:ok, %{body: user}} = OAuth2.Client.get(token, "/user")
-    Logger.debug("user = #{inspect user}")
 
     %{
       name: user["login"],
-      avatar: user["avatar_url"],
-      site_admin: false
+      avatar: user["avatar_url"]
     }
-  end
-
-  defp get_orgs!(token) do
-    {:ok, %{body: orgs}} = OAuth2.Client.get(token, "/user/orgs")
-    org_names = Enum.map(orgs, fn(org) -> org["login"] end)
-    Logger.debug("orgs = #{inspect org_names}")
-
-    org_names
-  end
-
-  defp member?(token) do
-    auth_org = Application.get_env(:pain_view, :settings)[:org]
-
-    Enum.find(get_orgs!(token), fn(org) -> org == auth_org end)
   end
 end
