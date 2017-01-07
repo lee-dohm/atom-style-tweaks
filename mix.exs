@@ -24,18 +24,23 @@ defmodule AtomStyleTweaks.Mixfile do
         AtomStyleTweaks,
         []
       },
-      applications: [
-        :phoenix,
-        :phoenix_pubsub,
-        :phoenix_html,
-        :cowboy,
-        :logger,
-        :gettext,
-        :phoenix_ecto,
-        :postgrex
-      ]
+      applications: app_list(Mix.env)
     ]
   end
+
+  defp app_list(:dev), do: [:dotenv | app_list()]
+  defp app_list(_), do: app_list()
+  defp app_list, do: [
+    :phoenix,
+    :phoenix_pubsub,
+    :phoenix_html,
+    :cowboy,
+    :logger,
+    :gettext,
+    :phoenix_ecto,
+    :postgrex,
+    :oauth2
+  ]
 
   # Specifies which paths to compile per environment.
   defp elixirc_paths(:test), do: ["lib", "web", "test/support"]

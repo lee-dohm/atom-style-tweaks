@@ -17,7 +17,7 @@ defmodule AtomStyleTweaks.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/auth", PainView do
+  scope "/auth", AtomStyleTweaks do
     pipe_through :browser
 
     get "/", AuthController, :index
@@ -51,7 +51,7 @@ defmodule AtomStyleTweaks.Router do
   end
 
   def authorized?(nil), do: false
-  def authorized?(%{member: member}), do: member
+  def authorized?(_), do: true
 
   def log_flash(conn, _params) do
     Logger.debug("Flash info = #{get_flash(conn, :info)}")
