@@ -49,11 +49,15 @@ defmodule AtomStyleTweaks.Web do
       # Use all HTML functionality (forms, tags, etc)
       use Phoenix.HTML
 
+      # Built-in view helpers
       import AtomStyleTweaks.Router.Helpers
       import AtomStyleTweaks.ErrorHelpers
       import AtomStyleTweaks.Gettext
+
+      # Project-specific view helpers
       import AtomStyleTweaks.AvatarHelpers
       import AtomStyleTweaks.OcticonHelpers
+      import AtomStyleTweaks.SharedHelpers
     end
   end
 

@@ -1,0 +1,10 @@
+.border.p-2
+  .d-inline-block.px-2
+    = mega_octicon(:paintcan)
+  .d-inline-block
+    a.title href="#{style_path(@conn, :show, @user.name, @style.id)}" = @style.title
+    br
+    = gettext "Created by"
+    a href="#{user_path(@conn, :show, @user.name)}" = @user.name
+    = gettext "on"
+    = @style.inserted_at

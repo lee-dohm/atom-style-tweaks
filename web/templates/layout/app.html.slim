@@ -18,7 +18,7 @@ html lang="en"
           = gettext "Atom Tweaks"
 
         nav.masthead-nav
-          = render(AtomStyleTweaks.SharedView, "login_button.html", assigns)
+          = render_shared("login_button.html", assigns)
 
     .container
       = if get_flash(@conn, :info) do
