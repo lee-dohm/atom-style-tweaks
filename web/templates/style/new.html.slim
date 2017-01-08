@@ -1,0 +1,7 @@
+= form_for @changeset, style_path(@conn, :create, @name), fn f ->
+  .pb-3
+    = text_input(f, :title, class: "form-control input-block input-lg", placeholder: "Title")
+  .pb-3
+    = textarea(f, :code, class: "form-control input-block tweak-textarea", placeholder: "Enter tweak code")
+  .form-actions
+    = submit("Save new tweak", class: "btn btn-primary")
