@@ -53,6 +53,7 @@ defmodule AtomStyleTweaks.Web do
       import AtomStyleTweaks.ErrorHelpers
       import AtomStyleTweaks.Gettext
       import AtomStyleTweaks.AvatarHelpers
+      import AtomStyleTweaks.OcticonHelpers
     end
   end
 

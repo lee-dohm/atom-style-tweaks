@@ -5,7 +5,21 @@
   .three-fourths.column
     .pb-3.clearfix
       a.btn.btn-primary.float-right href="#{style_path(@conn, :new, @user.name)}" = gettext "New tweak"
-    .blankslate
-      span.mega-octicon.octicon-pencil
-      h3 = gettext "This is where your tweaks will be listed"
-      p = gettext "Click \"New tweak\" above to get started!"
+    = if Enum.count(@styles) == 0 do
+      .blankslate
+        span.mega-octicon.octicon-pencil
+        h3 = gettext "This is where your tweaks will be listed"
+        p = gettext "Click \"New tweak\" above to get started!"
+    - else
+      h3 = gettext "Styles"
+      = Enum.map @styles, fn style ->
+        .border.p-2
+          .d-inline-block.px-2
+            = mega_octicon(:paintcan)
+          .d-inline-block
+            a.title href="#{style_path(@conn, :show, @user.name, style.id)}" = style.title
+            br
+            = gettext "Created by"
+            a href="#{user_path(@conn, :show, @user.name)}" = @user.name
+            = gettext "on"
+            = style.inserted_at
