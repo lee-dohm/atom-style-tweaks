@@ -2,9 +2,21 @@ defmodule AtomStyleTweaks.StyleController do
   use AtomStyleTweaks.Web, :controller
 
   alias AtomStyleTweaks.Style
+  alias AtomStyleTweaks.User
 
   def create(conn, %{"name" => name, "style" => style_params}) do
-    conn
+    user = Repo.get_by!(User, name: name)
+    params = Map.merge(style_params, %{"user_id" => user.id})
+    changeset = Style.changeset(%Style{}, params)
+
+    case Repo.insert(changeset) do
+      {:ok, style} ->
+        conn
+        |> put_flash(:info, "Style created successfully")
+        |> redirect(to: style_path(conn, :show, name, style.id))
+      {:error, changeset} ->
+        render(conn, "new.html", changeset: changeset)
+    end
   end
 
   def delete(conn, params) do
