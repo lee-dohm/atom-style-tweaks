@@ -52,6 +52,7 @@ defmodule AtomStyleTweaks.Web do
       import AtomStyleTweaks.Router.Helpers
       import AtomStyleTweaks.ErrorHelpers
       import AtomStyleTweaks.Gettext
+      import AtomStyleTweaks.AvatarHelpers
     end
   end
 

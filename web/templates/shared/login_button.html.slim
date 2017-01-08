@@ -4,7 +4,7 @@
     = gettext "Sign Out"
   a href="#"
     = @current_user.name
-    img.avatar src="#{@current_user.avatar}" width="36" height="36"
+    = avatar(@current_user, size: 36)
 - else
   a.btn href="#{auth_path(@conn, :index)}"
     = gettext "Sign in with"

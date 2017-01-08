@@ -33,7 +33,6 @@ defmodule AtomStyleTweaks.AuthController do
     token = GitHub.get_token!(code: code)
     github_user = get_user!(token)
     user = create_user(github_user)
-    user = %{user | avatar: github_user.avatar}
 
     conn
     |> put_session(:current_user, user)
@@ -54,7 +53,7 @@ defmodule AtomStyleTweaks.AuthController do
 
     %{
       name: user["login"],
-      avatar: user["avatar_url"]
+      avatar_url: user["avatar_url"]
     }
   end
 end

@@ -6,6 +6,7 @@ defmodule AtomStyleTweaks.User do
   schema "users" do
     field :name, :string
     field :site_admin, :boolean, default: false
+    field :avatar_url, :string
 
     timestamps()
   end
@@ -15,8 +16,8 @@ defmodule AtomStyleTweaks.User do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:name, :site_admin])
-    |> validate_required([:name, :site_admin])
+    |> cast(params, [:name, :site_admin, :avatar_url])
+    |> validate_required([:name, :site_admin, :avatar_url])
     |> unique_constraint(:name)
   end
 end
