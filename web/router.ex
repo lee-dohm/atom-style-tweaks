@@ -31,6 +31,12 @@ defmodule AtomStyleTweaks.Router do
     get "/", PageController, :index
 
     get "/:name", UserController, :show
+    get "/:name/styles/:id", StyleController, :show
+    get "/:name/styles/new", StyleController, :new
+    post "/:name/styles/new", StyleController, :create
+    patch "/:name/styles/:id", StyleController, :update
+    put "/:name/styles/:id", StyleController, :update
+    delete "/:name/styles/:id", StyleController, :delete
   end
 
   # Other scopes may use custom stacks.
