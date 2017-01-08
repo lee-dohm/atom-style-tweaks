@@ -31,6 +31,7 @@ defmodule AtomStyleTweaks.Router do
     get "/", PageController, :index
 
     get "/:name", UserController, :show
+
     get "/:name/styles/:id", StyleController, :show
     get "/:name/styles/new", StyleController, :new
     post "/:name/styles/new", StyleController, :create
