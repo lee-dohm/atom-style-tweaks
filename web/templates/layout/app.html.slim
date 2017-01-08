@@ -25,7 +25,7 @@ html lang="en"
         p.flash role="alert" = get_flash(@conn, :info)
 
       = if get_flash(@conn, :error) do
-        p.flash.flash-error role="alert" = get_flash(@conn, :info)
+        p.flash.flash-error role="alert" = get_flash(@conn, :error)
 
       main role="main"
         = render @view_module, @view_template, assigns
