@@ -3,18 +3,25 @@ defmodule AtomStyleTweaks.StyleController do
 
   alias AtomStyleTweaks.Style
 
-  def create(conn, params) do
+  def create(conn, %{"name" => name, "style" => style_params}) do
+    conn
   end
 
   def delete(conn, params) do
+    conn
   end
 
-  def new(conn, params) do
+  def new(conn, %{"name" => name}) do
+    changeset = Style.changeset(%Style{})
+
+    render(conn, "new.html", changeset: changeset, name: name)
   end
 
   def show(conn, params) do
+    conn
   end
 
   def update(conn, params) do
+    conn
   end
 end

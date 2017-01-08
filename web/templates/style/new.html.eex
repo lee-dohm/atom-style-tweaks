@@ -1,0 +1,13 @@
+<%= form_for @changeset, style_path(@conn, :create, @name), fn f -> %>
+  <div class="pb-3">
+    <%= text_input f, :title, class: "form-control input-block input-lg", placeholder: "Title" %>
+  </div>
+
+  <div class="pb-3">
+    <%= textarea f, :code, class: "form-control input-block tweak-textarea", placeholder: "Enter tweak code" %>
+  </div>
+
+  <div class="form-actions">
+    <%= submit "Save new tweak", class: "btn btn-primary" %>
+  </div>
+<% end %>
