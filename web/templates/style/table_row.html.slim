@@ -1,7 +1,7 @@
-.border.p-2
-  .d-inline-block.px-2
+.border.p-2.position-relative
+  .d-inline-block.position-absolute.top-0.mt-2.ml-1
     = mega_octicon(:paintcan)
-  .d-inline-block
+  .d-inline-block.ml-6
     a.title href="#{style_path(@conn, :show, @style.user.name, @style.id)}" = @style.title
     br
     = gettext "Created by"
