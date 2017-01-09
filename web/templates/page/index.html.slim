@@ -5,5 +5,8 @@
         span.octicon.octicon-paintcan
         = gettext "Styles"
   .four-fifths.column
-    .blankslate
-      h3 = gettext "No tweaks for you to see here"
+    = if Enum.count(@styles) == 0 do
+      .blankslate
+        h3 = gettext "No tweaks for you to see here"
+    - else
+      = render_many(@styles, AtomStyleTweaks.StyleView, "table_row.html", conn: @conn)

@@ -8,7 +8,7 @@ defmodule AtomStyleTweaks.UserController do
     case Repo.get_by(User, name: name) do
       nil -> not_found(conn)
       user ->
-        styles = Repo.all(from s in Style, where: s.created_by == ^user.id)
+        styles = Repo.all(from s in Style, where: s.created_by == ^user.id, preload: [:user])
 
         conn
         |> assign(:styles, styles)

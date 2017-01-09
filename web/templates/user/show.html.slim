@@ -12,4 +12,4 @@
         p = gettext "Click \"New tweak\" above to get started!"
     - else
       h3 = gettext "Styles"
-      = render_many(@styles, AtomStyleTweaks.StyleView, "table_row.html", conn: @conn, user: @user)
+      = render_many(@styles, AtomStyleTweaks.StyleView, "table_row.html", conn: @conn)
