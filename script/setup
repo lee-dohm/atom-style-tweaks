@@ -9,6 +9,10 @@ cd "$(dirname "$0")/.."
 
 script/bootstrap
 
+if [ -f "package.json" ]; then
+  npm install
+fi
+
 echo "==> Setting up DB…"
 # reset database to a fresh state.
 mix ecto.setup
