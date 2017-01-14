@@ -42,7 +42,7 @@ defmodule AtomStyleTweaks.AuthController do
   end
 
   defp create_user(github_user) do
-    case Repo.get_by(User, name: github_user.name) do
+    case Repo.get_by(User, name: github_user.name, github_id: github_user.github_id) do
       nil -> Repo.insert!(User.changeset(%User{}, github_user))
       user -> Map.merge(user, github_user)
     end
@@ -53,7 +53,8 @@ defmodule AtomStyleTweaks.AuthController do
 
     %{
       name: user["login"],
-      avatar_url: user["avatar_url"]
+      avatar_url: user["avatar_url"],
+      github_id: user["id"]
     }
   end
 end
