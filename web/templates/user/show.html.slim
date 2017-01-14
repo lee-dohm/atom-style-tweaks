@@ -3,8 +3,9 @@
     = avatar(@user, size: 230)
     h2 = @user.name
   .three-fourths.column
-    .pb-3.clearfix
-      a.btn.btn-primary.float-right href="#{style_path(@conn, :new, @user.name)}" = gettext "New tweak"
+    = if !is_nil(@current_user) && @current_user.name == @user.name do
+      .pb-3.clearfix
+        a.btn.btn-primary.float-right href="#{style_path(@conn, :new, @user.name)}" = gettext "New tweak"
     = if Enum.count(@styles) == 0 do
       .blankslate
         span.mega-octicon.octicon-pencil
