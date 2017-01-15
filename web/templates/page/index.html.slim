@@ -4,6 +4,7 @@
       a.menu-item.selected href="#"
         span.octicon.octicon-paintcan
         = gettext "Styles"
+    a.btn.btn-primary href="#{style_path(@conn, :new, @current_user.name)}" = gettext "New tweak"
   .four-fifths.column
     = if Enum.count(@styles) == 0 do
       .blankslate
