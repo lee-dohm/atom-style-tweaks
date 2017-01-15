@@ -13,7 +13,7 @@ use Mix.Config
 # which you typically run after static files are built.
 config :atom_style_tweaks, AtomStyleTweaks.Endpoint,
   http: [port: {:system, "PORT"}],
-  url: [host: "obscure-shore-84484.herokuapp.com", port: 80],
+  url: [host: "www.atom-tweaks.com", port: 80],
   cache_static_manifest: "priv/static/manifest.json",
   secret_key_base: System.get_env("SECRET_KEY_BASE")
 
