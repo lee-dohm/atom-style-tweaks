@@ -37,7 +37,6 @@ defmodule AtomStyleTweaks.AuthController do
     conn
     |> put_session(:current_user, user)
     |> put_session(:access_token, token.token)
-    |> put_flash(:info, "Signed in as #{user.name}")
     |> redirect(to: page_path(conn, :index))
   end
 
