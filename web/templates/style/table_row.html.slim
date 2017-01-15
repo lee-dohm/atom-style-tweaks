@@ -4,7 +4,7 @@
   .d-inline-block.ml-6
     a.title href="#{style_path(@conn, :show, @style.user.name, @style.id)}" = @style.title
     br
-    = gettext "Created by"
+    = gettext "Created by "
     a href="#{user_path(@conn, :show, @style.user.name)}" = @style.user.name
-    = gettext "on"
+    = gettext " on "
     = @style.inserted_at

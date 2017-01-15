@@ -1,11 +1,11 @@
 = if @current_user do
   a href="#{auth_path(@conn, :delete)}"
-    span.octicon.octicon-sign-out
-    = gettext "Sign Out"
+    = octicon("sign-out")
+    = gettext " Sign Out"
   a href="#{user_path(@conn, :show, @current_user.name)}"
     = @current_user.name
     = avatar(@current_user, size: 36)
 - else
   a.btn href="#{auth_path(@conn, :index)}"
-    = gettext "Sign in with"
-    span.octicon.octicon-mark-github
+    = gettext "Sign in with "
+    = octicon("mark-github")
