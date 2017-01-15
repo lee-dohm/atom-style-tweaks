@@ -30,6 +30,12 @@ html lang="en"
       main role="main"
         = render @view_module, @view_template, assigns
 
+    footer.container.mt-5
+      .columns
+        .two-fifths.column.centered
+          .border-top.border-gray-light.text-center.small.text-gray-light.pt-2
+            = gettext "© 2017 Lee Dohm"
+
     script src="#{static_path(@conn, "/js/app.js")}"
     javascript:
       hljs.initHighlightingOnLoad();
