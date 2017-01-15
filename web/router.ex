@@ -34,6 +34,7 @@ defmodule AtomStyleTweaks.Router do
 
     get "/:name/styles/new", StyleController, :new
     post "/:name/styles/new", StyleController, :create
+    get "/:name/styles/:id/edit", StyleController, :edit
     get "/:name/styles/:id", StyleController, :show
     patch "/:name/styles/:id", StyleController, :update
     put "/:name/styles/:id", StyleController, :update

@@ -1,5 +1,10 @@
 .d-inline-block.my-3.mx-2
   = mega_octicon(:paintcan)
 h3.d-inline-block.my-3 = @style.title
-pre.border.p-2
-  code = @style.code
+.border.p-2
+  = if !is_nil(@current_user) && @current_user.name == @style.user.name do
+    .pb-2.clearfix
+      a.float-right href="#{style_path(@conn, :edit, @style.user.name, @style.id)}"
+        = octicon(:pencil)
+  pre
+    code = @style.code
