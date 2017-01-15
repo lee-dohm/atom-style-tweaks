@@ -24,6 +24,13 @@ defmodule AtomStyleTweaks.StyleController do
     conn
   end
 
+  def edit(conn, %{"name" => name, "id" => id}) do
+    style = Repo.get(Style, id) |> Repo.preload([:user])
+    changeset = Style.changeset(%Style{})
+
+    render(conn, "edit.html", changeset: changeset, name: name, style: style)
+  end
+
   def new(conn, %{"name" => name}) do
     changeset = Style.changeset(%Style{})
 
@@ -36,8 +43,17 @@ defmodule AtomStyleTweaks.StyleController do
     render(conn, "show.html", name: name, style: style)
   end
 
-  def update(conn, params) do
-    conn
+  def update(conn, %{"name" => name, "id" => id, "style" => style_params}) do
+    style = Repo.get(Style, id)
+    changeset = Style.changeset(style, style_params)
+
+    case Repo.update(changeset) do
+      {:ok, style} ->
+        conn
+        |> redirect(to: style_path(conn, :show, name, id))
+      {:error, changeset} ->
+        render(conn, "edit.html", name: name, style: style, changeset: changeset)
+    end
   end
 
   defp format_error({field, {message, _}}) do
