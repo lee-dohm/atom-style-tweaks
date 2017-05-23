@@ -13,4 +13,4 @@ git push heroku master
 
 version=$(heroku releases --json | jq '.[0].version')
 git tag "v$version"
-g push --tags origin
+git push --tags origin
