@@ -13,6 +13,7 @@ This project follows the [GitHub "scripts to rule them all" pattern](http://gith
 * `script/console` &mdash; Opens the development console
 * `script/db-console` &mdash; Opens the database console for the development database
 * `script/docs` &mdash; Generates developer documentation
+* `script/publish` &mdash; Publishes the current version to Heroku
 
 Other scripts that are available but not intended to be used directly by developers:
 
