@@ -58,6 +58,7 @@ defmodule AtomStyleTweaks.Web do
       import AtomStyleTweaks.AvatarHelpers
       import AtomStyleTweaks.OcticonHelpers
       import AtomStyleTweaks.SharedHelpers
+      import AtomStyleTweaks.TimeHelpers
     end
   end
 

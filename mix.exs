@@ -57,6 +57,7 @@ defmodule AtomStyleTweaks.Mixfile do
       {:phoenix_slime, "~> 0.8.0"},
       {:phoenix, "~> 1.2.1"},
       {:postgrex, ">= 0.0.0"},
+      {:timex, "~> 3.1"},
       {:dotenv, "~> 2.0.0", only: :dev},
       {:ex_doc, "~> 0.14.5", only: :dev},
       {:phoenix_live_reload, "~> 1.0", only: :dev}

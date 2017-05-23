@@ -6,5 +6,5 @@
     br
     = gettext "Created by "
     a href="#{user_path(@conn, :show, @style.user.name)}" = @style.user.name
-    = gettext " on "
-    = @style.inserted_at
+    = gettext " about "
+    = relative_time(@style.inserted_at)

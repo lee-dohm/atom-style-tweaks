@@ -3,8 +3,8 @@
 h3.d-inline-block.my-3 = @style.title
 .border.p-2
   .pb-2.clearfix
-    = gettext "Last updated on "
-    = @style.updated_at
+    = gettext "Last updated about "
+    = relative_time(@style.updated_at)
     = if !is_nil(@current_user) && @current_user.name == @style.user.name do
       a.float-right href="#{style_path(@conn, :edit, @style.user.name, @style.id)}"
         = octicon(:pencil)
