@@ -1,0 +1,15 @@
+#!/bin/sh
+
+# script/publish: Publishes the current version of the application to Heroku
+
+set -e
+
+cd "$(dirname "$0")/.."
+
+script/bootstrap
+
+last_released_version=$(heroku releases --json | jq '.[0].version')
+version=$(expr $last_released_version + 1)
+git tag "v$version"
+git push --tags origin master
+git push heroku master
