@@ -70,7 +70,7 @@ exports.config = {
     },
     styles: {
       "highlight.js": [
-        "styles/default.css"
+        "styles/github.css"
       ]
     }
   }
