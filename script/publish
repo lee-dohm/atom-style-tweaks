@@ -8,8 +8,9 @@ cd "$(dirname "$0")/.."
 
 script/bootstrap
 
-last_released_version=$(heroku releases --json | jq '.[0].version')
-version=$(expr $last_released_version + 1)
-git tag "v$version"
-git push --tags origin master
+git push origin master
 git push heroku master
+
+version=$(heroku releases --json | jq '.[0].version')
+git tag "v$version"
+g push --tags origin
