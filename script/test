@@ -10,10 +10,12 @@ cd "$(dirname "$0")/.."
 
 [ -z "$DEBUG" ] || set -x
 
-if [ "$MIX_ENV" = "test" ]; then
+if [ "$MIX_ENV" = "test"  ] || [ "$CI" = "true" ]; then
   # if executed and the environment is already set to `test`, then we want a
   # clean from scratch application. This almost always means a ci environment,
   # since we set the environment to `test` directly in `script/cibuild`.
+  export MIX_ENV="test"
+
   script/setup
 else
   # if the environment isn't set to `test`, set it to `test` and update the

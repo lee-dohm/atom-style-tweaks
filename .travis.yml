@@ -1,0 +1,16 @@
+language: elixir
+dist: trusty
+elixir:
+  - 1.4.2
+otp_release:
+  - 19.0
+addons:
+  postgresql: '9.6'
+services:
+  - postgresql
+install:
+  - mix local.rebar --force
+  - mix local.hex --force
+before_script:
+  - cp config/travis.exs config/test.exs
+script: ./script/cibuild

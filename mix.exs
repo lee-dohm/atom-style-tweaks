@@ -7,7 +7,7 @@ defmodule AtomStyleTweaks.Mixfile do
     [
       app: :atom_style_tweaks,
       version: @version,
-      elixir: "~> 1.2",
+      elixir: "~> 1.4",
       elixirc_paths: elixirc_paths(Mix.env),
       compilers: [:phoenix, :gettext] ++ Mix.compilers,
       build_embedded: Mix.env == :prod,
@@ -67,8 +67,8 @@ defmodule AtomStyleTweaks.Mixfile do
   defp aliases do
     [
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
+      "ecto.ci": ["ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
-      "test": ["ecto.create --quiet", "ecto.migrate", "test"]
     ]
   end
 
