@@ -33,8 +33,16 @@ html lang="en"
     footer.container.mt-5
       .columns
         .two-fifths.column.centered
-          .border-top.border-gray-light.text-center.small.text-gray-light.pt-2
-            = gettext "© 2017 Lee Dohm"
+          .border-top.text-center.small.pt-2
+            a.link-gray-dark href="https://github.com/lee-dohm/atom-style-tweaks"
+              span.octicon.octicon-mark-github
+          .text-center.small.pt-2
+            span.octicon.octicon-code
+            = gettext "with"
+            span.octicon.octicon-heart
+            = gettext "by"
+            a.link-gray-dark href="http://www.lee-dohm.com"
+              = gettext "Lee Dohm"
 
     script src="#{static_path(@conn, "/js/app.js")}"
     javascript:
