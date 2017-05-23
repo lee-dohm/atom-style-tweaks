@@ -10,7 +10,7 @@
       .blankslate
         span.mega-octicon.octicon-pencil
         h3 = gettext "This is where your tweaks will be listed"
-        p = gettext "Click \"New tweak\" above to get started!"
+        p = gettext "Click \"New tweak\" to get started!"
     - else
       h3 = gettext "Styles"
       = render_many(@styles, AtomStyleTweaks.StyleView, "table_row.html", conn: @conn)
