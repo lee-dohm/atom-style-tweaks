@@ -7,6 +7,13 @@ defmodule AtomStyleTweaks.TimeHelpers do
     content_tag(:"time-ago", relative_time_text(from), title: from)
   end
 
+  def relative_time_text(time) do
+    time
+    |> to_duration_text
+    |> get_largest_unit
+    |> format_interval_text
+  end
+
   defp format_interval_text({:seconds, seconds}) when seconds < 10, do: "just now"
   defp format_interval_text({:seconds, seconds}), do: "#{seconds} seconds ago"
   defp format_interval_text({:minutes, minutes}), do: "#{minutes} minutes ago"
@@ -30,12 +37,5 @@ defmodule AtomStyleTweaks.TimeHelpers do
 
     @duration_pattern
     |> Regex.named_captures(duration)
-  end
-
-  defp relative_time_text(time) do
-    time
-    |> to_duration_text
-    |> get_largest_unit
-    |> format_interval_text
   end
 end
