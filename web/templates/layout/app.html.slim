@@ -34,6 +34,9 @@ html lang="en"
       .columns
         .two-fifths.column.centered
           .border-top.text-center.small.pt-2
+            a href="#{page_path(@conn, :about)}"
+              = gettext "About"
+            span.px-3
             a.link-gray-dark href="https://github.com/lee-dohm/atom-style-tweaks"
               span.octicon.octicon-mark-github
           .text-center.small.pt-2
