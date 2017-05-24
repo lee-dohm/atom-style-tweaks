@@ -12,8 +12,11 @@
     = if Enum.count(@styles) == 0 do
       .blankslate
         span.mega-octicon.octicon-pencil
-        h3 = gettext "This is where your tweaks will be listed"
-        p = gettext "Click \"New tweak\" to get started!"
+        = if !is_nil(@current_user) && @current_user.name == @user.name do
+          h3 = gettext "This is where your tweaks will be listed"
+          p = gettext "Click \"New tweak\" to get started!"
+        - else
+          h3 = gettext "%{user_name} doesn't have any tweaks yet", user_name: @user.name
     - else
       h3 = gettext "Styles"
       = render_many(@styles, AtomStyleTweaks.StyleView, "table_row.html", conn: @conn)
