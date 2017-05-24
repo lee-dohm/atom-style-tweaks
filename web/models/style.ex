@@ -1,4 +1,8 @@
 defmodule AtomStyleTweaks.Style do
+  @moduledoc """
+  Represents a style tweak.
+  """
+
   use AtomStyleTweaks.Web, :model
 
   @primary_key {:id, :binary_id, autogenerate: true}

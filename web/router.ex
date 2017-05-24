@@ -53,7 +53,7 @@ defmodule AtomStyleTweaks.Router do
   # `@current_user`.
   def assign_current_user(conn, _) do
     user = get_session(conn, :current_user)
-    Logger.debug("Current user = #{inspect user}")
+    Logger.debug(fn -> "Current user = #{inspect user}" end)
 
     assign(conn, :current_user, user)
   end
@@ -66,8 +66,8 @@ defmodule AtomStyleTweaks.Router do
   def authorized?(_), do: true
 
   def log_flash(conn, _params) do
-    Logger.debug("Flash info = #{get_flash(conn, :info)}")
-    Logger.debug("Flash error = #{get_flash(conn, :error)}")
+    Logger.debug(fn -> "Flash info = #{get_flash(conn, :info)}" end)
+    Logger.debug(fn -> "Flash error = #{get_flash(conn, :error)}" end)
 
     conn
   end

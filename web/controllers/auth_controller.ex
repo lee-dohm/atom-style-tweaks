@@ -48,6 +48,7 @@ defmodule AtomStyleTweaks.AuthController do
   end
 
   defp get_user!(token) do
+    # credo:disable-for-next-line Credo.Check.Design.AliasUsage
     {:ok, %{body: user}} = OAuth2.Client.get(token, "/user")
 
     %{

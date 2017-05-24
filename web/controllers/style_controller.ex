@@ -25,7 +25,10 @@ defmodule AtomStyleTweaks.StyleController do
   end
 
   def edit(conn, %{"name" => name, "id" => id}) do
-    style = Repo.get(Style, id) |> Repo.preload([:user])
+    style = Style
+            |> Repo.get(id)
+            |> Repo.preload([:user])
+
     changeset = Style.changeset(%Style{})
 
     render(conn, "edit.html", changeset: changeset, name: name, style: style)
@@ -38,7 +41,9 @@ defmodule AtomStyleTweaks.StyleController do
   end
 
   def show(conn, %{"name" => name, "id" => id}) do
-    style = Repo.get(Style, id) |> Repo.preload([:user])
+    style = Style
+            |> Repo.get(id)
+            |> Repo.preload([:user])
 
     render(conn, "show.html", name: name, style: style)
   end

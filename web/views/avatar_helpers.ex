@@ -1,4 +1,8 @@
 defmodule AtomStyleTweaks.AvatarHelpers do
+  @moduledoc """
+  Helper functions for displaying avatars.
+  """
+
   use Phoenix.HTML
 
   def avatar(user) do
