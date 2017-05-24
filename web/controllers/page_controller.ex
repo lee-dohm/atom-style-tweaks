@@ -8,4 +8,8 @@ defmodule AtomStyleTweaks.PageController do
 
     render(conn, "index.html", styles: styles)
   end
+
+  def about(conn, _params) do
+    render(conn, "about.html")
+  end
 end
