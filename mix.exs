@@ -62,7 +62,8 @@ defmodule AtomStyleTweaks.Mixfile do
       {:timex, "~> 3.1"},
       {:dotenv, "~> 2.0.0", only: :dev},
       {:ex_doc, "~> 0.14.5", only: :dev},
-      {:phoenix_live_reload, "~> 1.0", only: :dev}
+      {:phoenix_live_reload, "~> 1.0", only: :dev},
+      {:credo, "0.8.0-rc6", only: [:dev, :test], runtime: false}
     ]
   end
 
@@ -71,6 +72,7 @@ defmodule AtomStyleTweaks.Mixfile do
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.ci": ["ecto.create", "ecto.migrate"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
+      "test": ["credo", "test"]
     ]
   end
 

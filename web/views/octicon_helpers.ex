@@ -1,4 +1,8 @@
 defmodule AtomStyleTweaks.OcticonHelpers do
+  @moduledoc """
+  Helper functions for displaying [Octicons](https://octicons.github.com).
+  """
+
   use Phoenix.HTML
 
   def octicon(name) do

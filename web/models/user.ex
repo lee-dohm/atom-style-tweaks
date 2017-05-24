@@ -1,4 +1,8 @@
 defmodule AtomStyleTweaks.User do
+  @moduledoc """
+  Represents a user of the application.
+  """
+
   use AtomStyleTweaks.Web, :model
 
   @primary_key {:id, :binary_id, autogenerate: true}

@@ -1,4 +1,8 @@
 defmodule AtomStyleTweaks.TimeHelpers do
+  @moduledoc """
+  Helper functions for dealing with time.
+  """
+
   use Phoenix.HTML
 
   def relative_time(from) do
