@@ -3,7 +3,7 @@ defmodule AtomStyleTweaks.StyleTest do
 
   alias AtomStyleTweaks.Style
 
-  @valid_attrs %{code: "some content", title: "some content"}
+  @valid_attrs %{code: "some content", title: "some content", created_by: Ecto.UUID.generate()}
   @invalid_attrs %{}
 
   test "changeset with valid attributes" do
