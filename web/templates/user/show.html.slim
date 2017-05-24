@@ -1,7 +1,10 @@
 .columns
   .one-fourth.column
     = avatar(@user, size: 230)
-    h2 = @user.name
+    h2.d-inline-block = @user.name
+    = if @user.site_admin do
+      span.state.bg-blue.d-inline-block.mt-1.float-right
+        = gettext "Staff"
   .three-fourths.column
     = if !is_nil(@current_user) && @current_user.name == @user.name do
       .pb-3.clearfix
