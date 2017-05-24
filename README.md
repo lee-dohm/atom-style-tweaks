@@ -1,5 +1,7 @@
 # AtomStyleTweaks
 
+[![Travis](https://img.shields.io/travis/lee-dohm/atom-style-tweaks.svg)]()
+
 Website for collecting style tweaks for Atom.
 
 ## Common Tasks
