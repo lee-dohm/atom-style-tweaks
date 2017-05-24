@@ -20,7 +20,7 @@ defmodule AtomStyleTweaks.StyleController do
     end
   end
 
-  def delete(conn, params) do
+  def delete(conn, _params) do
     conn
   end
 
@@ -48,7 +48,7 @@ defmodule AtomStyleTweaks.StyleController do
     changeset = Style.changeset(style, style_params)
 
     case Repo.update(changeset) do
-      {:ok, style} ->
+      {:ok, _style} ->
         conn
         |> redirect(to: style_path(conn, :show, name, id))
       {:error, changeset} ->
