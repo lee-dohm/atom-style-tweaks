@@ -39,7 +39,8 @@ defmodule AtomStyleTweaks.Mixfile do
     :gettext,
     :phoenix_ecto,
     :postgrex,
-    :oauth2
+    :oauth2,
+    :tzdata
   ]
 
   # Specifies which paths to compile per environment.
