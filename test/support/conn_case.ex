@@ -31,6 +31,7 @@ defmodule AtomStyleTweaks.ConnCase do
       @endpoint AtomStyleTweaks.Endpoint
 
       import AtomStyleTweaks.Factory
+      import AtomStyleTweaks.HtmlMatchers
 
       def decoded_response(conn, status_code) do
         html_response(conn, status_code)

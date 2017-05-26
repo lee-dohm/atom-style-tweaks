@@ -9,20 +9,6 @@ defmodule AtomStyleTweaks.TweakController.Test do
     get(conn, tweak_path(conn, :edit, tweak.user.name, tweak.id))
   end
 
-  def find_element(conn, selector) do
-    conn
-    |> decoded_response(200)
-    |> Floki.find(selector)
-  end
-
-  def has_text(element, expected) do
-    if expected == Floki.text(element), do: element
-  end
-
-  def links_to(element, expected) do
-    if [expected] == Floki.attribute(element, "href"), do: element
-  end
-
   def show_tweak, do: show_tweak(insert(:tweak))
 
   def show_tweak(tweak) do
