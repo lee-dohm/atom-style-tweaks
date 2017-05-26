@@ -37,27 +37,29 @@ defmodule AtomStyleTweaks.TweakController.Test do
     tweak = insert(:tweak)
     conn = show_tweak(tweak)
 
-    assert decoded_response(conn, 200) =~ tweak.title
+    assert find_element(conn, "main h3")
+           |> has_text(tweak.title)
   end
 
   test "show tweak displays the tweak's code" do
     tweak = insert(:tweak, code: "This is some cool code huh?")
     conn = show_tweak(tweak)
 
-    assert decoded_response(conn, 200) =~ "This is some cool code huh?"
+    assert find_element(conn, "code")
+           |> has_text(tweak.code)
   end
 
   test "show tweak when not logged in does not show edit button" do
     conn = show_tweak()
 
-    refute decoded_response(conn, 200) =~ "octicon-pencil"
+    refute find_element(conn, "span.octicon.octicon-pencil")
   end
 
   test "show tweak when logged in as a different user does not show edit button" do
     user = build(:user)
     conn = show_tweak(insert(:tweak), logged_in_as: user)
 
-    refute decoded_response(conn, 200) =~ "octicon-pencil"
+    refute find_element(conn, "span.octicon.octicon-pencil")
   end
 
   test "show tweak when logged in as owning user shows the edit button" do
@@ -65,6 +67,6 @@ defmodule AtomStyleTweaks.TweakController.Test do
     tweak = insert(:tweak, user: user)
     conn = show_tweak(tweak, logged_in_as: user)
 
-    assert decoded_response(conn, 200) =~ "octicon-pencil"
+    assert find_element(conn, "a[href=\"#{tweak_path(conn, :edit, tweak.user.name, tweak.id)}\"]")
   end
 end

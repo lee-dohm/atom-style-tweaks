@@ -2,10 +2,14 @@ defmodule AtomStyleTweaks.HtmlMatchers do
   import ExUnit.Assertions
 
   def find_element(conn, selector) do
-    conn
-    |> decoded_response(200)
-    |> Floki.find(selector)
+    element = conn
+              |> decoded_response(200)
+              |> Floki.find(selector)
+
+    if element == [], do: nil, else: element
   end
+
+  def has_attribute(nil, _), do: nil
 
   def has_attribute(element, expected_attribute) do
     assert get_attribute(element, expected_attribute)
@@ -13,11 +17,15 @@ defmodule AtomStyleTweaks.HtmlMatchers do
     element
   end
 
+  def has_attribute(nil, _, _), do: nil
+
   def has_attribute(element, attribute, expected_value) do
     assert get_attribute(element, attribute) == expected_value
 
     element
   end
+
+  def has_text(nil, _), do: nil
 
   def has_text(element, expected) do
     assert get_text(element) == expected
@@ -25,11 +33,15 @@ defmodule AtomStyleTweaks.HtmlMatchers do
     element
   end
 
+  def links_to(nil, _), do: nil
+
   def links_to(element, expected) do
     assert get_href(element) == expected
 
     element
   end
+
+  def matches_text(nil, _), do: nil
 
   def matches_text(element, expected) do
     assert get_text(element) =~ expected
