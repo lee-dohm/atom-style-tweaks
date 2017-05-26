@@ -5,6 +5,8 @@ defmodule AtomStyleTweaks.Tweak do
 
   use AtomStyleTweaks.Web, :model
 
+  import Ecto.Query
+
   @primary_key {:id, :binary_id, autogenerate: true}
 
   schema "tweaks" do
@@ -25,4 +27,10 @@ defmodule AtomStyleTweaks.Tweak do
     |> validate_required([:title, :code, :created_by, :type])
     |> validate_inclusion(:type, ["init", "style"])
   end
+
+  def by_type(query, type), do: from t in query, where: t.type == ^type
+
+  def preload(query), do: from t in query, preload: [:user]
+
+  def sorted(query), do: from t in query, order_by: [desc: :updated_at]
 end

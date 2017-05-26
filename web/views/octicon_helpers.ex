@@ -25,5 +25,6 @@ defmodule AtomStyleTweaks.OcticonHelpers do
     |> mega_octicon
   end
 
+  defp icon_for_tweak(%{type: "init"}), do: :code
   defp icon_for_tweak(%{type: "style"}), do: :paintcan
 end

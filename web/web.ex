@@ -56,6 +56,7 @@ defmodule AtomStyleTweaks.Web do
 
       # Project-specific view helpers
       import AtomStyleTweaks.AvatarHelpers
+      import AtomStyleTweaks.MenuHelpers
       import AtomStyleTweaks.OcticonHelpers
       import AtomStyleTweaks.SharedHelpers
       import AtomStyleTweaks.TimeHelpers
