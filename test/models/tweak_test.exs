@@ -22,6 +22,12 @@ defmodule AtomStyleTweaks.TweakTest do
     refute changeset.valid?
   end
 
+  test "allows init tweak type" do
+    changeset = Tweak.changeset(%Tweak{}, %{@valid_attrs | type: "init"})
+
+    assert changeset.valid?
+  end
+
   test "does not allow atom version of type name" do
     changeset = Tweak.changeset(%Tweak{}, %{@valid_attrs | type: :style})
 

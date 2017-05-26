@@ -23,6 +23,6 @@ defmodule AtomStyleTweaks.Tweak do
     struct
     |> cast(params, [:title, :code, :created_by, :type])
     |> validate_required([:title, :code, :created_by, :type])
-    |> validate_inclusion(:type, ["style"])
+    |> validate_inclusion(:type, ["init", "style"])
   end
 end
