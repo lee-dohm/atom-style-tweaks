@@ -32,15 +32,27 @@ defmodule AtomStyleTweaks.ConnCase do
 
       import AtomStyleTweaks.Factory
 
-      def request(path_fn, destination, options \\ nil) do
-        conn = Phoenix.ConnTest.build_conn()
-               |> maybe_simulate_logged_in_user(options)
-
-        path = apply(AtomStyleTweaks.Router.Helpers, path_fn, [conn, destination])
-        Phoenix.ConnTest.dispatch(conn, @endpoint, :get, path)
+      def decoded_response(conn, status_code) do
+        html_response(conn, status_code)
+        |> HtmlEntities.decode
       end
 
-      def maybe_simulate_logged_in_user(conn, :logged_in) do
+      def log_in_as(conn, user) do
+        Plug.Test.init_test_session(conn, %{current_user: user})
+      end
+
+      def request(path_fn, destination, options \\ []) do
+        logged_in = Keyword.get(options, :logged_in)
+        params = Keyword.get(options, :params)
+
+        conn = Phoenix.ConnTest.build_conn()
+               |> maybe_simulate_logged_in_user(logged_in)
+
+        path = apply(AtomStyleTweaks.Router.Helpers, path_fn, [conn, destination])
+        Phoenix.ConnTest.dispatch(conn, @endpoint, :get, path, params)
+      end
+
+      def maybe_simulate_logged_in_user(conn, true) do
         Plug.Test.init_test_session(conn, %{current_user: build(:user)})
       end
 

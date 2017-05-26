@@ -15,7 +15,7 @@ defmodule AtomStyleTweaks.PageController.Test do
   end
 
   test "index shows new tweak button when logged in" do
-    conn = request(:page_path, :index, :logged_in)
+    conn = request(:page_path, :index, logged_in: true)
 
     assert html_response(conn, 200) =~ "New tweak"
   end

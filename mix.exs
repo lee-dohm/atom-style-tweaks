@@ -65,7 +65,8 @@ defmodule AtomStyleTweaks.Mixfile do
       {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:credo, "0.8.0-rc6", only: [:dev, :test], runtime: false},
       {:ex_machina, "~> 2.0", only: :test},
-      {:faker_elixir_octopus, "~> 1.0", only: :test}
+      {:faker_elixir_octopus, "~> 1.0", only: :test},
+      {:html_entities, "~> 0.3.0", only: :test}
     ]
   end
 

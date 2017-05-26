@@ -8,7 +8,7 @@ defmodule AtomStyleTweaks.Factory do
 
   def user_factory do
     %User{
-      name: Faker.Name.name(),
+      name: Faker.Internet.user_name(),
       site_admin: false,
       github_id: Faker.Helper.pick(1..100),
       avatar_url: Faker.Avatar.robohash()
