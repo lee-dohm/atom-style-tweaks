@@ -11,6 +11,7 @@ defmodule AtomStyleTweaks.HtmlAssertions do
 
   @type element_result :: Floki.html_tree | nil
   @type selector :: String.t
+  @type single_element :: [{String.t, list, list}]
 
   @doc """
   Finds all elements matching the given CSS-style selector.
@@ -43,6 +44,11 @@ defmodule AtomStyleTweaks.HtmlAssertions do
 
     if element == [], do: nil, else: element
   end
+
+  @spec get_attribute(single_element, String.t | atom) :: String.t
+  def get_attribute(list, _) when length(list) > 1, do: flunk("Cannot get an attribute from more than one element")
+  def get_attribute(element, attribute) when is_atom(attribute), do: get_attribute(element, Atom.to_string(attribute))
+  def get_attribute(element, attribute), do: hd(Floki.attribute(element, attribute))
 
   @doc """
   Asserts that any of the elements has the named attribute.
@@ -155,8 +161,6 @@ defmodule AtomStyleTweaks.HtmlAssertions do
     |> HtmlEntities.decode
   end
 
-  defp get_attribute(element, attribute) when is_atom(attribute), do: get_attribute(element, Atom.to_string(attribute))
-  defp get_attribute(element, attribute), do: hd(Floki.attribute(element, attribute))
   defp get_text(element), do: Floki.text(element)
   defp get_href(element), do: get_attribute(element, :href)
 end

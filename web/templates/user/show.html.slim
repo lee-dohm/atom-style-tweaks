@@ -1,14 +1,14 @@
 .columns
-  .one-fourth.column
+  #user-info-block.one-fourth.column
     = avatar(@user, size: 230)
     h2.d-inline-block = @user.name
     = if @user.site_admin do
-      span.state.bg-blue.d-inline-block.mt-1.float-right
+      span#staff-badge.state.bg-blue.d-inline-block.mt-1.float-right
         = gettext "Staff"
   .three-fourths.column
     = if !is_nil(@current_user) && @current_user.name == @user.name do
       .pb-3.clearfix
-        a.btn.btn-primary.float-right href="#{tweak_path(@conn, :new, @user.name)}" = gettext "New tweak"
+        a#new-tweak-button.btn.btn-primary.float-right href="#{tweak_path(@conn, :new, @user.name)}" = gettext "New tweak"
     = if Enum.count(@tweaks) == 0 do
       .blankslate
         span.mega-octicon.octicon-pencil
