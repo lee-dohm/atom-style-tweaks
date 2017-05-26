@@ -10,6 +10,7 @@ defmodule AtomStyleTweaks.Tweak do
   schema "tweaks" do
     field :title, :string
     field :code, :string
+    field :type, :string
     belongs_to :user, AtomStyleTweaks.User, foreign_key: :created_by, type: :binary_id
 
     timestamps()
@@ -20,7 +21,8 @@ defmodule AtomStyleTweaks.Tweak do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:title, :code, :created_by])
-    |> validate_required([:title, :code, :created_by])
+    |> cast(params, [:title, :code, :created_by, :type])
+    |> validate_required([:title, :code, :created_by, :type])
+    |> validate_inclusion(:type, ["style"])
   end
 end
