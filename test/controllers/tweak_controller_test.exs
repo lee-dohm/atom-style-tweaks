@@ -28,7 +28,7 @@ defmodule AtomStyleTweaks.TweakController.Test do
     tweak = insert(:tweak)
     conn = edit_tweak(tweak)
 
-    assert find_element(conn, "a.btn.btn-danger")
+    assert find_single_element(conn, "a.btn.btn-danger")
            |> has_text("Cancel")
            |> links_to(tweak_path(conn, :show, tweak.user.name, tweak.id))
   end
@@ -37,7 +37,7 @@ defmodule AtomStyleTweaks.TweakController.Test do
     tweak = insert(:tweak)
     conn = show_tweak(tweak)
 
-    assert find_element(conn, "main h3")
+    assert find_single_element(conn, "main h3")
            |> has_text(tweak.title)
   end
 
@@ -45,21 +45,21 @@ defmodule AtomStyleTweaks.TweakController.Test do
     tweak = insert(:tweak, code: "This is some cool code huh?")
     conn = show_tweak(tweak)
 
-    assert find_element(conn, "code")
+    assert find_single_element(conn, "code")
            |> has_text(tweak.code)
   end
 
   test "show tweak when not logged in does not show edit button" do
     conn = show_tweak()
 
-    refute find_element(conn, "span.octicon.octicon-pencil")
+    refute find_single_element(conn, "span.octicon.octicon-pencil")
   end
 
   test "show tweak when logged in as a different user does not show edit button" do
     user = build(:user)
     conn = show_tweak(insert(:tweak), logged_in_as: user)
 
-    refute find_element(conn, "span.octicon.octicon-pencil")
+    refute find_single_element(conn, "span.octicon.octicon-pencil")
   end
 
   test "show tweak when logged in as owning user shows the edit button" do
@@ -67,6 +67,6 @@ defmodule AtomStyleTweaks.TweakController.Test do
     tweak = insert(:tweak, user: user)
     conn = show_tweak(tweak, logged_in_as: user)
 
-    assert find_element(conn, "a[href=\"#{tweak_path(conn, :edit, tweak.user.name, tweak.id)}\"]")
+    assert find_single_element(conn, "a[href=\"#{tweak_path(conn, :edit, tweak.user.name, tweak.id)}\"]")
   end
 end

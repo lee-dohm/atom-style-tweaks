@@ -23,7 +23,7 @@ defmodule AtomStyleTweaks.PageController.Test do
   test "index shows home page link" do
     conn = home_page()
 
-    assert find_element(conn, "a.masthead-logo")
+    assert find_single_element(conn, "a.masthead-logo")
            |> has_text("Atom Tweaks")
            |> links_to(page_path(conn, :index))
   end
@@ -31,13 +31,13 @@ defmodule AtomStyleTweaks.PageController.Test do
   test "index does not show 'New tweak' button when not logged in" do
     conn = home_page()
 
-    refute find_element(conn, "a#new-tweak-button")
+    refute find_all_elements(conn, "a#new-tweak-button")
   end
 
   test "index shows new tweak button when logged in" do
     conn = home_page(logged_in_as: build(:user))
 
-    assert find_element(conn, "a#new-tweak-button")
+    assert find_single_element(conn, "a#new-tweak-button")
            |> has_text("New tweak")
   end
 
@@ -45,9 +45,12 @@ defmodule AtomStyleTweaks.PageController.Test do
     tweaks = insert_list(3, :tweak)
     conn = home_page()
 
+    elements = find_all_elements(conn, "a.title")
+
     Enum.each(tweaks, fn(tweak) ->
-      assert html_response(conn, 200) =~ tweak.title
-      assert html_response(conn, 200) =~ tweak.user.name
+      assert elements
+             |> has_text(tweak.title)
+             |> links_to(tweak_path(conn, :show, tweak.user.name, tweak.id))
     end)
   end
 
@@ -60,7 +63,7 @@ defmodule AtomStyleTweaks.PageController.Test do
   test "index shows About link" do
     conn = home_page()
 
-    assert find_element(conn, "footer a#about-link")
+    assert find_single_element(conn, "footer a#about-link")
            |> has_text("About")
            |> links_to(page_path(conn, :about))
   end
@@ -68,14 +71,14 @@ defmodule AtomStyleTweaks.PageController.Test do
   test "index shows the GitHub link" do
     conn = home_page()
 
-    assert find_element(conn, "footer a#github-link")
+    assert find_single_element(conn, "footer a#github-link")
            |> links_to("https://github.com/lee-dohm/atom-style-tweaks")
   end
 
   test "about page shows some about text" do
     conn = about_page()
 
-    assert find_element(conn, "main h1")
+    assert find_single_element(conn, "main h1")
            |> has_text("About Atom Tweaks")
   end
 end
