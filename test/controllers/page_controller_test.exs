@@ -21,16 +21,16 @@ defmodule AtomStyleTweaks.PageController.Test do
   end
 
   test "index shows a list of tweaks" do
-    styles = insert_list(3, :style)
+    tweaks = insert_list(3, :tweak)
     conn = request(:page_path, :index)
 
-    Enum.each(styles, fn(style) ->
-      assert html_response(conn, 200) =~ style.title
-      assert html_response(conn, 200) =~ style.user.name
+    Enum.each(tweaks, fn(tweak) ->
+      assert html_response(conn, 200) =~ tweak.title
+      assert html_response(conn, 200) =~ tweak.user.name
     end)
   end
 
-  test "index shows styles tab" do
+  test "index shows tweaks tab" do
     conn = request(:page_path, :index)
 
     assert html_response(conn, 200) =~ "Styles"

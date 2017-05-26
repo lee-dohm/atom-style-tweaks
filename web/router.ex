@@ -33,14 +33,14 @@ defmodule AtomStyleTweaks.Router do
 
     get "/:name", UserController, :show
 
-    get "/:name/styles/new", StyleController, :new
-    post "/:name/styles/new", StyleController, :create
-    get "/:name/styles/:id/edit", StyleController, :edit
-    get "/:name/styles/:id", StyleController, :show
-    post "/:name/styles/:id", StyleController, :update
-    patch "/:name/styles/:id", StyleController, :update
-    put "/:name/styles/:id", StyleController, :update
-    delete "/:name/styles/:id", StyleController, :delete
+    get "/:name/tweaks/new", TweakController, :new
+    post "/:name/tweaks/new", TweakController, :create
+    get "/:name/tweaks/:id/edit", TweakController, :edit
+    get "/:name/tweaks/:id", TweakController, :show
+    post "/:name/tweaks/:id", TweakController, :update
+    patch "/:name/tweaks/:id", TweakController, :update
+    put "/:name/tweaks/:id", TweakController, :update
+    delete "/:name/tweaks/:id", TweakController, :delete
   end
 
   # Other scopes may use custom stacks.

@@ -3,7 +3,7 @@ defmodule AtomStyleTweaks.Factory do
 
   alias FakerElixir, as: Faker
 
-  alias AtomStyleTweaks.Style
+  alias AtomStyleTweaks.Tweak
   alias AtomStyleTweaks.User
 
   def user_factory do
@@ -15,8 +15,8 @@ defmodule AtomStyleTweaks.Factory do
     }
   end
 
-  def style_factory do
-    %Style{
+  def tweak_factory do
+    %Tweak{
       title: Faker.Lorem.words(2..4),
       code: "atom-text-editor { font-style: normal; }",
       user: build(:user)

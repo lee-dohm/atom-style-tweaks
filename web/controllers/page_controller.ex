@@ -1,12 +1,12 @@
 defmodule AtomStyleTweaks.PageController do
   use AtomStyleTweaks.Web, :controller
 
-  alias AtomStyleTweaks.Style
+  alias AtomStyleTweaks.Tweak
 
   def index(conn, _params) do
-    styles = Repo.all(from s in Style, limit: 10, order_by: [desc: :updated_at], preload: [:user])
+    tweaks = Repo.all(from t in Tweak, limit: 10, order_by: [desc: :updated_at], preload: [:user])
 
-    render(conn, "index.html", styles: styles)
+    render(conn, "index.html", tweaks: tweaks)
   end
 
   def about(conn, _params) do

@@ -1,0 +1,10 @@
+.border.p-2.position-relative
+  .d-inline-block.position-absolute.top-0.mt-2.ml-1
+    = mega_octicon(:paintcan)
+  .d-inline-block.ml-6
+    a.title href="#{tweak_path(@conn, :show, @tweak.user.name, @tweak.id)}" = @tweak.title
+    br
+    = gettext "Created by "
+    a href="#{user_path(@conn, :show, @tweak.user.name)}" = @tweak.user.name
+    = gettext " about "
+    = relative_time(@tweak.inserted_at)

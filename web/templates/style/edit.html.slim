@@ -1,7 +1,0 @@
-= form_for @changeset, style_path(@conn, :update, @name, @style.id), [method: "PUT"], fn f ->
-  .pb-3
-    = text_input(f, :title, class: "form-control input-block input-lg", placeholder: "Title", value: @style.title)
-  .pb-3
-    = textarea(f, :code, class: "form-control input-block tweak-textarea", placeholder: "Enter tweak code", value: @style.code)
-  .form-actions
-    = submit("Update style", class: "btn btn-primary")

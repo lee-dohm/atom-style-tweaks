@@ -1,18 +1,18 @@
-defmodule AtomStyleTweaks.StyleController do
+defmodule AtomStyleTweaks.TweakController do
   use AtomStyleTweaks.Web, :controller
 
-  alias AtomStyleTweaks.Style
+  alias AtomStyleTweaks.Tweak
   alias AtomStyleTweaks.User
 
   require Logger
 
-  def create(conn, %{"name" => name, "style" => style_params}) do
+  def create(conn, %{"name" => name, "tweak" => tweak_params}) do
     user = Repo.get_by!(User, name: name)
-    params = Map.merge(style_params, %{"created_by" => user.id})
-    changeset = Style.changeset(%Style{}, params)
+    params = Map.merge(tweak_params, %{"created_by" => user.id})
+    changeset = Tweak.changeset(%Tweak{}, params)
 
     case Repo.insert(changeset) do
-      {:ok, style} -> redirect(conn, to: style_path(conn, :show, name, style.id))
+      {:ok, tweak} -> redirect(conn, to: tweak_path(conn, :show, name, tweak.id))
       {:error, changeset} ->
         conn
         |> put_flash(:error, format_errors(changeset.errors))
@@ -25,39 +25,39 @@ defmodule AtomStyleTweaks.StyleController do
   end
 
   def edit(conn, %{"name" => name, "id" => id}) do
-    style = Style
+    tweak = Tweak
             |> Repo.get(id)
             |> Repo.preload([:user])
 
-    changeset = Style.changeset(%Style{})
+    changeset = Tweak.changeset(%Tweak{})
 
-    render(conn, "edit.html", changeset: changeset, name: name, style: style)
+    render(conn, "edit.html", changeset: changeset, name: name, tweak: tweak)
   end
 
   def new(conn, %{"name" => name}) do
-    changeset = Style.changeset(%Style{})
+    changeset = Tweak.changeset(%Tweak{})
 
     render(conn, "new.html", changeset: changeset, name: name)
   end
 
   def show(conn, %{"name" => name, "id" => id}) do
-    style = Style
+    tweak = Tweak
             |> Repo.get(id)
             |> Repo.preload([:user])
 
-    render(conn, "show.html", name: name, style: style)
+    render(conn, "show.html", name: name, tweak: tweak)
   end
 
-  def update(conn, %{"name" => name, "id" => id, "style" => style_params}) do
-    style = Repo.get(Style, id)
-    changeset = Style.changeset(style, style_params)
+  def update(conn, %{"name" => name, "id" => id, "tweak" => tweak_params}) do
+    tweak = Repo.get(Tweak, id)
+    changeset = Tweak.changeset(tweak, tweak_params)
 
     case Repo.update(changeset) do
       {:ok, _style} ->
         conn
-        |> redirect(to: style_path(conn, :show, name, id))
+        |> redirect(to: tweak_path(conn, :show, name, id))
       {:error, changeset} ->
-        render(conn, "edit.html", name: name, style: style, changeset: changeset)
+        render(conn, "edit.html", name: name, tweak: tweak, changeset: changeset)
     end
   end
 
