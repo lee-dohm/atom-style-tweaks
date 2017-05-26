@@ -16,7 +16,7 @@ defmodule AtomStyleTweaks.Mixfile do
       deps: deps(),
       docs: docs(),
       test_coverage: [tool: ExCoveralls],
-      preferred_cli_env: ["coveralls": :test, "coveralls.html": :test]
+      preferred_cli_env: ["coveralls": :test, "coveralls.html": :test, "coveralls.travis": :test]
     ]
   end
 
