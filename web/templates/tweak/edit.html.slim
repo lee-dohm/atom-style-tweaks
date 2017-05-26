@@ -1,0 +1,7 @@
+= form_for @changeset, tweak_path(@conn, :update, @name, @tweak.id), [method: "PUT"], fn f ->
+  .pb-3
+    = text_input(f, :title, class: "form-control input-block input-lg", placeholder: "Title", value: @tweak.title)
+  .pb-3
+    = textarea(f, :code, class: "form-control input-block tweak-textarea", placeholder: "Enter tweak code", value: @tweak.code)
+  .form-actions
+    = submit("Update tweak", class: "btn btn-primary")

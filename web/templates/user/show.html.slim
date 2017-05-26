@@ -8,8 +8,8 @@
   .three-fourths.column
     = if !is_nil(@current_user) && @current_user.name == @user.name do
       .pb-3.clearfix
-        a.btn.btn-primary.float-right href="#{style_path(@conn, :new, @user.name)}" = gettext "New tweak"
-    = if Enum.count(@styles) == 0 do
+        a.btn.btn-primary.float-right href="#{tweak_path(@conn, :new, @user.name)}" = gettext "New tweak"
+    = if Enum.count(@tweaks) == 0 do
       .blankslate
         span.mega-octicon.octicon-pencil
         = if !is_nil(@current_user) && @current_user.name == @user.name do
@@ -18,5 +18,5 @@
         - else
           h3 = gettext "%{user_name} doesn't have any tweaks yet", user_name: @user.name
     - else
-      h3 = gettext "Styles"
-      = render_many(@styles, AtomStyleTweaks.StyleView, "table_row.html", conn: @conn)
+      h3 = gettext "Tweaks"
+      = render_many(@tweaks, AtomStyleTweaks.TweakView, "table_row.html", conn: @conn)

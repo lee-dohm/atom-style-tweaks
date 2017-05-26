@@ -1,13 +1,13 @@
-defmodule AtomStyleTweaks.Style do
+defmodule AtomStyleTweaks.Tweak do
   @moduledoc """
-  Represents a style tweak.
+  Represents a tweak.
   """
 
   use AtomStyleTweaks.Web, :model
 
   @primary_key {:id, :binary_id, autogenerate: true}
 
-  schema "styles" do
+  schema "tweaks" do
     field :title, :string
     field :code, :string
     belongs_to :user, AtomStyleTweaks.User, foreign_key: :created_by, type: :binary_id

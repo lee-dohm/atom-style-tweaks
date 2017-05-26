@@ -60,11 +60,11 @@ defmodule AtomStyleTweaks.UserController.Test do
 
   test "show user with tweaks when not logged in displays the tweaks" do
     user = insert(:user)
-    tweaks = insert_list(3, :style, user: user)
+    tweaks = insert_list(3, :tweak, user: user)
     conn = show_user(user)
 
-    Enum.each(tweaks, fn(style) ->
-      assert decoded_response(conn, 200) =~ style.title
+    Enum.each(tweaks, fn(tweak) ->
+      assert decoded_response(conn, 200) =~ tweak.title
     end)
   end
 
@@ -84,11 +84,11 @@ defmodule AtomStyleTweaks.UserController.Test do
 
   test "show user with tweaks when logged in as that user lists tweaks" do
     user = insert(:user)
-    tweaks = insert_list(3, :style, user: user)
+    tweaks = insert_list(3, :tweak, user: user)
     conn = show_user(user, logged_in_as: user)
 
-    Enum.each(tweaks, fn(style) ->
-      assert decoded_response(conn, 200) =~ style.title
+    Enum.each(tweaks, fn(tweak) ->
+      assert decoded_response(conn, 200) =~ tweak.title
     end)
   end
 end

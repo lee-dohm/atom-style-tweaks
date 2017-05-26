@@ -5,11 +5,11 @@
         span.octicon.octicon-paintcan
         = gettext "Styles"
     = if @current_user do
-      a.btn.btn-primary href="#{style_path(@conn, :new, @current_user.name)}" = gettext "New tweak"
+      a.btn.btn-primary href="#{tweak_path(@conn, :new, @current_user.name)}" = gettext "New tweak"
   .four-fifths.column
-    = if Enum.count(@styles) == 0 do
+    = if Enum.count(@tweaks) == 0 do
       .blankslate
         h3 = gettext "No tweaks for you to see here"
         p = gettext "Click \"New Tweak\" to get started!"
     - else
-      = render_many(@styles, AtomStyleTweaks.StyleView, "table_row.html", conn: @conn)
+      = render_many(@tweaks, AtomStyleTweaks.TweakView, "table_row.html", conn: @conn)
