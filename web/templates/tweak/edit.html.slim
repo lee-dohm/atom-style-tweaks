@@ -5,3 +5,4 @@
     = textarea(f, :code, class: "form-control input-block tweak-textarea", placeholder: "Enter tweak code", value: @tweak.code)
   .form-actions
     = submit("Update tweak", class: "btn btn-primary")
+    a.btn.btn-danger href="#{tweak_path(@conn, :show, @name, @tweak.id)}" = gettext "Cancel"

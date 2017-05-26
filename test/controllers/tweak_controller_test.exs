@@ -1,6 +1,14 @@
 defmodule AtomStyleTweaks.TweakController.Test do
   use AtomStyleTweaks.ConnCase
 
+  def edit_tweak, do: edit_tweak(insert(:tweak))
+
+  def edit_tweak(tweak) do
+    conn = build_conn()
+
+    get(conn, tweak_path(conn, :edit, tweak.user.name, tweak.id))
+  end
+
   def show_tweak, do: show_tweak(insert(:tweak))
 
   def show_tweak(tweak) do
@@ -14,6 +22,12 @@ defmodule AtomStyleTweaks.TweakController.Test do
     conn = log_in_as(conn, logged_in_user)
 
     get(conn, tweak_path(conn, :show, tweak.user.name, tweak.id))
+  end
+
+  test "edit tweak shows cancel button" do
+    conn = edit_tweak()
+
+    assert decoded_response(conn, 200) =~ "Cancel"
   end
 
   test "show tweak displays the tweak's title" do
