@@ -14,7 +14,9 @@ defmodule AtomStyleTweaks.Mixfile do
       start_permanent: Mix.env == :prod,
       aliases: aliases(),
       deps: deps(),
-      docs: docs()
+      docs: docs(),
+      test_coverage: [tool: ExCoveralls],
+      preferred_cli_env: ["coveralls": :test, "coveralls.html": :test]
     ]
   end
 
@@ -67,7 +69,8 @@ defmodule AtomStyleTweaks.Mixfile do
       {:ex_machina, "~> 2.0", only: :test},
       {:faker_elixir_octopus, "~> 1.0", only: :test},
       {:html_entities, "~> 0.3.0", only: :test},
-      {:floki, "~> 0.17.2", only: :test}
+      {:floki, "~> 0.17.2", only: :test},
+      {:excoveralls, "~> 0.6", only: :test}
     ]
   end
 
