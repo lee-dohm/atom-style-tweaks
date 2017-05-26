@@ -56,8 +56,7 @@ defmodule AtomStyleTweaks.TweakController.Test do
   end
 
   test "show tweak when logged in as a different user does not show edit button" do
-    user = build(:user)
-    conn = show_tweak(insert(:tweak), logged_in_as: user)
+    conn = show_tweak(insert(:tweak), logged_in_as: build(:user))
 
     refute find_single_element(conn, "span.octicon.octicon-pencil")
   end
