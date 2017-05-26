@@ -39,19 +39,22 @@ defmodule AtomStyleTweaks.PageController.Test do
   test "index shows About link" do
     conn = request(:page_path, :index)
 
-    assert html_response(conn, 200) =~ "About"
-    assert html_response(conn, 200) =~ page_path(conn, :about)
+    assert find_element(conn, "footer a#about-link")
+           |> has_text("About")
+           |> links_to(page_path(conn, :about))
   end
 
   test "index shows the GitHub link" do
     conn = request(:page_path, :index)
 
-    assert html_response(conn, 200) =~ "https://github.com/lee-dohm/atom-style-tweaks"
+    assert find_element(conn, "footer a#github-link")
+           |> links_to("https://github.com/lee-dohm/atom-style-tweaks")
   end
 
   test "about page shows some about text" do
     conn = request(:page_path, :about)
 
-    assert html_response(conn, 200) =~ "About Atom Tweaks"
+    assert find_element(conn, "main h1")
+           |> has_text("About Atom Tweaks")
   end
 end
