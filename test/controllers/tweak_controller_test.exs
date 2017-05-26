@@ -9,6 +9,17 @@ defmodule AtomStyleTweaks.TweakController.Test do
     get(conn, tweak_path(conn, :edit, tweak.user.name, tweak.id))
   end
 
+  def find_element(conn, selector) do
+    conn
+    |> decoded_response(200)
+    |> Floki.find(selector)
+  end
+
+  def has_text(element, expected) do
+    [{_, _, [actual]}] = element
+    expected == actual
+  end
+
   def show_tweak, do: show_tweak(insert(:tweak))
 
   def show_tweak(tweak) do
@@ -27,7 +38,8 @@ defmodule AtomStyleTweaks.TweakController.Test do
   test "edit tweak shows cancel button" do
     conn = edit_tweak()
 
-    assert decoded_response(conn, 200) =~ "Cancel"
+    assert find_element(conn, "a.btn.btn-danger")
+           |> has_text("Cancel")
   end
 
   test "show tweak displays the tweak's title" do
