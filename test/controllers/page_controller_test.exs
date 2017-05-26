@@ -1,57 +1,84 @@
 defmodule AtomStyleTweaks.PageController.Test do
   use AtomStyleTweaks.ConnCase
 
-  test "index shows home page link" do
-    conn = request(:page_path, :index)
+  def about_page do
+    conn = build_conn()
 
-    assert html_response(conn, 200) =~ "Atom Tweaks"
-    assert html_response(conn, 200) =~ "href=\"#{page_path(conn, :index)}\""
+    get(conn, page_path(conn, :about))
+  end
+
+  def home_page do
+    conn = build_conn()
+
+    get(conn, page_path(conn, :index))
+  end
+
+  def home_page(logged_in_as: user) do
+    conn = build_conn()
+           |> log_in_as(user)
+
+    get(conn, page_path(conn, :index))
+  end
+
+  test "index shows home page link" do
+    conn = home_page()
+
+    assert find_single_element(conn, "a.masthead-logo")
+           |> has_text("Atom Tweaks")
+           |> links_to(page_path(conn, :index))
   end
 
   test "index does not show 'New tweak' button when not logged in" do
-    conn = request(:page_path, :index)
+    conn = home_page()
 
-    refute html_response(conn, 200) =~ "New tweak"
+    refute find_all_elements(conn, "a#new-tweak-button")
   end
 
   test "index shows new tweak button when logged in" do
-    conn = request(:page_path, :index, logged_in: true)
+    conn = home_page(logged_in_as: build(:user))
 
-    assert html_response(conn, 200) =~ "New tweak"
+    assert find_single_element(conn, "a#new-tweak-button")
+           |> has_text("New tweak")
   end
 
   test "index shows a list of tweaks" do
     tweaks = insert_list(3, :tweak)
-    conn = request(:page_path, :index)
+    conn = home_page()
+
+    elements = find_all_elements(conn, "a.title")
 
     Enum.each(tweaks, fn(tweak) ->
-      assert html_response(conn, 200) =~ tweak.title
-      assert html_response(conn, 200) =~ tweak.user.name
+      assert elements
+             |> has_text(tweak.title)
+             |> links_to(tweak_path(conn, :show, tweak.user.name, tweak.id))
     end)
   end
 
   test "index shows tweaks tab" do
-    conn = request(:page_path, :index)
+    conn = home_page()
 
     assert html_response(conn, 200) =~ "Styles"
   end
 
   test "index shows About link" do
-    conn = request(:page_path, :index)
+    conn = home_page()
 
-    assert html_response(conn, 200) =~ "About"
-    assert html_response(conn, 200) =~ page_path(conn, :about)
+    assert find_single_element(conn, "footer a#about-link")
+           |> has_text("About")
+           |> links_to(page_path(conn, :about))
   end
 
   test "index shows the GitHub link" do
-    conn = request(:page_path, :index)
+    conn = home_page()
 
-    assert html_response(conn, 200) =~ "https://github.com/lee-dohm/atom-style-tweaks"
+    assert find_single_element(conn, "footer a#github-link")
+           |> links_to("https://github.com/lee-dohm/atom-style-tweaks")
   end
 
   test "about page shows some about text" do
-    conn = request(:page_path, :about)
+    conn = about_page()
 
-    assert html_response(conn, 200) =~ "About Atom Tweaks"
+    assert find_single_element(conn, "main h1")
+           |> has_text("About Atom Tweaks")
   end
 end

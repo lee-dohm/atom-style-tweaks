@@ -10,7 +10,7 @@ defmodule AtomStyleTweaks.Factory do
     %User{
       name: Faker.Internet.user_name(),
       site_admin: false,
-      github_id: Faker.Helper.pick(1..100),
+      github_id: Faker.Helper.pick(1..10_000),
       avatar_url: Faker.Avatar.robohash()
     }
   end

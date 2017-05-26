@@ -1,0 +1,14 @@
+{
+  "skip_files": [
+    "lib/atom_style_tweaks/endpoint.ex",
+    "lib/atom_style_tweaks/markdown_engine.ex",
+    "lib/atom_style_tweaks/repo.ex",
+    "test",
+    "web/channels/user_socket.ex",
+    "web/controllers/auth_controller.ex",
+    "web/gettext.ex",
+    "web/oauth2/github.ex",
+    "web/router.ex",
+    "web/web.ex"
+  ]
+}

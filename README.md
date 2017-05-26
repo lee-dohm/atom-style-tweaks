@@ -1,6 +1,7 @@
 # AtomStyleTweaks
 
 [![Travis](https://img.shields.io/travis/lee-dohm/atom-style-tweaks.svg)]()
+[![Coveralls](https://img.shields.io/coveralls/lee-dohm/atom-style-tweaks.svg)]()
 
 Website for collecting style tweaks for Atom.
 

@@ -1,12 +1,12 @@
 .d-inline-block.my-3.mx-2
-  = mega_octicon(:paintcan)
+  = mega_octicon_for_tweak(@tweak)
 h3.d-inline-block.my-3 = @tweak.title
 .border.p-2
   .pb-2.clearfix
     = gettext "Last updated about "
     = relative_time(@tweak.updated_at)
     = if @current_user && @current_user.name == @tweak.user.name do
-      a.float-right href="#{tweak_path(@conn, :edit, @tweak.user.name, @tweak.id)}"
+      a.float-right.tooltipped.tooltipped-n aria-label="#{gettext "Edit"}" href="#{tweak_path(@conn, :edit, @tweak.user.name, @tweak.id)}"
         = octicon(:pencil)
   pre
     code = @tweak.code
