@@ -34,15 +34,17 @@ defmodule AtomStyleTweaks.ConnCase do
 
       def request(path_fn, destination, options \\ nil) do
         conn = Phoenix.ConnTest.build_conn()
-        conn = if options === :logged_in, do: simulate_logged_in_user(conn), else: conn
+               |> maybe_simulate_logged_in_user(options)
 
         path = apply(AtomStyleTweaks.Router.Helpers, path_fn, [conn, destination])
         Phoenix.ConnTest.dispatch(conn, @endpoint, :get, path)
       end
 
-      def simulate_logged_in_user(conn) do
+      def maybe_simulate_logged_in_user(conn, :logged_in) do
         Plug.Test.init_test_session(conn, %{current_user: build(:user)})
       end
+
+      def maybe_simulate_logged_in_user(conn, _), do: conn
     end
   end
 
