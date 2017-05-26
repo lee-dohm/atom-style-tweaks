@@ -1,6 +1,12 @@
 defmodule AtomStyleTweaks.TweakController.Test do
   use AtomStyleTweaks.ConnCase
 
+  def new_tweak do
+    conn = build_conn()
+
+    get(conn, tweak_path(conn, :new, insert(:user)))
+  end
+
   def edit_tweak, do: edit_tweak(insert(:tweak))
 
   def edit_tweak(tweak) do
@@ -22,6 +28,19 @@ defmodule AtomStyleTweaks.TweakController.Test do
     conn = log_in_as(conn, logged_in_user)
 
     get(conn, tweak_path(conn, :show, tweak.user.name, tweak.id))
+  end
+
+  test "new tweak shows appropriate controls" do
+    conn = new_tweak()
+
+    assert find_single_element(conn, "input#tweak_title")
+           |> has_attribute(:placeholder, "Title")
+    assert find_single_element(conn, "select#tweak_type")
+    assert find_single_element(conn, "textarea#tweak_code")
+           |> has_attribute(:placeholder, "Enter tweak code")
+    assert find_single_element(conn, "button.btn.btn-primary")
+           |> has_text("Save new tweak")
+           |> has_attribute(:type, "submit")
   end
 
   test "edit tweak shows cancel button" do
