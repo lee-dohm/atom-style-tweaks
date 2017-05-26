@@ -5,7 +5,7 @@
         span.octicon.octicon-paintcan
         = gettext "Styles"
     = if @current_user do
-      a.btn.btn-primary href="#{tweak_path(@conn, :new, @current_user.name)}" = gettext "New tweak"
+      a#new-tweak-button.btn.btn-primary href="#{tweak_path(@conn, :new, @current_user.name)}" = gettext "New tweak"
   .four-fifths.column
     = if Enum.count(@tweaks) == 0 do
       .blankslate

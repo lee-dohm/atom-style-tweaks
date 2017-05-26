@@ -4,20 +4,22 @@ defmodule AtomStyleTweaks.PageController.Test do
   test "index shows home page link" do
     conn = request(:page_path, :index)
 
-    assert html_response(conn, 200) =~ "Atom Tweaks"
-    assert html_response(conn, 200) =~ "href=\"#{page_path(conn, :index)}\""
+    assert find_element(conn, "a.masthead-logo")
+           |> has_text("Atom Tweaks")
+           |> links_to(page_path(conn, :index))
   end
 
   test "index does not show 'New tweak' button when not logged in" do
     conn = request(:page_path, :index)
 
-    refute html_response(conn, 200) =~ "New tweak"
+    refute find_element(conn, "a#new-tweak-button")
   end
 
   test "index shows new tweak button when logged in" do
     conn = request(:page_path, :index, logged_in: true)
 
-    assert html_response(conn, 200) =~ "New tweak"
+    assert find_element(conn, "a#new-tweak-button")
+           |> has_text("New tweak")
   end
 
   test "index shows a list of tweaks" do
