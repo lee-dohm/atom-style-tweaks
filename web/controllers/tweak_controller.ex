@@ -15,8 +15,7 @@ defmodule AtomStyleTweaks.TweakController do
       {:ok, tweak} -> redirect(conn, to: tweak_path(conn, :show, name, tweak.id))
       {:error, changeset} ->
         conn
-        |> put_flash(:error, format_errors(changeset.errors))
-        |> render("new.html", changeset: changeset, name: name)
+        |> render("new.html", changeset: changeset, name: name, errors: changeset.errors)
     end
   end
 
@@ -24,20 +23,20 @@ defmodule AtomStyleTweaks.TweakController do
     conn
   end
 
-  def edit(conn, %{"name" => name, "id" => id}) do
+  def edit(conn, params = %{"name" => name, "id" => id}) do
     tweak = Tweak
             |> Repo.get(id)
             |> Repo.preload([:user])
 
     changeset = Tweak.changeset(%Tweak{})
 
-    render(conn, "edit.html", changeset: changeset, name: name, tweak: tweak)
+    render(conn, "edit.html", changeset: changeset, name: name, tweak: tweak, errors: params["errors"])
   end
 
-  def new(conn, %{"name" => name}) do
+  def new(conn, params = %{"name" => name}) do
     changeset = Tweak.changeset(%Tweak{})
 
-    render(conn, "new.html", changeset: changeset, name: name)
+    render(conn, "new.html", changeset: changeset, name: name, errors: params["errors"])
   end
 
   def show(conn, %{"name" => name, "id" => id}) do
@@ -57,18 +56,8 @@ defmodule AtomStyleTweaks.TweakController do
         conn
         |> redirect(to: tweak_path(conn, :show, name, id))
       {:error, changeset} ->
-        render(conn, "edit.html", name: name, tweak: tweak, changeset: changeset)
+        conn
+        |> render("edit.html", name: name, tweak: tweak, changeset: changeset, errors: changeset.errors)
     end
-  end
-
-  defp format_error({field, {message, _}}) do
-    "Field #{field} #{message}"
-  end
-
-  defp format_errors(errors), do: format_errors(errors, [])
-
-  defp format_errors([], formatted), do: Enum.reverse(formatted)
-  defp format_errors([error | rest], formatted) do
-    format_errors(rest, [format_error(error) | formatted])
   end
 end

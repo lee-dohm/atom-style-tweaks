@@ -1,4 +1,11 @@
+$red-500: #d73a49;
+
 textarea.tweak-textarea {
   font-family: monospace;
   min-height: 200px;
+}
+
+.errored .form-control,
+.errored .form-select {
+  box-shadow: 0 0 5px $red-500;
 }

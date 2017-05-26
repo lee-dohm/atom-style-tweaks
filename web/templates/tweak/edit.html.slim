@@ -1,9 +1,9 @@
 = form_for @changeset, tweak_path(@conn, :update, @name, @tweak.id), [method: "PUT"], fn f ->
-  .pb-3
+  = form_group(@errors, :title) do
     = text_input(f, :title, class: "form-control input-block input-lg", placeholder: "Title", value: @tweak.title)
-  .pb-3
+  = form_group(@errors, :type) do
     = select(f, :type, ["Init": "init", "Style": "style"], prompt: "Select tweak type", value: @tweak.type)
-  .pb-3
+  = form_group(@errors, :code) do
     = textarea(f, :code, class: "form-control input-block tweak-textarea", placeholder: "Enter tweak code", value: @tweak.code)
   .form-actions
     = submit("Update tweak", class: "btn btn-primary")
