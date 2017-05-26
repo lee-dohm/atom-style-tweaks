@@ -1,6 +1,28 @@
 defmodule AtomStyleTweaks.TweakController.Test do
   use AtomStyleTweaks.ConnCase
 
+  def edit_tweak, do: edit_tweak(insert(:tweak))
+
+  def edit_tweak(tweak) do
+    conn = build_conn()
+
+    get(conn, tweak_path(conn, :edit, tweak.user.name, tweak.id))
+  end
+
+  def find_element(conn, selector) do
+    conn
+    |> decoded_response(200)
+    |> Floki.find(selector)
+  end
+
+  def has_text(element, expected) do
+    if expected == Floki.text(element), do: element
+  end
+
+  def links_to(element, expected) do
+    if [expected] == Floki.attribute(element, "href"), do: element
+  end
+
   def show_tweak, do: show_tweak(insert(:tweak))
 
   def show_tweak(tweak) do
@@ -14,6 +36,15 @@ defmodule AtomStyleTweaks.TweakController.Test do
     conn = log_in_as(conn, logged_in_user)
 
     get(conn, tweak_path(conn, :show, tweak.user.name, tweak.id))
+  end
+
+  test "edit tweak shows cancel button" do
+    tweak = insert(:tweak)
+    conn = edit_tweak(tweak)
+
+    assert find_element(conn, "a.btn.btn-danger")
+           |> has_text("Cancel")
+           |> links_to(tweak_path(conn, :show, tweak.user.name, tweak.id))
   end
 
   test "show tweak displays the tweak's title" do
