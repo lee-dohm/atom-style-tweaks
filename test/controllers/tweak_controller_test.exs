@@ -16,8 +16,11 @@ defmodule AtomStyleTweaks.TweakController.Test do
   end
 
   def has_text(element, expected) do
-    [{_, _, [actual]}] = element
-    expected == actual
+    if expected == Floki.text(element), do: element
+  end
+
+  def links_to(element, expected) do
+    if [expected] == Floki.attribute(element, "href"), do: element
   end
 
   def show_tweak, do: show_tweak(insert(:tweak))
@@ -36,10 +39,12 @@ defmodule AtomStyleTweaks.TweakController.Test do
   end
 
   test "edit tweak shows cancel button" do
-    conn = edit_tweak()
+    tweak = insert(:tweak)
+    conn = edit_tweak(tweak)
 
     assert find_element(conn, "a.btn.btn-danger")
            |> has_text("Cancel")
+           |> links_to(tweak_path(conn, :show, tweak.user.name, tweak.id))
   end
 
   test "show tweak displays the tweak's title" do
