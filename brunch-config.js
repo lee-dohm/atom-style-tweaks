@@ -54,6 +54,11 @@ exports.config = {
     babel: {
       // Do not use ES6 compiler in vendor code
       ignore: [/web\/static\/vendor/]
+    },
+    sass: {
+      options: {
+        includePaths: ['node_modules']
+      }
     }
   },
 
@@ -71,6 +76,9 @@ exports.config = {
     styles: {
       "highlight.js": [
         "styles/github.css"
+      ],
+      "primer-css": [
+        "index.scss"
       ]
     }
   }
