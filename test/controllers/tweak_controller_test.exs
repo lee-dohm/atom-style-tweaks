@@ -1,10 +1,12 @@
 defmodule AtomStyleTweaks.TweakController.Test do
   use AtomStyleTweaks.ConnCase
 
-  def new_tweak do
+  import Phoenix.Controller
+
+  def create_tweak(name, tweak_params) do
     conn = build_conn()
 
-    get(conn, tweak_path(conn, :new, insert(:user)))
+    post(conn, tweak_path(conn, :create, name), %{"name" => name, "tweak" => tweak_params})
   end
 
   def edit_tweak, do: edit_tweak(insert(:tweak))
@@ -13,6 +15,12 @@ defmodule AtomStyleTweaks.TweakController.Test do
     conn = build_conn()
 
     get(conn, tweak_path(conn, :edit, tweak.user.name, tweak.id))
+  end
+
+  def new_tweak do
+    conn = build_conn()
+
+    get(conn, tweak_path(conn, :new, insert(:user)))
   end
 
   def show_tweak, do: show_tweak(insert(:tweak))
@@ -28,6 +36,22 @@ defmodule AtomStyleTweaks.TweakController.Test do
     conn = log_in_as(conn, logged_in_user)
 
     get(conn, tweak_path(conn, :show, tweak.user.name, tweak.id))
+  end
+
+  test "create valid tweak succeeds" do
+    user = insert(:user)
+    tweak = params_for(:tweak)
+    conn = create_tweak(user.name, tweak)
+
+    assert redirected_to(conn) =~ "/#{user.name}/"
+  end
+
+  test "create tweak with invalid tweak parameters renders the new template" do
+    user = insert(:user)
+    tweak = params_for(:tweak, title: "")
+    conn = create_tweak(user.name, tweak)
+
+    assert view_template(conn) == "new.html"
   end
 
   test "new tweak shows appropriate controls" do
