@@ -1,12 +1,14 @@
-$color-blue: #4078c0;
-$color-green: #6cc644;
-$color-red: #bd2c00;
-$color-orange: #c9510c;
-$color-purple: #6e5494;
-$color-gray-light: #999;
-$color-gray: #767676;
-$color-gray-dark: #333;
-$color-white: #fff;
+@import "node_modules/primer-support/lib/variables/colors.scss";
+
+$color-blue: $blue-500;
+$color-green: $green-500;
+$color-red: $red-500;
+$color-orange: $orange-500;
+$color-purple: $purple-500;
+$color-gray-light: $gray-400;
+$color-gray: $gray-500;
+$color-gray-dark: $gray-800;
+$color-white: $white;
 
 
 .masthead {
