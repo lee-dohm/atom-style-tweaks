@@ -76,9 +76,6 @@ exports.config = {
     styles: {
       "highlight.js": [
         "styles/github.css"
-      ],
-      "primer-css": [
-        "index.scss"
       ]
     }
   }

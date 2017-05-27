@@ -71,7 +71,7 @@ defmodule AtomStyleTweaks.Mixfile do
       {:html_entities, "~> 0.3.0", only: :test},
       {:floki, "~> 0.17.2", only: :test},
       {:excoveralls, "~> 0.6", only: :test},
-      {:inch_ex, only: :docs}
+      {:inch_ex, ">= 0.0.0", only: :docs}
     ]
   end
 
