@@ -6,6 +6,9 @@ html lang="en"
     meta name="viewport" content="width=device-width, initial-scale=1"
     meta name="description" content="A database of tweaks for the Atom text editor"
     meta name="author" content="Lee Dohm"
+    = if HerokuMetadata.on_heroku?() do
+      meta name="heroku_version" content="#{HerokuMetadata.release_version()}"
+      meta name="heroku_slug_commit" content="#{HerokuMetadata.slug_commit()}"
 
     title = gettext "Atom Tweaks"
     link rel="stylesheet" href="#{static_path(@conn, "/css/app.css")}"
