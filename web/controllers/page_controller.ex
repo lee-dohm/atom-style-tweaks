@@ -3,10 +3,15 @@ defmodule AtomStyleTweaks.PageController do
 
   alias AtomStyleTweaks.Tweak
 
-  def index(conn, _params) do
-    tweaks = Repo.all(from t in Tweak, limit: 10, order_by: [desc: :updated_at], preload: [:user])
+  def index(conn, params) do
+    query = Tweak
+            |> Tweak.sorted
+            |> Tweak.preload
 
-    render(conn, "index.html", tweaks: tweaks)
+    query = if params["type"], do: Tweak.by_type(query, params["type"]), else: query
+    tweaks = Repo.all(query)
+
+    render(conn, "index.html", tweaks: tweaks, params: params)
   end
 
   def about(conn, _params) do

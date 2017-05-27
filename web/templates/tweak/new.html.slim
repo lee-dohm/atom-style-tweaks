@@ -1,7 +1,9 @@
 = form_for @changeset, tweak_path(@conn, :create, @name), fn f ->
-  .pb-3
+  = form_group(@errors, :title) do
     = text_input(f, :title, class: "form-control input-block input-lg", placeholder: "Title")
-  .pb-3
+  = form_group(@errors, :type) do
+    = select(f, :type, ["Init": "init", "Style": "style"], prompt: "Select tweak type")
+  = form_group(@errors, :code) do
     = textarea(f, :code, class: "form-control input-block tweak-textarea", placeholder: "Enter tweak code")
   .form-actions
     = submit("Save new tweak", class: "btn btn-primary")

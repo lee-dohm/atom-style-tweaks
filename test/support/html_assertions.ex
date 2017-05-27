@@ -50,6 +50,10 @@ defmodule AtomStyleTweaks.HtmlAssertions do
   def get_attribute(element, attribute) when is_atom(attribute), do: get_attribute(element, Atom.to_string(attribute))
   def get_attribute(element, attribute), do: hd(Floki.attribute(element, attribute))
 
+  @spec get_text(single_element) :: String.t
+  def get_text(list) when length(list) > 1, do: flunk("Cannot get the text from more than one element")
+  def get_text(element), do: Floki.text(element)
+
   @doc """
   Asserts that any of the elements has the named attribute.
   """
@@ -161,6 +165,5 @@ defmodule AtomStyleTweaks.HtmlAssertions do
     |> HtmlEntities.decode
   end
 
-  defp get_text(element), do: Floki.text(element)
   defp get_href(element), do: get_attribute(element, :href)
 end

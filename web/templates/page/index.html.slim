@@ -1,9 +1,9 @@
 .columns
   .one-fifth.column
     nav.menu
-      a.menu-item.selected href="#"
-        span.octicon.octicon-paintcan
-        = gettext "Styles"
+      = menu_item("all-menu-item", page_path(@conn, :index), gettext("All"), :beaker, is_nil(@params["type"]))
+      = menu_item("init-menu-item", page_path(@conn, :index, type: :init), gettext("Init"), :code, @params["type"] == "init")
+      = menu_item("styles-menu-item", page_path(@conn, :index, type: :style), gettext("Styles"), :paintcan, @params["type"] == "style")
     = if @current_user do
       a#new-tweak-button.btn.btn-primary href="#{tweak_path(@conn, :new, @current_user.name)}" = gettext "New tweak"
   .four-fifths.column
