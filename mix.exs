@@ -47,7 +47,8 @@ defmodule AtomStyleTweaks.Mixfile do
     :phoenix_ecto,
     :postgrex,
     :oauth2,
-    :tzdata
+    :tzdata,
+    :scrivener_ecto
   ]
 
   # Specifies which paths to compile per environment.
@@ -66,6 +67,7 @@ defmodule AtomStyleTweaks.Mixfile do
       {:phoenix_slime, "~> 0.8.0"},
       {:phoenix, "~> 1.2.4"},
       {:postgrex, ">= 0.0.0"},
+      {:scrivener_ecto, "~> 1.2"},
       {:timex, "~> 3.1"},
       {:dotenv, "~> 2.0.0", only: :dev},
       {:ex_doc, "~> 0.16", only: :dev, runtime: false},
