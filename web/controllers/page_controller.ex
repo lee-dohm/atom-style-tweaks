@@ -21,6 +21,6 @@ defmodule AtomStyleTweaks.PageController do
   end
 
   def about(conn, _params) do
-    render(conn, "about.html")
+    render(conn, :about)
   end
 end
