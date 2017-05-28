@@ -76,6 +76,9 @@ exports.config = {
     styles: {
       "highlight.js": [
         "styles/github.css"
+      ],
+      "octicons": [
+        "build/octicons.min.css"
       ]
     }
   }

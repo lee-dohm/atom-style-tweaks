@@ -5,12 +5,25 @@ defmodule AtomStyleTweaks.OcticonHelpers do
 
   use Phoenix.HTML
 
-  def octicon(name) do
-    content_tag(:span, "", class: "octicon octicon-#{name}")
+  alias AtomStyleTweaks.Octicons
+
+  def octicon(name, options \\ %{})
+
+  def octicon(atom, options) when is_atom(atom), do: octicon(Atom.to_string(atom), options)
+
+  def octicon(name, options) do
+    raw(Octicons.toSVG(name, options))
   end
 
-  def mega_octicon(name) do
-    content_tag(:span, "", class: "mega-octicon octicon-#{name}")
+  def mega_octicon(name, options \\ %{})
+
+  def mega_octicon(atom, options) when is_atom(atom), do: mega_octicon(Atom.to_string(atom), options)
+
+  def mega_octicon(name, options) do
+    new_opts = %{"height" => "32"}
+               |> Map.merge(options)
+
+    raw(Octicons.toSVG(name, new_opts))
   end
 
   def octicon_for_tweak(tweak) do
