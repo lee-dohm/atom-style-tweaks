@@ -38,7 +38,7 @@ defmodule AtomStyleTweaks.PageController.Test do
            |> has_text("All")
            |> links_to(page_path(conn, :index))
 
-    assert find_single_element(conn, "a#all-menu-item > span.octicon.octicon-beaker")
+    assert find_single_element(conn, "a#all-menu-item > .octicons.octicons-beaker")
   end
 
   test "index shows Styles tab" do
@@ -48,7 +48,7 @@ defmodule AtomStyleTweaks.PageController.Test do
            |> has_text("Styles")
            |> links_to(page_path(conn, :index, type: :style))
 
-    assert find_single_element(conn, "a#styles-menu-item > span.octicon.octicon-paintcan")
+    assert find_single_element(conn, "a#styles-menu-item > .octicons.octicons-paintcan")
   end
 
   test "index shows Init tab" do
@@ -58,7 +58,7 @@ defmodule AtomStyleTweaks.PageController.Test do
            |> has_text("Init")
            |> links_to(page_path(conn, :index, type: :init))
 
-    assert find_single_element(conn, "a#init-menu-item > span.octicon.octicon-code")
+    assert find_single_element(conn, "a#init-menu-item > .octicons.octicons-code")
   end
 
   test "index shows init tab as selected when type is set to init" do
