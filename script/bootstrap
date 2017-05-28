@@ -20,3 +20,8 @@ if [ -f "mix.exs" ]; then
   echo "==> Installing mix dependencies…"
   mix deps.get
 fi
+
+if [ -f "package.json" ]; then
+  echo "==> Installing npm dependencies…"
+  npm install
+fi
