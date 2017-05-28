@@ -11,7 +11,7 @@ defmodule AtomStyleTweaks.MenuHelpers do
 
     content_tag(:a, href: link, id: id, class: class) do
       [
-        OcticonHelpers.octicon(octicon),
+        OcticonHelpers.octicon(octicon, %{"width" => "16"}),
         text
       ]
     end

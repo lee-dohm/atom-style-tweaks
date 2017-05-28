@@ -7,16 +7,23 @@ defmodule AtomStyleTweaks.OcticonHelpers do
 
   alias AtomStyleTweaks.Octicons
 
-  def octicon(atom) when is_atom(atom), do: octicon(Atom.to_string(atom))
+  def octicon(name, options \\ %{})
 
-  def octicon(name) do
-    raw(Octicons.toSVG(name))
+  def octicon(atom, options) when is_atom(atom), do: octicon(Atom.to_string(atom), options)
+
+  def octicon(name, options) do
+    raw(Octicons.toSVG(name, options))
   end
 
-  def mega_octicon(atom) when is_atom(atom), do: mega_octicon(Atom.to_string(atom))
+  def mega_octicon(name, options \\ %{})
 
-  def mega_octicon(name) do
-    raw(Octicons.toSVG(name, %{"height" => "32"}))
+  def mega_octicon(atom, options) when is_atom(atom), do: mega_octicon(Atom.to_string(atom), options)
+
+  def mega_octicon(name, options) do
+    new_opts = %{"height" => "32"}
+               |> Map.merge(options)
+
+    raw(Octicons.toSVG(name, new_opts))
   end
 
   def octicon_for_tweak(tweak) do
