@@ -1,0 +1,17 @@
+@import "node_modules/primer-support/lib/variables/colors.scss";
+
+.masthead a {
+  path {
+    fill: transparentize($white, 0.5);
+  }
+
+  &:hover {
+    path {
+      fill: $white;
+    }
+  }
+}
+
+.masthead-logo .octicons path {
+  fill: $white;
+}
