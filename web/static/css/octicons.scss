@@ -1,5 +1,21 @@
 @import "node_modules/primer-support/lib/variables/colors.scss";
 
+.octicons {
+  display: inline-block;
+  user-select: none;
+  vertical-align: text-bottom;
+}
+
+.tweak-title .octicons {
+  vertical-align: bottom;
+}
+
+.menu-item .octicons {
+  margin-right: 5px;
+  text-align: center;
+  fill: $gray-900;
+}
+
 .masthead a {
   path {
     fill: transparentize($white, 0.5);
