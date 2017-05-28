@@ -28,6 +28,10 @@
   }
 }
 
-.masthead-logo .octicons path {
-  fill: $white;
+.masthead-logo .octicons {
+  vertical-align: -2px;
+
+  path {
+    fill: $white;
+  }
 }
