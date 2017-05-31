@@ -12,24 +12,15 @@ defmodule AtomStyleTweaks.TweakController do
     apply(__MODULE__, action_name(conn), args)
   end
 
-  def create(conn, _, :guest) do
-    conn
-    |> put_status(:unauthorized)
-    |> render(ErrorView, :"401", %{message: "Not logged in"})
-  end
+  def create(conn, _, :guest), do: render_error(conn, :unauthorized)
 
   def create(conn, %{"name" => name}, %{name: other_name}) when name !== other_name do
-    conn
-    |> put_status(:not_found)
-    |> render(ErrorView, :"404", %{message: "User \"#{name}\" not found"})
+    render_error(conn, :not_found, "User \"#{name}\" not found")
   end
 
   def create(conn, %{"name" => name, "tweak" => tweak_params}, _) do
     case Repo.get_by(User, name: name) do
-      nil ->
-        conn
-        |> put_status(:not_found)
-        |> render(ErrorView, "404.html", %{message: "User \"#{name}\" not found"})
+      nil -> render_error(conn, :not_found, "User \"#{name}\" not found")
       user ->
         params = Map.merge(tweak_params, %{"created_by" => user.id})
         changeset = Tweak.changeset(%Tweak{}, params)
@@ -57,10 +48,20 @@ defmodule AtomStyleTweaks.TweakController do
     render(conn, "edit.html", changeset: changeset, name: name, tweak: tweak, errors: params["errors"])
   end
 
-  def new(conn, params = %{"name" => name}, _current_user) do
-    changeset = Tweak.changeset(%Tweak{})
+  def new(conn, _, :guest), do: render_error(conn, :unauthorized)
 
-    render(conn, "new.html", changeset: changeset, name: name, errors: params["errors"])
+  def new(conn, %{"name" => name}, %{name: other_name}) when name !== other_name do
+    render_error(conn, :not_found, "User \"#{name}\" not found")
+  end
+
+  def new(conn, params = %{"name" => name}, _current_user) do
+    case Repo.get_by(User, name: name) do
+      nil -> render_error(conn, :not_found, "User \"#{name}\" not found")
+      _ ->
+        changeset = Tweak.changeset(%Tweak{})
+
+        render(conn, "new.html", changeset: changeset, name: name, errors: params["errors"])
+    end
   end
 
   def show(conn, %{"name" => name, "id" => id}, _current_user) do
@@ -83,5 +84,17 @@ defmodule AtomStyleTweaks.TweakController do
         conn
         |> render("edit.html", name: name, tweak: tweak, changeset: changeset, errors: changeset.errors)
     end
+  end
+
+  defp render_error(conn, :unauthorized) do
+    conn
+    |> put_status(:unauthorized)
+    |> render(ErrorView, :"401", %{message: "Not logged in"})
+  end
+
+  defp render_error(conn, :not_found, message) do
+    conn
+    |> put_status(:not_found)
+    |> render(ErrorView, :"404", %{message: message})
   end
 end

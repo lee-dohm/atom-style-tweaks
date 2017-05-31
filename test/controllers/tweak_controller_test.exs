@@ -30,6 +30,20 @@ defmodule AtomStyleTweaks.TweakController.Test do
     get(conn, tweak_path(conn, :new, insert(:user)))
   end
 
+  def new_tweak(logged_in_as: user) do
+    conn = build_conn()
+           |> log_in_as(user)
+
+    get(conn, tweak_path(conn, :new, user.name))
+  end
+
+  def new_tweak(for_user, logged_in_as: user) do
+    conn = build_conn()
+           |> log_in_as(user)
+
+    get(conn, tweak_path(conn, :new, for_user))
+  end
+
   def show_tweak, do: show_tweak(insert(:tweak))
 
   def show_tweak(tweak) do
@@ -83,8 +97,14 @@ defmodule AtomStyleTweaks.TweakController.Test do
     assert html_response(conn, :not_found)
   end
 
-  test "new tweak shows appropriate controls" do
+  test "new tweak when not logged in returns unauthorized" do
     conn = new_tweak()
+
+    assert html_response(conn, :unauthorized)
+  end
+
+  test "new tweak shows appropriate controls" do
+    conn = new_tweak(logged_in_as: insert(:user))
 
     assert find_single_element(conn, "input#tweak_title")
            |> has_attribute(:placeholder, "Title")
@@ -94,6 +114,19 @@ defmodule AtomStyleTweaks.TweakController.Test do
     assert find_single_element(conn, "button.btn.btn-primary")
            |> has_text("Save new tweak")
            |> has_attribute(:type, "submit")
+  end
+
+  test "new tweak for an invalid user returns not found" do
+    user = build(:user)
+    conn = new_tweak(user.name, logged_in_as: user)
+
+    assert html_response(conn, :not_found)
+  end
+
+  test "new tweak for a user other than the logged in one returns not found" do
+    conn = new_tweak(insert(:user).name, logged_in_as: insert(:user))
+
+    assert html_response(conn, :not_found)
   end
 
   test "edit tweak shows cancel button" do
