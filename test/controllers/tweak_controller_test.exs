@@ -9,6 +9,13 @@ defmodule AtomStyleTweaks.TweakController.Test do
     post(conn, tweak_path(conn, :create, name), %{"name" => name, "tweak" => tweak_params})
   end
 
+  def create_tweak(name, tweak_params, logged_in_as: user) do
+    conn = build_conn()
+           |> log_in_as(user)
+
+    post(conn, tweak_path(conn, :create, name), %{"name" => name, "tweak" => tweak_params})
+  end
+
   def edit_tweak, do: edit_tweak(insert(:tweak))
 
   def edit_tweak(tweak) do
@@ -38,10 +45,16 @@ defmodule AtomStyleTweaks.TweakController.Test do
     get(conn, tweak_path(conn, :show, tweak.user.name, tweak.id))
   end
 
+  test "create tweak when not logged in returns unauthorized" do
+    conn = create_tweak(insert(:user).name, params_for(:tweak))
+
+    assert html_response(conn, :unauthorized)
+  end
+
   test "create valid tweak succeeds" do
     user = insert(:user)
     tweak = params_for(:tweak)
-    conn = create_tweak(user.name, tweak)
+    conn = create_tweak(user.name, tweak, logged_in_as: user)
 
     assert redirected_to(conn) =~ "/#{user.name}/"
   end
@@ -49,9 +62,25 @@ defmodule AtomStyleTweaks.TweakController.Test do
   test "create tweak with invalid tweak parameters renders the new template" do
     user = insert(:user)
     tweak = params_for(:tweak, title: "")
-    conn = create_tweak(user.name, tweak)
+    conn = create_tweak(user.name, tweak, logged_in_as: user)
 
     assert view_template(conn) == "new.html"
+  end
+
+  test "create tweak with invalid user id returns not found" do
+    user = build(:user)
+    tweak = params_for(:tweak)
+    conn = create_tweak(user.name, tweak, logged_in_as: insert(:user))
+
+    assert html_response(conn, :not_found)
+  end
+
+  test "create tweak with valid user id other than the logged in one returns not found" do
+    user = insert(:user)
+    tweak = params_for(:tweak)
+    conn = create_tweak(user.name, tweak, logged_in_as: insert(:user))
+
+    assert html_response(conn, :not_found)
   end
 
   test "new tweak shows appropriate controls" do
