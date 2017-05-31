@@ -38,6 +38,12 @@ defmodule AtomStyleTweaks.TweakController do
     conn
   end
 
+  def edit(conn, _, :guest), do: render_error(conn, :unauthorized)
+
+  def edit(conn, %{"name" => name}, %{name: other_name}) when name !== other_name do
+    render_error(conn, :not_found, "User \"#{name}\" not found")
+  end
+
   def edit(conn, params = %{"name" => name, "id" => id}, _current_user) do
     tweak = Tweak
             |> Repo.get(id)
