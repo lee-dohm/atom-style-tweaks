@@ -91,7 +91,19 @@ defmodule AtomStyleTweaks.Mixfile do
 
   defp docs do
     [
-      extras: ["README.md", "LICENSE.md", "CODE_OF_CONDUCT.md"]
+      main: "readme",
+      extras: [
+        "CODE_OF_CONDUCT.md",
+        "CONTRIBUTING.md",
+        "README.md": [
+          filename: "readme",
+          title: "README"
+        ],
+        "LICENSE.md": [
+          filename: "license",
+          title: "License"
+        ]
+      ]
     ]
   end
 end
