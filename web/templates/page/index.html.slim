@@ -4,12 +4,6 @@
       = menu_item("all-menu-item", page_path(@conn, :index), gettext("All"), :beaker, is_nil(@params["type"]))
       = menu_item("init-menu-item", page_path(@conn, :index, type: :init), gettext("Init"), :code, @params["type"] == "init")
       = menu_item("styles-menu-item", page_path(@conn, :index, type: :style), gettext("Styles"), :paintcan, @params["type"] == "style")
-    = if @current_user do
-      a#new-tweak-button.btn.btn-primary href="#{tweak_path(@conn, :new, @current_user.name)}" = gettext "New tweak"
+    = render_if(@current_user, TweakView, "new_tweak_button.html", conn: @conn, current_user: @current_user)
   .four-fifths.column
-    = if Enum.count(@tweaks) == 0 do
-      .blankslate
-        h3 = gettext "No tweaks for you to see here"
-        p = gettext "Click \"New Tweak\" to get started!"
-    - else
-      = render_many(@tweaks, AtomStyleTweaks.TweakView, "table_row.html", conn: @conn)
+    = render_many_or_blank(@tweaks, TweakView, "table_row.html", "blankslate.html", conn: @conn)

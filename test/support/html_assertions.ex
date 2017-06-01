@@ -34,11 +34,13 @@ defmodule AtomStyleTweaks.HtmlAssertions do
 
   Returns `nil` when no matching elements are found.
   """
-  @spec find_single_element(Plug.Conn.t, selector) :: element_result
-  def find_single_element(conn, selector) do
-    element = conn
-              |> decode_response
-              |> Floki.find(selector)
+  @spec find_single_element(Plug.Conn.t | String.t, selector) :: element_result
+  def find_single_element(conn = %Plug.Conn{}, selector) do
+    find_single_element(decode_response(conn), selector)
+  end
+
+  def find_single_element(text, selector) do
+    element = Floki.find(text, selector)
 
     if length(element) > 1, do: flunk("More than one element was found matching \"#{selector}\"")
 
