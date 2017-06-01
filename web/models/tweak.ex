@@ -7,6 +7,10 @@ defmodule AtomStyleTweaks.Tweak do
 
   import Ecto.Query
 
+  alias AtomStyleTweaks.Tweak
+
+  @type t :: %Tweak{}
+
   @primary_key {:id, :binary_id, autogenerate: true}
 
   schema "tweaks" do
