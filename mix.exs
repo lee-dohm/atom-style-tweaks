@@ -7,6 +7,11 @@ defmodule AtomStyleTweaks.Mixfile do
     [
       app: :atom_style_tweaks,
       version: @version,
+
+      name: "Atom Tweaks",
+      homepage_url: "https://www.atom-tweaks.com",
+      source_url: "https://github.com/lee-dohm/atom-style-tweaks",
+
       elixir: "~> 1.4",
       elixirc_paths: elixirc_paths(Mix.env),
       compilers: [:phoenix, :gettext] ++ Mix.compilers,
