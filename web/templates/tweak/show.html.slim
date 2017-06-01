@@ -7,5 +7,4 @@
     = gettext "Last updated about "
     = relative_time(@tweak.updated_at)
     = render_if(@current_user && @current_user.name == @tweak.user.name, TweakView, "edit_tweak_button.html", conn: @conn, tweak: @tweak)
-  pre
-    code = @tweak.code
+  = render_code(@tweak)
