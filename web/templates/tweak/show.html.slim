@@ -6,8 +6,6 @@
   .pb-2.clearfix
     = gettext "Last updated about "
     = relative_time(@tweak.updated_at)
-    = if @current_user && @current_user.name == @tweak.user.name do
-      a.float-right.tooltipped.tooltipped-n aria-label="#{gettext "Edit"}" href="#{tweak_path(@conn, :edit, @tweak.user.name, @tweak.id)}"
-        = octicon(:pencil)
+    = render_if(@current_user && @current_user.name == @tweak.user.name, TweakView, "edit_tweak_button.html", conn: @conn, tweak: @tweak)
   pre
     code = @tweak.code
