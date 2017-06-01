@@ -5,3 +5,5 @@ cd "$(dirname "$0")/.."
 
 script/update
 mix docs
+
+open doc/index.html

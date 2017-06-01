@@ -43,3 +43,5 @@ config :atom_style_tweaks, AtomStyleTweaks.Repo,
   database: "atom_style_tweaks_dev",
   hostname: "localhost",
   pool_size: 10
+
+config :ex_doc, :markdown_processor, ExDoc.Markdown.Cmark

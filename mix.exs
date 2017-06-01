@@ -7,6 +7,11 @@ defmodule AtomStyleTweaks.Mixfile do
     [
       app: :atom_style_tweaks,
       version: @version,
+
+      name: "Atom Tweaks",
+      homepage_url: "https://www.atom-tweaks.com",
+      source_url: "https://github.com/lee-dohm/atom-style-tweaks",
+
       elixir: "~> 1.4",
       elixirc_paths: elixirc_paths(Mix.env),
       compilers: [:phoenix, :gettext] ++ Mix.compilers,
@@ -63,7 +68,7 @@ defmodule AtomStyleTweaks.Mixfile do
       {:postgrex, ">= 0.0.0"},
       {:timex, "~> 3.1"},
       {:dotenv, "~> 2.0.0", only: :dev},
-      {:ex_doc, "~> 0.14.5", only: :dev},
+      {:ex_doc, "~> 0.16", only: :dev, runtime: false},
       {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:credo, "0.8.0", only: [:dev, :test], runtime: false},
       {:ex_machina, "~> 2.0", only: :test},
@@ -86,7 +91,19 @@ defmodule AtomStyleTweaks.Mixfile do
 
   defp docs do
     [
-      extras: ["README.md", "LICENSE.md", "CODE_OF_CONDUCT.md"]
+      main: "readme",
+      extras: [
+        "CODE_OF_CONDUCT.md",
+        "CONTRIBUTING.md",
+        "README.md": [
+          filename: "readme",
+          title: "README"
+        ],
+        "LICENSE.md": [
+          filename: "license",
+          title: "License"
+        ]
+      ]
     ]
   end
 end

@@ -1,30 +1,18 @@
-# Atom Style Tweaks
+# Atom Tweaks
 
 [![Travis](https://img.shields.io/travis/lee-dohm/atom-style-tweaks.svg)](https://travis-ci.org/lee-dohm/atom-style-tweaks)
 [![Coveralls](https://img.shields.io/coveralls/lee-dohm/atom-style-tweaks.svg)](https://coveralls.io/github/lee-dohm/atom-style-tweaks)
 [![Deps Status](https://beta.hexfaktor.org/badge/all/github/lee-dohm/atom-style-tweaks.svg?branch=master)](https://beta.hexfaktor.org/github/lee-dohm/atom-style-tweaks)
 [![Inline docs](https://inch-ci.org/github/lee-dohm/atom-style-tweaks.svg)](https://inch-ci.org/github/lee-dohm/atom-style-tweaks)
 
-Website for collecting style tweaks for Atom.
+[A website](https://www.atom-tweaks.com) for collecting various simple tweaks for your [Atom editor](https://atom.io) environment.
 
-## Common Tasks
+This is the source code for the website running at https://www.atom-tweaks.com.
 
-This project follows the [GitHub "scripts to rule them all" pattern](http://githubengineering.com/scripts-to-rule-them-all/). The contents of the `scripts` directory are scripts that cover all common tasks:
+## Contributing
 
-* `script/setup` &mdash; Performs first-time setup
-* `script/update` &mdash; Performs periodic updating
-* `script/test` &mdash; Runs automated tests
-* `script/server` &mdash; Launches the web server
-* `script/console` &mdash; Opens the development console
-* `script/db-console` &mdash; Opens the database console for the development database
-* `script/docs` &mdash; Generates developer documentation
-* `script/publish` &mdash; Publishes the current version to Heroku
+See the [Contributing Guide](CONTRIBUTING.md).
 
-Other scripts that are available but not intended to be used directly by developers:
+## License
 
-* `script/bootstrap` &mdash; Used to do a one-time install of all prerequisites for a development machine
-* `script/cibuild` &mdash; Used to run automated tests in the CI environment
-
-## Copyright
-
-Copyright &copy; 2017 by [Lee Dohm](http://www.lee-dohm.com). See [LICENSE](https://raw.githubusercontent.com/lee-dohm/atom-style-tweaks/master/LICENSE.md) for details.
+[MIT](https://github.com/lee-dohm/atom-style-tweaks/blob/master/LICENSE.md)

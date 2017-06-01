@@ -5,6 +5,10 @@ defmodule AtomStyleTweaks.User do
 
   use AtomStyleTweaks.Web, :model
 
+  alias AtomStyleTweaks.User
+
+  @type t :: %User{}
+
   @primary_key {:id, :binary_id, autogenerate: true}
 
   schema "users" do

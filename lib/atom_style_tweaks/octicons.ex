@@ -1,35 +1,59 @@
 defmodule AtomStyleTweaks.Octicons do
   @moduledoc """
-  Mimics the interface of the primer/octicons Node module in Elixir.
+  Octicons are a scalable set of icons handcrafted with <3 by GitHub.
+
+  This module is designed to operate identically to the [Node module][octicons-node] of the same
+  name.
+
+  [octicons-node]: https://www.npmjs.com/package/octicons
   """
+
+  @type t :: map
 
   @doc false
   def start_link do
-    {:ok, data} =
+    data =
       with {:ok, text} <- File.read("./node_modules/octicons/build/data.json"),
-           do: Poison.decode(text)
+           {:ok, data} <- Poison.decode(text),
+           do: data
 
     Agent.start_link(fn -> data end, name: __MODULE__)
   end
 
   @doc """
-  Retrieves the description of the octicon.
+  Retrieves the attributes of the icon.
   """
-  def icon(key) do
-    key
+  @spec icon(AtomStyleTweaks.octicon_name) :: t
+  def icon(name) when is_atom(name), do: icon(Atom.to_string(name))
+
+  def icon(name) do
+    name
     |> get_data
-    |> Map.merge(default_options(key))
-    |> Map.merge(%{"symbol" => key})
+    |> Map.merge(default_options(name))
+    |> Map.merge(%{"symbol" => name})
   end
 
   @doc """
-  Gets the SVG representation of the octicon.
+  Returns the SVG tag that renders the icon.
+
+  ## Options
+
+  * `:"aria-label"` Aria label for the SVG tag. When `aria-label` is specified, the `aria-hidden`
+    attribute is removed.
+  * `:class` CSS class text to add to the classes already present
+  * `:height` Height in pixels to render the icon at. If only `height` is specified, width is
+    calculated to maintain the aspect ratio.
+  * `:width` Width in pixels to render the icon at. If only `width` is specified, height is
+    calculated to maintain the aspect ratio.
   """
-  def toSVG(icon, options \\ %{})
+  @spec toSVG(AtomStyleTweaks.octicon_name | t, keyword) :: String.t
+  def toSVG(icon, options \\ [])
 
-  def toSVG(key, options) when is_binary(key), do: toSVG(icon(key), options)
+  def toSVG(name, options) when is_atom(name) or is_binary(name), do: toSVG(icon(name), options)
 
-  def toSVG(icon_data, options) when is_map(icon_data) do
+  def toSVG(icon_data, options) when is_list(options), do: toSVG(icon_data, Enum.into(options, %{}))
+
+  def toSVG(icon_data = %{}, options) do
     symbol = icon_data["symbol"]
     path = icon_data["path"]
 
