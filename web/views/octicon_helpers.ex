@@ -40,8 +40,8 @@ defmodule AtomStyleTweaks.OcticonHelpers do
   @doc """
   Draws the appropriate Octicon for the given `tweak`.
   """
-  @spec octicon_for_tweak(Tweak.t) :: Phoenix.HTML.safe
-  def octicon_for_tweak(tweak) do
+  @spec octicon_for(Tweak.t) :: Phoenix.HTML.safe
+  def octicon_for(tweak = %Tweak{}) do
     tweak
     |> icon_for_tweak
     |> octicon
@@ -50,8 +50,8 @@ defmodule AtomStyleTweaks.OcticonHelpers do
   @doc """
   Draws the appropriate upsized Octicon for the given `tweak`.
   """
-  @spec mega_octicon_for_tweak(Tweak.t) :: Phoenix.HTML.safe
-  def mega_octicon_for_tweak(tweak) do
+  @spec mega_octicon_for(Tweak.t) :: Phoenix.HTML.safe
+  def mega_octicon_for(tweak = %Tweak{}) do
     tweak
     |> icon_for_tweak
     |> mega_octicon

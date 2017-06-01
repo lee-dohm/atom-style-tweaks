@@ -1,6 +1,6 @@
 .border.p-2.position-relative
   .d-inline-block.position-absolute.top-0.mt-2.ml-1
-    = mega_octicon_for_tweak(@tweak)
+    = mega_octicon_for(@tweak)
   .d-inline-block.ml-6
     a.title href="#{tweak_path(@conn, :show, @tweak.user.name, @tweak.id)}" = @tweak.title
     br
