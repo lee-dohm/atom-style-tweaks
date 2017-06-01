@@ -50,6 +50,8 @@ config :slime, :embedded_engines, %{
   markdown: AtomStyleTweaks.MarkdownEngine
 }
 
+config :ex_doc, :markdown_processor, ExDoc.Markdown.Cmark
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env}.exs"
