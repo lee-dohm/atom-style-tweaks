@@ -33,7 +33,8 @@ config :logger, :console, format: "[$level] $message\n"
 # in production as building large stacktraces may be expensive.
 config :phoenix, :stacktrace_depth, 20
 
-config :slime, :keep_lines, true
+# Uncomment the following line to make stacktraces in templates easier to follow
+# config :slime, :keep_lines, true
 
 # Configure your database
 config :atom_style_tweaks, AtomStyleTweaks.Repo,
