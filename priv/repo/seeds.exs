@@ -11,7 +11,7 @@
 # and so on) as they will fail if something goes wrong.
 
 alias AtomStyleTweaks.Repo
-alias AtomStyleTweaks.Style
+alias AtomStyleTweaks.Tweak
 alias AtomStyleTweaks.User
 
 users = [
@@ -26,13 +26,13 @@ Enum.each(users, fn(user) ->
 end)
 
 tweaks = [
-  %{title: "Test tweak", code: "atom-text-editor { font-style: normal; }"}
+  %{title: "Test tweak", code: "atom-text-editor { font-style: normal; }", type: "style"}
 ]
 
 user = Repo.get_by!(User, name: "lee-dohm")
 Enum.each(tweaks, fn(tweak) ->
-  unless Repo.get_by(Style, title: tweak.title) do
+  unless Repo.get_by(Tweak, title: tweak.title) do
     tweak = Map.put_new(tweak, :created_by, user.id)
-    Repo.insert!(Style.changeset(%Style{}, tweak))
+    Repo.insert!(Tweak.changeset(%Tweak{}, tweak))
   end
 end)
