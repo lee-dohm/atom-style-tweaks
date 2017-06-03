@@ -4,7 +4,7 @@ defmodule AtomStyleTweaks.UserController do
   alias AtomStyleTweaks.Tweak
   alias AtomStyleTweaks.User
 
-  def show(conn, %{"name" => name}) do
+  def show(conn, %{"id" => name}) do
     case Repo.get_by(User, name: name) do
       nil -> not_found(conn)
       user ->

@@ -87,7 +87,7 @@ defmodule AtomStyleTweaks.UserController.Test do
     Enum.each(tweaks, fn(tweak) ->
       assert elements
              |> has_text(tweak.title)
-             |> links_to(tweak_path(conn, :show, tweak.user.name, tweak.id))
+             |> links_to(user_tweak_path(conn, :show, tweak.user.name, tweak.id))
     end)
   end
 
@@ -117,7 +117,7 @@ defmodule AtomStyleTweaks.UserController.Test do
     Enum.each(tweaks, fn(tweak) ->
       assert elements
              |> has_text(tweak.title)
-             |> links_to(tweak_path(conn, :show, tweak.user.name, tweak.id))
+             |> links_to(user_tweak_path(conn, :show, tweak.user.name, tweak.id))
     end)
   end
 end

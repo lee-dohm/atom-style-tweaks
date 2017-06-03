@@ -8,7 +8,7 @@
   .three-fourths.column
     = if !is_nil(@current_user) && @current_user.name == @user.name do
       .pb-3.clearfix
-        a#new-tweak-button.btn.btn-primary.float-right href="#{tweak_path(@conn, :new, @user.name)}" = gettext "New tweak"
+        a#new-tweak-button.btn.btn-primary.float-right href="#{user_tweak_path(@conn, :new, @user.name)}" = gettext "New tweak"
     = if Enum.count(@tweaks) == 0 do
       .blankslate
         span.mega-octicon.octicon-pencil

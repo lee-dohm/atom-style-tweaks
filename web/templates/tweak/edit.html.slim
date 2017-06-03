@@ -1,4 +1,4 @@
-= form_for @changeset, tweak_path(@conn, :update, @name, @tweak.id), [method: "PUT"], fn f ->
+= form_for @changeset, user_tweak_path(@conn, :update, @name, @tweak.id), [method: "PUT"], fn f ->
   = form_group(@errors, :title) do
     = text_input(f, :title, class: "form-control input-block input-lg", placeholder: "Title", value: @tweak.title)
   = form_group(@errors, :type) do
@@ -7,4 +7,4 @@
     = textarea(f, :code, class: "form-control input-block tweak-textarea", placeholder: "Enter tweak code", value: @tweak.code)
   .form-actions
     = submit("Update tweak", class: "btn btn-primary")
-    a.btn.btn-danger href="#{tweak_path(@conn, :show, @name, @tweak.id)}" = gettext "Cancel"
+    a.btn.btn-danger href="#{user_tweak_path(@conn, :show, @name, @tweak.id)}" = gettext "Cancel"
