@@ -31,16 +31,9 @@ defmodule AtomStyleTweaks.Router do
     get "/", PageController, :index
     get "/about", PageController, :about
 
-    get "/:name", UserController, :show
-
-    get "/:name/tweaks/new", TweakController, :new
-    post "/:name/tweaks/new", TweakController, :create
-    get "/:name/tweaks/:id/edit", TweakController, :edit
-    get "/:name/tweaks/:id", TweakController, :show
-    post "/:name/tweaks/:id", TweakController, :update
-    patch "/:name/tweaks/:id", TweakController, :update
-    put "/:name/tweaks/:id", TweakController, :update
-    delete "/:name/tweaks/:id", TweakController, :delete
+    resources "/users", UserController, only: [:show] do
+      resources "/tweaks", TweakController
+    end
   end
 
   # Other scopes may use custom stacks.

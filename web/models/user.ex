@@ -9,6 +9,8 @@ defmodule AtomStyleTweaks.User do
 
   @type t :: %User{}
 
+  @derive {Phoenix.Param, key: :name}
+
   @primary_key {:id, :binary_id, autogenerate: true}
 
   schema "users" do

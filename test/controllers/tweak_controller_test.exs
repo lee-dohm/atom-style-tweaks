@@ -6,14 +6,14 @@ defmodule AtomStyleTweaks.TweakController.Test do
   def create_tweak(name, tweak_params) do
     conn = build_conn()
 
-    post(conn, tweak_path(conn, :create, name), %{"name" => name, "tweak" => tweak_params})
+    post(conn, user_tweak_path(conn, :create, name), %{"name" => name, "tweak" => tweak_params})
   end
 
   def create_tweak(name, tweak_params, logged_in_as: user) do
     conn = build_conn()
            |> log_in_as(user)
 
-    post(conn, tweak_path(conn, :create, name), %{"name" => name, "tweak" => tweak_params})
+    post(conn, user_tweak_path(conn, :create, name), %{"name" => name, "tweak" => tweak_params})
   end
 
   def edit_tweak, do: edit_tweak(insert(:tweak))
@@ -21,41 +21,41 @@ defmodule AtomStyleTweaks.TweakController.Test do
   def edit_tweak(tweak) do
     conn = build_conn()
 
-    get(conn, tweak_path(conn, :edit, tweak.user.name, tweak.id))
+    get(conn, user_tweak_path(conn, :edit, tweak.user.name, tweak.id))
   end
 
   def edit_tweak(tweak, logged_in_as: user) do
     conn = build_conn()
            |> log_in_as(user)
 
-    get(conn, tweak_path(conn, :edit, tweak.user.name, tweak.id))
+    get(conn, user_tweak_path(conn, :edit, tweak.user.name, tweak.id))
   end
 
   def edit_tweak(tweak, name, logged_in_as: user) do
     conn = build_conn()
            |> log_in_as(user)
 
-    get(conn, tweak_path(conn, :edit, name, tweak.id))
+    get(conn, user_tweak_path(conn, :edit, name, tweak.id))
   end
 
   def new_tweak do
     conn = build_conn()
 
-    get(conn, tweak_path(conn, :new, insert(:user)))
+    get(conn, user_tweak_path(conn, :new, insert(:user)))
   end
 
   def new_tweak(logged_in_as: user) do
     conn = build_conn()
            |> log_in_as(user)
 
-    get(conn, tweak_path(conn, :new, user.name))
+    get(conn, user_tweak_path(conn, :new, user.name))
   end
 
   def new_tweak(for_user, logged_in_as: user) do
     conn = build_conn()
            |> log_in_as(user)
 
-    get(conn, tweak_path(conn, :new, for_user))
+    get(conn, user_tweak_path(conn, :new, for_user))
   end
 
   def show_tweak, do: show_tweak(insert(:tweak))
@@ -63,14 +63,14 @@ defmodule AtomStyleTweaks.TweakController.Test do
   def show_tweak(tweak) do
     conn = build_conn()
 
-    get(conn, tweak_path(conn, :show, tweak.user.name, tweak.id))
+    get(conn, user_tweak_path(conn, :show, tweak.user.name, tweak.id))
   end
 
   def show_tweak(tweak, logged_in_as: logged_in_user) do
     conn = build_conn()
     conn = log_in_as(conn, logged_in_user)
 
-    get(conn, tweak_path(conn, :show, tweak.user.name, tweak.id))
+    get(conn, user_tweak_path(conn, :show, tweak.user.name, tweak.id))
   end
 
   test "create tweak when not logged in returns unauthorized" do
@@ -170,7 +170,7 @@ defmodule AtomStyleTweaks.TweakController.Test do
 
     assert find_single_element(conn, "a.btn.btn-danger")
            |> has_text("Cancel")
-           |> links_to(tweak_path(conn, :show, tweak.user.name, tweak.id))
+           |> links_to(user_tweak_path(conn, :show, tweak.user.name, tweak.id))
   end
 
   test "show tweak displays the tweak's title" do
@@ -206,6 +206,6 @@ defmodule AtomStyleTweaks.TweakController.Test do
     tweak = insert(:tweak, user: user)
     conn = show_tweak(tweak, logged_in_as: user)
 
-    assert find_single_element(conn, "a[href=\"#{tweak_path(conn, :edit, tweak.user.name, tweak.id)}\"]")
+    assert find_single_element(conn, "a[href=\"#{user_tweak_path(conn, :edit, tweak.user.name, tweak.id)}\"]")
   end
 end

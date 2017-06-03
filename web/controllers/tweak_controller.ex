@@ -14,11 +14,11 @@ defmodule AtomStyleTweaks.TweakController do
 
   def create(conn, _, :guest), do: render_error(conn, :unauthorized)
 
-  def create(conn, %{"name" => name}, %{name: other_name}) when name !== other_name do
+  def create(conn, %{"user_id" => name}, %{name: other_name}) when name !== other_name do
     render_error(conn, :not_found, "User \"#{name}\" not found")
   end
 
-  def create(conn, %{"name" => name, "tweak" => tweak_params}, _) do
+  def create(conn, %{"user_id" => name, "tweak" => tweak_params}, _) do
     case Repo.get_by(User, name: name) do
       nil -> render_error(conn, :not_found, "User \"#{name}\" not found")
       user ->
@@ -26,7 +26,7 @@ defmodule AtomStyleTweaks.TweakController do
         changeset = Tweak.changeset(%Tweak{}, params)
 
         case Repo.insert(changeset) do
-          {:ok, tweak} -> redirect(conn, to: tweak_path(conn, :show, name, tweak.id))
+          {:ok, tweak} -> redirect(conn, to: user_tweak_path(conn, :show, name, tweak.id))
           {:error, changeset} ->
             conn
             |> render("new.html", changeset: changeset, name: name, errors: changeset.errors)
@@ -40,11 +40,11 @@ defmodule AtomStyleTweaks.TweakController do
 
   def edit(conn, _, :guest), do: render_error(conn, :unauthorized)
 
-  def edit(conn, %{"name" => name}, %{name: other_name}) when name !== other_name do
+  def edit(conn, %{"user_id" => name}, %{name: other_name}) when name !== other_name do
     render_error(conn, :not_found, "User \"#{name}\" not found")
   end
 
-  def edit(conn, params = %{"name" => name, "id" => id}, _current_user) do
+  def edit(conn, params = %{"user_id" => name, "id" => id}, _current_user) do
     tweak = Tweak
             |> Repo.get(id)
             |> Repo.preload([:user])
@@ -56,11 +56,11 @@ defmodule AtomStyleTweaks.TweakController do
 
   def new(conn, _, :guest), do: render_error(conn, :unauthorized)
 
-  def new(conn, %{"name" => name}, %{name: other_name}) when name !== other_name do
+  def new(conn, %{"user_id" => name}, %{name: other_name}) when name !== other_name do
     render_error(conn, :not_found, "User \"#{name}\" not found")
   end
 
-  def new(conn, params = %{"name" => name}, _current_user) do
+  def new(conn, params = %{"user_id" => name}, _current_user) do
     case Repo.get_by(User, name: name) do
       nil -> render_error(conn, :not_found, "User \"#{name}\" not found")
       _ ->
@@ -70,7 +70,7 @@ defmodule AtomStyleTweaks.TweakController do
     end
   end
 
-  def show(conn, %{"name" => name, "id" => id}, _current_user) do
+  def show(conn, %{"user_id" => name, "id" => id}, _current_user) do
     tweak = Tweak
             |> Repo.get(id)
             |> Repo.preload([:user])
@@ -78,14 +78,14 @@ defmodule AtomStyleTweaks.TweakController do
     render(conn, "show.html", name: name, tweak: tweak)
   end
 
-  def update(conn, %{"name" => name, "id" => id, "tweak" => tweak_params}, _current_user) do
+  def update(conn, %{"user_id" => name, "id" => id, "tweak" => tweak_params}, _current_user) do
     tweak = Repo.get(Tweak, id)
     changeset = Tweak.changeset(tweak, tweak_params)
 
     case Repo.update(changeset) do
       {:ok, _style} ->
         conn
-        |> redirect(to: tweak_path(conn, :show, name, id))
+        |> redirect(to: user_tweak_path(conn, :show, name, id))
       {:error, changeset} ->
         conn
         |> render("edit.html", name: name, tweak: tweak, changeset: changeset, errors: changeset.errors)

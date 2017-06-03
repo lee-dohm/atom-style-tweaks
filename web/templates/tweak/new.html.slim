@@ -1,4 +1,4 @@
-= form_for @changeset, tweak_path(@conn, :create, @name), fn f ->
+= form_for @changeset, user_tweak_path(@conn, :create, @name), fn f ->
   = form_group(@errors, :title) do
     = text_input(f, :title, class: "form-control input-block input-lg", placeholder: "Title")
   = form_group(@errors, :type) do
