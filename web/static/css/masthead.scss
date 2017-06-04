@@ -23,6 +23,18 @@ $color-white: $white;
 
     &.btn {
       color: $color-gray-dark;
+
+      &:hover {
+        color: $color-gray-dark;
+      }
+
+      .octicons {
+        margin-left: 5px;
+
+        path {
+          fill: $color-gray-dark;
+        }
+      }
     }
 
     &:hover {
