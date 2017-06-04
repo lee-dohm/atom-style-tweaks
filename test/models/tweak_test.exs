@@ -1,6 +1,5 @@
 defmodule AtomStyleTweaks.TweakTest do
   use AtomStyleTweaks.ModelCase
-  doctest AtomStyleTweaks.Tweak
 
   alias AtomStyleTweaks.Tweak
 
