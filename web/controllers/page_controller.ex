@@ -9,12 +9,15 @@ defmodule AtomStyleTweaks.PageController do
             |> Tweak.preload
 
     query = if params["type"], do: Tweak.by_type(query, params["type"]), else: query
-    tweaks = Repo.all(query)
+    page = Repo.paginate(query, params)
 
-    render(conn, "index.html", tweaks: tweaks, params: params)
+    render conn, :index,
+      tweaks: page.entries,
+      page: page,
+      params: params
   end
 
   def about(conn, _params) do
-    render(conn, "about.html")
+    render(conn, :about)
   end
 end

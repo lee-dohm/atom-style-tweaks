@@ -32,22 +32,45 @@ defmodule AtomStyleTweaks.Tweak do
     |> validate_inclusion(:type, ["init", "style"])
   end
 
+  @doc """
+  Filters a query by type.
+
+  ## Examples
+
+      iex> AtomStyleTweaks.Tweak |>
+      ...> AtomStyleTweaks.Tweak.by_type("init") |>
+      ...> AtomStyleTweaks.Repo.all
+      []
+  """
   def by_type(query, type), do: from t in query, where: t.type == ^type
 
+  @doc """
+  Preloads the associated records in the query results.
+
+  ## Examples
+
+      iex> AtomStyleTweaks.Tweak |>
+      ...> AtomStyleTweaks.Tweak.preload |>
+      ...> AtomStyleTweaks.Repo.all
+      []
+  """
   def preload(query), do: from t in query, preload: [:user]
 
+  @doc """
+  Sorts the query, by default descending by last updated time.
+
+  ## Examples
+
+      iex> AtomStyleTweaks.Tweak |>
+      ...> AtomStyleTweaks.Tweak.sorted |>
+      ...> AtomStyleTweaks.Repo.all
+      []
+
+      iex> AtomStyleTweaks.Tweak |>
+      ...> AtomStyleTweaks.Tweak.sorted(asc: :inserted_at) |>
+      ...> AtomStyleTweaks.Repo.all
+      []
+  """
   def sorted(query), do: from t in query, order_by: [desc: :updated_at]
-
-  def slugified_title(title) do
-    title
-    |> String.downcase
-    |> String.replace(~r/[^a-z0-9\s-]/, "")
-    |> String.replace(~r/(\s|-)+/, "-")
-  end
-
-  # defimpl Phoenix.Param, for: AtomStyleTweaks.Tweak do
-  #   def to_param(%{title: title}) do
-  #     Tweak.slugified_title(title)
-  #   end
-  # end
+  def sorted(query, order_by), do: from t in query, order_by: ^order_by
 end
