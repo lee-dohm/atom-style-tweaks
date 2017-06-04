@@ -69,7 +69,7 @@ defmodule AtomStyleTweaks.Mixfile do
       {:phoenix, "~> 1.2.4"},
       {:postgrex, ">= 0.0.0"},
       {:scrivener_ecto, "~> 1.2"},
-      {:scrivener_html, path: "../scrivener_html"},
+      {:scrivener_html, "~> 1.7"},
       {:timex, "~> 3.1"},
       {:dotenv, "~> 2.0.0", only: :dev},
       {:ex_doc, "~> 0.16", only: :dev, runtime: false},
