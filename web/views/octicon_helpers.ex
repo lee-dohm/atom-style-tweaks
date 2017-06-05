@@ -5,13 +5,12 @@ defmodule AtomStyleTweaks.OcticonHelpers do
 
   use Phoenix.HTML
 
-  alias AtomStyleTweaks.Octicons
   alias AtomStyleTweaks.Tweak
 
   @doc """
   Draws a normal-sized Octicon.
   """
-  @spec octicon(AtomStyleTweaks.octicon_name, map) :: Phoenix.HTML.safe
+  @spec octicon(Octicons.octicon_name, map) :: Phoenix.HTML.safe
   def octicon(name, options \\ %{})
 
   def octicon(atom, options) when is_atom(atom), do: octicon(Atom.to_string(atom), options)
@@ -23,7 +22,7 @@ defmodule AtomStyleTweaks.OcticonHelpers do
   @doc """
   Draws an upsized Octicon (32px tall).
   """
-  @spec mega_octicon(AtomStyleTweaks.octicon_name, map) :: Phoenix.HTML.safe
+  @spec mega_octicon(Octicons.octicon_name, map) :: Phoenix.HTML.safe
   def mega_octicon(name, options \\ %{})
 
   def mega_octicon(atom, options) when is_atom(atom), do: mega_octicon(Atom.to_string(atom), options)
