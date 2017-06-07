@@ -68,7 +68,7 @@ defmodule AtomStyleTweaks.Mixfile do
       {:phoenix, "~> 1.2.4"},
       {:postgrex, ">= 0.0.0"},
       {:timex, "~> 3.1"},
-      {:octicons, "~> 0.1.1"},
+      {:octicons, "~> 0.3.0"},
       {:dotenv, "~> 2.0.0", only: :dev},
       {:ex_doc, "~> 0.16", only: :dev, runtime: false},
       {:phoenix_live_reload, "~> 1.0", only: :dev},
