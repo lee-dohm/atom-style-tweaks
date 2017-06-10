@@ -1,8 +1,8 @@
-@import "node_modules/primer-support/lib/variables/colors.scss";
+@import 'node_modules/primer-support/lib/variables/colors';
 
 textarea.tweak-textarea {
-  font-family: monospace;
   min-height: 200px;
+  font-family: monospace;
 }
 
 .errored .form-control,

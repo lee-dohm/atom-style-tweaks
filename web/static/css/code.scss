@@ -1,5 +1,6 @@
-@import "node_modules/primer-support/lib/variables/typography.scss";
+@import 'node_modules/primer-support/lib/variables/typography';
 
-tt, code {
+tt,
+code {
   font-size: $body-font-size;
 }
