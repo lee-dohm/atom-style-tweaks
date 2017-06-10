@@ -55,6 +55,8 @@ defmodule AtomStyleTweaks.Web do
       import AtomStyleTweaks.Gettext
 
       # Project-specific view helpers
+      import PhoenixOcticons
+
       import AtomStyleTweaks.AvatarHelpers
       import AtomStyleTweaks.FormHelpers
       import AtomStyleTweaks.MenuHelpers
