@@ -19,17 +19,14 @@ defmodule AtomStyleTweaks.RenderHelpers do
   end
 
   @doc """
-  Renders the template if the condition is `true`.
+  Renders the template if the condition is truthy.
   """
   @spec render_if(boolean, module, String.t, map) :: Phoenix.HTML.safe
-  def render_if(value, view, template, assigns) when not is_boolean(value) do
-    # Using double-negation to convert `value` into a boolean for better matching
-    # credo:disable-for-next-line Credo.Check.Refactor.DoubleBooleanNegation
-    render_if(!!value, view, template, assigns)
-  end
+  def render_if(condition, view_module, template, assigns)
 
-  def render_if(true, view, template, assigns), do: render(view, template, assigns)
-  def render_if(_, _, _, _), do: nil
+  def render_if(nil, _, _, _), do: nil
+  def render_if(false, _, _, _), do: nil
+  def render_if(_, view, template, assigns), do: render(view, template, assigns)
 
   @doc """
   Renders the many template if there are any items in `enumerable`, otherwise the blank template.
