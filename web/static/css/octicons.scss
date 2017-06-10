@@ -1,9 +1,9 @@
-@import "node_modules/primer-support/lib/variables/colors.scss";
+@import 'node_modules/primer-support/lib/variables/colors';
 
 .octicons {
   display: inline-block;
-  user-select: none;
   vertical-align: text-bottom;
+  user-select: none;
 }
 
 .tweak-title .octicons {
@@ -18,7 +18,7 @@
 
 .masthead a {
   path {
-    fill: transparentize($white, 0.5);
+    fill: transparentize($white, .5);
   }
 
   &:hover {

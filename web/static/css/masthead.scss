@@ -1,4 +1,4 @@
-@import "node_modules/primer-support/lib/variables/colors.scss";
+@import 'node_modules/primer-support/lib/variables/colors';
 
 $color-blue: $blue-500;
 $color-green: $green-500;
@@ -19,7 +19,7 @@ $color-white: $white;
   background-color: $color-blue;
 
   a {
-    color:rgba(255,255,255,0.5);
+    color: rgba(255, 255, 255, .5);
 
     &.btn {
       color: $color-gray-dark;
@@ -57,11 +57,11 @@ $color-white: $white;
 
 @media (min-width: 34em) {
   .masthead {
-    text-align:left
+    text-align: left;
   }
 
   .masthead .masthead-logo {
-    float:left
+    float: left;
   }
 }
 
@@ -86,21 +86,21 @@ $color-white: $white;
 @media (max-width: 34em) {
   .masthead-nav {
     padding-top: 1rem;
-    border-top: 0.075rem solid rgba(255,255,255,0.25);
+    border-top: .075rem solid rgba(255, 255, 255, .25);
   }
 }
 
 @media (min-width: 34em) {
   .masthead-nav {
     float: right;
-    margin-top: 0.5rem;
+    margin-top: .5rem;
 
     .btn {
-      margin-top: -0.4rem;
+      margin-top: -.4rem;
     }
 
     img {
-      margin-top: -0.5rem;
+      margin-top: -.5rem;
     }
   }
 }
