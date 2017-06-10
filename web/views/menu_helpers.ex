@@ -4,8 +4,6 @@ defmodule AtomStyleTweaks.MenuHelpers do
   """
   use Phoenix.HTML
 
-  alias AtomStyleTweaks.OcticonHelpers
-
   @doc """
   Creates a [Primer-style menu item.](http://primercss.io/nav/#menu)
 
@@ -25,7 +23,7 @@ defmodule AtomStyleTweaks.MenuHelpers do
 
     content_tag(:a, href: link, id: id, class: class) do
       [
-        OcticonHelpers.octicon(octicon, %{"width" => "16"}),
+        PhoenixOcticons.octicon(octicon, %{"width" => "16"}),
         text
       ]
     end
