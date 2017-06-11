@@ -6,6 +6,8 @@ defmodule AtomStyleTweaks.AuthController do
 
   require Logger
 
+  alias OAuth2.Client, as: OAuthClient
+
   alias AtomStyleTweaks.User
 
   @doc """
@@ -48,8 +50,7 @@ defmodule AtomStyleTweaks.AuthController do
   end
 
   defp get_user!(token) do
-    # credo:disable-for-next-line Credo.Check.Design.AliasUsage
-    {:ok, %{body: user}} = OAuth2.Client.get(token, "/user")
+    {:ok, %{body: user}} = OAuthClient.get(token, "/user")
 
     %{
       name: user["login"],
