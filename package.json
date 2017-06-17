@@ -6,6 +6,7 @@
     "watch": "brunch watch --stdin"
   },
   "dependencies": {
+    "clipboard": "^1.7.1",
     "highlight.js": "^9.9.0",
     "octicons": "^5.0.1",
     "phoenix": "file:deps/phoenix",

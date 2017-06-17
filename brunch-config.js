@@ -72,9 +72,6 @@ exports.config = {
 
   npm: {
     enabled: true,
-    globals: {
-      hljs: 'highlight.js'
-    },
     styles: {
       'highlight.js': [
         'styles/github.css'
@@ -84,4 +81,4 @@ exports.config = {
       ]
     }
   }
-};
+}
