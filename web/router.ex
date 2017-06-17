@@ -11,6 +11,7 @@ defmodule AtomStyleTweaks.Router do
     plug :put_secure_browser_headers
     plug :assign_current_user
     plug :authorize
+    plug AtomStyleTweaks.SlidingSessionTimeout
   end
 
   pipeline :api do
