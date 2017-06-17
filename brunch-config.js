@@ -72,10 +72,6 @@ exports.config = {
 
   npm: {
     enabled: true,
-    globals: {
-      Clipboard: 'clipboard',
-      hljs: 'highlight.js'
-    },
     styles: {
       'highlight.js': [
         'styles/github.css'
