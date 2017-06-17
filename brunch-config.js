@@ -81,4 +81,4 @@ exports.config = {
       ]
     }
   }
-};
+}
