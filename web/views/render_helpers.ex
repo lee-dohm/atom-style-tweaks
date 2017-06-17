@@ -14,7 +14,7 @@ defmodule AtomStyleTweaks.RenderHelpers do
   @spec render_code(Tweak.t) :: Phoenix.HTML.safe
   def render_code(tweak) do
     content_tag(:pre) do
-      content_tag(:code, tweak.code, class: code_class_for(tweak))
+      content_tag(:code, tweak.code, class: code_class_for(tweak), id: "code")
     end
   end
 
