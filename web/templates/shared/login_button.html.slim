@@ -6,6 +6,6 @@
     = @current_user.name
     = avatar(@current_user, size: 36)
 - else
-  a.btn href="#{auth_path(@conn, :index)}"
+  a.btn href="#{auth_path(@conn, :index, from: @conn.request_path)}"
     = gettext "Sign in with"
     = octicon("mark-github")
