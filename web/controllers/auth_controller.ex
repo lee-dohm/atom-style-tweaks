@@ -13,7 +13,13 @@ defmodule AtomStyleTweaks.AuthController do
   @doc """
   Signs the user in by redirecting to the GitHub authorization URL.
   """
-  def index(conn, _params) do
+  def index(conn, %{"from" => return_to}) do
+    conn
+    |> put_session(:return_to, return_to)
+    |> redirect(external: GitHub.authorize_url!)
+  end
+
+  def index(conn, _) do
     conn
     |> redirect(external: GitHub.authorize_url!)
   end
@@ -36,10 +42,13 @@ defmodule AtomStyleTweaks.AuthController do
     github_user = get_user!(token)
     user = create_user(github_user)
 
+    redirect_path = return_to_path(conn, get_session(conn, :return_to))
+
     conn
+    |> delete_session(:return_to)
     |> put_session(:current_user, user)
     |> put_session(:access_token, token.token)
-    |> redirect(to: page_path(conn, :index))
+    |> redirect(to: redirect_path)
   end
 
   defp create_user(github_user) do
@@ -58,4 +67,7 @@ defmodule AtomStyleTweaks.AuthController do
       github_id: user["id"]
     }
   end
+
+  defp return_to_path(conn, nil), do: page_path(conn, :index)
+  defp return_to_path(_, path), do: path
 end
