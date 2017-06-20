@@ -4,6 +4,14 @@ defmodule AtomStyleTweaks.SlidingSessionTimeout.Test do
 
   alias AtomStyleTweaks.SlidingSessionTimeout
 
+  setup do
+    on_exit fn ->
+      Application.put_env(:atom_style_tweaks, SlidingSessionTimeout, nil)
+    end
+
+    :ok
+  end
+
   test "init defaults to a 3_600 second timeout" do
     assert SlidingSessionTimeout.init() == [timeout: 3_600]
   end
@@ -14,6 +22,12 @@ defmodule AtomStyleTweaks.SlidingSessionTimeout.Test do
 
   test "init allows other options to be specified and merged" do
     assert SlidingSessionTimeout.init(foo: "bar") == [timeout: 3_600, foo: "bar"]
+  end
+
+  test "reads a timeout from the config if it exists" do
+    Application.put_env(:atom_style_tweaks, SlidingSessionTimeout, [timeout: 5_000])
+
+    assert SlidingSessionTimeout.init() == [timeout: 5_000]
   end
 
   test "a timeout is set if one doesn't exist" do

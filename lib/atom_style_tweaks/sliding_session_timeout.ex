@@ -2,11 +2,18 @@ defmodule AtomStyleTweaks.SlidingSessionTimeout do
   @moduledoc """
   Times out the session after a period of inactivity.
 
-  Defaults to timing out after one hour.
+  The default timeout is one hour. This can be configured in the application config where the
+  timeout is given as a number of seconds.
+
+  ```
+  config :atom_style_tweaks, AtomStyleTweaks.SlidingSessionTimeout,
+    timeout: 1_234
+  ```
   """
   import Plug.Conn
 
-  def init, do: [timeout: 3_600]
+  def init, do: init(Application.get_env(:atom_style_tweaks, __MODULE__))
+  def init(nil), do: init([])
   def init(opts), do: Keyword.merge([timeout: 3_600], opts)
 
   def call(conn, opts) do
