@@ -6,23 +6,44 @@ defmodule AtomStyleTweaks.SlidingSessionTimeout do
   timeout is given as a number of seconds.
 
   ```
-  config :atom_style_tweaks, AtomStyleTweaks.SlidingSessionTimeout,
+  config :my_app, AtomStyleTweaks.SlidingSessionTimeout,
     timeout: 1_234
   ```
   """
   import Plug.Conn
 
-  def init, do: init(Application.get_env(:atom_style_tweaks, __MODULE__))
+  alias Timex.Duration
+
+  require Logger
+
+  def init, do: init([])
   def init(nil), do: init([])
-  def init(opts), do: Keyword.merge([timeout: 3_600], opts)
+
+  def init(opts) do
+    defaults = init_defaults()
+    Keyword.merge(defaults, opts)
+  end
 
   def call(conn, opts) do
     timeout_at = get_session(conn, :timeout_at)
+
     if timeout_at && now() > timeout_at do
-      logout_user(conn)
+      conn
+      |> logout_user
+      |> Phoenix.Controller.redirect(to: "/auth?from=#{conn.request_path}")
+      |> halt
     else
-      put_session(conn, :timeout_at, calculate_timeout(opts[:timeout]))
+      new_timeout = calculate_timeout(opts[:timeout])
+
+      put_session(conn, :timeout_at, new_timeout)
     end
+  end
+
+  defp get_app, do: Application.get_application(__MODULE__)
+
+  defp init_defaults do
+    [timeout: 3_600]
+    |> Keyword.merge(Application.get_env(get_app(), __MODULE__) || [])
   end
 
   defp logout_user(conn) do
@@ -35,4 +56,11 @@ defmodule AtomStyleTweaks.SlidingSessionTimeout do
   defp now, do: DateTime.to_unix(DateTime.utc_now())
 
   defp calculate_timeout(timeout), do: now() + timeout
+
+  defp from_now(timestamp) do
+    Timex.now()
+    |> Timex.diff(Timex.from_unix(timestamp), :seconds)
+    |> Duration.from_seconds()
+    |> Timex.format_duration(:humanized)
+  end
 end

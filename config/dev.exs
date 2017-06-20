@@ -26,9 +26,9 @@ config :atom_style_tweaks, AtomStyleTweaks.Endpoint,
     ]
   ]
 
-# Timeout sessions in 5 minutes in the development environment
+# Timeout sessions in one minute in the development environment
 config :atom_style_tweaks, AtomStyleTweaks.SlidingSessionTimeout,
-  timeout: 300
+  timeout: 60
 
 # Do not include metadata nor timestamps in development logs
 config :logger, :console, format: "[$level] $message\n"
