@@ -3,6 +3,8 @@ defmodule AtomStyleTweaks.Router do
 
   require Logger
 
+  alias AtomStyleTweaks.SlidingSessionTimeout
+
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
@@ -10,8 +12,7 @@ defmodule AtomStyleTweaks.Router do
     plug :protect_from_forgery
     plug :put_secure_browser_headers
     plug :assign_current_user
-    plug :authorize
-    plug AtomStyleTweaks.SlidingSessionTimeout
+    plug SlidingSessionTimeout
   end
 
   pipeline :api do
@@ -51,13 +52,6 @@ defmodule AtomStyleTweaks.Router do
 
     assign(conn, :current_user, user)
   end
-
-  def authorize(conn, _) do
-    assign(conn, :authorized?, authorized?(get_session(conn, :current_user)))
-  end
-
-  def authorized?(nil), do: false
-  def authorized?(_), do: true
 
   def log_flash(conn, _params) do
     Logger.debug(fn -> "Flash info = #{get_flash(conn, :info)}" end)
