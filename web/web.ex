@@ -62,7 +62,6 @@ defmodule AtomStyleTweaks.Web do
       import AtomStyleTweaks.MenuHelpers
       import AtomStyleTweaks.OcticonHelpers
       import AtomStyleTweaks.RenderHelpers
-      import AtomStyleTweaks.SharedHelpers
       import AtomStyleTweaks.TimeHelpers
     end
   end
