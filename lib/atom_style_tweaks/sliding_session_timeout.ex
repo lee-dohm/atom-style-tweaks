@@ -29,7 +29,7 @@ defmodule AtomStyleTweaks.SlidingSessionTimeout do
     conn
     |> clear_session
     |> configure_session([:renew])
-    |> assign(:timed_out, true)
+    |> assign(:timed_out?, true)
   end
 
   defp now, do: DateTime.to_unix(DateTime.utc_now())

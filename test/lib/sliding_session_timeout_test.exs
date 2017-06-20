@@ -79,7 +79,7 @@ defmodule AtomStyleTweaks.SlidingSessionTimeout.Test do
 
     assert is_nil(timeout_at)
     assert is_nil(current_user)
-    assert test_conn.assigns.timed_out === true
+    assert test_conn.assigns.timed_out? === true
   end
 
   defp now, do: DateTime.to_unix(DateTime.utc_now())
