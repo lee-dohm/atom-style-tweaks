@@ -14,7 +14,7 @@ defmodule AtomStyleTweaks.AuthController do
   Signs the user in by redirecting to the GitHub authorization URL.
   """
   def index(conn, %{"from" => return_to}) do
-    Logger.debug("Authorize user and return to #{return_to}")
+    Logger.debug(fn -> "Authorize user and return to #{return_to}" end)
 
     conn
     |> put_session(:return_to, return_to)
@@ -22,7 +22,7 @@ defmodule AtomStyleTweaks.AuthController do
   end
 
   def index(conn, _) do
-    Logger.debug("Authorize user and return to home page")
+    Logger.debug(fn -> "Authorize user and return to home page" end)
 
     conn
     |> redirect(external: GitHub.authorize_url!)

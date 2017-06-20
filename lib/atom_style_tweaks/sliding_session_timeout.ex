@@ -12,6 +12,7 @@ defmodule AtomStyleTweaks.SlidingSessionTimeout do
   """
   import Plug.Conn
 
+  alias Phoenix.Controller
   alias Timex.Duration
 
   require Logger
@@ -30,7 +31,7 @@ defmodule AtomStyleTweaks.SlidingSessionTimeout do
     if timeout_at && now() > timeout_at do
       conn
       |> logout_user
-      |> Phoenix.Controller.redirect(to: "/auth?from=#{conn.request_path}")
+      |> Controller.redirect(to: "/auth?from=#{conn.request_path}")
       |> halt
     else
       new_timeout = calculate_timeout(opts[:timeout])
