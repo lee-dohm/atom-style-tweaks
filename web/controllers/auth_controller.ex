@@ -26,7 +26,7 @@ defmodule AtomStyleTweaks.AuthController do
 
   @doc """
   Signs the user out by dropping the session, thereby throwing away the access
-  token, and redirecting to the Pain View home page.
+  token, and redirecting to the home page.
   """
   def delete(conn, _params) do
     conn
