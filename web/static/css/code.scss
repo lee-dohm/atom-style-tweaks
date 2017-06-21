@@ -4,3 +4,8 @@ tt,
 code {
   font-size: $body-font-size;
 }
+
+.hljs-comment,
+.hljs-quote {
+  font-style: normal;
+}
