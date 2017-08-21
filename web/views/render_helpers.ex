@@ -19,6 +19,13 @@ defmodule AtomStyleTweaks.RenderHelpers do
   end
 
   @doc """
+  Renders the given Markdown text into HTML.
+  """
+  @spec render_markdown(String.t) :: Phoenix.HTML.safe
+  def render_markdown(nil), do: raw("")
+  def render_markdown(text), do: raw(Cmark.to_html(text, [:safe, :smart]))
+
+  @doc """
   Renders the template if the condition is truthy.
   """
   @spec render_if(boolean, module, String.t, map) :: Phoenix.HTML.safe

@@ -3,7 +3,7 @@ defmodule AtomStyleTweaks.TweakTest do
 
   alias AtomStyleTweaks.Tweak
 
-  @valid_attrs %{code: "some content", title: "some content", type: "style", created_by: Ecto.UUID.generate()}
+  @valid_attrs %{code: "some content", title: "some content", type: "style", description: "Some **Markdown**", created_by: Ecto.UUID.generate()}
   @invalid_attrs %{}
 
   test "changeset with valid attributes" do
@@ -32,5 +32,17 @@ defmodule AtomStyleTweaks.TweakTest do
     changeset = Tweak.changeset(%Tweak{}, %{@valid_attrs | type: :style})
 
     refute changeset.valid?
+  end
+
+  test "allows an empty description" do
+    changeset = Tweak.changeset(%Tweak{}, %{@valid_attrs | description: ""})
+
+    assert changeset.valid?
+  end
+
+  test "allows a nil description" do
+    changeset = Tweak.changeset(%Tweak{}, %{@valid_attrs | description: nil})
+
+    assert changeset.valid?
   end
 end
