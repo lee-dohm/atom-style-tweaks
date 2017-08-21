@@ -5,5 +5,7 @@
     = select(f, :type, ["Init": "init", "Style": "style"], prompt: "Select tweak type")
   = form_group(@errors, :code) do
     = textarea(f, :code, class: "form-control input-block tweak-textarea", placeholder: "Enter tweak code")
+  = form_group(@errors, :description) do
+    = textarea(f, :description, class: "form-control input-block description-textarea", placeholder: "Describe the tweak")
   .form-actions
     = submit("Save new tweak", class: "btn btn-primary")

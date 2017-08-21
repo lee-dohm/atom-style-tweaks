@@ -9,3 +9,5 @@
     = render_if(@current_user && @current_user.name == @tweak.user.name, TweakView, "edit_tweak_button.html", assigns)
     = render("copy_tweak_button.html", assigns)
   = render_code(@tweak)
+  .tweak-description
+    = render_markdown(@tweak.description)

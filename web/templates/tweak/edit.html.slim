@@ -5,6 +5,8 @@
     = select(f, :type, ["Init": "init", "Style": "style"], prompt: "Select tweak type", value: @tweak.type)
   = form_group(@errors, :code) do
     = textarea(f, :code, class: "form-control input-block tweak-textarea", placeholder: "Enter tweak code", value: @tweak.code)
+  = form_group(@errors, :description) do
+    = textarea(f, :description, class: "form-control input-block description-textarea", placeholder: "Describe the tweak", value: @tweak.description || "")
   .form-actions
     = submit("Update tweak", class: "btn btn-primary")
     a.btn.btn-danger href="#{user_tweak_path(@conn, :show, @name, @tweak.id)}" = gettext "Cancel"
