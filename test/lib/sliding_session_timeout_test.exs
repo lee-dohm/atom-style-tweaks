@@ -39,7 +39,7 @@ defmodule AtomStyleTweaks.SlidingSessionTimeout.Test do
                  |> fetch_session
                  |> get_session(:timeout_at)
 
-    assert_in_delta timeout_at, now() + 3_600, 1
+    assert_in_delta timeout_at, now() + 3_600, 2
   end
 
   test "timeout is set to now plus the timeout value in the session if it doesn't exist" do
@@ -51,7 +51,7 @@ defmodule AtomStyleTweaks.SlidingSessionTimeout.Test do
                  |> fetch_session
                  |> get_session(:timeout_at)
 
-    assert_in_delta timeout_at, now() + 50_000, 1
+    assert_in_delta timeout_at, now() + 50_000, 2
   end
 
   test "timeout is renewed if it isn't timed out" do
@@ -63,7 +63,7 @@ defmodule AtomStyleTweaks.SlidingSessionTimeout.Test do
                  |> fetch_session
                  |> get_session(:timeout_at)
 
-    assert_in_delta timeout_at, now() + 3_600, 1
+    assert_in_delta timeout_at, now() + 3_600, 2
   end
 
   test "session is cleared if it has timed out" do
