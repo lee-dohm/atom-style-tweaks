@@ -33,4 +33,16 @@ defmodule AtomStyleTweaks.TweakTest do
 
     refute changeset.valid?
   end
+
+  test "allows an empty description" do
+    changeset = Tweak.changeset(%Tweak{}, %{@valid_attrs | description: ""})
+
+    assert changeset.valid?
+  end
+
+  test "allows a nil description" do
+    changeset = Tweak.changeset(%Tweak{}, %{@valid_attrs | description: nil})
+
+    assert changeset.valid?
+  end
 end
