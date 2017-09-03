@@ -23,7 +23,6 @@ defmodule AtomStyleTweaks.RenderHelpers do
   Renders the given Markdown text into HTML.
   """
   @spec render_markdown(String.t) :: Phoenix.HTML.safe
-  def render_markdown(nil), do: raw("")
   def render_markdown(text), do: raw(MarkdownEngine.render(text, []))
 
   @doc """
