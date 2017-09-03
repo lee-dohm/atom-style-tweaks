@@ -6,6 +6,15 @@ defmodule AtomStyleTweaks.TimeHelpers do
   use Phoenix.HTML
 
   def relative_time(from) do
-    content_tag(:"time-ago", Timex.from_now(from, Gettext.get_locale(AtomStyleTweaks.Gettext)), title: from)
+    from_now = Timex.from_now(from, Gettext.get_locale(AtomStyleTweaks.Gettext))
+    title = strip_fractional_seconds(from)
+
+    content_tag(:"time-ago", from_now, title: title)
+  end
+
+  defp strip_fractional_seconds(from) do
+    from
+    |> to_string
+    |> String.replace(~r/\.\d+$/, "")
   end
 end
