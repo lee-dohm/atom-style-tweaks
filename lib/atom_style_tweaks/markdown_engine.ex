@@ -4,6 +4,11 @@ defmodule AtomStyleTweaks.MarkdownEngine do
   """
   @behaviour Slime.Parser.EmbeddedEngine
 
+  @doc """
+  Renders the given Markdown text into HTML.
+
+  **See:** `Cmark.to_html/2`
+  """
   def render(text, _options) do
     Cmark.to_html(text, [:safe, :smart])
   end
