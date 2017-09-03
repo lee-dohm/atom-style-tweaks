@@ -15,4 +15,16 @@ defmodule AtomStyleTweaks.UserTest do
     changeset = User.changeset(%User{}, @invalid_attrs)
     refute changeset.valid?
   end
+
+  test "user exists when it is in the database" do
+    user = insert(:user)
+
+    assert User.exists?(user.name)
+  end
+
+  test "user does not exist when it is not in the database" do
+    user = build(:user)
+
+    refute User.exists?(user.name)
+  end
 end

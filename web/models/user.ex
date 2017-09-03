@@ -5,6 +5,7 @@ defmodule AtomStyleTweaks.User do
 
   use AtomStyleTweaks.Web, :model
 
+  alias AtomStyleTweaks.Repo
   alias AtomStyleTweaks.User
 
   @type t :: %User{}
@@ -31,5 +32,17 @@ defmodule AtomStyleTweaks.User do
     |> validate_required([:avatar_url, :github_id, :name, :site_admin])
     |> unique_constraint(:name)
     |> unique_constraint(:github_id)
+  end
+
+  @doc """
+  Determines whether the user with the given `name` exists in the database.
+  """
+  def exists?(name) do
+    query = from u in __MODULE__, select: 1, limit: 1, where: u.name == ^name
+
+    case Repo.all(query) do
+      [1] -> true
+      [] -> false
+    end
   end
 end
