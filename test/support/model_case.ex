@@ -21,6 +21,7 @@ defmodule AtomStyleTweaks.ModelCase do
       import Ecto
       import Ecto.Changeset
       import Ecto.Query
+      import AtomStyleTweaks.Factory
       import AtomStyleTweaks.ModelCase
     end
   end

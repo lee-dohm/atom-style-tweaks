@@ -6,6 +6,7 @@ defmodule AtomStyleTweaks.RenderHelpers do
 
   use Phoenix.HTML
 
+  alias AtomStyleTweaks.MarkdownEngine
   alias AtomStyleTweaks.Tweak
 
   @doc """
@@ -22,8 +23,7 @@ defmodule AtomStyleTweaks.RenderHelpers do
   Renders the given Markdown text into HTML.
   """
   @spec render_markdown(String.t) :: Phoenix.HTML.safe
-  def render_markdown(nil), do: raw("")
-  def render_markdown(text), do: raw(Cmark.to_html(text, [:safe, :smart]))
+  def render_markdown(text), do: raw(MarkdownEngine.render(text, []))
 
   @doc """
   Renders the template if the condition is truthy.

@@ -5,8 +5,6 @@ defmodule AtomStyleTweaks.Tweak do
 
   use AtomStyleTweaks.Web, :model
 
-  import Ecto.Query
-
   alias AtomStyleTweaks.Tweak
 
   @type t :: %Tweak{}
@@ -38,17 +36,4 @@ defmodule AtomStyleTweaks.Tweak do
   def preload(query), do: from t in query, preload: [:user]
 
   def sorted(query), do: from t in query, order_by: [desc: :updated_at]
-
-  def slugified_title(title) do
-    title
-    |> String.downcase
-    |> String.replace(~r/[^a-z0-9\s-]/, "")
-    |> String.replace(~r/(\s|-)+/, "-")
-  end
-
-  # defimpl Phoenix.Param, for: AtomStyleTweaks.Tweak do
-  #   def to_param(%{title: title}) do
-  #     Tweak.slugified_title(title)
-  #   end
-  # end
 end
