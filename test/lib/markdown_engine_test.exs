@@ -16,7 +16,7 @@ defmodule AtomStyleTweaks.MarkdownEngine.Test do
       end
     end
 
-    [funcs: [tweaks, github]]
+    [funcs: [tweaks, github], tweaks: tweaks]
   end
 
   test "when render is given nil it renders an empty string" do
@@ -53,5 +53,9 @@ defmodule AtomStyleTweaks.MarkdownEngine.Test do
 
   test "when replace_mention is given text with a mention that is handled by multiple functions, the mention is replaced by the earliest one", context do
     assert MarkdownEngine.replace_mention("This text has a @both-mention in it", context[:funcs]) == "This text has a tweaks-replacement in it"
+  end
+
+  test "when replace_mention is given text with a mention, that not all functions are called if an earlier one succeeds", context do
+    assert MarkdownEngine.replace_mention("This text has a @tweaks-mention in it", [context[:tweaks], fn(_, _) -> raise "bummer" end]) == "This text has a tweaks-replacement in it"
   end
 end
