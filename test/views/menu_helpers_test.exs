@@ -9,23 +9,26 @@ defmodule AtomStyleTweaks.MenuHelpers.Test do
 
   test "menu item is rendered correctly" do
     link = MenuHelpers.menu_item("test", "#", "foo", :beaker, false)
-           |> safe_to_string
+    link = safe_to_string(link)
 
-    assert find_single_element(link, "a")
+    assert link
+           |> find_single_element("a")
            |> has_attribute(:href, "#")
            |> has_attribute(:id, "test")
            |> has_attribute(:class, "menu-item")
            |> has_text("foo")
 
-    assert find_single_element(link, "a svg")
+    assert link
+           |> find_single_element("a svg")
            |> has_attribute(:class, "octicons octicons-beaker")
   end
 
   test "menu item is marked as selected when true is passed" do
     link = MenuHelpers.menu_item("test", "#", "foo", :beaker, true)
-           |> safe_to_string
+    link = safe_to_string(link)
 
-    assert find_single_element(link, "a")
+    assert link
+           |> find_single_element("a")
            |> has_attribute(:class, "menu-item selected")
   end
 end
