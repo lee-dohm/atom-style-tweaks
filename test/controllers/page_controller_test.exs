@@ -26,7 +26,8 @@ defmodule AtomStyleTweaks.PageController.Test do
   test "index shows home page link" do
     conn = home_page()
 
-    assert find_single_element(conn, "a.masthead-logo")
+    assert conn
+           |> find_single_element("a.masthead-logo")
            |> has_text("Atom Tweaks")
            |> links_to(page_path(conn, :index))
   end
@@ -34,7 +35,8 @@ defmodule AtomStyleTweaks.PageController.Test do
   test "index shows All tab and it is selected by default" do
     conn = home_page()
 
-    assert find_single_element(conn, "a#all-menu-item.selected")
+    assert conn
+           |> find_single_element("a#all-menu-item.selected")
            |> has_text("All")
            |> links_to(page_path(conn, :index))
 
@@ -44,7 +46,8 @@ defmodule AtomStyleTweaks.PageController.Test do
   test "index shows Styles tab" do
     conn = home_page()
 
-    assert find_single_element(conn, "a#styles-menu-item")
+    assert conn
+           |> find_single_element("a#styles-menu-item")
            |> has_text("Styles")
            |> links_to(page_path(conn, :index, type: :style))
 
@@ -54,7 +57,8 @@ defmodule AtomStyleTweaks.PageController.Test do
   test "index shows Init tab" do
     conn = home_page()
 
-    assert find_single_element(conn, "a#init-menu-item")
+    assert conn
+           |> find_single_element("a#init-menu-item")
            |> has_text("Init")
            |> links_to(page_path(conn, :index, type: :init))
 
@@ -118,7 +122,8 @@ defmodule AtomStyleTweaks.PageController.Test do
   test "index shows new tweak button when logged in" do
     conn = home_page(logged_in_as: build(:user))
 
-    assert find_single_element(conn, "a#new-tweak-button")
+    assert conn
+           |> find_single_element("a#new-tweak-button")
            |> has_text("New tweak")
   end
 
@@ -144,7 +149,8 @@ defmodule AtomStyleTweaks.PageController.Test do
   test "index shows About link" do
     conn = home_page()
 
-    assert find_single_element(conn, "footer a#about-link")
+    assert conn
+           |> find_single_element("footer a#about-link")
            |> has_text("About")
            |> links_to(page_path(conn, :about))
   end
@@ -152,14 +158,16 @@ defmodule AtomStyleTweaks.PageController.Test do
   test "index shows the GitHub link" do
     conn = home_page()
 
-    assert find_single_element(conn, "footer a#github-link")
+    assert conn
+           |> find_single_element("footer a#github-link")
            |> links_to("https://github.com/lee-dohm/atom-style-tweaks")
   end
 
   test "about page shows some about text" do
     conn = about_page()
 
-    assert find_single_element(conn, "main h1")
+    assert conn
+           |> find_single_element("main h1")
            |> has_text("About Atom Tweaks")
   end
 end

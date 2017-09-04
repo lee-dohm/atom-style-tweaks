@@ -33,7 +33,8 @@ defmodule AtomStyleTweaks.SlidingSessionTimeout.Test do
   test "a timeout is set if one doesn't exist" do
     opts = SlidingSessionTimeout.init()
 
-    timeout_at = conn(:get, "/")
+    request = conn(:get, "/")
+    timeout_at = request
                  |> init_test_session(%{})
                  |> SlidingSessionTimeout.call(opts)
                  |> fetch_session
@@ -45,7 +46,8 @@ defmodule AtomStyleTweaks.SlidingSessionTimeout.Test do
   test "timeout is set to now plus the timeout value in the session if it doesn't exist" do
     opts = SlidingSessionTimeout.init([timeout: 50_000])
 
-    timeout_at = conn(:get, "/")
+    request = conn(:get, "/")
+    timeout_at = request
                  |> init_test_session(%{})
                  |> SlidingSessionTimeout.call(opts)
                  |> fetch_session
@@ -57,7 +59,8 @@ defmodule AtomStyleTweaks.SlidingSessionTimeout.Test do
   test "timeout is renewed if it isn't timed out" do
     opts = SlidingSessionTimeout.init()
 
-    timeout_at = conn(:get, "/")
+    request = conn(:get, "/")
+    timeout_at = request
                  |> init_test_session(%{timeout_at: now() + 1_000})
                  |> SlidingSessionTimeout.call(opts)
                  |> fetch_session
@@ -69,7 +72,8 @@ defmodule AtomStyleTweaks.SlidingSessionTimeout.Test do
   test "session is cleared if it has timed out" do
     opts = SlidingSessionTimeout.init()
 
-    test_conn = conn(:get, "/")
+    request = conn(:get, "/")
+    test_conn = request
                 |> init_test_session(%{timeout_at: now() - 1_000, current_user: %{}})
                 |> SlidingSessionTimeout.call(opts)
                 |> fetch_session

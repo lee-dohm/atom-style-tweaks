@@ -1,0 +1,7 @@
+engines:
+  credo:
+    enabled: true
+  eslint:
+    enabled: true
+  stylelint:
+    enabled: true
