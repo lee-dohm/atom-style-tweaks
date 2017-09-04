@@ -29,7 +29,8 @@ defmodule AtomStyleTweaks.UserController.Test do
     user = insert(:user)
     conn = show_user(user)
 
-    assert find_single_element(conn, "#user-info-block h2")
+    assert conn
+           |> find_single_element( "#user-info-block h2")
            |> has_text(user.name)
   end
 
@@ -37,7 +38,8 @@ defmodule AtomStyleTweaks.UserController.Test do
     user = insert(:user)
     conn = show_user(user)
 
-    assert find_single_element(conn, "#user-info-block img.avatar")
+    assert conn
+           |> find_single_element( "#user-info-block img.avatar")
            |> get_attribute(:src) =~ user.avatar_url
   end
 
@@ -51,7 +53,8 @@ defmodule AtomStyleTweaks.UserController.Test do
     user = insert(:user, site_admin: true)
     conn = show_user(user)
 
-    assert find_single_element(conn, "#user-info-block span#staff-badge")
+    assert conn
+           |> find_single_element( "#user-info-block span#staff-badge")
            |> has_text("Staff")
   end
 
@@ -59,7 +62,8 @@ defmodule AtomStyleTweaks.UserController.Test do
     user = insert(:user)
     conn = show_user(user, logged_in_as: insert(:user))
 
-    assert find_single_element(conn, "#user-info-block h2")
+    assert conn
+           |> find_single_element( "#user-info-block h2")
            |> has_text(user.name)
   end
 
@@ -73,7 +77,8 @@ defmodule AtomStyleTweaks.UserController.Test do
   test "show user without tweaks when not logged in says doesn't have any tweaks yet" do
     conn = show_user()
 
-    assert find_single_element(conn, ".blankslate h3")
+    assert conn
+           |> find_single_element( ".blankslate h3")
            |> matches_text("doesn't have any tweaks yet")
   end
 
@@ -95,7 +100,8 @@ defmodule AtomStyleTweaks.UserController.Test do
     user = insert(:user)
     conn = show_user(user, logged_in_as: user)
 
-    assert find_single_element(conn, "#new-tweak-button")
+    assert conn
+           |> find_single_element( "#new-tweak-button")
            |> has_text("New tweak")
   end
 
@@ -103,7 +109,8 @@ defmodule AtomStyleTweaks.UserController.Test do
     user = insert(:user)
     conn = show_user(user, logged_in_as: user)
 
-    assert find_single_element(conn, ".blankslate h3")
+    assert conn
+           |> find_single_element( ".blankslate h3")
            |> has_text("This is where your tweaks will be listed")
   end
 

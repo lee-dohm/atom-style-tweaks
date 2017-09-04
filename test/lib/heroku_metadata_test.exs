@@ -23,8 +23,8 @@ defmodule AtomStyleTweaks.HerokuMetadata.Test do
   end
 
   test "on_heroku? returns false if dyno id is unset" do
-    test_data = Application.get_env(:atom_style_tweaks, HerokuMetadata)
-                |> Keyword.delete(:dyno_id)
+    metadata = Application.get_env(:atom_style_tweaks, HerokuMetadata)
+    test_data = Keyword.delete(metadata, :dyno_id)
 
     Application.put_env(:atom_style_tweaks, HerokuMetadata, test_data)
 

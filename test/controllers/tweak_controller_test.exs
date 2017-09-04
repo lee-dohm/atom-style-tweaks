@@ -120,12 +120,15 @@ defmodule AtomStyleTweaks.TweakController.Test do
   test "new tweak shows appropriate controls" do
     conn = new_tweak(logged_in_as: insert(:user))
 
-    assert find_single_element(conn, "input#tweak_title")
+    assert conn
+           |> find_single_element( "input#tweak_title")
            |> has_attribute(:placeholder, "Title")
     assert find_single_element(conn, "select#tweak_type")
-    assert find_single_element(conn, "textarea#tweak_code")
+    assert conn
+           |> find_single_element( "textarea#tweak_code")
            |> has_attribute(:placeholder, "Enter tweak code")
-    assert find_single_element(conn, "button.btn.btn-primary")
+    assert conn
+           |> find_single_element( "button.btn.btn-primary")
            |> has_text("Save new tweak")
            |> has_attribute(:type, "submit")
   end
@@ -168,7 +171,8 @@ defmodule AtomStyleTweaks.TweakController.Test do
     tweak = insert(:tweak, user: user)
     conn = edit_tweak(tweak, logged_in_as: user)
 
-    assert find_single_element(conn, "a.btn.btn-danger")
+    assert conn
+           |> find_single_element( "a.btn.btn-danger")
            |> has_text("Cancel")
            |> links_to(user_tweak_path(conn, :show, tweak.user.name, tweak.id))
   end
@@ -177,7 +181,8 @@ defmodule AtomStyleTweaks.TweakController.Test do
     tweak = insert(:tweak)
     conn = show_tweak(tweak)
 
-    assert find_single_element(conn, "main h3")
+    assert conn
+           |> find_single_element( "main h3")
            |> has_text(tweak.title)
   end
 
@@ -185,7 +190,8 @@ defmodule AtomStyleTweaks.TweakController.Test do
     tweak = insert(:tweak, code: "This is some cool code huh?")
     conn = show_tweak(tweak)
 
-    assert find_single_element(conn, "code")
+    assert conn
+           |> find_single_element( "code")
            |> has_text(tweak.code)
   end
 

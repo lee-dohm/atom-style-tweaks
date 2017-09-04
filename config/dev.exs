@@ -14,7 +14,6 @@ config :atom_style_tweaks, AtomStyleTweaks.Endpoint,
   watchers: [node: ["node_modules/brunch/bin/brunch", "watch", "--stdin",
                     cd: Path.expand("../", __DIR__)]]
 
-
 # Watch static and templates for browser reloading.
 config :atom_style_tweaks, AtomStyleTweaks.Endpoint,
   live_reload: [

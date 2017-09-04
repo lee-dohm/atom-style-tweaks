@@ -15,8 +15,8 @@ alias AtomStyleTweaks.Tweak
 alias AtomStyleTweaks.User
 
 users = [
-  %{name: "lee-dohm", github_id: 1038121, avatar_url: "https://avatars.githubusercontent.com/u/1038121?v=3", site_admin: true},
-  %{name: "hubot", github_id: 480938, avatar_url: "https://avatars3.githubusercontent.com/u/480938?v=3&s=400", site_admin: false}
+  %{name: "lee-dohm", github_id: 1_038_121, avatar_url: "https://avatars.githubusercontent.com/u/1038121?v=3", site_admin: true},
+  %{name: "hubot", github_id: 480_938, avatar_url: "https://avatars3.githubusercontent.com/u/480938?v=3&s=400", site_admin: false}
 ]
 
 Enum.each(users, fn(user) ->
