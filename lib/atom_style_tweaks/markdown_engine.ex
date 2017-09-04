@@ -18,6 +18,8 @@ defmodule AtomStyleTweaks.MarkdownEngine do
       )
     }ix
 
+  @mention_link_pattern ~r{<a href="([^"]*)">(@[a-zA-Z0-9][a-zA-Z0-9-]*)</a>}
+
   @spec render(String.t | nil) :: String.t
   def render(text), do: render(text, [])
 
@@ -41,7 +43,7 @@ defmodule AtomStyleTweaks.MarkdownEngine do
     text
     |> Cmark.to_commonmark(&(replace_mention(&1, funcs)), [:validate_utf8])
     |> Cmark.to_html([:safe, :smart])
-    |> String.replace(~r{<a href="([^"]*)">(@[a-zA-Z0-9][a-zA-Z0-9-]*)</a>}, "<a class=\"at-mention\" href=\"\\1\">\\2</a>")
+    |> String.replace(@mention_link_pattern, "<a class=\"at-mention\" href=\"\\1\">\\2</a>")
   end
 
   def replace_mention(nil, _), do: nil
