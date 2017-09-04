@@ -2,6 +2,8 @@ defmodule AtomStyleTweaks.MarkdownEngine do
   @moduledoc """
   Custom engine for rendering Markdown in Slime templates.
   """
+  alias AtomStyleTweaks.User
+
   @behaviour Slime.Parser.EmbeddedEngine
 
   @mention_pattern ~r{
@@ -28,7 +30,17 @@ defmodule AtomStyleTweaks.MarkdownEngine do
   def render(nil, options), do: render("", options)
 
   def render(text, _options) do
-    Cmark.to_html(text, [:safe, :smart])
+    funcs = [
+      fn (_, name) ->
+        if User.exists?(name) do
+          "[**@#{name}**](/users/#{name})"
+        end
+      end
+    ]
+
+    text
+    |> Cmark.to_commonmark(&(replace_mention(&1, funcs)), [:validate_utf8])
+    |> Cmark.to_html([:safe, :smart])
   end
 
   def replace_mention(nil, _), do: nil
