@@ -1,6 +1,8 @@
 defmodule AtomStyleTweaks.MarkdownEngine do
   @moduledoc """
-  Custom engine for rendering Markdown in Slime templates.
+  Renders Markdown into HTML.
+
+  Used both directly and within Slime templates.
   """
   alias AtomStyleTweaks.User
 
@@ -46,6 +48,7 @@ defmodule AtomStyleTweaks.MarkdownEngine do
     |> String.replace(@mention_link_pattern, "<a class=\"at-mention\" href=\"\\1\">\\2</a>")
   end
 
+  @doc false
   def replace_mention(nil, _), do: nil
   def replace_mention("", _), do: ""
 
