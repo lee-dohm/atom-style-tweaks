@@ -4,6 +4,18 @@ defmodule AtomStyleTweaks.MarkdownEngine do
   """
   @behaviour Slime.Parser.EmbeddedEngine
 
+  @mention_pattern ~r{
+      (?:^|\W)                   # beginning of string or non-word char
+      @((?>[a-z0-9][a-z0-9-]*))  # @username
+      (?!\/)                     # without a trailing slash
+      (?=
+        \.+[ \t\W]|              # dots followed by space or non-word character
+        \.+$|                    # dots at end of line
+        [^0-9a-zA-Z_.]|          # non-word character except dot
+        $                        # end of line
+      )
+    }ix
+
   @spec render(String.t | nil) :: String.t
   def render(text), do: render(text, [])
 
@@ -17,5 +29,32 @@ defmodule AtomStyleTweaks.MarkdownEngine do
 
   def render(text, _options) do
     Cmark.to_html(text, [:safe, :smart])
+  end
+
+  def replace_mention(nil, _), do: nil
+  def replace_mention("", _), do: ""
+
+  def replace_mention(text, funcs) do
+    Regex.replace(@mention_pattern, text, &(replace_mention(&1, &2, funcs)))
+  end
+
+  defp first_replacement_wins(match, name, funcs) do
+    Enum.find_value(funcs, fn func -> func.(match, name) end)
+  end
+
+  defp preceding_character(match) do
+    case String.at(match, 0) do
+      "@" -> ""
+      char -> char
+    end
+  end
+
+  defp replace_mention(match, name, funcs) do
+    char = preceding_character(match)
+
+    case first_replacement_wins(match, name, funcs) do
+      nil -> match
+      replace_with -> "#{char}#{replace_with}"
+    end
   end
 end
