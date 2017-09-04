@@ -47,7 +47,7 @@ defmodule AtomStyleTweaks.PageController.Test do
     conn = home_page()
 
     assert conn
-           |> find_single_element( "a#styles-menu-item")
+           |> find_single_element("a#styles-menu-item")
            |> has_text("Styles")
            |> links_to(page_path(conn, :index, type: :style))
 
@@ -58,7 +58,7 @@ defmodule AtomStyleTweaks.PageController.Test do
     conn = home_page()
 
     assert conn
-           |> find_single_element( "a#init-menu-item")
+           |> find_single_element("a#init-menu-item")
            |> has_text("Init")
            |> links_to(page_path(conn, :index, type: :init))
 
@@ -123,7 +123,7 @@ defmodule AtomStyleTweaks.PageController.Test do
     conn = home_page(logged_in_as: build(:user))
 
     assert conn
-           |> find_single_element( "a#new-tweak-button")
+           |> find_single_element("a#new-tweak-button")
            |> has_text("New tweak")
   end
 
@@ -150,7 +150,7 @@ defmodule AtomStyleTweaks.PageController.Test do
     conn = home_page()
 
     assert conn
-           |> find_single_element( "footer a#about-link")
+           |> find_single_element("footer a#about-link")
            |> has_text("About")
            |> links_to(page_path(conn, :about))
   end
@@ -159,7 +159,7 @@ defmodule AtomStyleTweaks.PageController.Test do
     conn = home_page()
 
     assert conn
-           |> find_single_element( "footer a#github-link")
+           |> find_single_element("footer a#github-link")
            |> links_to("https://github.com/lee-dohm/atom-style-tweaks")
   end
 
@@ -167,7 +167,7 @@ defmodule AtomStyleTweaks.PageController.Test do
     conn = about_page()
 
     assert conn
-           |> find_single_element( "main h1")
+           |> find_single_element("main h1")
            |> has_text("About Atom Tweaks")
   end
 end
