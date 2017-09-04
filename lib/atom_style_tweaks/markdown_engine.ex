@@ -33,7 +33,7 @@ defmodule AtomStyleTweaks.MarkdownEngine do
     funcs = [
       fn (_, name) ->
         if User.exists?(name) do
-          "[**@#{name}**](/users/#{name})"
+          "[@#{name}](/users/#{name})"
         end
       end
     ]
@@ -41,6 +41,7 @@ defmodule AtomStyleTweaks.MarkdownEngine do
     text
     |> Cmark.to_commonmark(&(replace_mention(&1, funcs)), [:validate_utf8])
     |> Cmark.to_html([:safe, :smart])
+    |> String.replace(~r{<a href="([^"]*)">(@[a-zA-Z0-9][a-zA-Z0-9-]*)</a>}, "<a class=\"at-mention\" href=\"\\1\">\\2</a>")
   end
 
   def replace_mention(nil, _), do: nil
