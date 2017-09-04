@@ -13,7 +13,6 @@ defmodule AtomStyleTweaks.SlidingSessionTimeout do
   import Plug.Conn
 
   alias Phoenix.Controller
-  alias Timex.Duration
 
   require Logger
 
@@ -57,11 +56,4 @@ defmodule AtomStyleTweaks.SlidingSessionTimeout do
   defp now, do: DateTime.to_unix(DateTime.utc_now())
 
   defp calculate_timeout(timeout), do: now() + timeout
-
-  defp from_now(timestamp) do
-    Timex.now()
-    |> Timex.diff(Timex.from_unix(timestamp), :seconds)
-    |> Duration.from_seconds()
-    |> Timex.format_duration(:humanized)
-  end
 end
