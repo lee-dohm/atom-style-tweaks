@@ -1,5 +1,5 @@
-defmodule AtomStyleTweaks.PageController.Test do
-  use AtomStyleTweaks.ConnCase
+defmodule AtomStyleTweaksWeb.PageController.Test do
+  use AtomStyleTweaksWeb.ConnCase
 
   def about_page do
     conn = build_conn()

@@ -1,3 +1,3 @@
 defmodule AtomStyleTweaks.LayoutViewTest do
-  use AtomStyleTweaks.ConnCase, async: true
+  use AtomStyleTweaksWeb.ConnCase, async: true
 end

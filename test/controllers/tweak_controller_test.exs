@@ -1,5 +1,5 @@
-defmodule AtomStyleTweaks.TweakController.Test do
-  use AtomStyleTweaks.ConnCase
+defmodule AtomStyleTweaksWeb.TweakController.Test do
+  use AtomStyleTweaksWeb.ConnCase
 
   import Phoenix.Controller
 

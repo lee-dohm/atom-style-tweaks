@@ -10,11 +10,11 @@ config :atom_style_tweaks,
   ecto_repos: [AtomStyleTweaks.Repo]
 
 # Configures the endpoint
-config :atom_style_tweaks, AtomStyleTweaks.Endpoint,
+config :atom_style_tweaks, AtomStyleTweaksWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "NmI5A1GsVl5vf6o3m3+7/3NoWleK8mK6cG0cR2X6cyrrdlokEwRTfpE9H8vk0NoP",
-  render_errors: [view: AtomStyleTweaks.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: AtomStyleTweaks.PubSub,
+  render_errors: [view: AtomStyleTweaksWeb.ErrorView, accepts: ~w(html json)],
+  pubsub: [name: AtomStyleTweaksWeb.PubSub,
            adapter: Phoenix.PubSub.PG2]
 
 config :atom_style_tweaks, AtomStyleTweaks.HerokuMetadata,
@@ -47,7 +47,7 @@ config :phoenix, :template_engines,
   slime: PhoenixSlime.Engine
 
 config :slime, :embedded_engines, %{
-  markdown: AtomStyleTweaks.MarkdownEngine
+  markdown: AtomStyleTweaksWeb.MarkdownEngine
 }
 
 config :rollbax,

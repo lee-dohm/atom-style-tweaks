@@ -1,7 +1,7 @@
 defmodule AtomStyleTweaks.TweakTest do
   use AtomStyleTweaks.ModelCase
 
-  alias AtomStyleTweaks.Tweak
+  alias AtomStyleTweaksWeb.Tweak
 
   @valid_attrs %{code: "some content", title: "some content", type: "style", description: "Some **Markdown**", created_by: Ecto.UUID.generate()}
   @invalid_attrs %{}

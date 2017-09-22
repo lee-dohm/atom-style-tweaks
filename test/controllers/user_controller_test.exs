@@ -1,5 +1,5 @@
-defmodule AtomStyleTweaks.UserController.Test do
-  use AtomStyleTweaks.ConnCase
+defmodule AtomStyleTweaksWeb.UserController.Test do
+  use AtomStyleTweaksWeb.ConnCase
 
   def show_user do
     user = insert(:user)

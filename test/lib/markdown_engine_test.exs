@@ -1,7 +1,7 @@
 defmodule AtomStyleTweaks.MarkdownEngine.Test do
   use ExUnit.Case, async: true
 
-  alias AtomStyleTweaks.MarkdownEngine
+  alias AtomStyleTweaksWeb.MarkdownEngine
 
   setup do
     github = fn match, _ ->
