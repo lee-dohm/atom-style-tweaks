@@ -1,5 +1,5 @@
-defmodule AtomStyleTweaks.AuthController.Test do
-  use AtomStyleTweaks.ConnCase
+defmodule AtomStyleTweaksWeb.AuthController.Test do
+  use AtomStyleTweaksWeb.ConnCase
 
   test "index redirects to the GitHub authorization URL" do
     conn = build_conn()

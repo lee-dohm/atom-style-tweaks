@@ -3,7 +3,7 @@ defmodule AtomStyleTweaks.MenuHelpers.Test do
 
   use Phoenix.HTML
 
-  alias AtomStyleTweaks.MenuHelpers
+  alias AtomStyleTweaksWeb.MenuHelpers
 
   import AtomStyleTweaks.HtmlAssertions
 

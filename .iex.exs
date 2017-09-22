@@ -1,3 +1,2 @@
-alias AtomStyleTweaks.Octicons
-alias AtomStyleTweaks.Tweak
-alias AtomStyleTweaks.User
+alias AtomStyleTweaksWeb.Tweak
+alias AtomStyleTweaksWeb.User

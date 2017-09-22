@@ -28,7 +28,7 @@ defmodule AtomStyleTweaks.Mixfile do
   def application do
     [
       mod: {
-        AtomStyleTweaks,
+        AtomStyleTweaks.Application,
         []
       },
       applications: app_list(Mix.env)
@@ -53,8 +53,8 @@ defmodule AtomStyleTweaks.Mixfile do
   ]
 
   # Specifies which paths to compile per environment.
-  defp elixirc_paths(:test), do: ["lib", "web", "test/support"]
-  defp elixirc_paths(_),     do: ["lib", "web"]
+  defp elixirc_paths(:test), do: ["lib", "test/support"]
+  defp elixirc_paths(_),     do: ["lib"]
 
   defp deps do
     [

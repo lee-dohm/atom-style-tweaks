@@ -1,0 +1,22 @@
+.columns
+  #user-info-block.one-fourth.column
+    = avatar(@user, size: 230)
+    h2.d-inline-block = @user.name
+    = if @user.site_admin do
+      span#staff-badge.state.bg-blue.d-inline-block.mt-1.float-right
+        = gettext "Staff"
+  .three-fourths.column
+    = if !is_nil(@current_user) && @current_user.name == @user.name do
+      .pb-3.clearfix
+        a#new-tweak-button.btn.btn-primary.float-right href="#{user_tweak_path(@conn, :new, @user.name)}" = gettext "New tweak"
+    = if Enum.count(@tweaks) == 0 do
+      .blankslate
+        span.mega-octicon.octicon-pencil
+        = if !is_nil(@current_user) && @current_user.name == @user.name do
+          h3 = gettext "This is where your tweaks will be listed"
+          p = gettext "Click \"New tweak\" to get started!"
+        - else
+          h3 = gettext "%{user_name} doesn't have any tweaks yet", user_name: @user.name
+    - else
+      h3 = gettext "Tweaks"
+      = render_many(@tweaks, AtomStyleTweaksWeb.TweakView, "table_row.html", conn: @conn)

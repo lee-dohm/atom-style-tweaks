@@ -1,7 +1,7 @@
 defmodule AtomStyleTweaks.UserTest do
   use AtomStyleTweaks.ModelCase
 
-  alias AtomStyleTweaks.User
+  alias AtomStyleTweaksWeb.User
 
   @valid_attrs %{name: "an-admin-user", github_id: 12_345, site_admin: true, avatar_url: "https://example.com"}
   @invalid_attrs %{}

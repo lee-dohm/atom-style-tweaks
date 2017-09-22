@@ -1,4 +1,4 @@
-defmodule AtomStyleTweaks.ChannelCase do
+defmodule AtomStyleTweaksWeb.ChannelCase do
   @moduledoc """
   This module defines the test case to be used by
   channel tests.
@@ -27,7 +27,7 @@ defmodule AtomStyleTweaks.ChannelCase do
 
 
       # The default endpoint for testing
-      @endpoint AtomStyleTweaks.Endpoint
+      @endpoint AtomStyleTweaksWeb.Endpoint
     end
   end
 

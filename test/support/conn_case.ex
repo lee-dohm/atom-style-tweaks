@@ -1,4 +1,4 @@
-defmodule AtomStyleTweaks.ConnCase do
+defmodule AtomStyleTweaksWeb.ConnCase do
   @moduledoc """
   This module defines the test case to be used by
   tests that require setting up a connection.
@@ -25,10 +25,10 @@ defmodule AtomStyleTweaks.ConnCase do
       import Ecto.Changeset
       import Ecto.Query
 
-      import AtomStyleTweaks.Router.Helpers
+      import AtomStyleTweaksWeb.Router.Helpers
 
       # The default endpoint for testing
-      @endpoint AtomStyleTweaks.Endpoint
+      @endpoint AtomStyleTweaksWeb.Endpoint
 
       import AtomStyleTweaks.Factory
       import AtomStyleTweaks.HtmlAssertions

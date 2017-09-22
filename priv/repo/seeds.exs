@@ -11,8 +11,8 @@
 # and so on) as they will fail if something goes wrong.
 
 alias AtomStyleTweaks.Repo
-alias AtomStyleTweaks.Tweak
-alias AtomStyleTweaks.User
+alias AtomStyleTweaksWeb.Tweak
+alias AtomStyleTweaksWeb.User
 
 users = [
   %{name: "lee-dohm", github_id: 1_038_121, avatar_url: "https://avatars.githubusercontent.com/u/1038121?v=3", site_admin: true},

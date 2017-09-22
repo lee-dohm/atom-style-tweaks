@@ -16,7 +16,7 @@ package-lock.json
 erl_crash.dump
 
 # Static artifacts
-/node_modules
+/assets/node_modules
 npm-debug.log
 
 # Since we are building assets from web/static,

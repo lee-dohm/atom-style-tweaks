@@ -1,7 +1,7 @@
 defmodule AtomStyleTweaks.HerokuMetadata.Test do
   use ExUnit.Case, async: true
 
-  alias AtomStyleTweaks.HerokuMetadata
+  alias AtomStyleTweaksWeb.HerokuMetadata
 
   setup do
     heroku_metadata = Application.get_env(:atom_style_tweaks, HerokuMetadata)
