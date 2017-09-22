@@ -15,15 +15,15 @@ config :atom_style_tweaks, AtomStyleTweaksWeb.Endpoint,
                     cd: Path.expand("../assets", __DIR__)]]
 
 # Watch static and templates for browser reloading.
-# config :atom_style_tweaks, AtomStyleTweaksWeb.Endpoint,
-#   live_reload: [
-#     patterns: [
-#       ~r{priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$},
-#       ~r{priv/gettext/.*(po)$},
-#       ~r{web/views/.*(ex)$},
-#       ~r{web/templates/.*(eex|slim|slime)$}
-#     ]
-#   ]
+config :atom_style_tweaks, AtomStyleTweaksWeb.Endpoint,
+  live_reload: [
+    patterns: [
+      ~r{priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$},
+      ~r{priv/gettext/.*(po)$},
+      ~r{lib/atom_style_tweaks_web/views/.*(ex)$},
+      ~r{lib/atom_style_tweaks_web/templates/.*(eex|slim|slime)$}
+    ]
+  ]
 
 # Timeout sessions in one minute in the development environment
 config :atom_style_tweaks, AtomStyleTweaksWeb.SlidingSessionTimeout,
