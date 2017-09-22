@@ -2,7 +2,7 @@ defmodule AtomStyleTweaks.SlidingSessionTimeout.Test do
   use ExUnit.Case, async: true
   use Plug.Test
 
-  alias AtomStyleTweaks.SlidingSessionTimeout
+  alias AtomStyleTweaksWeb.SlidingSessionTimeout
 
   setup do
     on_exit fn ->

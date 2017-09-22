@@ -17,7 +17,7 @@ config :atom_style_tweaks, AtomStyleTweaksWeb.Endpoint,
   pubsub: [name: AtomStyleTweaksWeb.PubSub,
            adapter: Phoenix.PubSub.PG2]
 
-config :atom_style_tweaks, AtomStyleTweaks.HerokuMetadata,
+config :atom_style_tweaks, AtomStyleTweaksWeb.HerokuMetadata,
   app_id: System.get_env("HEROKU_APP_ID"),
   app_name: System.get_env("HEROKU_APP_NAME"),
   dyno_id: System.get_env("HEROKU_DYNO_ID"),

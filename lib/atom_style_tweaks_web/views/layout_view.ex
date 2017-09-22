@@ -1,5 +1,5 @@
 defmodule AtomStyleTweaksWeb.LayoutView do
   use AtomStyleTweaksWeb, :view
 
-  alias AtomStyleTweaks.HerokuMetadata
+  alias AtomStyleTweaksWeb.HerokuMetadata
 end

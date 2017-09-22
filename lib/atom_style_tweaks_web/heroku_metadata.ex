@@ -1,4 +1,4 @@
-defmodule AtomStyleTweaks.HerokuMetadata do
+defmodule AtomStyleTweaksWeb.HerokuMetadata do
   @moduledoc """
   Makes [Heroku metadata](https://devcenter.heroku.com/articles/dyno-metadata) available to the
   application.

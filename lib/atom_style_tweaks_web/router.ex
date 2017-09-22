@@ -4,7 +4,7 @@ defmodule AtomStyleTweaksWeb.Router do
 
   require Logger
 
-  alias AtomStyleTweaks.SlidingSessionTimeout
+  alias AtomStyleTweaksWeb.SlidingSessionTimeout
   alias Plug.Conn
 
   pipeline :browser do
