@@ -48,7 +48,8 @@ defmodule AtomStyleTweaks.Mixfile do
     :postgrex,
     :oauth2,
     :tzdata,
-    :octicons
+    :octicons,
+    :rollbax
   ]
 
   # Specifies which paths to compile per environment.
@@ -67,6 +68,7 @@ defmodule AtomStyleTweaks.Mixfile do
       {:phoenix_slime, "~> 0.9.0"},
       {:phoenix, "~> 1.3.0"},
       {:postgrex, ">= 0.0.0"},
+      {:rollbax, "~> 0.6"},
       {:timex, "~> 3.1"},
       {:phoenix_octicons, "~> 0.2.0"},
       {:dotenv, "~> 2.0.0", only: :dev},
