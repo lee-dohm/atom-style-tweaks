@@ -64,3 +64,5 @@ config :atom_style_tweaks, AtomStyleTweaks.Repo,
 #
 #     config :atom_style_tweaks, AtomStyleTweaks.Endpoint, server: true
 #
+
+config :rollbax, enabled: true
