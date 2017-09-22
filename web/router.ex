@@ -5,6 +5,7 @@ defmodule AtomStyleTweaks.Router do
   require Logger
 
   alias AtomStyleTweaks.SlidingSessionTimeout
+  alias Plug.Conn
 
   pipeline :browser do
     plug :accepts, ["html"]
@@ -72,8 +73,8 @@ defmodule AtomStyleTweaks.Router do
   defp handle_errors(conn, %{kind: kind, reason: reason, stack: stacktrace}) do
     conn =
       conn
-      |> Plug.Conn.fetch_cookies()
-      |> Plug.Conn.fetch_query_params()
+      |> Conn.fetch_cookies()
+      |> Conn.fetch_query_params()
 
     conn_data = %{
       "request" => %{
