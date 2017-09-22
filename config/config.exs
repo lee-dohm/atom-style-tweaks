@@ -52,7 +52,7 @@ config :slime, :embedded_engines, %{
 
 config :rollbax,
   access_token: System.get_env("ROLLBAR_SERVER_TOKEN"),
-  environment: "production"
+  environment: Mix.env
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
