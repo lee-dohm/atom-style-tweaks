@@ -2,6 +2,8 @@ defmodule AtomStyleTweaksWeb.OpenGraph do
   @moduledoc """
   Functions for handling Facebook Open Graph data and inserting the appropriate tags into pages.
   """
+  alias AtomStyleTweaksWeb.Router
+  alias Phoenix.Controller
 
   import Plug.Conn, only: [assign: 3]
 
@@ -19,7 +21,7 @@ defmodule AtomStyleTweaksWeb.OpenGraph do
 
   def set_metadata(conn, metadata) do
     metadata = Map.merge(%{
-        "og:url": AtomStyleTweaksWeb.Router.Helpers.url(conn) <> conn.request_path,
+        "og:url": Controller.current_url(conn),
         "og:site_name": Application.get_env(:atom_style_tweaks, :site_name)
       }, metadata)
 
