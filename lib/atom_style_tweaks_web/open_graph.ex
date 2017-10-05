@@ -18,10 +18,10 @@ defmodule AtomStyleTweaksWeb.OpenGraph do
   end
 
   def set_metadata(conn, metadata) do
-    metadata = Map.merge(metadata, %{
+    metadata = Map.merge(%{
         "og:url": AtomStyleTweaksWeb.Router.Helpers.url(conn) <> conn.request_path,
         "og:site_name": Application.get_env(:atom_style_tweaks, :site_name)
-      })
+      }, metadata)
 
     assign(conn, :open_graph_metadata, metadata)
   end
