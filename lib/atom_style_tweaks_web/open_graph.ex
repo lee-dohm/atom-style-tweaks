@@ -2,7 +2,6 @@ defmodule AtomStyleTweaksWeb.OpenGraph do
   @moduledoc """
   Functions for handling Facebook Open Graph data and inserting the appropriate tags into pages.
   """
-  alias AtomStyleTweaksWeb.Router
   alias Phoenix.Controller
 
   import Plug.Conn, only: [assign: 3]
