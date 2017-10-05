@@ -2,6 +2,7 @@ defmodule AtomStyleTweaksWeb.TweakController do
   use AtomStyleTweaksWeb, :controller
 
   alias AtomStyleTweaksWeb.ErrorView
+  alias AtomStyleTweaksWeb.OpenGraph
   alias AtomStyleTweaksWeb.Tweak
   alias AtomStyleTweaksWeb.User
 
@@ -75,6 +76,11 @@ defmodule AtomStyleTweaksWeb.TweakController do
             |> Repo.get(id)
             |> Repo.preload([:user])
 
+    conn = OpenGraph.set_metadata(conn, %{
+        "og:title": tweak.title,
+        "og:description": tweak.code
+      })
+
     render(conn, "show.html", name: name, tweak: tweak)
   end
 
@@ -83,7 +89,7 @@ defmodule AtomStyleTweaksWeb.TweakController do
     changeset = Tweak.changeset(tweak, tweak_params)
 
     case Repo.update(changeset) do
-      {:ok, _style} ->
+      {:ok, _tweak} ->
         conn
         |> redirect(to: user_tweak_path(conn, :show, name, id))
       {:error, changeset} ->
