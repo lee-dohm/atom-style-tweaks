@@ -76,12 +76,9 @@ defmodule AtomStyleTweaksWeb.TweakController do
             |> Repo.get(id)
             |> Repo.preload([:user])
 
-    conn = OpenGraph.set_metadata(conn, %{
-        "og:title": tweak.title,
-        "og:description": tweak.code
-      })
-
-    render(conn, "show.html", name: name, tweak: tweak)
+    conn
+    |> OpenGraph.set_metadata(Tweak.to_open_graph(tweak))
+    |> render("show.html", name: name, tweak: tweak)
   end
 
   def update(conn, %{"user_id" => name, "id" => id, "tweak" => tweak_params}, _current_user) do
