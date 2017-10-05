@@ -11,6 +11,10 @@ defmodule AtomStyleTweaksWeb.OpenGraph do
 
   use Phoenix.HTML
 
+  @doc """
+  Renders the Open Graph metadata, if it exists.
+  """
+  @spec render_metadata(Plug.Conn.t) :: Phoenix.HTML.safe
   def render_metadata(conn) do
     case conn.assigns[:open_graph_metadata] do
       nil -> nil
@@ -19,6 +23,10 @@ defmodule AtomStyleTweaksWeb.OpenGraph do
     end
   end
 
+  @doc """
+  Sets the Open Graph metadata for the current request.
+  """
+  @spec set_metadata(Plug.Conn.t, Map.t) :: Plug.Conn.t
   def set_metadata(conn, metadata) do
     metadata = Map.merge(%{
         "og:url": Controller.current_url(conn),
