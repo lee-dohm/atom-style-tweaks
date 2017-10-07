@@ -5,6 +5,7 @@ defmodule AtomStyleTweaksWeb.Router do
   require Logger
 
   alias AtomStyleTweaksWeb.SlidingSessionTimeout
+  alias Phoenix.Router.NoRouteError
   alias Plug.Conn
 
   pipeline :browser do
@@ -69,6 +70,8 @@ defmodule AtomStyleTweaksWeb.Router do
 
     conn
   end
+
+  defp handle_errors(_, %{kind: :error, reason: %NoRouteError{}}), do: :ok
 
   defp handle_errors(conn, %{kind: kind, reason: reason, stack: stacktrace}) do
     conn =
