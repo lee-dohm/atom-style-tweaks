@@ -84,7 +84,8 @@ defmodule AtomStyleTweaks.Mixfile do
       {:html_entities, "~> 0.3.0", only: :test},
       {:floki, "~> 0.17.2", only: :test},
       {:excoveralls, "~> 0.6", only: :test},
-      {:espec_phoenix, "~> 0.6.9", only: :test}
+      {:espec_phoenix, "~> 0.6.9", only: :test},
+      {:espec_phoenix_helpers, "~> 0.3.3", only: :test}
     ]
   end
 

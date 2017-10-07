@@ -9,6 +9,7 @@ defmodule ESpec.Phoenix.Extend do
     quote do
       alias AtomStyleTweaksWeb
       import AtomStyleTweaksWeb.Router.Helpers
+      import ESpec.Phoenix.Assertions.Conn.Helpers
 
       @endpoint AtomStyleTweaksWeb.Endpoint
     end
