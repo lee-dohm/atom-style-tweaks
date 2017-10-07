@@ -37,7 +37,7 @@ defmodule AtomStyleTweaksWeb.Tweak do
 
   def sorted(query), do: from t in query, order_by: [desc: :updated_at]
 
-  def to_open_graph(tweak) do
+  def to_metadata(tweak) do
     %{
       "og:title": tweak.title,
       "og:description": tweak.code

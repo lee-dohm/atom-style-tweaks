@@ -2,7 +2,7 @@ defmodule AtomStyleTweaksWeb.TweakController do
   use AtomStyleTweaksWeb, :controller
 
   alias AtomStyleTweaksWeb.ErrorView
-  alias AtomStyleTweaksWeb.OpenGraph
+  alias AtomStyleTweaksWeb.PageMetadata
   alias AtomStyleTweaksWeb.Tweak
   alias AtomStyleTweaksWeb.User
 
@@ -77,7 +77,7 @@ defmodule AtomStyleTweaksWeb.TweakController do
             |> Repo.preload([:user])
 
     conn
-    |> OpenGraph.set_metadata(Tweak.to_open_graph(tweak))
+    |> PageMetadata.set(Tweak.to_metadata(tweak))
     |> render("show.html", name: name, tweak: tweak)
   end
 

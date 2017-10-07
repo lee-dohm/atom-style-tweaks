@@ -13,7 +13,7 @@ html lang="en"
     title = gettext "Atom Tweaks"
     link rel="stylesheet" href="#{static_path(@conn, "/css/app.css")}"
 
-    = OpenGraph.render_metadata(@conn)
+    = PageMetadata.render(@conn)
     = render("google_analytics.html", assigns)
 
   body
