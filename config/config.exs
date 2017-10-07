@@ -7,7 +7,8 @@ use Mix.Config
 
 # General application configuration
 config :atom_style_tweaks,
-  ecto_repos: [AtomStyleTweaks.Repo]
+  ecto_repos: [AtomStyleTweaks.Repo],
+  site_name: "Atom Tweaks"
 
 # Configures the endpoint
 config :atom_style_tweaks, AtomStyleTweaksWeb.Endpoint,

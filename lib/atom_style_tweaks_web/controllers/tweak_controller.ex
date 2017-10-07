@@ -2,6 +2,7 @@ defmodule AtomStyleTweaksWeb.TweakController do
   use AtomStyleTweaksWeb, :controller
 
   alias AtomStyleTweaksWeb.ErrorView
+  alias AtomStyleTweaksWeb.PageMetadata
   alias AtomStyleTweaksWeb.Tweak
   alias AtomStyleTweaksWeb.User
 
@@ -75,7 +76,9 @@ defmodule AtomStyleTweaksWeb.TweakController do
             |> Repo.get(id)
             |> Repo.preload([:user])
 
-    render(conn, "show.html", name: name, tweak: tweak)
+    conn
+    |> PageMetadata.set(Tweak.to_metadata(tweak))
+    |> render("show.html", name: name, tweak: tweak)
   end
 
   def update(conn, %{"user_id" => name, "id" => id, "tweak" => tweak_params}, _current_user) do
@@ -83,7 +86,7 @@ defmodule AtomStyleTweaksWeb.TweakController do
     changeset = Tweak.changeset(tweak, tweak_params)
 
     case Repo.update(changeset) do
-      {:ok, _style} ->
+      {:ok, _tweak} ->
         conn
         |> redirect(to: user_tweak_path(conn, :show, name, id))
       {:error, changeset} ->

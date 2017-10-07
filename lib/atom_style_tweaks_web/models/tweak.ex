@@ -36,4 +36,11 @@ defmodule AtomStyleTweaksWeb.Tweak do
   def preload(query), do: from t in query, preload: [:user]
 
   def sorted(query), do: from t in query, order_by: [desc: :updated_at]
+
+  def to_metadata(tweak) do
+    %{
+      "og:title": tweak.title,
+      "og:description": tweak.code
+    }
+  end
 end
