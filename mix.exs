@@ -21,7 +21,12 @@ defmodule AtomStyleTweaks.Mixfile do
       deps: deps(),
       docs: docs(),
       test_coverage: [tool: ExCoveralls],
-      preferred_cli_env: ["coveralls": :test, "coveralls.html": :test, "coveralls.travis": :test]
+      preferred_cli_env: [
+        "coveralls": :test,
+        "coveralls.html": :test,
+        "coveralls.travis": :test,
+        espec: :test
+      ]
     ]
   end
 
@@ -78,7 +83,8 @@ defmodule AtomStyleTweaks.Mixfile do
       {:faker_elixir_octopus, "~> 1.0", only: :test},
       {:html_entities, "~> 0.3.0", only: :test},
       {:floki, "~> 0.17.2", only: :test},
-      {:excoveralls, "~> 0.6", only: :test}
+      {:excoveralls, "~> 0.6", only: :test},
+      {:espec_phoenix, "~> 0.6.9", only: :test}
     ]
   end
 
