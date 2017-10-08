@@ -58,7 +58,7 @@ defmodule AtomStyleTweaks.Mixfile do
   ]
 
   # Specifies which paths to compile per environment.
-  defp elixirc_paths(:test), do: ["lib", "test/support"]
+  defp elixirc_paths(:test), do: ["lib", "test/support", "spec/support"]
   defp elixirc_paths(_),     do: ["lib"]
 
   defp deps do
@@ -85,7 +85,7 @@ defmodule AtomStyleTweaks.Mixfile do
       {:floki, "~> 0.17.2", only: :test},
       {:excoveralls, "~> 0.6", only: :test},
       {:espec_phoenix, "~> 0.6.9", only: :test},
-      {:espec_phoenix_helpers, "~> 0.3.3", only: :test}
+      {:espec_phoenix_helpers, path: "../espec_phoenix_helpers", only: :test}
     ]
   end
 
