@@ -8,8 +8,11 @@ defmodule ESpec.Phoenix.Extend do
   def controller do
     quote do
       alias AtomStyleTweaksWeb
+
+      import AtomStyleTweaks.Factory
       import AtomStyleTweaksWeb.Router.Helpers
       import ESpec.Phoenix.Assertions.Conn.Helpers
+      import ESpec.Phoenix.Assertions.Content.Helpers
 
       @endpoint AtomStyleTweaksWeb.Endpoint
     end
