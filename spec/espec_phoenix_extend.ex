@@ -2,6 +2,10 @@ defmodule ESpec.Phoenix.Extend do
   def model do
     quote do
       alias AtomStyleTweaks.Repo
+
+      import AtomStyleTweaks.Factory
+      import AtomStyleTweaksWeb.Model.Helpers
+      import ESpec.Phoenix.Assertions.Changeset.Helpers
     end
   end
 
@@ -11,7 +15,7 @@ defmodule ESpec.Phoenix.Extend do
 
       import AtomStyleTweaks.Factory
       import AtomStyleTweaksWeb.Router.Helpers
-      import Conn.Helpers
+      import AtomStyleTweaksWeb.Conn.Helpers
       import ESpec.Phoenix.Assertions.Conn.Helpers
       import ESpec.Phoenix.Assertions.Content.Helpers
 
