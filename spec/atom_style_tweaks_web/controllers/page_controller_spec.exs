@@ -2,8 +2,6 @@ defmodule AtomStyleTweaksWeb.PageController.Spec do
   use ESpec.Phoenix, controller: AtomStyleTweaksWeb.PageController, async: true
 
   describe "home page" do
-    def log_in_as(conn, user), do: Plug.Test.init_test_session(conn, %{current_user: user})
-
     def home_page(), do: page_path(build_conn(), :index)
     def home_page(params), do: page_path(build_conn(), :index, params)
 

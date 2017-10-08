@@ -11,6 +11,7 @@ defmodule ESpec.Phoenix.Extend do
 
       import AtomStyleTweaks.Factory
       import AtomStyleTweaksWeb.Router.Helpers
+      import Conn.Helpers
       import ESpec.Phoenix.Assertions.Conn.Helpers
       import ESpec.Phoenix.Assertions.Content.Helpers
 
