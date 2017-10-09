@@ -25,7 +25,11 @@ defmodule ESpec.Phoenix.Extend do
 
   def view do
     quote do
+      use ESpec.Phoenix.Views.Helpers
+
       import AtomStyleTweaksWeb.Router.Helpers
+
+      import ESpec.Phoenix.Assertions.Content.Helpers
     end
   end
 

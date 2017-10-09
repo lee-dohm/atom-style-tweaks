@@ -12,39 +12,6 @@ defmodule AtomStyleTweaksWeb.PageController.Spec do
       expect(response()).to have_attributes_in("a.masthead-logo", href: home_page())
     end
 
-    it "shows All tab" do
-      expect(response()).to have_text_in("a#all-menu-item", "All")
-      expect(response()).to have_attributes_in("a#all-menu-item", href: home_page())
-    end
-
-    it "shows the beaker octicon for the All tab" do
-      expect(response()).to have_selector("a#all-menu-item > .octicons.octicons-beaker")
-    end
-
-    it "marks All tab selected and the others unselected" do
-      expect(response()).to have_selector("a#all-menu-item.selected")
-      expect(response()).to_not have_selector("a#styles-menu-item.selected")
-      expect(response()).to_not have_selector("a#init-menu-item.selected")
-    end
-
-    it "shows Styles tab" do
-      expect(response()).to have_text_in("a#styles-menu-item", "Styles")
-      expect(response()).to have_attributes_in("a#styles-menu-item", href: home_page(type: :style))
-    end
-
-    it "shows the paint can octicon for the Styles tab" do
-      expect(response()).to have_selector("a#styles-menu-item > .octicons.octicons-paintcan")
-    end
-
-    it "shows Init tab" do
-      expect(response()).to have_text_in("a#init-menu-item", "Init")
-      expect(response()).to have_attributes_in("a#init-menu-item", href: home_page(type: :init))
-    end
-
-    it "shows the code octicon for the Init tab" do
-      expect(response()).to have_selector("a#init-menu-item > .octicons.octicons-code")
-    end
-
     it "does not show the New Tweak button" do
       expect(response()).to_not have_selector("a#new-tweak-button")
     end
@@ -70,12 +37,6 @@ defmodule AtomStyleTweaksWeb.PageController.Spec do
     describe "when the Styles tab is selected" do
       let :response, do: get(build_conn(), home_page(type: :style))
 
-      it "marks the Styles tab selected and the others unselected" do
-        expect(response()).to_not have_selector("a#all-menu-item.selected")
-        expect(response()).to have_selector("a#styles-menu-item.selected")
-        expect(response()).to_not have_selector("a#init-menu-item.selected")
-      end
-
       it "shows only Style tweaks" do
         insert(:tweak, title: "Init Tweak", type: "init")
         insert(:tweak, title: "Style Tweak", type: "style")
@@ -87,12 +48,6 @@ defmodule AtomStyleTweaksWeb.PageController.Spec do
 
     describe "when the Init tab is selected" do
       let :response, do: get(build_conn(), home_page(type: :init))
-
-      it "marks the Init tab selected and the others unselected" do
-        expect(response()).to_not have_selector("a#all-menu-item.selected")
-        expect(response()).to_not have_selector("a#styles-menu-item.selected")
-        expect(response()).to have_selector("a#init-menu-item.selected")
-      end
 
       it "shows only Init tweaks" do
         insert(:tweak, title: "Init Tweak", type: "init")
