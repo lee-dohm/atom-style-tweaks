@@ -2,27 +2,88 @@ defmodule AtomStyleTweaksWeb.PageController.Spec do
   use ESpec.Phoenix, controller: AtomStyleTweaksWeb.PageController, async: true
 
   describe "home page" do
-    def home_page(), do: page_path(build_conn(), :index)
-    def home_page(params), do: page_path(build_conn(), :index, params)
+    let :request_path, do: page_path(build_conn(), :index, request_params())
+    let :request_params, do: []
+    let :user, do: build(:user)
+    let :response, do: get(build_conn(), request_path())
 
-    let :response, do: get(build_conn(), home_page())
+    it "renders the index.html template" do
+      expect(response()).to render_template("index.html")
+    end
+
+    it "assigns no current_user" do
+      expect(response()).to have_in_assigns(current_user: nil)
+    end
+
+    it "assigns an empty tweaks list" do
+      expect(response()).to have_in_assigns(tweaks: [])
+    end
+
+    it "assigns an empty params list" do
+      expect(response()).to have_in_assigns(params: %{})
+    end
+
+    context "when a user is logged in" do
+      let :response do
+        build_conn()
+        |> log_in_as(user())
+        |> get(request_path())
+      end
+
+      it "assigns a current user" do
+        expect(response()).to have_in_assigns(current_user: user())
+      end
+    end
+
+    context "when tweaks exist in the database" do
+      let! :tweaks, do: insert_list(3, :tweak)
+
+      it "assigns them to the tweaks list" do
+        expect(response().assigns.tweaks).to have_count(3)
+
+        Enum.each(tweaks(), fn(tweak) ->
+          expect(response().assigns.tweaks).to have(tweak)
+        end)
+      end
+    end
+
+    context "when the styles tab is selected" do
+      before do
+        insert(:tweak, type: "init")
+      end
+
+      let :request_params, do: [type: :style]
+      let! :tweak, do: insert(:tweak, type: "style")
+
+      it "only assigns style tweaks to the tweaks list" do
+        expect(response().assigns.tweaks).to have_count(1)
+        expect(response().assigns.tweaks).to have(tweak())
+      end
+    end
+
+    context "when the init tab is selected" do
+      before do
+        insert(:tweak, type: "style")
+      end
+
+      let :request_params, do: [type: :init]
+      let! :tweak, do: insert(:tweak, type: "init")
+
+      it "only assigns init tweaks to the tweaks list" do
+        expect(response().assigns.tweaks).to have_count(1)
+        expect(response().assigns.tweaks).to have(tweak())
+      end
+    end
+
+    # --- Specs below here are to become view specs ---
 
     it "shows the home page link" do
       expect(response()).to have_text_in("a.masthead-logo", "Atom Tweaks")
-      expect(response()).to have_attributes_in("a.masthead-logo", href: home_page())
+      expect(response()).to have_attributes_in("a.masthead-logo", href: request_path())
     end
 
     it "does not show the New Tweak button" do
       expect(response()).to_not have_selector("a#new-tweak-button")
-    end
-
-    it "shows a list of tweaks" do
-      tweaks = insert_list(3, :tweak)
-
-      Enum.each(tweaks, fn(tweak) ->
-        expect(response()).to have_text_in("a.title", tweak.title)
-        expect(response()).to have_attributes_in("a.title", href: user_tweak_path(build_conn(), :show, tweak.user.name, tweak.id))
-      end)
     end
 
     it "shows the About page link" do
@@ -35,7 +96,7 @@ defmodule AtomStyleTweaksWeb.PageController.Spec do
     end
 
     describe "when the Styles tab is selected" do
-      let :response, do: get(build_conn(), home_page(type: :style))
+      let :request_params, do: [type: :style]
 
       it "shows only Style tweaks" do
         insert(:tweak, title: "Init Tweak", type: "init")
@@ -47,7 +108,7 @@ defmodule AtomStyleTweaksWeb.PageController.Spec do
     end
 
     describe "when the Init tab is selected" do
-      let :response, do: get(build_conn(), home_page(type: :init))
+      let :request_params, do: [type: :init]
 
       it "shows only Init tweaks" do
         insert(:tweak, title: "Init Tweak", type: "init")
@@ -64,7 +125,7 @@ defmodule AtomStyleTweaksWeb.PageController.Spec do
       let :response do
         build_conn()
         |> log_in_as(user())
-        |> get(home_page())
+        |> get(request_path())
       end
 
       it "shows the new tweak button" do
