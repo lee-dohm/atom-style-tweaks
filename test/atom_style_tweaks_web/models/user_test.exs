@@ -3,7 +3,7 @@ defmodule AtomStyleTweaks.UserTest do
 
   alias AtomStyleTweaksWeb.User
 
-  @valid_attrs %{name: "an-admin-user", github_id: 12_345, site_admin: true, avatar_url: "https://example.com"}
+  @valid_attrs %{name: "an-admin-user", github_id: 12_345, site_admin: true, avatar_url: "https://example.com/"}
   @invalid_attrs %{}
 
   test "changeset with valid attributes" do
