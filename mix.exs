@@ -85,7 +85,7 @@ defmodule AtomStyleTweaks.Mixfile do
       {:floki, "~> 0.17.2", only: :test},
       {:excoveralls, "~> 0.6", only: :test},
       {:espec_phoenix, "~> 0.6.9", only: :test},
-      {:espec_phoenix_helpers, path: "../espec_phoenix_helpers", only: :test}
+      {:espec_phoenix_helpers, github: "lee-dohm/espec_phoenix_helpers", branch: "redirect-to-match", only: :test}
     ]
   end
 
