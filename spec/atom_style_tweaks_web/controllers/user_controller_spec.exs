@@ -41,7 +41,8 @@ defmodule AtomStyleTweaksWeb.UserController.Spec do
       it "displays a list of tweaks" do
         Enum.each(tweaks(), fn(tweak) ->
           expect(response()).to have_text_in("a.title", tweak.title)
-          expect(response()).to have_attributes_in("a.title", href: user_tweak_path(build_conn(), :show, tweak.user.name, tweak.id))
+          expect(response()).to have_attributes_in("a.title",
+            href: user_tweak_path(build_conn(), :show, tweak.user.name, tweak.id))
         end)
       end
     end

@@ -161,7 +161,8 @@ defmodule AtomStyleTweaksWeb.TweakController.Spec do
 
       it "has a cancel button" do
         expect(response()).to have_text_in("a.btn.btn-danger", "Cancel")
-        expect(response()).to have_attributes_in("a.btn.btn-danger", href: user_tweak_path(build_conn(), :show, tweak().user.name, tweak().id))
+        expect(response()).to have_attributes_in("a.btn.btn-danger",
+          href: user_tweak_path(build_conn(), :show, tweak().user.name, tweak().id))
       end
 
       context "as a different user" do
