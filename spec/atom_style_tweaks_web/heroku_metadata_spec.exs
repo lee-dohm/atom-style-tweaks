@@ -1,5 +1,5 @@
 defmodule AtomStyleTweaksWeb.HerokuMetadata.Spec do
-  use ESpec.Phoenix, async: true
+  use ESpec.Phoenix
 
   alias AtomStyleTweaksWeb.HerokuMetadata
 
