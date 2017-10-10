@@ -31,6 +31,16 @@ Other scripts that are available but not intended to be used directly by develop
 * `script/bootstrap` &mdash; Used to do a one-time install of all prerequisites for a development machine
 * `script/cibuild` &mdash; Used to run automated tests in the CI environment
 
+## Writing Tests
+
+* Controller specs should verify:
+    * HTTP Status
+    * Redirects
+    * Assigns
+    * Session values
+* Controller specs **should not** verify content
+* View specs should verify that given the expected assigns, the right content is displayed
+
 ## Resources
 
 - [Contributing to Open Source on GitHub](https://guides.github.com/activities/contributing-to-open-source/)

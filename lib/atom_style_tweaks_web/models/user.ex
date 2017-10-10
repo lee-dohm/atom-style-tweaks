@@ -30,6 +30,7 @@ defmodule AtomStyleTweaksWeb.User do
     struct
     |> cast(params, [:avatar_url, :github_id, :name, :site_admin])
     |> validate_required([:avatar_url, :github_id, :name, :site_admin])
+    |> validate_url(:avatar_url)
     |> unique_constraint(:name)
     |> unique_constraint(:github_id)
   end
@@ -44,5 +45,16 @@ defmodule AtomStyleTweaksWeb.User do
       [1] -> true
       [] -> false
     end
+  end
+
+  defp validate_url(changeset, field, options \\ []) do
+    validate_change(changeset, field, fn(_, url) ->
+      case URI.parse(url) do
+        %URI{scheme: nil} -> [{:avatar_url, options[:message] || "must be a valid URL"}]
+        %URI{host: nil} -> [{:avatar_url, options[:message] || "must be a valid URL"}]
+        %URI{path: nil} -> [{:avatar_url, options[:message] || "must be a valid URL"}]
+        _ -> []
+      end
+    end)
   end
 end

@@ -20,8 +20,13 @@ defmodule AtomStyleTweaks.Mixfile do
       aliases: aliases(),
       deps: deps(),
       docs: docs(),
-      test_coverage: [tool: ExCoveralls],
-      preferred_cli_env: ["coveralls": :test, "coveralls.html": :test, "coveralls.travis": :test]
+      test_coverage: [tool: ExCoveralls, test_task: "espec"],
+      preferred_cli_env: [
+        "coveralls": :test,
+        "coveralls.html": :test,
+        "coveralls.travis": :test,
+        espec: :test
+      ]
     ]
   end
 
@@ -53,7 +58,7 @@ defmodule AtomStyleTweaks.Mixfile do
   ]
 
   # Specifies which paths to compile per environment.
-  defp elixirc_paths(:test), do: ["lib", "test/support"]
+  defp elixirc_paths(:test), do: ["lib", "test/support", "spec/support"]
   defp elixirc_paths(_),     do: ["lib"]
 
   defp deps do
@@ -78,7 +83,9 @@ defmodule AtomStyleTweaks.Mixfile do
       {:faker_elixir_octopus, "~> 1.0", only: :test},
       {:html_entities, "~> 0.3.0", only: :test},
       {:floki, "~> 0.17.2", only: :test},
-      {:excoveralls, "~> 0.6", only: :test}
+      {:excoveralls, "~> 0.6", only: :test},
+      {:espec_phoenix, "~> 0.6.9", only: :test},
+      {:espec_phoenix_helpers, github: "lee-dohm/espec_phoenix_helpers", branch: "redirect-to-match", only: :test}
     ]
   end
 
