@@ -20,7 +20,7 @@ defmodule AtomStyleTweaks.Mixfile do
       aliases: aliases(),
       deps: deps(),
       docs: docs(),
-      test_coverage: [tool: ExCoveralls],
+      test_coverage: [tool: ExCoveralls, test_task: "espec"],
       preferred_cli_env: [
         "coveralls": :test,
         "coveralls.html": :test,
