@@ -38,9 +38,9 @@ defmodule AtomStyleTweaksWeb.Tweak do
   def sorted(query), do: from t in query, order_by: [desc: :updated_at]
 
   def to_metadata(tweak) do
-    %{
-      "og:title": tweak.title,
-      "og:description": tweak.code
-    }
+    [
+      [property: "og:title", content: tweak.title],
+      [property: "og:description", content: tweak.code]
+    ]
   end
 end

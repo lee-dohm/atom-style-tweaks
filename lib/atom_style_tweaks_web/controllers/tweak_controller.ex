@@ -77,7 +77,7 @@ defmodule AtomStyleTweaksWeb.TweakController do
             |> Repo.preload([:user])
 
     conn
-    |> PageMetadata.set(Tweak.to_metadata(tweak))
+    |> PageMetadata.add(Tweak.to_metadata(tweak))
     |> render("show.html", name: name, tweak: tweak)
   end
 
