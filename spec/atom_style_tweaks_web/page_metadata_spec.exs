@@ -8,38 +8,58 @@ defmodule AtomStyleTweaksWeb.PageMetadata.Spec do
 
   @endpoint AtomStyleTweaksWeb.Endpoint
 
-  describe "set" do
+  describe "add" do
     let! :original_site_name, do: Application.get_env(:atom_style_tweaks, :site_name)
 
-    let :additional_metadata, do: %{}
-    let :metadata do
-      conn = build_conn()
-             |> get("/")
-             |> PageMetadata.set(additional_metadata())
+    let :metadata, do: test_conn().assigns[:page_metadata]
 
-      conn.assigns.page_metadata
+    let :test_conn do
+      build_conn()
+      |> get("/")
+      |> PageMetadata.add(additional_metadata())
     end
 
-    finally do: Application.put_env(:atom_style_tweaks, :site_name, original_site_name())
-
-    it do: expect(metadata()[:"og:url"]).to eq("http://www.example.com/")
-    it do: expect(metadata()[:"og:site_name"]).to eq("Atom Tweaks")
-
-    context "when the site name is changed in the application configuration" do
-      before do: Application.put_env(:atom_style_tweaks, :site_name, "Test Name")
-
-      it do: expect(metadata()[:"og:site_name"]).to eq("Test Name")
-    end
-
-    context "when additional metadata is set" do
-      let :additional_metadata, do: %{foo: "bar", "og:site_name": "Test Name"}
-
-      it "can be found in the page metadata" do
-        expect(metadata()[:foo]).to eq("bar")
+    context "when no metadata is added" do
+      let :test_conn do
+        build_conn()
+        |> get("/")
       end
 
-      it "can override built-in metadata" do
-        expect(metadata()[:"og:site_name"]).to eq("Test Name")
+      it "has no metadata" do
+        expect(metadata()).to eq(nil)
+      end
+    end
+
+    context "when empty metadata is added" do
+      let :additional_metadata, do: []
+
+      it "has some default values" do
+        expect(metadata()).to have_count(2)
+        expect(metadata()).to have([property: "og:url", content: "http://www.example.com/"])
+        expect(metadata()).to have([property: "og:site_name", content: "Atom Tweaks"])
+      end
+    end
+
+    context "when an additional datum is added" do
+      let :additional_metadata, do: [property: "og:title", content: "Test title"]
+
+      it "has the defaults plus the added metadata" do
+        expect(metadata()).to have_count(3)
+        expect(metadata()).to have([property: "og:url", content: "http://www.example.com/"])
+        expect(metadata()).to have([property: "og:site_name", content: "Atom Tweaks"])
+        expect(metadata()).to have([property: "og:title", content: "Test title"])
+      end
+    end
+
+    context "when a list of data is added" do
+      let :additional_metadata, do: [[property: "og:title", content: "Test title"], [foo: "bar"]]
+
+      it "has the defaults plus the added metadata" do
+        expect(metadata()).to have_count(4)
+        expect(metadata()).to have([property: "og:url", content: "http://www.example.com/"])
+        expect(metadata()).to have([property: "og:site_name", content: "Atom Tweaks"])
+        expect(metadata()).to have([property: "og:title", content: "Test title"])
+        expect(metadata()).to have([foo: "bar"])
       end
     end
   end
@@ -61,15 +81,13 @@ defmodule AtomStyleTweaksWeb.PageMetadata.Spec do
       let :render do
         build_conn()
         |> get("/")
-        |> PageMetadata.set(%{})
-        |> PageMetadata.render()
+        |> PageMetadata.add([])
+        |> PageMetadata.render
       end
 
       it "emits the expected tags" do
-        expect(render()).to eq([
-          tag(:meta, property: :"og:site_name", content: "Atom Tweaks"),
-          tag(:meta, property: :"og:url", content: "http://www.example.com/")
-        ])
+        expect(render()).to have(tag(:meta, property: :"og:site_name", content: "Atom Tweaks"))
+        expect(render()).to have(tag(:meta, property: :"og:url", content: "http://www.example.com/"))
       end
     end
   end
