@@ -32,6 +32,10 @@ defmodule AtomStyleTweaksWeb.PageMetadata do
 
   @doc """
   Adds an item of metadata for the page.
+
+  An item of metadata is a keyword list of attributes and their values to be rendered as a `meta`
+  tag in the page. A list of keyword lists can be supplied to add multiple items of metadata to be
+  rendered.
   """
   @spec add(Plug.Conn.t, list | keyword(String.t)) :: Plug.Conn.t
   def add(conn, []), do: assign(conn, :page_metadata, get(conn))
@@ -45,6 +49,10 @@ defmodule AtomStyleTweaksWeb.PageMetadata do
 
   @doc """
   Renders the metadata for the page, if it was set.
+
+  It renders each item of metadata as an individual `meta` tag. This function should be called in
+  the `head` section of the page layout template, typically
+  `app_name_web/templates/layout/app.html.eex`.
   """
   @spec render(Plug.Conn.t) :: Phoenix.HTML.safe | nil
   def render(conn) do
