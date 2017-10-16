@@ -4,6 +4,7 @@ defmodule AtomStyleTweaksWeb.Router do
 
   require Logger
 
+  alias AtomStyleTweaksWeb.HerokuMetadata
   alias AtomStyleTweaksWeb.SlidingSessionTimeout
   alias Phoenix.Router.NoRouteError
   alias Plug.Conn
@@ -16,6 +17,7 @@ defmodule AtomStyleTweaksWeb.Router do
     plug :put_secure_browser_headers
     plug :assign_current_user
     plug SlidingSessionTimeout
+    plug HerokuMetadata, only: ["HEROKU_RELEASE_VERSION", "HEROKU_SLUG_COMMIT"]
   end
 
   pipeline :api do

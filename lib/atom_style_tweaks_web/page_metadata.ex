@@ -38,6 +38,7 @@ defmodule AtomStyleTweaksWeb.PageMetadata do
   rendered.
   """
   @spec add(Plug.Conn.t, list | keyword(String.t)) :: Plug.Conn.t
+  def add(conn, nil), do: conn
   def add(conn, []), do: assign(conn, :page_metadata, get(conn))
   def add(conn, list) do
     if Keyword.keyword?(list) do
