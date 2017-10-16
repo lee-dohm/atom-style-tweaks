@@ -4,42 +4,73 @@ defmodule AtomStyleTweaksWeb.HerokuMetadata.Spec do
   alias AtomStyleTweaksWeb.HerokuMetadata
 
   describe "HerokuMetadata" do
-    before do
-      heroku_metadata = Application.get_env(:atom_style_tweaks, HerokuMetadata)
-      keys = Keyword.keys(heroku_metadata)
-      test_data = Enum.map(keys, fn(key) -> {key, Atom.to_string(key) <> " test"} end)
-      Application.put_env(:atom_style_tweaks, HerokuMetadata, test_data)
+    let :metadata, do: HerokuMetadata.get(params())
+    let :params, do: []
 
-      {:shared, original: heroku_metadata}
+    before do
+      Enum.each(environment_variable_names(), fn(name) ->
+        System.put_env(name, "#{name} test")
+      end)
     end
 
-    finally do: Application.put_env(:atom_style_tweaks, HerokuMetadata, shared.original)
+    finally do: Enum.each(environment_variable_names(), fn(name) -> System.delete_env(name) end)
 
-    it do: expect(HerokuMetadata.app_id()).to eq("app_id test")
-    it do: expect(HerokuMetadata.app_name()).to eq("app_name test")
-    it do: expect(HerokuMetadata.dyno_id()).to eq("dyno_id test")
-    it do: expect(HerokuMetadata.release_created_at()).to eq("release_created_at test")
-    it do: expect(HerokuMetadata.release_version()).to eq("release_version test")
-    it do: expect(HerokuMetadata.slug_commit()).to eq("slug_commit test")
-    it do: expect(HerokuMetadata.slug_description()).to eq("slug_description test")
+    context "when not on Heroku" do
+      let :environment_variable_names, do: []
 
-    describe "on_heroku?" do
-      context "when dyno ID is set" do
-        it "returns a truthy value" do
-          expect(HerokuMetadata.on_heroku?()).to be_true()
+      describe "get" do
+        it "does not return metadata" do
+          expect(metadata()).to eq(nil)
         end
       end
+    end
 
-      context "when dyno ID is not set" do
-        before do
-          metadata = Application.get_env(:atom_style_tweaks, HerokuMetadata)
-          test_data = Keyword.delete(metadata, :dyno_id)
+    context "when on Heroku" do
+      let :environment_variable_names do
+        [
+          "HEROKU_APP_ID",
+          "HEROKU_APP_NAME",
+          "HEROKU_DYNO_ID",
+          "HEROKU_RELEASE_CREATED_AT",
+          "HEROKU_RELEASE_VERSION",
+          "HEROKU_SLUG_COMMIT",
+          "HEROKU_SLUG_DESCRIPTION"
+        ]
+      end
 
-          Application.put_env(:atom_style_tweaks, HerokuMetadata, test_data)
+      describe "get" do
+        it "returns a list of metadata in PageMetadata form" do
+          expect(metadata()).to have_count(7)
+          expect(metadata()).to have([name: "HEROKU_APP_ID", content: "HEROKU_APP_ID test"])
+          expect(metadata()).to have([name: "HEROKU_APP_NAME", content: "HEROKU_APP_NAME test"])
+          expect(metadata()).to have([name: "HEROKU_DYNO_ID", content: "HEROKU_DYNO_ID test"])
+          expect(metadata()).to have([name: "HEROKU_RELEASE_CREATED_AT", content: "HEROKU_RELEASE_CREATED_AT test"])
+          expect(metadata()).to have([name: "HEROKU_RELEASE_VERSION", content: "HEROKU_RELEASE_VERSION test"])
+          expect(metadata()).to have([name: "HEROKU_SLUG_COMMIT", content: "HEROKU_SLUG_COMMIT test"])
+          expect(metadata()).to have([name: "HEROKU_SLUG_DESCRIPTION", content: "HEROKU_SLUG_DESCRIPTION test"])
         end
 
-        it "returns a falsy value" do
-          expect(HerokuMetadata.on_heroku?()).to be_false()
+        context "when only is given" do
+          let :params, do: [only: ["HEROKU_APP_ID", "HEROKU_APP_NAME"]]
+
+          it "returns only the variables specified" do
+            expect(metadata()).to have_count(2)
+            expect(metadata()).to have([name: "HEROKU_APP_ID", content: "HEROKU_APP_ID test"])
+            expect(metadata()).to have([name: "HEROKU_APP_NAME", content: "HEROKU_APP_NAME test"])
+          end
+        end
+
+        context "when except is given" do
+          let :params, do: [except: ["HEROKU_APP_ID", "HEROKU_APP_NAME"]]
+
+          it "returns all of the variables except the ones specified" do
+            expect(metadata()).to have_count(5)
+            expect(metadata()).to have([name: "HEROKU_DYNO_ID", content: "HEROKU_DYNO_ID test"])
+            expect(metadata()).to have([name: "HEROKU_RELEASE_CREATED_AT", content: "HEROKU_RELEASE_CREATED_AT test"])
+            expect(metadata()).to have([name: "HEROKU_RELEASE_VERSION", content: "HEROKU_RELEASE_VERSION test"])
+            expect(metadata()).to have([name: "HEROKU_SLUG_COMMIT", content: "HEROKU_SLUG_COMMIT test"])
+            expect(metadata()).to have([name: "HEROKU_SLUG_DESCRIPTION", content: "HEROKU_SLUG_DESCRIPTION test"])
+          end
         end
       end
     end

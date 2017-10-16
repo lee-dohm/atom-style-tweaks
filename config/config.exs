@@ -18,15 +18,6 @@ config :atom_style_tweaks, AtomStyleTweaksWeb.Endpoint,
   pubsub: [name: AtomStyleTweaksWeb.PubSub,
            adapter: Phoenix.PubSub.PG2]
 
-config :atom_style_tweaks, AtomStyleTweaksWeb.HerokuMetadata,
-  app_id: System.get_env("HEROKU_APP_ID"),
-  app_name: System.get_env("HEROKU_APP_NAME"),
-  dyno_id: System.get_env("HEROKU_DYNO_ID"),
-  release_created_at: System.get_env("HEROKU_RELEASE_CREATED_AT"),
-  release_version: System.get_env("HEROKU_RELEASE_VERSION"),
-  slug_commit: System.get_env("HEROKU_SLUG_COMMIT"),
-  slug_description: System.get_env("HEROKU_SLUG_DESCRIPTION")
-
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",

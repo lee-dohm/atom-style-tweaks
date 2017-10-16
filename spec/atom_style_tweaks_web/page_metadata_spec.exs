@@ -30,6 +30,14 @@ defmodule AtomStyleTweaksWeb.PageMetadata.Spec do
       end
     end
 
+    context "when nil metadata is added" do
+      let :additional_metadata, do: nil
+
+      it "has no metadata" do
+        expect(metadata()).to eq(nil)
+      end
+    end
+
     context "when empty metadata is added" do
       let :additional_metadata, do: []
 
