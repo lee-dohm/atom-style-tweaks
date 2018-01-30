@@ -81,7 +81,7 @@ defmodule AtomStyleTweaks.Mixfile do
       {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:ex_machina, "~> 2.0", only: :test},
       {:faker_elixir_octopus, "~> 1.0", only: :test},
-      {:html_entities, "~> 0.3.0", only: :test},
+      {:html_entities, "~> 0.4.0", only: :test},
       {:floki, "~> 0.17.2", only: :test},
       {:excoveralls, "~> 0.6", only: :test},
       {:espec_phoenix, "~> 0.6.9", only: :test},
