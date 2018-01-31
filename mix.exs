@@ -66,7 +66,7 @@ defmodule AtomStyleTweaks.Mixfile do
       {:cmark, "~> 0.7"},
       {:cowboy, "~> 1.0"},
       {:gettext, "~> 0.11"},
-      {:oauth2, "~> 0.8.2"},
+      {:oauth2, "~> 0.9.2"},
       {:phoenix_ecto, "~> 3.0"},
       {:phoenix_html, "~> 2.6"},
       {:phoenix_pubsub, "~> 1.0"},
