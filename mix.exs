@@ -76,7 +76,7 @@ defmodule AtomStyleTweaks.Mixfile do
       {:rollbax, "~> 0.6"},
       {:timex, "~> 3.1"},
       {:phoenix_octicons, "~> 0.2.0"},
-      {:dotenv, "~> 2.0.0", only: :dev},
+      {:dotenv, "~> 3.0.0", only: :dev},
       {:ex_doc, "~> 0.16", only: :dev, runtime: false},
       {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:ex_machina, "~> 2.0", only: :test},
