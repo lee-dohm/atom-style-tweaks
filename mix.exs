@@ -82,7 +82,7 @@ defmodule AtomStyleTweaks.Mixfile do
       {:ex_machina, "~> 2.0", only: :test},
       {:faker_elixir_octopus, "~> 1.0", only: :test},
       {:html_entities, "~> 0.4.0", only: :test},
-      {:floki, "~> 0.19.3", only: :test},
+      {:floki, "~> 0.20.0", only: :test},
       {:excoveralls, "~> 0.6", only: :test},
       {:espec_phoenix, "~> 0.6.9", only: :test},
       {:espec_phoenix_helpers, github: "lee-dohm/espec_phoenix_helpers", branch: "redirect-to-match", only: :test}
