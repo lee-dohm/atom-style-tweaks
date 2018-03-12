@@ -18,5 +18,5 @@ echo "==> App is now ready to go!"
 if [ -n "$TRAVIS" ]; then
   mix coveralls.travis
 else
-  mix test
+  mix espec
 fi
