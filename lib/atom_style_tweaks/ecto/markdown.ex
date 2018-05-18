@@ -60,6 +60,7 @@ defmodule AtomStyleTweaks.Ecto.Markdown do
   """
   @impl Ecto.Type
   def load(binary) when is_binary(binary) do
+    # credo:disable-for-next-line
     {:ok, %AtomStyleTweaks.Markdown{text: binary, html: AtomStyleTweaks.Markdown.to_html(binary)}}
   end
 
