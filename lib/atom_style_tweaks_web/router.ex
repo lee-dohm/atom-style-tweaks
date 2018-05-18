@@ -96,7 +96,5 @@ defmodule AtomStyleTweaksWeb.Router do
         "root" => System.get_env("MY_APPLICATION_PATH"),
       },
     }
-
-    Rollbax.report(kind, reason, stacktrace, %{}, conn_data)
   end
 end

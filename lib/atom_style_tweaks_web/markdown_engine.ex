@@ -33,6 +33,10 @@ defmodule AtomStyleTweaksWeb.MarkdownEngine do
   @spec render(String.t | nil, Keyword.t) :: String.t
   def render(nil, options), do: render("", options)
 
+  def render(list, options) when is_list(list) do
+    render(Enum.join(list), options)
+  end
+
   def render(text, _options) do
     funcs = [
       fn (_, name) ->
