@@ -50,7 +50,7 @@ defmodule AtomStyleTweaks.Ecto.Markdown do
     {:ok, %AtomStyleTweaks.Markdown{text: binary}}
   end
 
-  def cast(%AtomStyleTweaks.Markdown{} = markdown), do: {:ok, markdown}
+  def cast(markdown = %AtomStyleTweaks.Markdown{}), do: {:ok, markdown}
   def cast(_other), do: :error
 
   @doc """

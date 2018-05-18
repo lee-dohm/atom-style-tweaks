@@ -54,10 +54,10 @@ defmodule AtomStyleTweaks.Markdown do
 
   def to_html(_), do: ""
 
-  def to_iodata(%__MODULE__{} = markdown), do: to_html(markdown)
+  def to_iodata(markdown = %__MODULE__{}), do: to_html(markdown)
 
   defimpl Phoenix.HTML.Safe do
-    def to_iodata(%AtomStyleTweaks.Markdown{} = markdown) do
+    def to_iodata(markdown = %AtomStyleTweaks.Markdown{}) do
       AtomStyleTweaks.Markdown.to_iodata(markdown)
     end
   end
