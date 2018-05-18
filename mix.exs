@@ -70,7 +70,7 @@ defmodule AtomStyleTweaks.Mixfile do
       {:phoenix_ecto, "~> 3.0"},
       {:phoenix_html, "~> 2.6"},
       {:phoenix_pubsub, "~> 1.0"},
-      {:phoenix_slime, "~> 0.9.0"},
+      {:phoenix_slime, "~> 0.10.0"},
       {:phoenix, "~> 1.3.0"},
       {:postgrex, ">= 0.0.0"},
       {:rollbax, "~> 0.6"},
