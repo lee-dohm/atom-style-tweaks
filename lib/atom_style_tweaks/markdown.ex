@@ -2,6 +2,8 @@ defmodule AtomStyleTweaks.Markdown do
   @moduledoc """
   A structure that represents a chunk of Markdown to be rendered.
   """
+  alias AtomStyleTweaksWeb.MarkdownEngine
+
   @type t :: %__MODULE__{text: String.t(), html: nil | String.t()}
   defstruct text: "", html: nil
 
@@ -47,7 +49,7 @@ defmodule AtomStyleTweaks.Markdown do
   def to_html(%__MODULE__{text: text}) when is_binary(text), do: to_html(text)
 
   def to_html(binary) when is_binary(binary) do
-    Cmark.to_html(binary, [:safe, :smart])
+    MarkdownEngine.render(binary)
   end
 
   def to_html(_), do: ""
