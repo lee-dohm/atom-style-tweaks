@@ -60,14 +60,16 @@ defmodule AtomStyleTweaksWeb.PageMetadata.Spec do
     end
 
     context "when a list of data is added" do
-      let :additional_metadata, do: [[property: "og:title", content: "Test title"], [foo: "bar"]]
+      let :additional_metadata do
+        [[property: "og:title", content: "Test title"], [foo: "bar", bar: "baz"]]
+      end
 
       it "has the defaults plus the added metadata" do
         expect(metadata()).to have_count(4)
+        expect(metadata()).to have([foo: "bar", bar: "baz"])
         expect(metadata()).to have([property: "og:url", content: "http://www.example.com/"])
         expect(metadata()).to have([property: "og:site_name", content: "Atom Tweaks"])
         expect(metadata()).to have([property: "og:title", content: "Test title"])
-        expect(metadata()).to have([foo: "bar"])
       end
     end
   end
