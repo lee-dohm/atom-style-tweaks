@@ -19,7 +19,15 @@ defmodule AtomStyleTweaksWeb.ConnCase do
     quote do
       # Import conveniences for testing with connections
       use Phoenix.ConnTest
+
+      import Phoenix.Controller
+
+      import AtomStyleTweaks.Factory
       import AtomStyleTweaksWeb.Router.Helpers
+
+      import Floki, only: [attribute: 2, find: 2, text: 1]
+
+      import Test.Helpers
 
       # The default endpoint for testing
       @endpoint AtomStyleTweaksWeb.Endpoint
