@@ -27,6 +27,8 @@ defmodule AtomStyleTweaksWeb.ConnCase do
 
       import Floki, only: [attribute: 2, find: 2, text: 1]
 
+      import Support.SetupHelpers
+
       import Test.Helpers
 
       # The default endpoint for testing
