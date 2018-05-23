@@ -45,6 +45,19 @@ defmodule Support.SetupHelpers do
     {:ok, user: user}
   end
 
+  def insert_user_with_tweaks(_context) do
+    user = insert(:user)
+    tweaks = insert_list(3, :tweak, user: user)
+
+    {:ok, user: user, tweaks: tweaks}
+  end
+
+  def insert_site_admin(_context) do
+    user = insert(:user, site_admin: true)
+
+    {:ok, user: user}
+  end
+
   def log_in(%{conn: conn, user: user}) do
     conn = Plug.Test.init_test_session(conn, %{current_user: user})
 
@@ -156,6 +169,20 @@ defmodule Support.SetupHelpers do
     conn = get(conn, user_tweak_path(conn, :show, user, tweak))
 
     {:ok, conn: conn}
+  end
+
+  def request_show_user(%{conn: conn, current_user: _, request_user: user}) do
+    path = user_path(conn, :show, user.name)
+    conn = get(conn, path)
+
+    {:ok, conn: conn, path: path}
+  end
+
+  def request_show_user(%{conn: conn, user: user}) do
+    path = user_path(conn, :show, user.name)
+    conn = get(conn, path)
+
+    {:ok, conn: conn, path: path}
   end
 
   def valid_tweak_params(_context) do
