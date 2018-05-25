@@ -3,6 +3,8 @@ defmodule Test.Helpers do
   Helper functions for tests.
   """
 
+  alias Plug.Test, as: PlugTest
+
   def attribute_in(html, selector, attribute) do
     html
     |> Floki.find(selector)
@@ -53,7 +55,7 @@ defmodule Test.Helpers do
   Simulates being logged in as the supplied `user`.
   """
   def log_in_as(conn, user) do
-    Plug.Test.init_test_session(conn, %{current_user: user})
+    PlugTest.init_test_session(conn, %{current_user: user})
   end
 
   def text_in(html, selector) do
