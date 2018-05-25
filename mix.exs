@@ -18,7 +18,7 @@ defmodule AtomStyleTweaks.Mixfile do
       aliases: aliases(),
       deps: deps(),
       docs: docs(),
-      test_coverage: [tool: ExCoveralls, test_task: "espec"],
+      test_coverage: [tool: ExCoveralls, test_task: "test"],
       preferred_cli_env: [
         "coveralls": :test,
         "coveralls.html": :test,
@@ -55,7 +55,7 @@ defmodule AtomStyleTweaks.Mixfile do
   ]
 
   # Specifies which paths to compile per environment.
-  defp elixirc_paths(:test), do: ["lib", "test/support", "spec/support"]
+  defp elixirc_paths(:test), do: ["lib", "test/support"]
   defp elixirc_paths(_),     do: ["lib"]
 
   defp deps do
