@@ -25,6 +25,7 @@ defmodule AtomStyleTweaks.DataCase do
       import AtomStyleTweaks.DataCase
       import AtomStyleTweaks.Factory
 
+      import Support.AssertHelpers
       import Support.SetupHelpers
     end
   end

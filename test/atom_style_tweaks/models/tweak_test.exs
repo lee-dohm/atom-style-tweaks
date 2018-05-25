@@ -7,10 +7,6 @@ defmodule AtomStyleTweaks.TweakTest do
     Tweak.changeset(%Tweak{}, params_for(:tweak, [user: user] ++ params))
   end
 
-  def has_error_on?(changeset, field) do
-    Enum.any?(changeset.errors, fn(error) -> ^field = elem(error, 0) end)
-  end
-
   describe "creating a changeset" do
     setup [:insert_user]
 
