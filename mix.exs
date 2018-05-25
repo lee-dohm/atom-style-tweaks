@@ -1,12 +1,10 @@
 defmodule AtomStyleTweaks.Mixfile do
   use Mix.Project
 
-  @version String.trim(File.read!("VERSION"))
-
   def project do
     [
       app: :atom_style_tweaks,
-      version: @version,
+      version: "0.1.0",
 
       name: "Atom Tweaks",
       homepage_url: "https://www.atom-tweaks.com",
