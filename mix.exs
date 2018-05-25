@@ -22,8 +22,7 @@ defmodule AtomStyleTweaks.Mixfile do
       preferred_cli_env: [
         "coveralls": :test,
         "coveralls.html": :test,
-        "coveralls.travis": :test,
-        espec: :test
+        "coveralls.travis": :test
       ]
     ]
   end
@@ -80,8 +79,6 @@ defmodule AtomStyleTweaks.Mixfile do
       {:html_entities, "~> 0.4.0", only: :test},
       {:floki, "~> 0.20.0", only: :test},
       {:excoveralls, "~> 0.6", only: :test},
-      {:espec_phoenix, "~> 0.6.9", only: :test},
-      {:espec_phoenix_helpers, github: "lee-dohm/espec_phoenix_helpers", branch: "redirect-to-match", only: :test}
     ]
   end
 
