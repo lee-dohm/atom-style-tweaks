@@ -78,7 +78,8 @@ defmodule AtomStyleTweaks.Mixfile do
       {:faker_elixir_octopus, "~> 1.0", only: :test},
       {:html_entities, "~> 0.4.0", only: :test},
       {:floki, "~> 0.20.0", only: :test},
-      {:excoveralls, "~> 0.6", only: :test}
+      {:excoveralls, "~> 0.6", only: :test},
+      {:credo, "~> 0.9.2", only: [:dev, :test], runtime: false}
     ]
   end
 
