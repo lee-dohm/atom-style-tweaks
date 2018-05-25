@@ -1,5 +1,5 @@
 defmodule AtomStyleTweaks.MarkdownTest do
-  use ExUnit.Case, async: true
+  use ExUnit.Case
   doctest AtomStyleTweaks.Markdown
 
   import Phoenix.HTML.Safe, only: [to_iodata: 1]

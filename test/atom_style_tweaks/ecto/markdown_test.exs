@@ -1,5 +1,5 @@
 defmodule AtomStyleTweaks.Ecto.MarkdownTest do
-  use ExUnit.Case, async: true
+  use ExUnit.Case
 
   alias AtomStyleTweaks.Ecto.Markdown
 

@@ -1,5 +1,5 @@
 defmodule AtomStyleTweaksWeb.HerokuMetadataTest do
-  use ExUnit.Case, async: true
+  use ExUnit.Case
 
   alias AtomStyleTweaksWeb.HerokuMetadata
 
