@@ -21,8 +21,11 @@ defmodule AtomStyleTweaks.DataCase do
       import Ecto
       import Ecto.Changeset
       import Ecto.Query
+
       import AtomStyleTweaks.DataCase
-      import AtomStyleTweaks.Support.Helpers
+      import AtomStyleTweaks.Factory
+
+      import Support.SetupHelpers
     end
   end
 
