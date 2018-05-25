@@ -12,11 +12,11 @@ defmodule AtomStyleTweaksWeb.Tweak do
   @primary_key {:id, :binary_id, autogenerate: true}
 
   schema "tweaks" do
-    field :title, :string
-    field :code, :string
-    field :type, :string
-    field :description, :string
-    belongs_to :user, AtomStyleTweaksWeb.User, foreign_key: :created_by, type: :binary_id
+    field(:title, :string)
+    field(:code, :string)
+    field(:type, :string)
+    field(:description, :string)
+    belongs_to(:user, AtomStyleTweaksWeb.User, foreign_key: :created_by, type: :binary_id)
 
     timestamps()
   end
@@ -31,11 +31,11 @@ defmodule AtomStyleTweaksWeb.Tweak do
     |> validate_inclusion(:type, ["init", "style"])
   end
 
-  def by_type(query, type), do: from t in query, where: t.type == ^type
+  def by_type(query, type), do: from(t in query, where: t.type == ^type)
 
-  def preload(query), do: from t in query, preload: [:user]
+  def preload(query), do: from(t in query, preload: [:user])
 
-  def sorted(query), do: from t in query, order_by: [desc: :updated_at]
+  def sorted(query), do: from(t in query, order_by: [desc: :updated_at])
 
   def to_metadata(tweak) do
     [

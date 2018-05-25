@@ -15,8 +15,7 @@ config :atom_style_tweaks, AtomStyleTweaksWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "NmI5A1GsVl5vf6o3m3+7/3NoWleK8mK6cG0cR2X6cyrrdlokEwRTfpE9H8vk0NoP",
   render_errors: [view: AtomStyleTweaksWeb.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: AtomStyleTweaksWeb.PubSub,
-           adapter: Phoenix.PubSub.PG2]
+  pubsub: [name: AtomStyleTweaksWeb.PubSub, adapter: Phoenix.PubSub.PG2]
 
 # Configures Elixir's Logger
 config :logger, :console,
@@ -30,8 +29,7 @@ config :atom_style_tweaks, GitHub,
   redirect_uri: System.get_env("GITHUB_REDIRECT_URI")
 
 # Configure Phoenix Generators
-config :phoenix, :generators,
-  binary_id: true
+config :phoenix, :generators, binary_id: true
 
 # Configure Phoenix template engines
 config :phoenix, :template_engines,
@@ -44,4 +42,4 @@ config :slime, :embedded_engines, %{
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
-import_config "#{Mix.env}.exs"
+import_config "#{Mix.env()}.exs"

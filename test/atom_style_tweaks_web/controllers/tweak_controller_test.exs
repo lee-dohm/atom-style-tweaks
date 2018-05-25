@@ -37,7 +37,13 @@ defmodule AtomStyleTweaksWeb.TweakControllerTest do
   end
 
   describe "attempting to create a tweak for a non-existent user" do
-    setup [:insert_user, :log_in, :valid_tweak_params, :invalid_request_user, :request_create_tweak]
+    setup [
+      :insert_user,
+      :log_in,
+      :valid_tweak_params,
+      :invalid_request_user,
+      :request_create_tweak
+    ]
 
     test "returns status not found", context do
       assert response(context.conn, :not_found)

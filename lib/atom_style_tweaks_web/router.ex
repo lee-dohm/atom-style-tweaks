@@ -10,36 +10,37 @@ defmodule AtomStyleTweaksWeb.Router do
   alias Plug.Conn
 
   pipeline :browser do
-    plug :accepts, ["html"]
-    plug :fetch_session
-    plug :fetch_flash
-    plug :protect_from_forgery
-    plug :put_secure_browser_headers
-    plug :assign_current_user
-    plug SlidingSessionTimeout
-    plug HerokuMetadata, only: ["HEROKU_RELEASE_VERSION", "HEROKU_SLUG_COMMIT"]
+    plug(:accepts, ["html"])
+    plug(:fetch_session)
+    plug(:fetch_flash)
+    plug(:protect_from_forgery)
+    plug(:put_secure_browser_headers)
+    plug(:assign_current_user)
+    plug(SlidingSessionTimeout)
+    plug(HerokuMetadata, only: ["HEROKU_RELEASE_VERSION", "HEROKU_SLUG_COMMIT"])
   end
 
   pipeline :api do
-    plug :accepts, ["json"]
+    plug(:accepts, ["json"])
   end
 
   scope "/auth", AtomStyleTweaksWeb do
-    pipe_through :browser
+    pipe_through(:browser)
 
-    get "/", AuthController, :index
-    get "/callback", AuthController, :callback
-    get "/logout", AuthController, :delete
+    get("/", AuthController, :index)
+    get("/callback", AuthController, :callback)
+    get("/logout", AuthController, :delete)
   end
 
   scope "/", AtomStyleTweaksWeb do
-    pipe_through :browser # Use the default browser stack
+    # Use the default browser stack
+    pipe_through(:browser)
 
-    get "/", PageController, :index
-    get "/about", PageController, :about
+    get("/", PageController, :index)
+    get("/about", PageController, :about)
 
     resources "/users", UserController, only: [:show] do
-      resources "/tweaks", TweakController
+      resources("/tweaks", TweakController)
     end
   end
 
@@ -53,7 +54,7 @@ defmodule AtomStyleTweaksWeb.Router do
   # `@current_user`.
   def assign_current_user(conn, _) do
     user = get_session(conn, :current_user)
-    Logger.debug(fn -> "Current user = #{inspect user}" end)
+    Logger.debug(fn -> "Current user = #{inspect(user)}" end)
 
     assign(conn, :current_user, user)
   end
@@ -67,7 +68,7 @@ defmodule AtomStyleTweaksWeb.Router do
 
   def log_assigns(conn, _params) do
     Logger.debug("=== Assigns ===")
-    Enum.each(conn.assigns, fn(assign) -> Logger.debug(inspect(assign)) end)
+    Enum.each(conn.assigns, fn assign -> Logger.debug(inspect(assign)) end)
     Logger.debug("=== End Assigns ===")
 
     conn
@@ -85,16 +86,16 @@ defmodule AtomStyleTweaksWeb.Router do
       "request" => %{
         "cookies" => conn.req_cookies,
         "url" => "#{conn.scheme}://#{conn.host}:#{conn.port}#{conn.request_path}",
-        "user_ip" => (conn.remote_ip |> Tuple.to_list() |> Enum.join(".")),
+        "user_ip" => conn.remote_ip |> Tuple.to_list() |> Enum.join("."),
         "headers" => Enum.into(conn.req_headers, %{}),
         "params" => conn.params,
-        "method" => conn.method,
+        "method" => conn.method
       },
       "server" => %{
         "pid" => System.get_env("MY_SERVER_PID"),
         "host" => "#{System.get_env("MY_HOSTNAME")}:#{System.get_env("MY_PORT")}",
-        "root" => System.get_env("MY_APPLICATION_PATH"),
-      },
+        "root" => System.get_env("MY_APPLICATION_PATH")
+      }
     }
   end
 end

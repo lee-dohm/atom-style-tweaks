@@ -12,14 +12,20 @@ defmodule AtomStyleTweaksWeb.HerokuMetadata do
   end
 
   def get(params \\ []) do
-    names = case params do
-      [] -> environment_variable_names()
-      [only: only] -> only
-      [except: except] -> Enum.reject(environment_variable_names(), fn(name) -> name in except end)
-    end
+    names =
+      case params do
+        [] ->
+          environment_variable_names()
+
+        [only: only] ->
+          only
+
+        [except: except] ->
+          Enum.reject(environment_variable_names(), fn name -> name in except end)
+      end
 
     if on_heroku?() do
-      Enum.map(names, fn(name) ->
+      Enum.map(names, fn name ->
         [name: name, content: System.get_env(name)]
       end)
     end

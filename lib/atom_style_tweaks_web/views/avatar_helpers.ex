@@ -16,7 +16,7 @@ defmodule AtomStyleTweaksWeb.AvatarHelpers do
 
   * `size` the value in pixels to use for both the width and height of the avatar image
   """
-  @spec avatar(User.t, keyword) :: Phoenix.HTML.safe
+  @spec avatar(User.t(), keyword) :: Phoenix.HTML.safe()
   def avatar(user, options \\ [])
 
   def avatar(user, []) do
@@ -24,6 +24,13 @@ defmodule AtomStyleTweaksWeb.AvatarHelpers do
   end
 
   def avatar(user, size: size) do
-    content_tag(:img, "", class: "avatar", src: "#{user.avatar_url}&s=#{size}", width: size, height: size)
+    content_tag(
+      :img,
+      "",
+      class: "avatar",
+      src: "#{user.avatar_url}&s=#{size}",
+      width: size,
+      height: size
+    )
   end
 end

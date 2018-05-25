@@ -15,10 +15,10 @@ defmodule AtomStyleTweaksWeb.User do
   @primary_key {:id, :binary_id, autogenerate: true}
 
   schema "users" do
-    field :avatar_url, :string
-    field :github_id, :integer
-    field :name, :string
-    field :site_admin, :boolean, default: false
+    field(:avatar_url, :string)
+    field(:github_id, :integer)
+    field(:name, :string)
+    field(:site_admin, :boolean, default: false)
 
     timestamps()
   end
@@ -39,7 +39,7 @@ defmodule AtomStyleTweaksWeb.User do
   Determines whether the user with the given `name` exists in the database.
   """
   def exists?(name) do
-    query = from u in __MODULE__, select: 1, limit: 1, where: u.name == ^name
+    query = from(u in __MODULE__, select: 1, limit: 1, where: u.name == ^name)
 
     case Repo.all(query) do
       [1] -> true
@@ -48,7 +48,7 @@ defmodule AtomStyleTweaksWeb.User do
   end
 
   defp validate_url(changeset, field, options \\ []) do
-    validate_change(changeset, field, fn(_, url) ->
+    validate_change(changeset, field, fn _, url ->
       case URI.parse(url) do
         %URI{scheme: nil} -> [{:avatar_url, options[:message] || "must be a valid URL"}]
         %URI{host: nil} -> [{:avatar_url, options[:message] || "must be a valid URL"}]

@@ -12,7 +12,7 @@ defmodule AtomStyleTweaksWeb.RenderHelpers do
   @doc """
   Renders the code for the given `tweak`.
   """
-  @spec render_code(Tweak.t) :: Phoenix.HTML.safe
+  @spec render_code(Tweak.t()) :: Phoenix.HTML.safe()
   def render_code(tweak) do
     content_tag(:pre) do
       content_tag(:code, tweak.code, class: code_class_for(tweak), id: "code")
@@ -22,13 +22,13 @@ defmodule AtomStyleTweaksWeb.RenderHelpers do
   @doc """
   Renders the given Markdown text into HTML.
   """
-  @spec render_markdown(String.t) :: Phoenix.HTML.safe
+  @spec render_markdown(String.t()) :: Phoenix.HTML.safe()
   def render_markdown(text), do: raw(MarkdownEngine.render(text, []))
 
   @doc """
   Renders the template if the condition is truthy.
   """
-  @spec render_if(boolean, module, String.t, map) :: Phoenix.HTML.safe
+  @spec render_if(boolean, module, String.t(), map) :: Phoenix.HTML.safe()
   def render_if(condition, view_module, template, assigns)
 
   def render_if(nil, _, _, _), do: nil
@@ -38,7 +38,7 @@ defmodule AtomStyleTweaksWeb.RenderHelpers do
   @doc """
   Renders the many template if there are any items in `enumerable`, otherwise the blank template.
   """
-  @spec render_many_or_blank(Enum.t, atom, String.t, String.t, map) :: Phoenix.HTML.safe
+  @spec render_many_or_blank(Enum.t(), atom, String.t(), String.t(), map) :: Phoenix.HTML.safe()
   def render_many_or_blank(enumerable, view, many_template, blank_template, assigns) do
     if Enum.count(enumerable) == 0 do
       render(view, blank_template, assigns)

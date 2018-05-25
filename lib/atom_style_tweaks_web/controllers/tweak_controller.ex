@@ -21,13 +21,17 @@ defmodule AtomStyleTweaksWeb.TweakController do
 
   def create(conn, %{"user_id" => name, "tweak" => tweak_params}, _) do
     case Repo.get_by(User, name: name) do
-      nil -> render_error(conn, :not_found, "User \"#{name}\" not found")
+      nil ->
+        render_error(conn, :not_found, "User \"#{name}\" not found")
+
       user ->
         params = Map.merge(tweak_params, %{"created_by" => user.id})
         changeset = Tweak.changeset(%Tweak{}, params)
 
         case Repo.insert(changeset) do
-          {:ok, tweak} -> redirect(conn, to: user_tweak_path(conn, :show, name, tweak.id))
+          {:ok, tweak} ->
+            redirect(conn, to: user_tweak_path(conn, :show, name, tweak.id))
+
           {:error, changeset} ->
             conn
             |> render("new.html", changeset: changeset, name: name, errors: changeset.errors)
@@ -46,13 +50,21 @@ defmodule AtomStyleTweaksWeb.TweakController do
   end
 
   def edit(conn, params = %{"user_id" => name, "id" => id}, _current_user) do
-    tweak = Tweak
-            |> Repo.get(id)
-            |> Repo.preload([:user])
+    tweak =
+      Tweak
+      |> Repo.get(id)
+      |> Repo.preload([:user])
 
     changeset = Tweak.changeset(%Tweak{})
 
-    render(conn, "edit.html", changeset: changeset, name: name, tweak: tweak, errors: params["errors"])
+    render(
+      conn,
+      "edit.html",
+      changeset: changeset,
+      name: name,
+      tweak: tweak,
+      errors: params["errors"]
+    )
   end
 
   def new(conn, _, :guest), do: render_error(conn, :unauthorized)
@@ -63,7 +75,9 @@ defmodule AtomStyleTweaksWeb.TweakController do
 
   def new(conn, params = %{"user_id" => name}, _current_user) do
     case Repo.get_by(User, name: name) do
-      nil -> render_error(conn, :not_found, "User \"#{name}\" not found")
+      nil ->
+        render_error(conn, :not_found, "User \"#{name}\" not found")
+
       _ ->
         changeset = Tweak.changeset(%Tweak{})
 
@@ -72,9 +86,10 @@ defmodule AtomStyleTweaksWeb.TweakController do
   end
 
   def show(conn, %{"user_id" => name, "id" => id}, _current_user) do
-    tweak = Tweak
-            |> Repo.get(id)
-            |> Repo.preload([:user])
+    tweak =
+      Tweak
+      |> Repo.get(id)
+      |> Repo.preload([:user])
 
     conn
     |> PageMetadata.add(Tweak.to_metadata(tweak))
@@ -89,9 +104,16 @@ defmodule AtomStyleTweaksWeb.TweakController do
       {:ok, _tweak} ->
         conn
         |> redirect(to: user_tweak_path(conn, :show, name, id))
+
       {:error, changeset} ->
         conn
-        |> render("edit.html", name: name, tweak: tweak, changeset: changeset, errors: changeset.errors)
+        |> render(
+          "edit.html",
+          name: name,
+          tweak: tweak,
+          changeset: changeset,
+          errors: changeset.errors
+        )
     end
   end
 

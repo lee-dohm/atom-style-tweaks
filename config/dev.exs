@@ -11,8 +11,14 @@ config :atom_style_tweaks, AtomStyleTweaksWeb.Endpoint,
   debug_errors: true,
   code_reloader: true,
   check_origin: false,
-  watchers: [node: ["node_modules/brunch/bin/brunch", "watch", "--stdin",
-                    cd: Path.expand("../assets", __DIR__)]]
+  watchers: [
+    node: [
+      "node_modules/brunch/bin/brunch",
+      "watch",
+      "--stdin",
+      cd: Path.expand("../assets", __DIR__)
+    ]
+  ]
 
 # Watch static and templates for browser reloading.
 config :atom_style_tweaks, AtomStyleTweaksWeb.Endpoint,
@@ -26,8 +32,7 @@ config :atom_style_tweaks, AtomStyleTweaksWeb.Endpoint,
   ]
 
 # Timeout sessions in one minute in the development environment
-config :atom_style_tweaks, AtomStyleTweaksWeb.SlidingSessionTimeout,
-  timeout: 60
+config :atom_style_tweaks, AtomStyleTweaksWeb.SlidingSessionTimeout, timeout: 60
 
 # Do not include metadata nor timestamps in development logs
 config :logger, :console, format: "[$level] $message\n"

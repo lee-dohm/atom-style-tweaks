@@ -55,9 +55,10 @@ defmodule AtomStyleTweaksWeb.PageControllerTest do
     setup(context) do
       user = build(:user)
 
-      conn = context.conn
-             |> log_in_as(user)
-             |> get(page_path(context.conn, :index, []))
+      conn =
+        context.conn
+        |> log_in_as(user)
+        |> get(page_path(context.conn, :index, []))
 
       response = html_response(conn, :ok)
 
@@ -90,13 +91,13 @@ defmodule AtomStyleTweaksWeb.PageControllerTest do
       assigned_tweaks = fetch_assign(context.conn, :tweaks)
 
       assert Enum.count(assigned_tweaks) == 3
-      assert Enum.all?(context.tweaks, &(Enum.member?(assigned_tweaks, &1)))
+      assert Enum.all?(context.tweaks, &Enum.member?(assigned_tweaks, &1))
     end
 
     test "displays the links to each tweak", context do
       links = find(context.response, "a.title")
 
-      assert Enum.all?(context.tweaks, fn(tweak) -> text(links) =~ tweak.title end)
+      assert Enum.all?(context.tweaks, fn tweak -> text(links) =~ tweak.title end)
     end
   end
 
@@ -105,7 +106,7 @@ defmodule AtomStyleTweaksWeb.PageControllerTest do
       insert(:tweak, title: "Init tweak", type: "init")
       tweak = insert(:tweak, title: "Style tweak", type: "style")
 
-      conn = get(context.conn, page_path(context.conn, :index, [type: :style]))
+      conn = get(context.conn, page_path(context.conn, :index, type: :style))
 
       response = html_response(conn, :ok)
 
@@ -132,7 +133,7 @@ defmodule AtomStyleTweaksWeb.PageControllerTest do
       tweak = insert(:tweak, title: "Init tweak", type: "init")
       insert(:tweak, title: "Style tweak", type: "style")
 
-      conn = get(context.conn, page_path(context.conn, :index, [type: :init]))
+      conn = get(context.conn, page_path(context.conn, :index, type: :init))
 
       response = html_response(conn, :ok)
 

@@ -4,9 +4,10 @@ defmodule AtomStyleTweaksWeb.PageController do
   alias AtomStyleTweaksWeb.Tweak
 
   def index(conn, params) do
-    query = Tweak
-            |> Tweak.sorted
-            |> Tweak.preload
+    query =
+      Tweak
+      |> Tweak.sorted()
+      |> Tweak.preload()
 
     query = if params["type"], do: Tweak.by_type(query, params["type"]), else: query
     tweaks = Repo.all(query)

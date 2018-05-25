@@ -74,7 +74,12 @@ defmodule Support.SetupHelpers do
   @doc """
   Builds a create tweak request for a different user than the one logged in.
   """
-  def request_create_tweak(%{conn: conn, current_user: _, request_user: user, tweak_params: tweak_params}) do
+  def request_create_tweak(%{
+        conn: conn,
+        current_user: _,
+        request_user: user,
+        tweak_params: tweak_params
+      }) do
     params = %{"name" => user.name, "tweak" => tweak_params}
 
     conn = post(conn, user_tweak_path(conn, :create, user.name), params)

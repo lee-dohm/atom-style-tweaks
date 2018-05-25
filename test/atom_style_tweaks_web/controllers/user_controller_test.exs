@@ -53,10 +53,11 @@ defmodule AtomStyleTweaksWeb.UserControllerTest do
         |> find("a.title")
 
       assert Enum.all?(context.tweaks, &(text(tweaks) =~ &1.title))
-      assert Enum.all?(context.tweaks, fn(tweak) ->
-        path = user_tweak_path(context.conn, :show, tweak.user.name, tweak.id)
-        Enum.member?(attribute(tweaks, "href"), path)
-      end)
+
+      assert Enum.all?(context.tweaks, fn tweak ->
+               path = user_tweak_path(context.conn, :show, tweak.user.name, tweak.id)
+               Enum.member?(attribute(tweaks, "href"), path)
+             end)
     end
   end
 
