@@ -28,6 +28,14 @@ else
   script/update
 fi
 
+echo "==> Checking format…"
+
+mix format --check-formatted
+
+echo "==> Running linter…"
+
+mix credo
+
 echo "==> Running tests…"
 
 if [ -n "$1" ]; then
