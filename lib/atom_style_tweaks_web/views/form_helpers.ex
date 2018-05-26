@@ -6,15 +6,16 @@ defmodule AtomStyleTweaksWeb.FormHelpers do
 
   alias AtomStyleTweaksWeb.ErrorHelpers
 
-  def form_group(errors, field, [do: block]), do: form_group(errors_for_field(errors, field), [do: block])
+  def form_group(errors, field, do: block),
+    do: form_group(errors_for_field(errors, field), do: block)
 
-  def form_group([], [do: block]) do
+  def form_group([], do: block) do
     content_tag(:dl, class: "form-group") do
       content_tag(:dd, block)
     end
   end
 
-  def form_group([error | _], [do: block]) do
+  def form_group([error | _], do: block) do
     content_tag(:dl, class: "form-group errored") do
       [
         content_tag(:dd, block),

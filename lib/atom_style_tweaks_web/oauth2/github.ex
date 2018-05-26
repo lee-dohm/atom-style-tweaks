@@ -12,7 +12,7 @@ defmodule GitHub do
       token_url: "https://github.com/login/oauth/access_token",
       client_id: System.get_env("GITHUB_CLIENT_ID"),
       client_secret: System.get_env("GITHUB_CLIENT_SECRET"),
-      redirect_uri: System.get_env("GITHUB_REDIRECT_URI"),
+      redirect_uri: System.get_env("GITHUB_REDIRECT_URI")
     ]
   end
 
@@ -21,7 +21,7 @@ defmodule GitHub do
   def client do
     Application.get_env(:atom_style_tweaks, GitHub)
     |> Keyword.merge(config())
-    |> OAuth2.Client.new
+    |> OAuth2.Client.new()
   end
 
   def authorize_url!(params \\ []) do

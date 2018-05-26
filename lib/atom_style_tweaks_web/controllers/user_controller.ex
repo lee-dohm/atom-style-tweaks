@@ -6,9 +6,11 @@ defmodule AtomStyleTweaksWeb.UserController do
 
   def show(conn, %{"id" => name}) do
     case Repo.get_by(User, name: name) do
-      nil -> not_found(conn)
+      nil ->
+        not_found(conn)
+
       user ->
-        tweaks = Repo.all(from t in Tweak, where: t.created_by == ^user.id, preload: [:user])
+        tweaks = Repo.all(from(t in Tweak, where: t.created_by == ^user.id, preload: [:user]))
 
         conn
         |> assign(:tweaks, tweaks)

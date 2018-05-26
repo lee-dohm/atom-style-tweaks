@@ -22,7 +22,7 @@ defmodule AtomStyleTweaksWeb.MarkdownEngine do
 
   @mention_link_pattern ~r{<a href="([^"]*)">(@[a-zA-Z0-9][a-zA-Z0-9-]*)</a>}
 
-  @spec render(String.t | nil) :: String.t
+  @spec render(String.t() | nil) :: String.t()
   def render(text), do: render(text, [])
 
   @doc """
@@ -30,7 +30,7 @@ defmodule AtomStyleTweaksWeb.MarkdownEngine do
 
   **See:** `Cmark.to_html/2`
   """
-  @spec render(String.t | nil, Keyword.t) :: String.t
+  @spec render(String.t() | nil, Keyword.t()) :: String.t()
   def render(nil, options), do: render("", options)
 
   def render(list, options) when is_list(list) do
@@ -39,7 +39,7 @@ defmodule AtomStyleTweaksWeb.MarkdownEngine do
 
   def render(text, _options) do
     funcs = [
-      fn (_, name) ->
+      fn _, name ->
         if User.exists?(name) do
           "[@#{name}](/users/#{name})"
         end
@@ -47,7 +47,7 @@ defmodule AtomStyleTweaksWeb.MarkdownEngine do
     ]
 
     text
-    |> Cmark.to_commonmark(&(replace_mention(&1, funcs)), [:validate_utf8])
+    |> Cmark.to_commonmark(&replace_mention(&1, funcs), [:validate_utf8])
     |> Cmark.to_html([:safe, :smart])
     |> String.replace(@mention_link_pattern, "<a class=\"at-mention\" href=\"\\1\">\\2</a>")
   end
@@ -57,7 +57,7 @@ defmodule AtomStyleTweaksWeb.MarkdownEngine do
   def replace_mention("", _), do: ""
 
   def replace_mention(text, funcs) do
-    Regex.replace(@mention_pattern, text, &(replace_mention(&1, &2, funcs)))
+    Regex.replace(@mention_pattern, text, &replace_mention(&1, &2, funcs))
   end
 
   defp first_replacement_wins(match, name, funcs) do

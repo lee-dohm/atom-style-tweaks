@@ -37,14 +37,15 @@ defmodule AtomStyleTweaksWeb.PageMetadata do
   tag in the page. A list of keyword lists can be supplied to add multiple items of metadata to be
   rendered.
   """
-  @spec add(Plug.Conn.t, list | keyword(String.t)) :: Plug.Conn.t
+  @spec add(Plug.Conn.t(), list | keyword(String.t())) :: Plug.Conn.t()
   def add(conn, nil), do: conn
   def add(conn, []), do: assign(conn, :page_metadata, get(conn))
+
   def add(conn, list) do
     if Keyword.keyword?(list) do
       assign(conn, :page_metadata, [list | get(conn)])
     else
-      Enum.reduce(list, conn, &(add(&2, &1)))
+      Enum.reduce(list, conn, &add(&2, &1))
     end
   end
 
@@ -55,11 +56,11 @@ defmodule AtomStyleTweaksWeb.PageMetadata do
   the `head` section of the page layout template, typically
   `app_name_web/templates/layout/app.html.eex`.
   """
-  @spec render(Plug.Conn.t) :: Phoenix.HTML.safe | nil
+  @spec render(Plug.Conn.t()) :: Phoenix.HTML.safe() | nil
   def render(conn) do
     case conn.assigns[:page_metadata] do
       nil -> nil
-      metadata -> Enum.map(metadata, fn(datum) -> tag(:meta, datum) end)
+      metadata -> Enum.map(metadata, fn datum -> tag(:meta, datum) end)
     end
   end
 

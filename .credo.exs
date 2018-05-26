@@ -19,8 +19,8 @@
         #
         # You can give explicit globs or simply directories.
         # In the latter case `**/*.{ex,exs}` will be used.
-        included: ["lib/", "src/", "apps/"],
-        excluded: ["lib/atom_style_tweaks_web/oauth2/", "test/support/", "spec/support/"]
+        included: ["lib/", "src/", "apps/", "test/"],
+        excluded: ["lib/atom_style_tweaks_web/oauth2/", "test/support/"]
       },
       #
       # If you create your own checks, you must specify the source files for

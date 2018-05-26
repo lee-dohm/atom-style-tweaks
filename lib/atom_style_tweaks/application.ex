@@ -7,7 +7,7 @@ defmodule AtomStyleTweaks.Application do
 
   alias AtomStyleTweaksWeb.Endpoint
 
-  @type octicon_name :: String.t | atom
+  @type octicon_name :: String.t() | atom
 
   # See http://elixir-lang.org/docs/stable/elixir/Application.html
   # for more information on OTP Applications
@@ -19,7 +19,7 @@ defmodule AtomStyleTweaks.Application do
       # Start the Ecto repository
       supervisor(AtomStyleTweaks.Repo, []),
       # Start the endpoint when the application starts
-      supervisor(AtomStyleTweaksWeb.Endpoint, []),
+      supervisor(AtomStyleTweaksWeb.Endpoint, [])
       # Start your own worker by calling: AtomStyleTweaks.Worker.start_link(arg1, arg2, arg3)
       # worker(AtomStyleTweaks.Worker, [arg1, arg2, arg3]),
     ]

@@ -1,31 +1,26 @@
 defmodule AtomStyleTweaks.Mixfile do
   use Mix.Project
 
-  @version String.trim(File.read!("VERSION"))
-
   def project do
     [
       app: :atom_style_tweaks,
-      version: @version,
-
+      version: "0.1.0",
       name: "Atom Tweaks",
       homepage_url: "https://www.atom-tweaks.com",
       source_url: "https://github.com/lee-dohm/atom-style-tweaks",
-
-      elixir: "~> 1.5",
-      elixirc_paths: elixirc_paths(Mix.env),
-      compilers: [:phoenix, :gettext] ++ Mix.compilers,
-      build_embedded: Mix.env == :prod,
-      start_permanent: Mix.env == :prod,
+      elixir: "~> 1.6",
+      elixirc_paths: elixirc_paths(Mix.env()),
+      compilers: [:phoenix, :gettext] ++ Mix.compilers(),
+      build_embedded: Mix.env() == :prod,
+      start_permanent: Mix.env() == :prod,
       aliases: aliases(),
       deps: deps(),
       docs: docs(),
-      test_coverage: [tool: ExCoveralls, test_task: "espec"],
+      test_coverage: [tool: ExCoveralls, test_task: "test"],
       preferred_cli_env: [
-        "coveralls": :test,
+        coveralls: :test,
         "coveralls.html": :test,
-        "coveralls.travis": :test,
-        espec: :test
+        "coveralls.travis": :test
       ]
     ]
   end
@@ -36,29 +31,31 @@ defmodule AtomStyleTweaks.Mixfile do
         AtomStyleTweaks.Application,
         []
       },
-      applications: app_list(Mix.env)
+      applications: app_list(Mix.env())
     ]
   end
 
   defp app_list(:dev), do: [:dotenv | app_list()]
   defp app_list(_), do: app_list()
-  defp app_list, do: [
-    :phoenix,
-    :phoenix_pubsub,
-    :phoenix_html,
-    :cowboy,
-    :logger,
-    :gettext,
-    :phoenix_ecto,
-    :postgrex,
-    :oauth2,
-    :tzdata,
-    :octicons
-  ]
+
+  defp app_list,
+    do: [
+      :phoenix,
+      :phoenix_pubsub,
+      :phoenix_html,
+      :cowboy,
+      :logger,
+      :gettext,
+      :phoenix_ecto,
+      :postgrex,
+      :oauth2,
+      :tzdata,
+      :octicons
+    ]
 
   # Specifies which paths to compile per environment.
-  defp elixirc_paths(:test), do: ["lib", "test/support", "spec/support"]
-  defp elixirc_paths(_),     do: ["lib"]
+  defp elixirc_paths(:test), do: ["lib", "test/support"]
+  defp elixirc_paths(_), do: ["lib"]
 
   defp deps do
     [
@@ -82,8 +79,7 @@ defmodule AtomStyleTweaks.Mixfile do
       {:html_entities, "~> 0.4.0", only: :test},
       {:floki, "~> 0.20.0", only: :test},
       {:excoveralls, "~> 0.6", only: :test},
-      {:espec_phoenix, "~> 0.6.9", only: :test},
-      {:espec_phoenix_helpers, github: "lee-dohm/espec_phoenix_helpers", branch: "redirect-to-match", only: :test}
+      {:credo, "~> 0.9.2", only: [:dev, :test], runtime: false}
     ]
   end
 
