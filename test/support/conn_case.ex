@@ -1,4 +1,4 @@
-defmodule AtomStyleTweaksWeb.ConnCase do
+defmodule AtomTweaksWeb.ConnCase do
   @moduledoc """
   This module defines the test case to be used by
   tests that require setting up a connection.
@@ -22,8 +22,8 @@ defmodule AtomStyleTweaksWeb.ConnCase do
 
       import Phoenix.Controller
 
-      import AtomStyleTweaks.Factory
-      import AtomStyleTweaksWeb.Router.Helpers
+      import AtomTweaks.Factory
+      import AtomTweaksWeb.Router.Helpers
 
       import Floki, only: [attribute: 2, find: 2, text: 1]
 
@@ -32,15 +32,15 @@ defmodule AtomStyleTweaksWeb.ConnCase do
       import Test.Helpers
 
       # The default endpoint for testing
-      @endpoint AtomStyleTweaksWeb.Endpoint
+      @endpoint AtomTweaksWeb.Endpoint
     end
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(AtomStyleTweaks.Repo)
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(AtomTweaks.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(AtomStyleTweaks.Repo, {:shared, self()})
+      Ecto.Adapters.SQL.Sandbox.mode(AtomTweaks.Repo, {:shared, self()})
     end
 
     {:ok, conn: Phoenix.ConnTest.build_conn()}

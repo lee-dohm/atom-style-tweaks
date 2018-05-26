@@ -1,2 +1,2 @@
-alias AtomStyleTweaksWeb.Tweak
-alias AtomStyleTweaksWeb.User
+alias AtomTweaksWeb.Tweak
+alias AtomTweaksWeb.User

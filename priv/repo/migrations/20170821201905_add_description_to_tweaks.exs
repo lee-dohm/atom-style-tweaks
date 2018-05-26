@@ -1,4 +1,4 @@
-defmodule AtomStyleTweaks.Repo.Migrations.AddDescriptionToTweaks do
+defmodule AtomTweaks.Repo.Migrations.AddDescriptionToTweaks do
   use Ecto.Migration
 
   def change do

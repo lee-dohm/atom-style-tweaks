@@ -1,9 +1,9 @@
-defmodule AtomStyleTweaks.Mixfile do
+defmodule AtomTweaks.Mixfile do
   use Mix.Project
 
   def project do
     [
-      app: :atom_style_tweaks,
+      app: :atom_tweaks,
       version: "0.1.0",
       name: "Atom Tweaks",
       homepage_url: "https://www.atom-tweaks.com",
@@ -28,7 +28,7 @@ defmodule AtomStyleTweaks.Mixfile do
   def application do
     [
       mod: {
-        AtomStyleTweaks.Application,
+        AtomTweaks.Application,
         []
       },
       applications: app_list(Mix.env())

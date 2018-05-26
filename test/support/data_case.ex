@@ -1,4 +1,4 @@
-defmodule AtomStyleTweaks.DataCase do
+defmodule AtomTweaks.DataCase do
   @moduledoc """
   This module defines the setup for tests requiring
   access to the application's data layer.
@@ -16,14 +16,14 @@ defmodule AtomStyleTweaks.DataCase do
 
   using do
     quote do
-      alias AtomStyleTweaks.Repo
+      alias AtomTweaks.Repo
 
       import Ecto
       import Ecto.Changeset
       import Ecto.Query
 
-      import AtomStyleTweaks.DataCase
-      import AtomStyleTweaks.Factory
+      import AtomTweaks.DataCase
+      import AtomTweaks.Factory
 
       import Support.AssertHelpers
       import Support.SetupHelpers
@@ -31,10 +31,10 @@ defmodule AtomStyleTweaks.DataCase do
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(AtomStyleTweaks.Repo)
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(AtomTweaks.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(AtomStyleTweaks.Repo, {:shared, self()})
+      Ecto.Adapters.SQL.Sandbox.mode(AtomTweaks.Repo, {:shared, self()})
     end
 
     :ok

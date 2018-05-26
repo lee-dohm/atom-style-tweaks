@@ -73,4 +73,4 @@ end
 
 ExUnit.start()
 
-Ecto.Adapters.SQL.Sandbox.mode(AtomStyleTweaks.Repo, :manual)
+Ecto.Adapters.SQL.Sandbox.mode(AtomTweaks.Repo, :manual)

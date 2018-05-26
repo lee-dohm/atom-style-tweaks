@@ -1,4 +1,4 @@
-defmodule AtomStyleTweaks.Repo.Migrations.CreateStyle do
+defmodule AtomTweaks.Repo.Migrations.CreateStyle do
   use Ecto.Migration
 
   def change do

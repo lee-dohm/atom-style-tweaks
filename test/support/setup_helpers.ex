@@ -7,10 +7,10 @@ defmodule Support.SetupHelpers do
   """
   import Phoenix.ConnTest
 
-  import AtomStyleTweaks.Factory
-  import AtomStyleTweaksWeb.Router.Helpers
+  import AtomTweaks.Factory
+  import AtomTweaksWeb.Router.Helpers
 
-  @endpoint AtomStyleTweaksWeb.Endpoint
+  @endpoint AtomTweaksWeb.Endpoint
 
   def insert_tweak(%{current_user: user}) do
     tweak = insert(:tweak, user: user)
