@@ -26,6 +26,15 @@ defmodule AtomTweaksWeb.UserControllerTest do
       refute has_selector?(html_response(context.conn, :ok), "#staff-badge")
     end
 
+    test "displays the GitHub link", context do
+      link =
+        context.conn
+        |> html_response(:ok)
+        |> find("a#github-link")
+
+      assert hd(attribute(link, "href")) == "https://github.com/#{context.user.name}"
+    end
+
     test "does not show the new tweak button", context do
       refute has_selector?(html_response(context.conn, :ok), "#new-tweak-button")
     end
