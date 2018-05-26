@@ -25,11 +25,11 @@ defmodule AtomTweaksWeb.SlidingSessionTimeoutTest do
 
   describe "when a timeout exists in the config" do
     setup do
-      Application.put_env(:atom_tweaks, SlidingSessionTimeout, [timeout: 5_000])
+      Application.put_env(:atom_tweaks, SlidingSessionTimeout, timeout: 5_000)
 
-      on_exit fn ->
+      on_exit(fn ->
         Application.put_env(:atom_tweaks, SlidingSessionTimeout, nil)
-      end
+      end)
     end
 
     test "uses the configuration value", _context do

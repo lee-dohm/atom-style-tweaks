@@ -55,23 +55,27 @@ defmodule AtomTweaksWeb.MarkdownEngineTest do
 
     test "returns text without mentions unchanged", context do
       assert MarkdownEngine.replace_mention(context.no_mentions, context.funcs) ==
-        context.no_mentions
+               context.no_mentions
     end
 
     test "replaces mentions that are handled by a function", context do
-      assert MarkdownEngine.replace_mention(context.tweaks_mention, context.funcs) == "This text has a tweaks-replacement in it"
+      assert MarkdownEngine.replace_mention(context.tweaks_mention, context.funcs) ==
+               "This text has a tweaks-replacement in it"
     end
 
     test "replaces mentions that are handled by any function in the list", context do
-      assert MarkdownEngine.replace_mention(context.github_mention, context.funcs) == "This text has a github-replacement in it"
+      assert MarkdownEngine.replace_mention(context.github_mention, context.funcs) ==
+               "This text has a github-replacement in it"
     end
 
     test "replaces mentions with the earliest matching function", context do
-      assert MarkdownEngine.replace_mention(context.both_mention, context.funcs) == "This text has a tweaks-replacement in it"
+      assert MarkdownEngine.replace_mention(context.both_mention, context.funcs) ==
+               "This text has a tweaks-replacement in it"
     end
 
     test "does not call later functions if an earlier one matches", context do
-      assert MarkdownEngine.replace_mention(context.tweaks_mention, [&tweaks/2, &bad_func/2]) == "This text has a tweaks-replacement in it"
+      assert MarkdownEngine.replace_mention(context.tweaks_mention, [&tweaks/2, &bad_func/2]) ==
+               "This text has a tweaks-replacement in it"
     end
   end
 end
