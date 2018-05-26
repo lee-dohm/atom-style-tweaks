@@ -21,13 +21,13 @@ defmodule AtomTweaksWeb.HerokuMetadataTest do
         "HEROKU_SLUG_DESCRIPTION"
       ]
 
-      Enum.each(environment_variable_names, fn(name) ->
+      Enum.each(environment_variable_names, fn name ->
         System.put_env(name, "#{name} test")
       end)
 
-      on_exit fn ->
-        Enum.each(environment_variable_names, fn(name) -> System.delete_env(name) end)
-      end
+      on_exit(fn ->
+        Enum.each(environment_variable_names, fn name -> System.delete_env(name) end)
+      end)
 
       {:ok, env_names: environment_variable_names}
     end
@@ -36,9 +36,10 @@ defmodule AtomTweaksWeb.HerokuMetadataTest do
       metadata = HerokuMetadata.get()
 
       assert length(metadata) == 7
-      assert Enum.all?(context.env_names, fn(name) ->
-        Enum.member?(metadata, [name: name, content: "#{name} test"])
-      end)
+
+      assert Enum.all?(context.env_names, fn name ->
+               Enum.member?(metadata, name: name, content: "#{name} test")
+             end)
     end
 
     test "when only is given", _context do
@@ -46,9 +47,10 @@ defmodule AtomTweaksWeb.HerokuMetadataTest do
       metadata = HerokuMetadata.get(only: only)
 
       assert length(metadata) == 2
-      assert Enum.all?(only, fn(name) ->
-        Enum.member?(metadata, [name: name, content: "#{name} test"])
-      end)
+
+      assert Enum.all?(only, fn name ->
+               Enum.member?(metadata, name: name, content: "#{name} test")
+             end)
     end
 
     test "when except is given", _context do
@@ -56,9 +58,10 @@ defmodule AtomTweaksWeb.HerokuMetadataTest do
       metadata = HerokuMetadata.get(except: except)
 
       assert length(metadata) == 5
-      assert Enum.all?(except, fn(name) ->
-        not Enum.member?(metadata, [name: name, content: "#{name} test"])
-      end)
+
+      assert Enum.all?(except, fn name ->
+               not Enum.member?(metadata, name: name, content: "#{name} test")
+             end)
     end
   end
 end

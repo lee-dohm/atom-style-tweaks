@@ -9,8 +9,7 @@ defmodule AtomTweaks.Ecto.MarkdownTest do
     end
 
     test "a Markdown struct returns the struct" do
-      {:ok, %AtomTweaks.Markdown{} = markdown} =
-        Markdown.cast(%AtomTweaks.Markdown{text: "test"})
+      {:ok, %AtomTweaks.Markdown{} = markdown} = Markdown.cast(%AtomTweaks.Markdown{text: "test"})
 
       assert markdown.text == "test"
       assert is_nil(markdown.html)
