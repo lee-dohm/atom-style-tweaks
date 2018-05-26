@@ -40,7 +40,7 @@ defmodule AtomStyleTweaksWeb.RenderHelpers do
   """
   @spec render_many_or_blank(Enum.t(), atom, String.t(), String.t(), map) :: Phoenix.HTML.safe()
   def render_many_or_blank(enumerable, view, many_template, blank_template, assigns) do
-    if Enum.count(enumerable) == 0 do
+    if Enum.empty?(enumerable) do
       render(view, blank_template, assigns)
     else
       render_many(enumerable, view, many_template, assigns)

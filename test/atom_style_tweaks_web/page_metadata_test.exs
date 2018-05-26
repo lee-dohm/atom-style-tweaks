@@ -4,6 +4,8 @@ defmodule AtomStyleTweaksWeb.PageMetadataTest do
 
   alias AtomStyleTweaksWeb.PageMetadata
 
+  alias Phoenix.HTML
+
   def add_metadata(conn, metadata) do
     conn = PageMetadata.add(conn, metadata)
 
@@ -18,8 +20,8 @@ defmodule AtomStyleTweaksWeb.PageMetadataTest do
   end
 
   defp render_fixup(nil), do: nil
-  defp render_fixup(list) when is_list(list), do: Enum.reduce(list, "", fn(safe, acc) -> "#{acc} #{Phoenix.HTML.safe_to_string(safe)}" end)
-  defp render_fixup(safe), do: Phoenix.HTML.safe_to_string(safe)
+  defp render_fixup(list) when is_list(list), do: Enum.reduce(list, "", fn(safe, acc) -> "#{acc} #{HTML.safe_to_string(safe)}" end)
+  defp render_fixup(safe), do: HTML.safe_to_string(safe)
 
   describe "add" do
     setup context do

@@ -3,7 +3,10 @@ defmodule AtomStyleTweaksWeb.SlidingSessionTimeoutTest do
 
   alias AtomStyleTweaksWeb.SlidingSessionTimeout
 
-  def timeout_at(conn), do: Plug.Conn.get_session(conn, :timeout_at)
+  alias Plug.Conn
+  alias Plug.Test
+
+  def timeout_at(conn), do: Conn.get_session(conn, :timeout_at)
   def now, do: DateTime.to_unix(DateTime.utc_now())
 
   describe "init" do
@@ -38,7 +41,7 @@ defmodule AtomStyleTweaksWeb.SlidingSessionTimeoutTest do
     test "sets the correct timeout value when no timeout exists in the session", context do
       timeout =
         context.conn
-        |> Plug.Test.init_test_session(%{})
+        |> Test.init_test_session(%{})
         |> get("/")
         |> timeout_at()
 
@@ -48,7 +51,7 @@ defmodule AtomStyleTweaksWeb.SlidingSessionTimeoutTest do
     test "renews the timeout when the timeout value exists but hasn't timed out", context do
       timeout =
         context.conn
-        |> Plug.Test.init_test_session(%{timeout_at: now() + 1_000})
+        |> Test.init_test_session(%{timeout_at: now() + 1_000})
         |> get("/")
         |> timeout_at()
 
@@ -58,13 +61,13 @@ defmodule AtomStyleTweaksWeb.SlidingSessionTimeoutTest do
     test "does the needful when the session is timed out", context do
       conn =
         context.conn
-        |> Plug.Test.init_test_session(%{current_user: "foo", timeout_at: now() - 1_000})
+        |> Test.init_test_session(%{current_user: "foo", timeout_at: now() - 1_000})
         |> get("/")
 
       timeout = timeout_at(conn)
 
       assert timeout == nil
-      assert Plug.Conn.get_session(conn, :current_user) == nil
+      assert Conn.get_session(conn, :current_user) == nil
       assert conn.assigns.timed_out?
     end
   end

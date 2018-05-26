@@ -54,7 +54,8 @@ defmodule AtomStyleTweaksWeb.MarkdownEngineTest do
     end
 
     test "returns text without mentions unchanged", context do
-      assert MarkdownEngine.replace_mention(context.no_mentions, context.funcs) == context.no_mentions
+      assert MarkdownEngine.replace_mention(context.no_mentions, context.funcs) ==
+        context.no_mentions
     end
 
     test "replaces mentions that are handled by a function", context do
