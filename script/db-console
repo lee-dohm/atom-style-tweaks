@@ -6,4 +6,4 @@ cd "$(dirname "$0")/.."
 
 [ -z "$DEBUG" ] || set -x
 
-psql -d atom_style_tweaks_dev -U postgres
+psql -d atom_tweaks_dev -U postgres

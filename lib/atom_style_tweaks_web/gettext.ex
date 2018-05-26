@@ -20,5 +20,5 @@ defmodule AtomTweaksWeb.Gettext do
 
   See the [Gettext Docs](https://hexdocs.pm/gettext) for detailed usage.
   """
-  use Gettext, otp_app: :atom_style_tweaks
+  use Gettext, otp_app: :atom_tweaks
 end

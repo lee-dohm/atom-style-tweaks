@@ -3,7 +3,7 @@ defmodule AtomTweaks.Mixfile do
 
   def project do
     [
-      app: :atom_style_tweaks,
+      app: :atom_tweaks,
       version: "0.1.0",
       name: "Atom Tweaks",
       homepage_url: "https://www.atom-tweaks.com",

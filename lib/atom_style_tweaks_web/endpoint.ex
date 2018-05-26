@@ -1,5 +1,5 @@
 defmodule AtomTweaksWeb.Endpoint do
-  use Phoenix.Endpoint, otp_app: :atom_style_tweaks
+  use Phoenix.Endpoint, otp_app: :atom_tweaks
 
   socket("/socket", AtomTweaksWeb.UserSocket)
 
@@ -10,7 +10,7 @@ defmodule AtomTweaksWeb.Endpoint do
   plug(
     Plug.Static,
     at: "/",
-    from: :atom_style_tweaks,
+    from: :atom_tweaks,
     gzip: false,
     only: ~w(css fonts images js favicon.ico robots.txt)
   )
@@ -42,7 +42,7 @@ defmodule AtomTweaksWeb.Endpoint do
   plug(
     Plug.Session,
     store: :cookie,
-    key: "_atom_style_tweaks_key",
+    key: "_atom_tweaks_key",
     signing_salt: "nuIGe3Ew"
   )
 

@@ -19,7 +19,7 @@ defmodule GitHub do
   # Public API
 
   def client do
-    Application.get_env(:atom_style_tweaks, GitHub)
+    Application.get_env(:atom_tweaks, GitHub)
     |> Keyword.merge(config())
     |> OAuth2.Client.new()
   end

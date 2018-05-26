@@ -67,7 +67,7 @@ defmodule AtomTweaksWeb.PageMetadata do
   defp default_metadata(conn) do
     [
       [property: "og:url", content: "#{conn.scheme}://#{conn.host}#{conn.request_path}"],
-      [property: "og:site_name", content: Application.get_env(:atom_style_tweaks, :site_name)]
+      [property: "og:site_name", content: Application.get_env(:atom_tweaks, :site_name)]
     ]
   end
 

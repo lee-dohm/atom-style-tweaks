@@ -43,7 +43,7 @@ defmodule AtomTweaksWeb do
   def view do
     quote do
       use Phoenix.View,
-        root: "lib/atom_style_tweaks_web/templates",
+        root: "lib/atom_tweaks_web/templates",
         namespace: AtomTweaksWeb
 
       # Import convenience functions from controllers

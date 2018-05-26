@@ -6,12 +6,12 @@
 use Mix.Config
 
 # General application configuration
-config :atom_style_tweaks,
+config :atom_tweaks,
   ecto_repos: [AtomTweaks.Repo],
   site_name: "Atom Tweaks"
 
 # Configures the endpoint
-config :atom_style_tweaks, AtomTweaksWeb.Endpoint,
+config :atom_tweaks, AtomTweaksWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "NmI5A1GsVl5vf6o3m3+7/3NoWleK8mK6cG0cR2X6cyrrdlokEwRTfpE9H8vk0NoP",
   render_errors: [view: AtomTweaksWeb.ErrorView, accepts: ~w(html json)],
@@ -23,7 +23,7 @@ config :logger, :console,
   metadata: [:request_id]
 
 # Configure GitHub OAuth2 parameters
-config :atom_style_tweaks, GitHub,
+config :atom_tweaks, GitHub,
   client_id: System.get_env("GITHUB_CLIENT_ID"),
   client_secret: System.get_env("GITHUB_CLIENT_SECRET"),
   redirect_uri: System.get_env("GITHUB_REDIRECT_URI")
