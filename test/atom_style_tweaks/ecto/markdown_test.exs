@@ -1,16 +1,16 @@
-defmodule AtomStyleTweaks.Ecto.MarkdownTest do
+defmodule AtomTweaks.Ecto.MarkdownTest do
   use ExUnit.Case
 
-  alias AtomStyleTweaks.Ecto.Markdown
+  alias AtomTweaks.Ecto.Markdown
 
   describe "casting" do
     test "a binary returns a Markdown struct" do
-      {:ok, %AtomStyleTweaks.Markdown{}} = Markdown.cast("foo")
+      {:ok, %AtomTweaks.Markdown{}} = Markdown.cast("foo")
     end
 
     test "a Markdown struct returns the struct" do
-      {:ok, %AtomStyleTweaks.Markdown{} = markdown} =
-        Markdown.cast(%AtomStyleTweaks.Markdown{text: "test"})
+      {:ok, %AtomTweaks.Markdown{} = markdown} =
+        Markdown.cast(%AtomTweaks.Markdown{text: "test"})
 
       assert markdown.text == "test"
       assert is_nil(markdown.html)
@@ -23,7 +23,7 @@ defmodule AtomStyleTweaks.Ecto.MarkdownTest do
 
   describe "loading" do
     test "a binary returns a rendered Markdown struct" do
-      {:ok, %AtomStyleTweaks.Markdown{} = markdown} = Markdown.load("test")
+      {:ok, %AtomTweaks.Markdown{} = markdown} = Markdown.load("test")
 
       assert markdown.text == "test"
       assert markdown.html == "<p>test</p>\n"
@@ -36,7 +36,7 @@ defmodule AtomStyleTweaks.Ecto.MarkdownTest do
 
   describe "dumping" do
     test "a Markdown struct returns the text value" do
-      {:ok, text} = Markdown.dump(%AtomStyleTweaks.Markdown{text: "test"})
+      {:ok, text} = Markdown.dump(%AtomTweaks.Markdown{text: "test"})
 
       assert text == "test"
     end

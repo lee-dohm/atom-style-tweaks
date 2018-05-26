@@ -1,9 +1,9 @@
-defmodule AtomStyleTweaksWeb.HerokuMetadata do
+defmodule AtomTweaksWeb.HerokuMetadata do
   @moduledoc """
   A `Plug` that adds [Heroku metadata](https://devcenter.heroku.com/articles/dyno-metadata) to the
   metadata to be rendered on the page via the `PageMetadata` system.
   """
-  alias AtomStyleTweaksWeb.PageMetadata
+  alias AtomTweaksWeb.PageMetadata
 
   def init(options), do: options
 

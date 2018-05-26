@@ -1,21 +1,21 @@
-defmodule AtomStyleTweaks.Ecto.Markdown do
+defmodule AtomTweaks.Ecto.Markdown do
   @moduledoc """
   An `Ecto.Type` that handles the conversion between a string in the database and a
-  `AtomStyleTweaks.Markdown` struct in memory.
+  `AtomTweaks.Markdown` struct in memory.
 
   Use this as the type of the database field in the schema:
 
   ```
-  defmodule AtomStyleTweaksWeb.Tweak do
+  defmodule AtomTweaksWeb.Tweak do
     use Ecto.Schema
-    alias AtomStyleTweaks.Ecto.Markdown
+    alias AtomTweaks.Ecto.Markdown
 
     schema "tweaks" do
       field :title, :string
       field :code, :string
       field :type, :string
       field :description, Markdown
-      belongs_to :user, AtomStyleTweaksWeb.User, foreign_key: :created_by, type: :binary_id
+      belongs_to :user, AtomTweaksWeb.User, foreign_key: :created_by, type: :binary_id
 
       timestamps()
     end
@@ -24,7 +24,7 @@ defmodule AtomStyleTweaks.Ecto.Markdown do
 
   This type requires special handling in forms because Phoenix's form builder functions call
   `Phoenix.HTML.html_escape/1` on all field values, which returns the `html` field on this type. But
-  what we want when we show an `t:AtomStyleTweaks.Ecto.Markdown.t/0` value in a form is the `text` field.
+  what we want when we show an `t:AtomTweaks.Ecto.Markdown.t/0` value in a form is the `text` field.
 
   See: [Beyond Functions in Elixir: Refactoring for Maintainability][beyond-functions]
 
@@ -47,10 +47,10 @@ defmodule AtomStyleTweaks.Ecto.Markdown do
   """
   @impl Ecto.Type
   def cast(binary) when is_binary(binary) do
-    {:ok, %AtomStyleTweaks.Markdown{text: binary}}
+    {:ok, %AtomTweaks.Markdown{text: binary}}
   end
 
-  def cast(markdown = %AtomStyleTweaks.Markdown{}), do: {:ok, markdown}
+  def cast(markdown = %AtomTweaks.Markdown{}), do: {:ok, markdown}
   def cast(_other), do: :error
 
   @doc """
@@ -61,7 +61,7 @@ defmodule AtomStyleTweaks.Ecto.Markdown do
   @impl Ecto.Type
   def load(binary) when is_binary(binary) do
     # credo:disable-for-next-line
-    {:ok, %AtomStyleTweaks.Markdown{text: binary, html: AtomStyleTweaks.Markdown.to_html(binary)}}
+    {:ok, %AtomTweaks.Markdown{text: binary, html: AtomTweaks.Markdown.to_html(binary)}}
   end
 
   def load(_other), do: :error
@@ -72,7 +72,7 @@ defmodule AtomStyleTweaks.Ecto.Markdown do
   See: `c:Ecto.Type.dump/1`
   """
   @impl Ecto.Type
-  def dump(%AtomStyleTweaks.Markdown{text: binary}) when is_binary(binary) do
+  def dump(%AtomTweaks.Markdown{text: binary}) when is_binary(binary) do
     {:ok, binary}
   end
 

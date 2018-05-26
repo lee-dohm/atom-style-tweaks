@@ -1,14 +1,14 @@
-defmodule AtomStyleTweaksWeb.AuthController do
+defmodule AtomTweaksWeb.AuthController do
   @moduledoc """
   Handles authentication for the application via GitHub OAuth2 user flow.
   """
-  use AtomStyleTweaksWeb, :controller
+  use AtomTweaksWeb, :controller
 
   require Logger
 
   alias OAuth2.Client, as: OAuthClient
 
-  alias AtomStyleTweaksWeb.User
+  alias AtomTweaksWeb.User
 
   @doc """
   Signs the user in by redirecting to the GitHub authorization URL.

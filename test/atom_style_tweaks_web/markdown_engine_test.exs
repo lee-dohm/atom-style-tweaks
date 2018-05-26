@@ -1,7 +1,7 @@
-defmodule AtomStyleTweaksWeb.MarkdownEngineTest do
+defmodule AtomTweaksWeb.MarkdownEngineTest do
   use ExUnit.Case
 
-  alias AtomStyleTweaksWeb.MarkdownEngine
+  alias AtomTweaksWeb.MarkdownEngine
 
   def bad_func(_, _) do
     raise "bummer"

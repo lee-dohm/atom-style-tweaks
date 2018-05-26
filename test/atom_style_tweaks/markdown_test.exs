@@ -1,10 +1,10 @@
-defmodule AtomStyleTweaks.MarkdownTest do
+defmodule AtomTweaks.MarkdownTest do
   use ExUnit.Case
-  doctest AtomStyleTweaks.Markdown
+  doctest AtomTweaks.Markdown
 
   import Phoenix.HTML.Safe, only: [to_iodata: 1]
 
-  alias AtomStyleTweaks.Markdown
+  alias AtomTweaks.Markdown
 
   describe "Phoenix.HTML.Safe" do
     test "implements the protocol" do

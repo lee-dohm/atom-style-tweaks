@@ -19,4 +19,4 @@
           h3 = gettext "%{user_name} doesn't have any tweaks yet", user_name: @user.name
     - else
       h3 = gettext "Tweaks"
-      = render_many(@tweaks, AtomStyleTweaksWeb.TweakView, "table_row.html", conn: @conn)
+      = render_many(@tweaks, AtomTweaksWeb.TweakView, "table_row.html", conn: @conn)

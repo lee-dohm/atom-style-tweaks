@@ -1,4 +1,4 @@
-defmodule AtomStyleTweaks.Mixfile do
+defmodule AtomTweaks.Mixfile do
   use Mix.Project
 
   def project do
@@ -28,7 +28,7 @@ defmodule AtomStyleTweaks.Mixfile do
   def application do
     [
       mod: {
-        AtomStyleTweaks.Application,
+        AtomTweaks.Application,
         []
       },
       applications: app_list(Mix.env())

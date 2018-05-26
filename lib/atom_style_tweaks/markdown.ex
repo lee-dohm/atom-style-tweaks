@@ -1,8 +1,8 @@
-defmodule AtomStyleTweaks.Markdown do
+defmodule AtomTweaks.Markdown do
   @moduledoc """
   A structure that represents a chunk of Markdown to be rendered.
   """
-  alias AtomStyleTweaksWeb.MarkdownEngine
+  alias AtomTweaksWeb.MarkdownEngine
 
   @type t :: %__MODULE__{text: String.t(), html: nil | String.t()}
   defstruct text: "", html: nil
@@ -17,28 +17,28 @@ defmodule AtomStyleTweaks.Markdown do
   Render Markdown from a string:
 
   ```
-  iex> AtomStyleTweaks.Markdown.to_html("# Foo")
+  iex> AtomTweaks.Markdown.to_html("# Foo")
   "<h1>Foo</h1>\n"
   ```
 
   Render Markdown from an unrendered `Markdown` struct:
 
   ```
-  iex> AtomStyleTweaks.Markdown.to_html(%AtomStyleTweaks.Markdown{text: "# Foo"})
+  iex> AtomTweaks.Markdown.to_html(%AtomTweaks.Markdown{text: "# Foo"})
   "<h1>Foo</h1>\n"
   ```
 
   Passes already rendered Markdown through unchanged:
 
   ```
-  iex> AtomStyleTweaks.Markdown.to_html(%AtomStyleTweaks.Markdown{html: "<p>foo</p>"})
+  iex> AtomTweaks.Markdown.to_html(%AtomTweaks.Markdown{html: "<p>foo</p>"})
   "<p>foo</p>"
   ```
 
   Returns an empty string for anything that isn't a string or a `Markdown` struct:
 
   ```
-  iex> AtomStyleTweaks.Markdown.to_html(5)
+  iex> AtomTweaks.Markdown.to_html(5)
   ""
   ```
   """
@@ -58,8 +58,8 @@ defmodule AtomStyleTweaks.Markdown do
 
   defimpl Phoenix.HTML.Safe do
     # credo:disable-for-lines:2
-    def to_iodata(markdown = %AtomStyleTweaks.Markdown{}) do
-      AtomStyleTweaks.Markdown.to_iodata(markdown)
+    def to_iodata(markdown = %AtomTweaks.Markdown{}) do
+      AtomTweaks.Markdown.to_iodata(markdown)
     end
   end
 end

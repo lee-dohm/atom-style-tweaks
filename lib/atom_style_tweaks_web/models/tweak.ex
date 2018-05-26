@@ -1,11 +1,11 @@
-defmodule AtomStyleTweaksWeb.Tweak do
+defmodule AtomTweaksWeb.Tweak do
   @moduledoc """
   Represents a tweak.
   """
 
-  use AtomStyleTweaksWeb, :model
+  use AtomTweaksWeb, :model
 
-  alias AtomStyleTweaksWeb.Tweak
+  alias AtomTweaksWeb.Tweak
 
   @type t :: %Tweak{}
 
@@ -16,7 +16,7 @@ defmodule AtomStyleTweaksWeb.Tweak do
     field(:code, :string)
     field(:type, :string)
     field(:description, :string)
-    belongs_to(:user, AtomStyleTweaksWeb.User, foreign_key: :created_by, type: :binary_id)
+    belongs_to(:user, AtomTweaksWeb.User, foreign_key: :created_by, type: :binary_id)
 
     timestamps()
   end

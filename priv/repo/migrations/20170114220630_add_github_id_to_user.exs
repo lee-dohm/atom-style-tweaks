@@ -1,4 +1,4 @@
-defmodule AtomStyleTweaks.Repo.Migrations.AddGithubIdToUser do
+defmodule AtomTweaks.Repo.Migrations.AddGithubIdToUser do
   use Ecto.Migration
 
   def change do

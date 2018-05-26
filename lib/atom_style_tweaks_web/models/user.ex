@@ -1,12 +1,12 @@
-defmodule AtomStyleTweaksWeb.User do
+defmodule AtomTweaksWeb.User do
   @moduledoc """
   Represents a user of the application.
   """
 
-  use AtomStyleTweaksWeb, :model
+  use AtomTweaksWeb, :model
 
-  alias AtomStyleTweaks.Repo
-  alias AtomStyleTweaksWeb.User
+  alias AtomTweaks.Repo
+  alias AtomTweaksWeb.User
 
   @type t :: %User{}
 

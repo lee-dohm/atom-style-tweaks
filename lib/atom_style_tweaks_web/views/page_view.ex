@@ -1,5 +1,5 @@
-defmodule AtomStyleTweaksWeb.PageView do
-  use AtomStyleTweaksWeb, :view
+defmodule AtomTweaksWeb.PageView do
+  use AtomTweaksWeb, :view
 
-  alias AtomStyleTweaksWeb.TweakView
+  alias AtomTweaksWeb.TweakView
 end

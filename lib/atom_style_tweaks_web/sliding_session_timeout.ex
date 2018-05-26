@@ -1,4 +1,4 @@
-defmodule AtomStyleTweaksWeb.SlidingSessionTimeout do
+defmodule AtomTweaksWeb.SlidingSessionTimeout do
   @moduledoc """
   Times out the session after a period of inactivity.
 
@@ -6,7 +6,7 @@ defmodule AtomStyleTweaksWeb.SlidingSessionTimeout do
   timeout is given as a number of seconds.
 
   ```
-  config :my_app, AtomStyleTweaks.SlidingSessionTimeout,
+  config :my_app, AtomTweaks.SlidingSessionTimeout,
     timeout: 1_234
   ```
   """

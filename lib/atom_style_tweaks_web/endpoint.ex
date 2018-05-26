@@ -1,7 +1,7 @@
-defmodule AtomStyleTweaksWeb.Endpoint do
+defmodule AtomTweaksWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :atom_style_tweaks
 
-  socket("/socket", AtomStyleTweaksWeb.UserSocket)
+  socket("/socket", AtomTweaksWeb.UserSocket)
 
   # Serve at "/" the static files from "priv/static" directory.
   #
@@ -46,5 +46,5 @@ defmodule AtomStyleTweaksWeb.Endpoint do
     signing_salt: "nuIGe3Ew"
   )
 
-  plug(AtomStyleTweaksWeb.Router)
+  plug(AtomTweaksWeb.Router)
 end

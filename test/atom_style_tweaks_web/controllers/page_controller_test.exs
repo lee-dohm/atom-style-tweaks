@@ -1,5 +1,5 @@
-defmodule AtomStyleTweaksWeb.PageControllerTest do
-  use AtomStyleTweaksWeb.ConnCase
+defmodule AtomTweaksWeb.PageControllerTest do
+  use AtomTweaksWeb.ConnCase
 
   describe "GET home page" do
     setup(context) do

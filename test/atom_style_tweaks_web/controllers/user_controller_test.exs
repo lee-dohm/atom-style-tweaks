@@ -1,5 +1,5 @@
-defmodule AtomStyleTweaksWeb.UserControllerTest do
-  use AtomStyleTweaksWeb.ConnCase
+defmodule AtomTweaksWeb.UserControllerTest do
+  use AtomTweaksWeb.ConnCase
 
   describe "show regular user without tweaks when not logged in" do
     setup [:insert_user, :request_show_user]

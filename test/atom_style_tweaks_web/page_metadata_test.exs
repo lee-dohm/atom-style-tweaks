@@ -1,8 +1,8 @@
-defmodule AtomStyleTweaksWeb.PageMetadataTest do
-  use AtomStyleTweaksWeb.ConnCase
+defmodule AtomTweaksWeb.PageMetadataTest do
+  use AtomTweaksWeb.ConnCase
   use Phoenix.HTML
 
-  alias AtomStyleTweaksWeb.PageMetadata
+  alias AtomTweaksWeb.PageMetadata
 
   alias Phoenix.HTML
 

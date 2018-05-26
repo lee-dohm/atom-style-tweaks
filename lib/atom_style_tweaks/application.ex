@@ -1,11 +1,11 @@
-defmodule AtomStyleTweaks.Application do
+defmodule AtomTweaks.Application do
   @moduledoc """
-  The AtomStyleTweaks application.
+  The AtomTweaks application.
   """
 
   use Application
 
-  alias AtomStyleTweaksWeb.Endpoint
+  alias AtomTweaksWeb.Endpoint
 
   @type octicon_name :: String.t() | atom
 
@@ -17,16 +17,16 @@ defmodule AtomStyleTweaks.Application do
     # Define workers and child supervisors to be supervised
     children = [
       # Start the Ecto repository
-      supervisor(AtomStyleTweaks.Repo, []),
+      supervisor(AtomTweaks.Repo, []),
       # Start the endpoint when the application starts
-      supervisor(AtomStyleTweaksWeb.Endpoint, [])
-      # Start your own worker by calling: AtomStyleTweaks.Worker.start_link(arg1, arg2, arg3)
-      # worker(AtomStyleTweaks.Worker, [arg1, arg2, arg3]),
+      supervisor(AtomTweaksWeb.Endpoint, [])
+      # Start your own worker by calling: AtomTweaks.Worker.start_link(arg1, arg2, arg3)
+      # worker(AtomTweaks.Worker, [arg1, arg2, arg3]),
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
     # for other strategies and supported options
-    opts = [strategy: :one_for_one, name: AtomStyleTweaks.Supervisor]
+    opts = [strategy: :one_for_one, name: AtomTweaks.Supervisor]
     Supervisor.start_link(children, opts)
   end
 

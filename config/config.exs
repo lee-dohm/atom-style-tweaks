@@ -7,15 +7,15 @@ use Mix.Config
 
 # General application configuration
 config :atom_style_tweaks,
-  ecto_repos: [AtomStyleTweaks.Repo],
+  ecto_repos: [AtomTweaks.Repo],
   site_name: "Atom Tweaks"
 
 # Configures the endpoint
-config :atom_style_tweaks, AtomStyleTweaksWeb.Endpoint,
+config :atom_style_tweaks, AtomTweaksWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "NmI5A1GsVl5vf6o3m3+7/3NoWleK8mK6cG0cR2X6cyrrdlokEwRTfpE9H8vk0NoP",
-  render_errors: [view: AtomStyleTweaksWeb.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: AtomStyleTweaksWeb.PubSub, adapter: Phoenix.PubSub.PG2]
+  render_errors: [view: AtomTweaksWeb.ErrorView, accepts: ~w(html json)],
+  pubsub: [name: AtomTweaksWeb.PubSub, adapter: Phoenix.PubSub.PG2]
 
 # Configures Elixir's Logger
 config :logger, :console,
@@ -37,7 +37,7 @@ config :phoenix, :template_engines,
   slime: PhoenixSlime.Engine
 
 config :slime, :embedded_engines, %{
-  markdown: AtomStyleTweaksWeb.MarkdownEngine
+  markdown: AtomTweaksWeb.MarkdownEngine
 }
 
 # Import environment specific config. This must remain at the bottom

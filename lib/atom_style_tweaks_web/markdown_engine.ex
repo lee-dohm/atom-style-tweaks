@@ -1,10 +1,10 @@
-defmodule AtomStyleTweaksWeb.MarkdownEngine do
+defmodule AtomTweaksWeb.MarkdownEngine do
   @moduledoc """
   Renders Markdown into HTML.
 
   Used both directly and within Slime templates.
   """
-  alias AtomStyleTweaksWeb.User
+  alias AtomTweaksWeb.User
 
   @behaviour Slime.Parser.EmbeddedEngine
 

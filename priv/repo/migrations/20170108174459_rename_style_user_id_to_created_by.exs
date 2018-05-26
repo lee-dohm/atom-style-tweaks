@@ -1,4 +1,4 @@
-defmodule AtomStyleTweaks.Repo.Migrations.RenameStyleUserIdToCreatedBy do
+defmodule AtomTweaks.Repo.Migrations.RenameStyleUserIdToCreatedBy do
   use Ecto.Migration
 
   def change do

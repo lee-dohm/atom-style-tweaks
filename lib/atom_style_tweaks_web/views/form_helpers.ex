@@ -1,10 +1,10 @@
-defmodule AtomStyleTweaksWeb.FormHelpers do
+defmodule AtomTweaksWeb.FormHelpers do
   @moduledoc """
   Functions for more easily building forms.
   """
   use Phoenix.HTML
 
-  alias AtomStyleTweaksWeb.ErrorHelpers
+  alias AtomTweaksWeb.ErrorHelpers
 
   def form_group(errors, field, do: block),
     do: form_group(errors_for_field(errors, field), do: block)

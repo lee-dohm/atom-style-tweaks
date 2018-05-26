@@ -1,4 +1,4 @@
-defmodule AtomStyleTweaksWeb.MenuHelpers do
+defmodule AtomTweaksWeb.MenuHelpers do
   @moduledoc """
   Functions for more easily building menu items.
   """
@@ -17,7 +17,7 @@ defmodule AtomStyleTweaksWeb.MenuHelpers do
 
   Returns the constructed menu item.
   """
-  @spec menu_item(String.t(), String.t(), String.t(), AtomStyleTweaks.octicon_name(), boolean) ::
+  @spec menu_item(String.t(), String.t(), String.t(), AtomTweaks.octicon_name(), boolean) ::
           Phoenix.HTML.safe()
   def menu_item(id, link, text, octicon, selected) do
     class = if selected, do: "menu-item selected", else: "menu-item"

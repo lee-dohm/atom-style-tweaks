@@ -5,14 +5,14 @@
 # Inside the script, you can read and write to any of your
 # repositories directly:
 #
-#     AtomStyleTweaks.Repo.insert!(%AtomStyleTweaks.SomeModel{})
+#     AtomTweaks.Repo.insert!(%AtomTweaks.SomeModel{})
 #
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
 
-alias AtomStyleTweaks.Repo
-alias AtomStyleTweaksWeb.Tweak
-alias AtomStyleTweaksWeb.User
+alias AtomTweaks.Repo
+alias AtomTweaksWeb.Tweak
+alias AtomTweaksWeb.User
 
 users = [
   %{name: "lee-dohm", github_id: 1_038_121, avatar_url: "https://avatars.githubusercontent.com/u/1038121?v=3", site_admin: true},

@@ -1,4 +1,4 @@
-defmodule AtomStyleTweaks.Repo.Migrations.ConvertStyleCodeToTextType do
+defmodule AtomTweaks.Repo.Migrations.ConvertStyleCodeToTextType do
   use Ecto.Migration
 
   def change do

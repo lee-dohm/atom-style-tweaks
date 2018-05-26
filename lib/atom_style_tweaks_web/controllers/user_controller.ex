@@ -1,8 +1,8 @@
-defmodule AtomStyleTweaksWeb.UserController do
-  use AtomStyleTweaksWeb, :controller
+defmodule AtomTweaksWeb.UserController do
+  use AtomTweaksWeb, :controller
 
-  alias AtomStyleTweaksWeb.Tweak
-  alias AtomStyleTweaksWeb.User
+  alias AtomTweaksWeb.Tweak
+  alias AtomTweaksWeb.User
 
   def show(conn, %{"id" => name}) do
     case Repo.get_by(User, name: name) do
@@ -22,6 +22,6 @@ defmodule AtomStyleTweaksWeb.UserController do
   defp not_found(conn) do
     conn
     |> put_status(:not_found)
-    |> render(AtomStyleTweaksWeb.ErrorView, "404.html")
+    |> render(AtomTweaksWeb.ErrorView, "404.html")
   end
 end

@@ -6,7 +6,7 @@ use Mix.Config
 # The watchers configuration can be used to run external
 # watchers to your application. For example, we use it
 # with brunch.io to recompile .js and .css sources.
-config :atom_style_tweaks, AtomStyleTweaksWeb.Endpoint,
+config :atom_style_tweaks, AtomTweaksWeb.Endpoint,
   http: [port: 4000],
   debug_errors: true,
   code_reloader: true,
@@ -21,7 +21,7 @@ config :atom_style_tweaks, AtomStyleTweaksWeb.Endpoint,
   ]
 
 # Watch static and templates for browser reloading.
-config :atom_style_tweaks, AtomStyleTweaksWeb.Endpoint,
+config :atom_style_tweaks, AtomTweaksWeb.Endpoint,
   live_reload: [
     patterns: [
       ~r{priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$},
@@ -32,7 +32,7 @@ config :atom_style_tweaks, AtomStyleTweaksWeb.Endpoint,
   ]
 
 # Timeout sessions in one minute in the development environment
-config :atom_style_tweaks, AtomStyleTweaksWeb.SlidingSessionTimeout, timeout: 60
+config :atom_style_tweaks, AtomTweaksWeb.SlidingSessionTimeout, timeout: 60
 
 # Do not include metadata nor timestamps in development logs
 config :logger, :console, format: "[$level] $message\n"
@@ -45,7 +45,7 @@ config :phoenix, :stacktrace_depth, 20
 # config :slime, :keep_lines, true
 
 # Configure your database
-config :atom_style_tweaks, AtomStyleTweaks.Repo,
+config :atom_style_tweaks, AtomTweaks.Repo,
   adapter: Ecto.Adapters.Postgres,
   username: "postgres",
   password: "postgres",

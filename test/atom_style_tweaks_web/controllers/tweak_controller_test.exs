@@ -1,5 +1,5 @@
-defmodule AtomStyleTweaksWeb.TweakControllerTest do
-  use AtomStyleTweaksWeb.ConnCase
+defmodule AtomTweaksWeb.TweakControllerTest do
+  use AtomTweaksWeb.ConnCase
 
   describe "create tweak when not logged in" do
     setup [:insert_user, :valid_tweak_params, :request_create_tweak]

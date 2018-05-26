@@ -1,7 +1,7 @@
-defmodule AtomStyleTweaksWeb.HerokuMetadataTest do
+defmodule AtomTweaksWeb.HerokuMetadataTest do
   use ExUnit.Case
 
-  alias AtomStyleTweaksWeb.HerokuMetadata
+  alias AtomTweaksWeb.HerokuMetadata
 
   describe "when not on Heroku" do
     test "does not return any metadata", _context do

@@ -1,12 +1,12 @@
-defmodule AtomStyleTweaksWeb do
+defmodule AtomTweaksWeb do
   @moduledoc """
   A module that keeps using definitions for controllers,
   views and so on.
 
   This can be used in your application as:
 
-      use AtomStyleTweaks.Web, :controller
-      use AtomStyleTweaks.Web, :view
+      use AtomTweaks.Web, :controller
+      use AtomTweaks.Web, :view
 
   The definitions below will be executed for every view,
   controller, etc, so keep them short and clean, focused
@@ -20,7 +20,7 @@ defmodule AtomStyleTweaksWeb do
     quote do
       use Ecto.Schema
 
-      alias AtomStyleTweaks.Repo
+      alias AtomTweaks.Repo
       import Ecto
       import Ecto.Changeset
       import Ecto.Query
@@ -29,14 +29,14 @@ defmodule AtomStyleTweaksWeb do
 
   def controller do
     quote do
-      use Phoenix.Controller, namespace: AtomStyleTweaksWeb
+      use Phoenix.Controller, namespace: AtomTweaksWeb
 
-      alias AtomStyleTweaks.Repo
+      alias AtomTweaks.Repo
       import Ecto
       import Ecto.Query
 
-      import AtomStyleTweaksWeb.Router.Helpers
-      import AtomStyleTweaksWeb.Gettext
+      import AtomTweaksWeb.Router.Helpers
+      import AtomTweaksWeb.Gettext
     end
   end
 
@@ -44,7 +44,7 @@ defmodule AtomStyleTweaksWeb do
     quote do
       use Phoenix.View,
         root: "lib/atom_style_tweaks_web/templates",
-        namespace: AtomStyleTweaksWeb
+        namespace: AtomTweaksWeb
 
       # Import convenience functions from controllers
       import Phoenix.Controller, only: [get_csrf_token: 0, get_flash: 2, view_module: 1]
@@ -53,19 +53,19 @@ defmodule AtomStyleTweaksWeb do
       use Phoenix.HTML
 
       # Built-in view helpers
-      import AtomStyleTweaksWeb.Router.Helpers
-      import AtomStyleTweaksWeb.ErrorHelpers
-      import AtomStyleTweaksWeb.Gettext
+      import AtomTweaksWeb.Router.Helpers
+      import AtomTweaksWeb.ErrorHelpers
+      import AtomTweaksWeb.Gettext
 
       # Project-specific view helpers
       import PhoenixOcticons
 
-      import AtomStyleTweaksWeb.AvatarHelpers
-      import AtomStyleTweaksWeb.FormHelpers
-      import AtomStyleTweaksWeb.MenuHelpers
-      import AtomStyleTweaksWeb.OcticonHelpers
-      import AtomStyleTweaksWeb.RenderHelpers
-      import AtomStyleTweaksWeb.TimeHelpers
+      import AtomTweaksWeb.AvatarHelpers
+      import AtomTweaksWeb.FormHelpers
+      import AtomTweaksWeb.MenuHelpers
+      import AtomTweaksWeb.OcticonHelpers
+      import AtomTweaksWeb.RenderHelpers
+      import AtomTweaksWeb.TimeHelpers
     end
   end
 
@@ -79,10 +79,10 @@ defmodule AtomStyleTweaksWeb do
     quote do
       use Phoenix.Channel
 
-      alias AtomStyleTweaks.Repo
+      alias AtomTweaks.Repo
       import Ecto
       import Ecto.Query
-      import AtomStyleTweaksWeb.Gettext
+      import AtomTweaksWeb.Gettext
     end
   end
 

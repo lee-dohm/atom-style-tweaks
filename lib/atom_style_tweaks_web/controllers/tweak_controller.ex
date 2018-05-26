@@ -1,10 +1,10 @@
-defmodule AtomStyleTweaksWeb.TweakController do
-  use AtomStyleTweaksWeb, :controller
+defmodule AtomTweaksWeb.TweakController do
+  use AtomTweaksWeb, :controller
 
-  alias AtomStyleTweaksWeb.ErrorView
-  alias AtomStyleTweaksWeb.PageMetadata
-  alias AtomStyleTweaksWeb.Tweak
-  alias AtomStyleTweaksWeb.User
+  alias AtomTweaksWeb.ErrorView
+  alias AtomTweaksWeb.PageMetadata
+  alias AtomTweaksWeb.Tweak
+  alias AtomTweaksWeb.User
 
   require Logger
 

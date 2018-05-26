@@ -1,4 +1,4 @@
-defmodule AtomStyleTweaksWeb.TimeHelpers do
+defmodule AtomTweaksWeb.TimeHelpers do
   @moduledoc """
   Helper functions for dealing with time.
   """
@@ -6,7 +6,7 @@ defmodule AtomStyleTweaksWeb.TimeHelpers do
   use Phoenix.HTML
 
   def relative_time(from) do
-    from_now = Timex.from_now(from, Gettext.get_locale(AtomStyleTweaksWeb.Gettext))
+    from_now = Timex.from_now(from, Gettext.get_locale(AtomTweaksWeb.Gettext))
     title = strip_fractional_seconds(from)
 
     content_tag(:"time-ago", from_now, title: title)

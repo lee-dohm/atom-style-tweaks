@@ -1,4 +1,4 @@
-defmodule AtomStyleTweaksWeb.ErrorHelpers do
+defmodule AtomTweaksWeb.ErrorHelpers do
   @moduledoc """
   Conveniences for translating and building error messages.
   """
@@ -23,9 +23,9 @@ defmodule AtomStyleTweaksWeb.ErrorHelpers do
     #     dgettext "errors", "is invalid"
     #
     if count = opts[:count] do
-      Gettext.dngettext(AtomStyleTweaksWeb.Gettext, "errors", msg, msg, count, opts)
+      Gettext.dngettext(AtomTweaksWeb.Gettext, "errors", msg, msg, count, opts)
     else
-      Gettext.dgettext(AtomStyleTweaksWeb.Gettext, "errors", msg, opts)
+      Gettext.dgettext(AtomTweaksWeb.Gettext, "errors", msg, opts)
     end
   end
 end

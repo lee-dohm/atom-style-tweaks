@@ -1,11 +1,11 @@
-defmodule AtomStyleTweaksWeb.OcticonHelpers do
+defmodule AtomTweaksWeb.OcticonHelpers do
   @moduledoc """
   Helper functions for displaying [Octicons](https://octicons.github.com).
   """
 
   use Phoenix.HTML
 
-  alias AtomStyleTweaksWeb.Tweak
+  alias AtomTweaksWeb.Tweak
 
   @doc """
   Draws the appropriate Octicon for the given `tweak`.

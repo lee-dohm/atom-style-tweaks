@@ -1,4 +1,4 @@
-defmodule AtomStyleTweaksWeb.RenderHelpers do
+defmodule AtomTweaksWeb.RenderHelpers do
   @moduledoc """
   Helper functions for rendering templates.
   """
@@ -6,8 +6,8 @@ defmodule AtomStyleTweaksWeb.RenderHelpers do
 
   use Phoenix.HTML
 
-  alias AtomStyleTweaksWeb.MarkdownEngine
-  alias AtomStyleTweaksWeb.Tweak
+  alias AtomTweaksWeb.MarkdownEngine
+  alias AtomTweaksWeb.Tweak
 
   @doc """
   Renders the code for the given `tweak`.

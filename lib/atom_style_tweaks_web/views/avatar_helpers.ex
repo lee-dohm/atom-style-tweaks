@@ -1,11 +1,11 @@
-defmodule AtomStyleTweaksWeb.AvatarHelpers do
+defmodule AtomTweaksWeb.AvatarHelpers do
   @moduledoc """
   Helper functions for displaying [avatars](http://primercss.io/avatars/).
   """
 
   use Phoenix.HTML
 
-  alias AtomStyleTweaksWeb.User
+  alias AtomTweaksWeb.User
 
   @doc """
   Displays the avatar for the `user`.

@@ -1,5 +1,5 @@
-defmodule AtomStyleTweaksWeb.AuthControllerTest do
-  use AtomStyleTweaksWeb.ConnCase
+defmodule AtomTweaksWeb.AuthControllerTest do
+  use AtomTweaksWeb.ConnCase
 
   describe "GET index" do
     test "redirects to the GitHub authorization URL", context do

@@ -1,7 +1,7 @@
-defmodule AtomStyleTweaksWeb.SlidingSessionTimeoutTest do
-  use AtomStyleTweaksWeb.ConnCase
+defmodule AtomTweaksWeb.SlidingSessionTimeoutTest do
+  use AtomTweaksWeb.ConnCase
 
-  alias AtomStyleTweaksWeb.SlidingSessionTimeout
+  alias AtomTweaksWeb.SlidingSessionTimeout
 
   alias Plug.Conn
   alias Plug.Test

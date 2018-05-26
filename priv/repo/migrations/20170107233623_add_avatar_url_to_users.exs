@@ -1,4 +1,4 @@
-defmodule AtomStyleTweaks.Repo.Migrations.AddAvatarUrlToUsers do
+defmodule AtomTweaks.Repo.Migrations.AddAvatarUrlToUsers do
   use Ecto.Migration
 
   def change do

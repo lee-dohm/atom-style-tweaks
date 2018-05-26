@@ -1,11 +1,11 @@
-defmodule AtomStyleTweaksWeb.Router do
-  use AtomStyleTweaksWeb, :router
+defmodule AtomTweaksWeb.Router do
+  use AtomTweaksWeb, :router
   use Plug.ErrorHandler
 
   require Logger
 
-  alias AtomStyleTweaksWeb.HerokuMetadata
-  alias AtomStyleTweaksWeb.SlidingSessionTimeout
+  alias AtomTweaksWeb.HerokuMetadata
+  alias AtomTweaksWeb.SlidingSessionTimeout
   alias Phoenix.Router.NoRouteError
   alias Plug.Conn
 
@@ -24,7 +24,7 @@ defmodule AtomStyleTweaksWeb.Router do
     plug(:accepts, ["json"])
   end
 
-  scope "/auth", AtomStyleTweaksWeb do
+  scope "/auth", AtomTweaksWeb do
     pipe_through(:browser)
 
     get("/", AuthController, :index)
@@ -32,7 +32,7 @@ defmodule AtomStyleTweaksWeb.Router do
     get("/logout", AuthController, :delete)
   end
 
-  scope "/", AtomStyleTweaksWeb do
+  scope "/", AtomTweaksWeb do
     # Use the default browser stack
     pipe_through(:browser)
 
@@ -45,7 +45,7 @@ defmodule AtomStyleTweaksWeb.Router do
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", AtomStyleTweaksWeb do
+  # scope "/api", AtomTweaksWeb do
   #   pipe_through :api
   # end
 

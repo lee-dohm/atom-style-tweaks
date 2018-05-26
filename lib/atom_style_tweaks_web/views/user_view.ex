@@ -1,3 +1,3 @@
-defmodule AtomStyleTweaksWeb.UserView do
-  use AtomStyleTweaksWeb, :view
+defmodule AtomTweaksWeb.UserView do
+  use AtomTweaksWeb, :view
 end

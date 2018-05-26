@@ -1,10 +1,10 @@
-defmodule AtomStyleTweaks.Factory do
-  use ExMachina.Ecto, repo: AtomStyleTweaks.Repo
+defmodule AtomTweaks.Factory do
+  use ExMachina.Ecto, repo: AtomTweaks.Repo
 
   alias FakerElixir, as: Faker
 
-  alias AtomStyleTweaksWeb.Tweak
-  alias AtomStyleTweaksWeb.User
+  alias AtomTweaksWeb.Tweak
+  alias AtomTweaksWeb.User
 
   def user_factory do
     %User{

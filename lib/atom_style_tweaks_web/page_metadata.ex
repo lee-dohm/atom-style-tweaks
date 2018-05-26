@@ -1,4 +1,4 @@
-defmodule AtomStyleTweaksWeb.PageMetadata do
+defmodule AtomTweaksWeb.PageMetadata do
   @moduledoc """
   A system for easily setting metadata for the page before it is rendered.
 

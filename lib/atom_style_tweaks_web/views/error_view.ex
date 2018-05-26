@@ -1,5 +1,5 @@
-defmodule AtomStyleTweaksWeb.ErrorView do
-  use AtomStyleTweaksWeb, :view
+defmodule AtomTweaksWeb.ErrorView do
+  use AtomTweaksWeb, :view
 
   def render("404.html", _assigns) do
     "Page not found"

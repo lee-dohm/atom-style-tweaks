@@ -1,4 +1,4 @@
-defmodule AtomStyleTweaks.Repo.Migrations.RenameStylesTable do
+defmodule AtomTweaks.Repo.Migrations.RenameStylesTable do
   use Ecto.Migration
 
   def change do
