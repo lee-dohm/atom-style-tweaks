@@ -226,7 +226,7 @@ defmodule AtomTweaksWeb.TweakControllerTest do
         |> html_response(:ok)
         |> find(".tweak-description")
 
-      assert text(description) == context.tweak.description
+      assert text(description) == context.tweak.description.text
     end
 
     test "does not show the edit button", context do
@@ -261,7 +261,7 @@ defmodule AtomTweaksWeb.TweakControllerTest do
         |> html_response(:ok)
         |> find(".tweak-description")
 
-      assert text(description) == context.tweak.description
+      assert text(description) == context.tweak.description.text
     end
 
     test "shows the edit button", context do
@@ -296,7 +296,7 @@ defmodule AtomTweaksWeb.TweakControllerTest do
         |> html_response(:ok)
         |> find(".tweak-description")
 
-      assert text(description) == context.tweak.description
+      assert text(description) == context.tweak.description.text
     end
 
     test "does not show the edit button", context do

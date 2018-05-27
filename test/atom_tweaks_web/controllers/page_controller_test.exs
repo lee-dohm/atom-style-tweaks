@@ -91,7 +91,7 @@ defmodule AtomTweaksWeb.PageControllerTest do
       assigned_tweaks = fetch_assign(context.conn, :tweaks)
 
       assert Enum.count(assigned_tweaks) == 3
-      assert Enum.all?(context.tweaks, &Enum.member?(assigned_tweaks, &1))
+      assert Enum.all?(context.tweaks, &Enum.find(assigned_tweaks, fn(item) -> item.id == &1.id end))
     end
 
     test "displays the links to each tweak", context do
@@ -117,7 +117,7 @@ defmodule AtomTweaksWeb.PageControllerTest do
       assigned_tweaks = fetch_assign(context.conn, :tweaks)
 
       assert Enum.count(assigned_tweaks) == 1
-      assert Enum.member?(assigned_tweaks, context.tweak)
+      assert hd(assigned_tweaks).id == context.tweak.id
     end
 
     test "displays only the style tweak link", context do
@@ -144,7 +144,7 @@ defmodule AtomTweaksWeb.PageControllerTest do
       assigned_tweaks = fetch_assign(context.conn, :tweaks)
 
       assert Enum.count(assigned_tweaks) == 1
-      assert Enum.member?(assigned_tweaks, context.tweak)
+      assert hd(assigned_tweaks).id == context.tweak.id
     end
 
     test "displays only the init tweak link", context do

@@ -3,6 +3,8 @@ defmodule AtomTweaks.Factory do
 
   alias FakerElixir, as: Faker
 
+  alias AtomTweaks.Markdown
+
   alias AtomTweaksWeb.Tweak
   alias AtomTweaksWeb.User
 
@@ -19,7 +21,7 @@ defmodule AtomTweaks.Factory do
     %Tweak{
       title: Faker.Lorem.words(2..4),
       code: "atom-text-editor { font-style: normal; }",
-      description: Faker.Lorem.sentences(),
+      description: %Markdown{text: Faker.Lorem.sentences()},
       type: "style",
       user: build(:user)
     }
