@@ -6,7 +6,6 @@ defmodule AtomTweaksWeb.RenderHelpers do
 
   use Phoenix.HTML
 
-  alias AtomTweaksWeb.MarkdownEngine
   alias AtomTweaksWeb.Tweak
 
   @doc """
@@ -18,12 +17,6 @@ defmodule AtomTweaksWeb.RenderHelpers do
       content_tag(:code, tweak.code, class: code_class_for(tweak), id: "code")
     end
   end
-
-  @doc """
-  Renders the given Markdown text into HTML.
-  """
-  @spec render_markdown(String.t()) :: Phoenix.HTML.safe()
-  def render_markdown(text), do: raw(MarkdownEngine.render(text, []))
 
   @doc """
   Renders the template if the condition is truthy.

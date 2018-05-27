@@ -5,6 +5,7 @@ defmodule AtomTweaksWeb.Tweak do
 
   use AtomTweaksWeb, :model
 
+  alias AtomTweaks.Ecto.Markdown
   alias AtomTweaksWeb.Tweak
 
   @type t :: %Tweak{}
@@ -15,7 +16,7 @@ defmodule AtomTweaksWeb.Tweak do
     field(:title, :string)
     field(:code, :string)
     field(:type, :string)
-    field(:description, :string)
+    field(:description, Markdown)
     belongs_to(:user, AtomTweaksWeb.User, foreign_key: :created_by, type: :binary_id)
 
     timestamps()
