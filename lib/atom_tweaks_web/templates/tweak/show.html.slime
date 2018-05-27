@@ -13,4 +13,4 @@
     = render("copy_tweak_button.html", assigns)
   = render_code(@tweak)
   .tweak-description.markdown-body
-    = render_markdown(@tweak.description)
+    = @tweak.description
