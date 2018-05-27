@@ -91,7 +91,11 @@ defmodule AtomTweaksWeb.PageControllerTest do
       assigned_tweaks = fetch_assign(context.conn, :tweaks)
 
       assert Enum.count(assigned_tweaks) == 3
-      assert Enum.all?(context.tweaks, &Enum.find(assigned_tweaks, fn(item) -> item.id == &1.id end))
+
+      assert Enum.all?(
+               context.tweaks,
+               &Enum.find(assigned_tweaks, fn item -> item.id == &1.id end)
+             )
     end
 
     test "displays the links to each tweak", context do
