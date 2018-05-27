@@ -8,6 +8,6 @@
   .four-fifths.column
     .Box
       .Box-header
-        h3 = gettext "Tweaks"
+        h3 = tweak_title(@params["type"])
       div
         = render_many_or_blank(@tweaks, TweakView, "table_row.html", "blankslate.html", assigns)
