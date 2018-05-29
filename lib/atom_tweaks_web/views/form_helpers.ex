@@ -89,7 +89,13 @@ defmodule AtomTweaksWeb.FormHelpers do
   defp input(:tweak_type, form, field, _input_opts) do
     selected = Form.input_value(form, field)
 
-    select(form, field, [Init: "init", Style: "style"], selected: selected)
+    select(
+      form,
+      field,
+      [Init: "init", Style: "style"],
+      prompt: "Select tweak type",
+      selected: selected
+    )
   end
 
   defp input(type, form, field, input_opts) do
