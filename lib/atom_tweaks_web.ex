@@ -63,6 +63,7 @@ defmodule AtomTweaksWeb do
       import AtomTweaksWeb.AvatarHelpers
       import AtomTweaksWeb.FormHelpers
       import AtomTweaksWeb.MenuHelpers
+      import AtomTweaksWeb.PrimerHelpers
       import AtomTweaksWeb.OcticonHelpers
       import AtomTweaksWeb.RenderHelpers
       import AtomTweaksWeb.TimeHelpers
