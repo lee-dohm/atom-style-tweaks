@@ -3,8 +3,8 @@ defmodule AtomTweaksWeb.TweakController do
 
   alias AtomTweaksWeb.ErrorView
   alias AtomTweaksWeb.PageMetadata
-  alias AtomTweaksWeb.Tweak
-  alias AtomTweaksWeb.User
+  alias AtomTweaks.Tweak
+  alias AtomTweaks.User
 
   require Logger
 

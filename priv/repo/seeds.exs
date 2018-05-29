@@ -11,8 +11,8 @@
 # and so on) as they will fail if something goes wrong.
 
 alias AtomTweaks.Repo
-alias AtomTweaksWeb.Tweak
-alias AtomTweaksWeb.User
+alias AtomTweaks.Tweak
+alias AtomTweaks.User
 
 if System.get_env("MIX_ENV") != "test" do
   users = [

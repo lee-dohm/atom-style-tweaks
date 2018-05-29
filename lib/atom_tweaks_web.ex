@@ -15,18 +15,6 @@ defmodule AtomTweaksWeb do
   Do NOT define functions inside the quoted expressions
   below.
   """
-
-  def model do
-    quote do
-      use Ecto.Schema
-
-      alias AtomTweaks.Repo
-      import Ecto
-      import Ecto.Changeset
-      import Ecto.Query
-    end
-  end
-
   def controller do
     quote do
       use Phoenix.Controller, namespace: AtomTweaksWeb
