@@ -36,7 +36,7 @@ defmodule AtomTweaksWeb.Tweak do
 
   def preload(query), do: from(t in query, preload: [:user])
 
-  def sorted(query), do: from(t in query, order_by: [desc: :updated_at])
+  def sorted(query), do: from(t in query, order_by: [desc: :inserted_at])
 
   def to_metadata(tweak) do
     [
