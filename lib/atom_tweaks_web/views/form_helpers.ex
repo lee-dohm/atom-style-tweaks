@@ -27,6 +27,19 @@ defmodule AtomTweaksWeb.FormHelpers do
     end
   end
 
+  @doc """
+  Displays the appropriate input control for the given field.
+
+  ## Options
+
+  * `:using` -- override the built-in selection of input field based on data type. Can be any of the
+    `Phoenix.HTML.Form` input function names or the special value `:markdown` which displays a
+    specially-formatted `textarea`
+
+  See:
+  [Dynamic forms with Phoenix](http://blog.plataformatec.com.br/2016/09/dynamic-forms-with-phoenix/)
+  """
+  @spec input(Phoenix.HTML.FormData.t(), atom, keyword) :: Phoenix.HTML.safe()
   def input(form, field, options \\ []) do
     type = options[:using] || Form.input_type(form, field)
 
