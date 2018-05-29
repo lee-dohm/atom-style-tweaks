@@ -55,7 +55,7 @@ defmodule AtomTweaksWeb.TweakController do
       |> Repo.get(id)
       |> Repo.preload([:user])
 
-    changeset = Tweak.changeset(%Tweak{})
+    changeset = Tweak.changeset(tweak)
 
     render(
       conn,
