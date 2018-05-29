@@ -6,8 +6,6 @@ defmodule AtomTweaksWeb.Router do
 
   alias AtomTweaksWeb.HerokuMetadata
   alias AtomTweaksWeb.SlidingSessionTimeout
-  alias Phoenix.Router.NoRouteError
-  alias Plug.Conn
 
   pipeline :browser do
     plug(:accepts, ["html"])
@@ -74,28 +72,28 @@ defmodule AtomTweaksWeb.Router do
     conn
   end
 
-  defp handle_errors(_, %{kind: :error, reason: %NoRouteError{}}), do: :ok
-
-  defp handle_errors(conn, %{kind: kind, reason: reason, stack: stacktrace}) do
-    conn =
-      conn
-      |> Conn.fetch_cookies()
-      |> Conn.fetch_query_params()
-
-    conn_data = %{
-      "request" => %{
-        "cookies" => conn.req_cookies,
-        "url" => "#{conn.scheme}://#{conn.host}:#{conn.port}#{conn.request_path}",
-        "user_ip" => conn.remote_ip |> Tuple.to_list() |> Enum.join("."),
-        "headers" => Enum.into(conn.req_headers, %{}),
-        "params" => conn.params,
-        "method" => conn.method
-      },
-      "server" => %{
-        "pid" => System.get_env("MY_SERVER_PID"),
-        "host" => "#{System.get_env("MY_HOSTNAME")}:#{System.get_env("MY_PORT")}",
-        "root" => System.get_env("MY_APPLICATION_PATH")
-      }
-    }
-  end
+  # defp handle_errors(_, %{kind: :error, reason: %NoRouteError{}}), do: :ok
+  #
+  # defp handle_errors(conn, %{kind: _kind, reason: _reason, stack: _stacktrace}) do
+  #   conn =
+  #     conn
+  #     |> Conn.fetch_cookies()
+  #     |> Conn.fetch_query_params()
+  #
+  #   conn_data = %{
+  #     "request" => %{
+  #       "cookies" => conn.req_cookies,
+  #       "url" => "#{conn.scheme}://#{conn.host}:#{conn.port}#{conn.request_path}",
+  #       "user_ip" => conn.remote_ip |> Tuple.to_list() |> Enum.join("."),
+  #       "headers" => Enum.into(conn.req_headers, %{}),
+  #       "params" => conn.params,
+  #       "method" => conn.method
+  #     },
+  #     "server" => %{
+  #       "pid" => System.get_env("MY_SERVER_PID"),
+  #       "host" => "#{System.get_env("MY_HOSTNAME")}:#{System.get_env("MY_PORT")}",
+  #       "root" => System.get_env("MY_APPLICATION_PATH")
+  #     }
+  #   }
+  # end
 end
