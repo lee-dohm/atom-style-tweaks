@@ -8,6 +8,8 @@ defmodule AtomTweaks.User do
   import Ecto.Query
 
   alias AtomTweaks.Repo
+  alias AtomTweaks.Star
+  alias AtomTweaks.Tweak
   alias AtomTweaks.User
 
   @derive {Phoenix.Param, key: :name}
@@ -19,6 +21,8 @@ defmodule AtomTweaks.User do
     field(:github_id, :integer)
     field(:name, :string)
     field(:site_admin, :boolean, default: false)
+
+    many_to_many(:tweaks, Tweak, join_through: Star, on_replace: :delete, on_delete: :delete_all)
 
     timestamps()
   end
