@@ -8,7 +8,7 @@ defmodule AtomTweaksWeb.AuthController do
 
   alias OAuth2.Client, as: OAuthClient
 
-  alias AtomTweaksWeb.User
+  alias AtomTweaks.User
 
   @doc """
   Signs the user in by redirecting to the GitHub authorization URL.

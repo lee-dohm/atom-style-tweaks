@@ -4,7 +4,7 @@ defmodule AtomTweaksWeb.MarkdownEngine do
 
   Used both directly and within Slime templates.
   """
-  alias AtomTweaksWeb.User
+  alias AtomTweaks.User
 
   @behaviour Slime.Parser.EmbeddedEngine
 

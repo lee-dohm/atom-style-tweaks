@@ -1,14 +1,15 @@
-defmodule AtomTweaksWeb.Tweak do
+defmodule AtomTweaks.Tweak do
   @moduledoc """
   Represents a tweak.
   """
+  use Ecto.Schema
 
-  use AtomTweaksWeb, :model
+  import Ecto.Changeset
+  import Ecto.Query
 
   alias AtomTweaks.Ecto.Markdown
-  alias AtomTweaksWeb.Tweak
-
-  @type t :: %Tweak{}
+  alias AtomTweaks.Tweak
+  alias AtomTweaks.User
 
   @primary_key {:id, :binary_id, autogenerate: true}
 
@@ -17,7 +18,8 @@ defmodule AtomTweaksWeb.Tweak do
     field(:code, :string)
     field(:type, :string)
     field(:description, Markdown)
-    belongs_to(:user, AtomTweaksWeb.User, foreign_key: :created_by, type: :binary_id)
+
+    belongs_to(:user, User, foreign_key: :created_by, type: :binary_id)
 
     timestamps()
   end

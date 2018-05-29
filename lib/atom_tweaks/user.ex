@@ -1,14 +1,14 @@
-defmodule AtomTweaksWeb.User do
+defmodule AtomTweaks.User do
   @moduledoc """
   Represents a user of the application.
   """
+  use Ecto.Schema
 
-  use AtomTweaksWeb, :model
+  import Ecto.Changeset
+  import Ecto.Query
 
   alias AtomTweaks.Repo
-  alias AtomTweaksWeb.User
-
-  @type t :: %User{}
+  alias AtomTweaks.User
 
   @derive {Phoenix.Param, key: :name}
 

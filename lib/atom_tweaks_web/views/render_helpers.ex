@@ -6,7 +6,7 @@ defmodule AtomTweaksWeb.RenderHelpers do
 
   use Phoenix.HTML
 
-  alias AtomTweaksWeb.Tweak
+  alias AtomTweaks.Tweak
 
   @doc """
   Renders the code for the given `tweak`.
