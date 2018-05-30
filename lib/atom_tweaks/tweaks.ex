@@ -18,4 +18,14 @@ defmodule AtomTweaks.Tweaks do
     |> Tweak.changeset(attrs)
     |> Repo.insert()
   end
+
+  @doc """
+  Lists the users that have starred the `tweak`.
+  """
+  @spec list_stargazers(Tweak.t()) :: [User.t()]
+  def list_stargazers(tweak = %Tweak{}) do
+    tweak
+    |> Repo.preload(:stargazers)
+    |> Map.fetch!(:stargazers)
+  end
 end
