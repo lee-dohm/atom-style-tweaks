@@ -1,9 +1,9 @@
-defmodule AtomTweaks.StarTest do
+defmodule AtomTweaks.Tweaks.StarTest do
   use AtomTweaks.DataCase
 
   import Support.SetupHelpers
 
-  alias AtomTweaks.Star
+  alias AtomTweaks.Tweaks.Star
 
   def build_star(params \\ []) do
     Star.changeset(%Star{}, Enum.into(params, %{}))

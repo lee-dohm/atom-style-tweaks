@@ -8,8 +8,8 @@ defmodule AtomTweaks.User do
   import Ecto.Query
 
   alias AtomTweaks.Repo
-  alias AtomTweaks.Star
   alias AtomTweaks.Tweak
+  alias AtomTweaks.Tweaks.Star
   alias AtomTweaks.User
 
   @derive {Phoenix.Param, key: :name}

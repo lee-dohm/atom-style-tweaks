@@ -1,4 +1,4 @@
-defmodule AtomTweaks.Star do
+defmodule AtomTweaks.Tweaks.Star do
   @moduledoc """
   Represents that a user has marked a tweak as a favorite of theirs.
 
