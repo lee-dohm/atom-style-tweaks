@@ -1,4 +1,4 @@
-defmodule AtomTweaks.Tweaks.UserTest do
+defmodule AtomTweaks.Accounts.UserTest do
   use AtomTweaks.DataCase
 
   alias AtomTweaks.Accounts.User

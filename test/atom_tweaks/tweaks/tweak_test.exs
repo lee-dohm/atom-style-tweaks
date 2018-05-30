@@ -1,7 +1,7 @@
 defmodule AtomTweaks.Tweaks.TweakTest do
   use AtomTweaks.DataCase
 
-  alias AtomTweaks.Tweak
+  alias AtomTweaks.Tweaks.Tweak
 
   def build_tweak(user, params \\ []) do
     Tweak.changeset(%Tweak{}, params_for(:tweak, [user: user] ++ params))

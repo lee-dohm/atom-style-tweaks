@@ -9,7 +9,7 @@ defmodule AtomTweaks.Tweaks.Star do
 
   import Ecto.Changeset
 
-  alias AtomTweaks.Tweak
+  alias AtomTweaks.Tweaks.Tweak
   alias AtomTweaks.Accounts.User
 
   schema "stars" do

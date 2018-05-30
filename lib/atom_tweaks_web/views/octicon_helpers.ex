@@ -5,7 +5,7 @@ defmodule AtomTweaksWeb.OcticonHelpers do
 
   use Phoenix.HTML
 
-  alias AtomTweaks.Tweak
+  alias AtomTweaks.Tweaks.Tweak
 
   @doc """
   Draws the appropriate Octicon for the given `tweak`.

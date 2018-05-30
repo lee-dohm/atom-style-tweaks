@@ -1,8 +1,8 @@
 defmodule AtomTweaksWeb.UserController do
   use AtomTweaksWeb, :controller
 
-  alias AtomTweaks.Tweak
   alias AtomTweaks.Accounts.User
+  alias AtomTweaks.Tweaks.Tweak
 
   def show(conn, %{"id" => name}) do
     case Repo.get_by(User, name: name) do

@@ -6,7 +6,7 @@ defmodule AtomTweaks.Ecto.Markdown do
   Use this as the type of the database field in the schema:
 
   ```
-  defmodule AtomTweaks.Tweak do
+  defmodule AtomTweaks.Tweaks.Tweak do
     use Ecto.Schema
     alias AtomTweaks.Ecto.Markdown
 

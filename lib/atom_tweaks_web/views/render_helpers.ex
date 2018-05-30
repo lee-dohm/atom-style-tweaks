@@ -2,11 +2,11 @@ defmodule AtomTweaksWeb.RenderHelpers do
   @moduledoc """
   Helper functions for rendering templates.
   """
-  import Phoenix.View
-
   use Phoenix.HTML
 
-  alias AtomTweaks.Tweak
+  import Phoenix.View
+
+  alias AtomTweaks.Tweaks.Tweak
 
   @doc """
   Renders the code for the given `tweak`.

@@ -1,4 +1,4 @@
-defmodule AtomTweaks.Tweak do
+defmodule AtomTweaks.Tweaks.Tweak do
   @moduledoc """
   Represents a tweak.
   """

@@ -2,7 +2,7 @@ defmodule AtomTweaksWeb.TweakController do
   use AtomTweaksWeb, :controller
 
   alias AtomTweaks.Accounts.User
-  alias AtomTweaks.Tweak
+  alias AtomTweaks.Tweaks.Tweak
   alias AtomTweaksWeb.ErrorView
   alias AtomTweaksWeb.PageMetadata
 

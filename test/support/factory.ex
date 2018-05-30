@@ -3,10 +3,9 @@ defmodule AtomTweaks.Factory do
 
   alias FakerElixir, as: Faker
 
-  alias AtomTweaks.Markdown
-
-  alias AtomTweaks.Tweak
   alias AtomTweaks.Accounts.User
+  alias AtomTweaks.Markdown
+  alias AtomTweaks.Tweaks.Tweak
 
   def tweak_factory do
     %Tweak{
