@@ -2,4 +2,20 @@ defmodule AtomTweaks.Tweaks do
   @moduledoc """
   Context for working with tweaks and their operations.
   """
+  import Ecto.Query, warn: false
+
+  alias Ecto.Changeset
+
+  alias AtomTweaks.Repo
+  alias AtomTweaks.Tweaks.Tweak
+
+  @doc """
+  Creates a tweak.
+  """
+  @spec create_tweak(Map.t()) :: {:ok, Tweak.t()} | {:error, Changeset.t()}
+  def create_tweak(attrs \\ %{}) do
+    %Tweak{}
+    |> Tweak.changeset(attrs)
+    |> Repo.insert()
+  end
 end
