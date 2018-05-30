@@ -23,7 +23,14 @@ defmodule AtomTweaks.Tweaks.Tweak do
     field(:description, Markdown)
 
     belongs_to(:user, User, foreign_key: :created_by, type: :binary_id)
-    many_to_many(:users, User, join_through: Star, on_replace: :delete, on_delete: :delete_all)
+
+    many_to_many(
+      :stargazers,
+      User,
+      join_through: Star,
+      on_replace: :delete,
+      on_delete: :delete_all
+    )
 
     timestamps()
   end
