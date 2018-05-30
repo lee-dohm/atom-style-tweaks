@@ -5,7 +5,7 @@ defmodule AtomTweaksWeb.AvatarHelpers do
 
   use Phoenix.HTML
 
-  alias AtomTweaks.User
+  alias AtomTweaks.Accounts.User
 
   @doc """
   Displays the avatar for the `user`.

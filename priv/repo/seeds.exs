@@ -12,7 +12,7 @@
 
 alias AtomTweaks.Repo
 alias AtomTweaks.Tweak
-alias AtomTweaks.User
+alias AtomTweaks.Accounts.User
 
 if System.get_env("MIX_ENV") != "test" do
   users = [

@@ -1,4 +1,4 @@
-defmodule AtomTweaks.User do
+defmodule AtomTweaks.Accounts.User do
   @moduledoc """
   Represents a user of the application.
   """
@@ -10,7 +10,6 @@ defmodule AtomTweaks.User do
   alias AtomTweaks.Repo
   alias AtomTweaks.Tweak
   alias AtomTweaks.Tweaks.Star
-  alias AtomTweaks.User
 
   @derive {Phoenix.Param, key: :name}
 

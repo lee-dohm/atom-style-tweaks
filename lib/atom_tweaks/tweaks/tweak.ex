@@ -8,9 +8,8 @@ defmodule AtomTweaks.Tweak do
   import Ecto.Query
 
   alias AtomTweaks.Ecto.Markdown
-  alias AtomTweaks.Tweak
   alias AtomTweaks.Tweaks.Star
-  alias AtomTweaks.User
+  alias AtomTweaks.Accounts.User
 
   @primary_key {:id, :binary_id, autogenerate: true}
 

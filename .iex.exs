@@ -1,2 +1,2 @@
+alias AtomTweaks.Accounts.User
 alias AtomTweaks.Tweak
-alias AtomTweaks.User

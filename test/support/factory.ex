@@ -6,7 +6,7 @@ defmodule AtomTweaks.Factory do
   alias AtomTweaks.Markdown
 
   alias AtomTweaks.Tweak
-  alias AtomTweaks.User
+  alias AtomTweaks.Accounts.User
 
   def tweak_factory do
     %Tweak{

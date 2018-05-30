@@ -15,7 +15,7 @@ defmodule AtomTweaks.Ecto.Markdown do
       field :code, :string
       field :type, :string
       field :description, Markdown
-      belongs_to :user, AtomTweaks.User, foreign_key: :created_by, type: :binary_id
+      belongs_to :user, AtomTweaks.Accounts.User, foreign_key: :created_by, type: :binary_id
 
       timestamps()
     end
