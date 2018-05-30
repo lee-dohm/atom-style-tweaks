@@ -21,7 +21,7 @@ defmodule AtomTweaks.AccountsTest do
     {:ok, deleted_star} = Accounts.unstar_tweak(context.user, context.tweak)
     stars = Accounts.list_stars(context.user)
 
-    assert length(stars) == 0
+    assert Enum.empty?(stars)
     assert deleted_star.user_id == context.user.id
     assert deleted_star.tweak_id == context.tweak.id
   end
