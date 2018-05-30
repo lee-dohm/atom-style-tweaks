@@ -13,8 +13,8 @@ defmodule AtomTweaks.Star do
   alias AtomTweaks.User
 
   schema "stars" do
-    belongs_to :user, User
-    belongs_to :tweak, Tweak
+    belongs_to(:user, User, type: :binary_id)
+    belongs_to(:tweak, Tweak, type: :binary_id)
 
     timestamps()
   end

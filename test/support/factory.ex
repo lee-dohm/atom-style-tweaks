@@ -8,15 +8,6 @@ defmodule AtomTweaks.Factory do
   alias AtomTweaks.Tweak
   alias AtomTweaks.User
 
-  def user_factory do
-    %User{
-      name: Faker.Internet.user_name(),
-      site_admin: false,
-      github_id: Faker.Helper.pick(1..10_000),
-      avatar_url: Faker.Avatar.robohash()
-    }
-  end
-
   def tweak_factory do
     %Tweak{
       title: Faker.Lorem.words(2..4),
@@ -24,6 +15,15 @@ defmodule AtomTweaks.Factory do
       description: %Markdown{text: Faker.Lorem.sentences()},
       type: "style",
       user: build(:user)
+    }
+  end
+
+  def user_factory do
+    %User{
+      name: Faker.Internet.user_name(),
+      site_admin: false,
+      github_id: Faker.Helper.pick(1..10_000),
+      avatar_url: Faker.Avatar.robohash()
     }
   end
 end
