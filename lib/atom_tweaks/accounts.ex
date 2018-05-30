@@ -8,6 +8,8 @@ defmodule AtomTweaks.Accounts do
 
   alias AtomTweaks.Accounts.User
   alias AtomTweaks.Repo
+  alias AtomTweaks.Tweaks.Star
+  alias AtomTweaks.Tweaks.Tweak
 
   @doc """
   Creates an `Ecto.Changeset` for tracking user changes.
@@ -38,10 +40,46 @@ defmodule AtomTweaks.Accounts do
   end
 
   @doc """
+  Lists all tweaks starred by `user`.
+  """
+  @spec list_stars(User.t()) :: [Tweak.t()]
+  def list_stars(user = %User{}) do
+    query =
+      from(
+        t in Tweak,
+        join: s in Star,
+        where: s.tweak_id == t.id,
+        where: s.user_id == ^user.id
+      )
+
+    Repo.all(query)
+  end
+
+  @doc """
   Lists all users in the database.
   """
   @spec list_users() :: [User.t()]
   def list_users do
     Repo.all(User)
+  end
+
+  @doc """
+  Stars `tweak` for `user`.
+  """
+  @spec star_tweak(User.t(), Tweak.t()) :: {:ok, Star.t()} | {:error, Changeset.t()}
+  def star_tweak(user = %User{}, tweak = %Tweak{}) do
+    %Star{}
+    |> Star.changeset(%{user_id: user.id, tweak_id: tweak.id})
+    |> Repo.insert()
+  end
+
+  @doc """
+  Unstars `tweak` for `user`.
+  """
+  @spec unstar_tweak(User.t(), Tweak.t()) :: {:ok, Star.t()} | {:error, Changeset.t()}
+  def unstar_tweak(user = %User{}, tweak = %Tweak{}) do
+    star = Repo.get_by!(Star, user_id: user.id, tweak_id: tweak.id)
+
+    Repo.delete(star)
   end
 end
