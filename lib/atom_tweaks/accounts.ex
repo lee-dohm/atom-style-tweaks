@@ -42,17 +42,11 @@ defmodule AtomTweaks.Accounts do
   @doc """
   Lists all tweaks starred by `user`.
   """
-  @spec list_stars(User.t()) :: [Tweak.t()]
+  @spec list_stars(User.t()) :: [Tweak.t()] | no_return
   def list_stars(user = %User{}) do
-    query =
-      from(
-        t in Tweak,
-        join: s in Star,
-        where: s.tweak_id == t.id,
-        where: s.user_id == ^user.id
-      )
-
-    Repo.all(query)
+    user
+    |> Repo.preload(:tweaks)
+    |> Map.fetch!(:tweaks)
   end
 
   @doc """

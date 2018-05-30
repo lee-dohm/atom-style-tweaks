@@ -9,7 +9,10 @@ defmodule AtomTweaks.Tweaks.Tweak do
 
   alias AtomTweaks.Ecto.Markdown
   alias AtomTweaks.Tweaks.Star
+  alias AtomTweaks.Tweaks.Tweak
   alias AtomTweaks.Accounts.User
+
+  @type t :: %Tweak{}
 
   @primary_key {:id, :binary_id, autogenerate: true}
 
@@ -25,9 +28,7 @@ defmodule AtomTweaks.Tweaks.Tweak do
     timestamps()
   end
 
-  @doc """
-  Builds a changeset based on the `struct` and `params`.
-  """
+  @doc false
   def changeset(struct, params \\ %{}) do
     struct
     |> cast(params, [:title, :code, :created_by, :type, :description])

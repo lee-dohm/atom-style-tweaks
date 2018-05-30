@@ -9,8 +9,11 @@ defmodule AtomTweaks.Tweaks.Star do
 
   import Ecto.Changeset
 
+  alias AtomTweaks.Tweaks.Star
   alias AtomTweaks.Tweaks.Tweak
   alias AtomTweaks.Accounts.User
+
+  @type t :: %Star{}
 
   schema "stars" do
     belongs_to(:user, User, type: :binary_id)
