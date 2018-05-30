@@ -26,9 +26,7 @@ defmodule AtomTweaks.Accounts.User do
     timestamps()
   end
 
-  @doc """
-  Builds a changeset based on the `struct` and `params`.
-  """
+  @doc false
   def changeset(struct, params \\ %{}) do
     struct
     |> cast(params, [:avatar_url, :github_id, :name, :site_admin])
