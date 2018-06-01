@@ -1,11 +1,15 @@
 defmodule AtomTweaksWeb.TweakControllerTest do
   use AtomTweaksWeb.ConnCase
 
-  describe "create tweak when not logged in" do
-    setup [:insert_user, :valid_tweak_params, :request_create_tweak]
+  alias AtomTweaksWeb.NotLoggedInError
 
-    test "returns status unauthorized", context do
-      assert response(context.conn, :unauthorized)
+  describe "create tweak when not logged in" do
+    setup [:insert_user, :valid_tweak_params]
+
+    test "raises NotLoggedInError", context do
+      assert_raise NotLoggedInError, fn ->
+        request_create_tweak(context)
+      end
     end
   end
 

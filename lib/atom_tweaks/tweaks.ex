@@ -10,6 +10,14 @@ defmodule AtomTweaks.Tweaks do
   alias AtomTweaks.Tweaks.Tweak
 
   @doc """
+  Creates an `Ecto.Changeset` for tracking tweak changes.
+  """
+  @spec change_tweak(Tweak.t()) :: Changeset.t()
+  def change_tweak(tweak = %Tweak{}) do
+    Tweak.changeset(tweak, %{})
+  end
+
+  @doc """
   Creates a tweak.
   """
   @spec create_tweak(Map.t()) :: {:ok, Tweak.t()} | {:error, Changeset.t()}
