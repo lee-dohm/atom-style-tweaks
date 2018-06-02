@@ -1,10 +1,12 @@
 .tweak-title
-  .d-inline-block.my-3.mx-2
+  .tweak-title-octicon.d-inline-block.my-3.mr-1
     = mega_octicon_for(@tweak)
   h3.d-inline-block.my-3 = @tweak.title
   .d-inline-block.mx-2
-    ' Created by
+    = gettext "Created by"
+    '
     a href="#{user_path(@conn, :show, @tweak.user.name)}" = @tweak.user.name
+  = render("star_button.html", assigns)
 .border.p-2
   .pb-2.clearfix
     = gettext "Last updated about "

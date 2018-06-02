@@ -1,0 +1,7 @@
+.float-right.my-3
+  button.btn.btn-sm.btn-with-count
+    = octicon(:star)
+    '
+    = gettext "Star"
+  a.social-count
+    ' 1,000
