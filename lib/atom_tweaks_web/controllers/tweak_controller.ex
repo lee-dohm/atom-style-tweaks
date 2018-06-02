@@ -10,10 +10,26 @@ defmodule AtomTweaksWeb.TweakController do
 
   require Logger
 
+  @type current_user :: User.t() | atom
+
+  @doc """
+  Adds a third argument to every action that contains the current user or the atom `:guest`.
+
+  Runs before all other actions in the controller.
+  """
+  @spec action(Plug.Conn.t(), Map.t()) :: Plug.Conn.t()
+  def action(conn, params)
+
   def action(conn, _) do
     args = [conn, conn.params, conn.assigns[:current_user] || :guest]
     apply(__MODULE__, action_name(conn), args)
   end
+
+  @doc """
+  Creates a new tweak with the given parameters.
+  """
+  @spec create(Plug.Conn.t(), Map.t(), current_user) :: Plug.Conn.t()
+  def create(conn, params, current_user)
 
   def create(conn, _, :guest), do: raise(NotLoggedInError, conn: conn)
 
@@ -41,9 +57,21 @@ defmodule AtomTweaksWeb.TweakController do
     end
   end
 
+  @doc """
+  Deletes the given tweak.
+
+  **Not implemented.**
+  """
+  @spec delete(Plug.Conn.t(), Map.t(), current_user) :: Plug.Conn.t()
   def delete(conn, _params, _current_user) do
     conn
   end
+
+  @doc """
+  Displays the edit tweak form.
+  """
+  @spec edit(Plug.Conn.t(), Map.t(), current_user) :: Plug.Conn.t()
+  def edit(conn, params, current_user)
 
   def edit(conn, _, :guest), do: render_error(conn, :unauthorized)
 
@@ -69,6 +97,12 @@ defmodule AtomTweaksWeb.TweakController do
     )
   end
 
+  @doc """
+  Displays the new tweak form.
+  """
+  @spec new(Plug.Conn.t(), Map.t(), current_user) :: Plug.Conn.t()
+  def new(conn, params, current_user)
+
   def new(conn, _, :guest), do: render_error(conn, :unauthorized)
 
   def new(conn, %{"user_id" => name}, %{name: other_name}) when name !== other_name do
@@ -81,6 +115,12 @@ defmodule AtomTweaksWeb.TweakController do
     render(conn, "new.html", changeset: changeset, name: name)
   end
 
+  @doc """
+  Displays the given tweak.
+  """
+  @spec show(Plug.Conn.t(), Map.t(), current_user) :: Plug.Conn.t()
+  def show(conn, params, current_user)
+
   def show(conn, %{"user_id" => name, "id" => id}, _current_user) do
     tweak =
       Tweak
@@ -91,6 +131,12 @@ defmodule AtomTweaksWeb.TweakController do
     |> PageMetadata.add(Tweak.to_metadata(tweak))
     |> render("show.html", name: name, tweak: tweak)
   end
+
+  @doc """
+  Updates a tweak with the given parameters.
+  """
+  @spec update(Plug.Conn.t(), Map.t(), current_user) :: Plug.Conn.t()
+  def update(conn, params, current_user)
 
   def update(conn, %{"user_id" => name, "id" => id, "tweak" => tweak_params}, _current_user) do
     tweak = Repo.get(Tweak, id)
