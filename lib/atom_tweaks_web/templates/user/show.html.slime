@@ -11,17 +11,8 @@
     = if !is_nil(@current_user) && @current_user.name == @user.name do
       .pb-3.clearfix
         a#new-tweak-button.btn.btn-primary.float-right href="#{tweak_path(@conn, :new)}" = gettext "New tweak"
-    = if Enum.count(@tweaks) == 0 do
-      .blankslate
-        span.mega-octicon.octicon-pencil
-        = if !is_nil(@current_user) && @current_user.name == @user.name do
-          h3 = gettext "This is where your tweaks will be listed"
-          p = gettext "Click \"New tweak\" to get started!"
-        - else
-          h3 = gettext "%{user_name} doesn't have any tweaks yet", user_name: @user.name
-    - else
-      .Box
-        .Box-header
-          h3 = gettext "Tweaks"
-        div
-          = render_many(@tweaks, AtomTweaksWeb.TweakView, "table_row.html", conn: @conn)
+    .Box
+      .Box-header
+        h3 = gettext "Tweaks"
+      div
+        = render_many_or_blank(@tweaks, TweakView, "table_row.html", "blankslate.html", assigns)

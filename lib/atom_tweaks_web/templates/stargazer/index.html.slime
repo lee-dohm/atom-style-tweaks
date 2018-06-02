@@ -1,1 +1,4 @@
-' stargazers
+= render(LayoutView, "tweak_title.html", assigns)
+
+h2 = gettext "Stargazers"
+= render_many_or_blank(@stargazers, "table_row.html", "blankslate.html", assigns)
