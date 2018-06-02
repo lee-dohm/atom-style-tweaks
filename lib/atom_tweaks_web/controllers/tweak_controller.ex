@@ -4,9 +4,9 @@ defmodule AtomTweaksWeb.TweakController do
   alias AtomTweaks.Accounts.User
   alias AtomTweaks.Tweaks
   alias AtomTweaks.Tweaks.Tweak
-  alias AtomTweaksWeb.ErrorView
   alias AtomTweaksWeb.NotLoggedInError
   alias AtomTweaksWeb.PageMetadata
+  alias AtomTweaksWeb.WrongUserError
 
   require Logger
 
@@ -33,27 +33,17 @@ defmodule AtomTweaksWeb.TweakController do
 
   def create(conn, _, :guest), do: raise(NotLoggedInError, conn: conn)
 
-  def create(conn, %{"user_id" => name}, %{name: other_name}) when name !== other_name do
-    render_error(conn, :not_found, "User \"#{name}\" not found")
-  end
+  def create(conn, %{"tweak" => tweak_params}, current_user) do
+    params = Map.merge(tweak_params, %{"created_by" => current_user.id})
+    changeset = Tweak.changeset(%Tweak{}, params)
 
-  def create(conn, %{"user_id" => name, "tweak" => tweak_params}, _) do
-    case Repo.get_by(User, name: name) do
-      nil ->
-        render_error(conn, :not_found, "User \"#{name}\" not found")
+    case Repo.insert(changeset) do
+      {:ok, tweak} ->
+        redirect(conn, to: tweak_path(conn, :show, tweak))
 
-      user ->
-        params = Map.merge(tweak_params, %{"created_by" => user.id})
-        changeset = Tweak.changeset(%Tweak{}, params)
-
-        case Repo.insert(changeset) do
-          {:ok, tweak} ->
-            redirect(conn, to: tweak_path(conn, :show, tweak))
-
-          {:error, changeset} ->
-            conn
-            |> render("new.html", changeset: changeset, name: name, errors: changeset.errors)
-        end
+      {:error, changeset} ->
+        conn
+        |> render("new.html", changeset: changeset)
     end
   end
 
@@ -73,17 +63,17 @@ defmodule AtomTweaksWeb.TweakController do
   @spec edit(Plug.Conn.t(), Map.t(), current_user) :: Plug.Conn.t()
   def edit(conn, params, current_user)
 
-  def edit(conn, _, :guest), do: render_error(conn, :unauthorized)
+  def edit(conn, _, :guest), do: raise(NotLoggedInError, conn: conn)
 
-  def edit(conn, %{"user_id" => name}, %{name: other_name}) when name !== other_name do
-    render_error(conn, :not_found, "User \"#{name}\" not found")
-  end
-
-  def edit(conn, params = %{"user_id" => name, "id" => id}, _current_user) do
+  def edit(conn, %{"id" => id}, current_user) do
     tweak =
       Tweak
       |> Repo.get(id)
       |> Repo.preload([:user])
+
+    if current_user.id != tweak.user.id do
+      raise WrongUserError, conn: conn, current_user: current_user, resource_owner: tweak.user
+    end
 
     changeset = Tweak.changeset(tweak)
 
@@ -91,9 +81,7 @@ defmodule AtomTweaksWeb.TweakController do
       conn,
       "edit.html",
       changeset: changeset,
-      name: name,
-      tweak: tweak,
-      errors: params["errors"]
+      tweak: tweak
     )
   end
 
@@ -103,16 +91,12 @@ defmodule AtomTweaksWeb.TweakController do
   @spec new(Plug.Conn.t(), Map.t(), current_user) :: Plug.Conn.t()
   def new(conn, params, current_user)
 
-  def new(conn, _, :guest), do: render_error(conn, :unauthorized)
+  def new(conn, _, :guest), do: raise(NotLoggedInError, conn: conn)
 
-  def new(conn, %{"user_id" => name}, %{name: other_name}) when name !== other_name do
-    render_error(conn, :not_found, "User \"#{name}\" not found")
-  end
-
-  def new(conn, %{"user_id" => name}, _current_user) do
+  def new(conn, _params, _current_user) do
     changeset = Tweaks.change_tweak(%Tweak{})
 
-    render(conn, "new.html", changeset: changeset, name: name)
+    render(conn, "new.html", changeset: changeset)
   end
 
   @doc """
@@ -121,7 +105,7 @@ defmodule AtomTweaksWeb.TweakController do
   @spec show(Plug.Conn.t(), Map.t(), current_user) :: Plug.Conn.t()
   def show(conn, params, current_user)
 
-  def show(conn, %{"user_id" => name, "id" => id}, _current_user) do
+  def show(conn, %{"id" => id}, _current_user) do
     tweak =
       Tweak
       |> Repo.get(id)
@@ -129,7 +113,7 @@ defmodule AtomTweaksWeb.TweakController do
 
     conn
     |> PageMetadata.add(Tweak.to_metadata(tweak))
-    |> render("show.html", name: name, tweak: tweak)
+    |> render("show.html", tweak: tweak)
   end
 
   @doc """
@@ -157,17 +141,5 @@ defmodule AtomTweaksWeb.TweakController do
           errors: changeset.errors
         )
     end
-  end
-
-  defp render_error(conn, :unauthorized) do
-    conn
-    |> put_status(:unauthorized)
-    |> render(ErrorView, :"401", %{message: "Not logged in"})
-  end
-
-  defp render_error(conn, :not_found, message) do
-    conn
-    |> put_status(:not_found)
-    |> render(ErrorView, :"404", %{message: message})
   end
 end
