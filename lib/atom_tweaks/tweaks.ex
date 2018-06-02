@@ -28,6 +28,13 @@ defmodule AtomTweaks.Tweaks do
   end
 
   @doc """
+  Gets a tweak by ID.
+  """
+  def get!(id) do
+    Repo.get!(Tweak, id)
+  end
+
+  @doc """
   Lists the users that have starred the `tweak`.
   """
   @spec list_stargazers(Tweak.t()) :: [User.t()]
