@@ -1,0 +1,5 @@
+.columns
+  .one-fourth.column
+    = render(UserView, "user_info.html", assigns)
+  .three-fourths.column
+    = render(UserView, "underline_nav.html", assigns)

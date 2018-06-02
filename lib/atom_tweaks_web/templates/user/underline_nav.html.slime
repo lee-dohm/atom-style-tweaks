@@ -1,0 +1,5 @@
+nav.UnderlineNav.mb-3
+  .UnderlineNav-body
+    a.UnderlineNav-item.selected = gettext "Tweaks"
+    a.UnderlineNav-item href="#{user_star_path(@conn, :index, @user)}"
+      = gettext "Stars"

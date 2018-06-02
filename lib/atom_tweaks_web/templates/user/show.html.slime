@@ -1,18 +1,13 @@
 .columns
-  #user-info-block.one-fourth.column
-    = avatar(@user, size: 230)
-    h2.d-inline-block.mt-1 = @user.name
-    = if @user.site_admin do
-      span#staff-badge.state.bg-blue.d-inline-block.mt-2.float-right
-        = gettext "Staff"
-    a#github-link.float-right.mt-1.mr-2 href="https://github.com/#{@user.name}"
-      = mega_octicon(:"mark-github")
+  .one-fourth.column
+    = render(UserView, "user_info.html", assigns)
   .three-fourths.column
+    = render(UserView, "underline_nav.html", assigns)
     = if !is_nil(@current_user) && @current_user.name == @user.name do
       .pb-3.clearfix
-        a#new-tweak-button.btn.btn-primary.float-right href="#{tweak_path(@conn, :new)}" = gettext "New tweak"
-    .Box
-      .Box-header
-        h3 = gettext "Tweaks"
-      div
-        = render_many_or_blank(@tweaks, TweakView, "table_row.html", "blankslate.html", assigns)
+        a#new-tweak-button.btn.btn-primary.float-right href="#{tweak_path(@conn, :new)}"
+          = octicon(:beaker)
+          '
+          = gettext "New"
+    div.border-y
+      = render_many_or_blank(@tweaks, TweakView, "table_row.html", "blankslate.html", assigns)
