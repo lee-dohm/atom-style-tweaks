@@ -3,5 +3,5 @@
     = octicon(:star)
     '
     = gettext "Star"
-  a.social-count
-    ' 1,000
+  a.social-count href="#{tweak_stargazer_path(@conn, :index, @tweak)}"
+    = length(@tweak.stargazers)

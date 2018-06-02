@@ -109,7 +109,7 @@ defmodule AtomTweaksWeb.TweakController do
     tweak =
       Tweak
       |> Repo.get(id)
-      |> Repo.preload([:user])
+      |> Repo.preload([:stargazers, :user])
 
     conn
     |> PageMetadata.add(Tweak.to_metadata(tweak))
