@@ -82,7 +82,7 @@ defmodule Support.SetupHelpers do
       }) do
     params = %{"name" => user.name, "tweak" => tweak_params}
 
-    conn = post(conn, user_tweak_path(conn, :create, user.name), params)
+    conn = post(conn, tweak_path(conn, :create), params)
 
     {:ok, conn: conn}
   end
@@ -93,7 +93,7 @@ defmodule Support.SetupHelpers do
   def request_create_tweak(%{conn: conn, current_user: user, tweak_params: tweak_params}) do
     params = %{"name" => user.name, "tweak" => tweak_params}
 
-    conn = post(conn, user_tweak_path(conn, :create, user.name), params)
+    conn = post(conn, tweak_path(conn, :create), params)
 
     {:ok, conn: conn}
   end
@@ -104,25 +104,25 @@ defmodule Support.SetupHelpers do
   def request_create_tweak(%{conn: conn, tweak_params: tweak_params, user: user}) do
     params = %{"name" => user.name, "tweak" => tweak_params}
 
-    conn = post(conn, user_tweak_path(conn, :create, user.name), params)
+    conn = post(conn, tweak_path(conn, :create), params)
 
     {:ok, conn: conn}
   end
 
   def request_edit_tweak(%{conn: conn, current_user: _, request_user: user, tweak: tweak}) do
-    conn = get(conn, user_tweak_path(conn, :edit, user, tweak))
+    conn = get(conn, tweak_path(conn, :edit, tweak))
 
     {:ok, conn: conn}
   end
 
   def request_edit_tweak(%{conn: conn, current_user: user, tweak: tweak}) do
-    conn = get(conn, user_tweak_path(conn, :edit, user, tweak))
+    conn = get(conn, tweak_path(conn, :edit, tweak))
 
     {:ok, conn: conn}
   end
 
   def request_edit_tweak(%{conn: conn, tweak: tweak, user: user}) do
-    conn = get(conn, user_tweak_path(conn, :edit, user, tweak))
+    conn = get(conn, tweak_path(conn, :edit, tweak))
 
     {:ok, conn: conn}
   end
@@ -131,7 +131,7 @@ defmodule Support.SetupHelpers do
   Builds a new tweak request for a different user than the one logged in.
   """
   def request_new_tweak(%{conn: conn, current_user: _, request_user: user}) do
-    conn = get(conn, user_tweak_path(conn, :new, user))
+    conn = get(conn, tweak_path(conn, :new))
 
     {:ok, conn: conn}
   end
@@ -140,7 +140,7 @@ defmodule Support.SetupHelpers do
   Builds a new tweak request for the logged in user.
   """
   def request_new_tweak(%{conn: conn, current_user: user}) do
-    conn = get(conn, user_tweak_path(conn, :new, user))
+    conn = get(conn, tweak_path(conn, :new))
 
     {:ok, conn: conn}
   end
@@ -149,20 +149,20 @@ defmodule Support.SetupHelpers do
   Builds a new tweak request for the given user when nobody is logged in.
   """
   def request_new_tweak(%{conn: conn, user: user}) do
-    conn = get(conn, user_tweak_path(conn, :new, user))
+    conn = get(conn, tweak_path(conn, :new))
 
     {:ok, conn: conn}
   end
 
   def request_show_tweak(%{conn: conn, current_user: _, request_user: user, tweak: tweak}) do
-    path = user_tweak_path(conn, :show, user, tweak)
+    path = tweak_path(conn, :show, tweak)
     conn = get(conn, path)
 
     {:ok, conn: conn, path: path}
   end
 
   def request_show_tweak(%{conn: conn, current_user: user, tweak: tweak}) do
-    conn = get(conn, user_tweak_path(conn, :show, user, tweak))
+    conn = get(conn, tweak_path(conn, :show, tweak))
 
     {:ok, conn: conn}
   end
@@ -171,7 +171,7 @@ defmodule Support.SetupHelpers do
   Builds a show tweak request for the given user when nobody is logged in.
   """
   def request_show_tweak(%{conn: conn, tweak: tweak, user: user}) do
-    conn = get(conn, user_tweak_path(conn, :show, user, tweak))
+    conn = get(conn, tweak_path(conn, :show, tweak))
 
     {:ok, conn: conn}
   end

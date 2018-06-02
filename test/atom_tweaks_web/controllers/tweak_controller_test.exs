@@ -181,7 +181,7 @@ defmodule AtomTweaksWeb.TweakControllerTest do
         |> html_response(:ok)
         |> find("a.btn.btn-danger")
 
-      path = user_tweak_path(context.conn, :show, context.current_user, context.tweak)
+      path = tweak_path(context.conn, :show, context.tweak)
 
       assert attribute(button, "href") == [path]
     end

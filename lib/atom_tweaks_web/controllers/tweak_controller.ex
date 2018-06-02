@@ -48,7 +48,7 @@ defmodule AtomTweaksWeb.TweakController do
 
         case Repo.insert(changeset) do
           {:ok, tweak} ->
-            redirect(conn, to: user_tweak_path(conn, :show, name, tweak.id))
+            redirect(conn, to: tweak_path(conn, :show, tweak))
 
           {:error, changeset} ->
             conn
@@ -143,9 +143,9 @@ defmodule AtomTweaksWeb.TweakController do
     changeset = Tweak.changeset(tweak, tweak_params)
 
     case Repo.update(changeset) do
-      {:ok, _tweak} ->
+      {:ok, tweak} ->
         conn
-        |> redirect(to: user_tweak_path(conn, :show, name, id))
+        |> redirect(to: tweak_path(conn, :show, tweak))
 
       {:error, changeset} ->
         conn

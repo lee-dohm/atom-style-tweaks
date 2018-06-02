@@ -37,8 +37,12 @@ defmodule AtomTweaksWeb.Router do
     get("/", PageController, :index)
     get("/about", PageController, :about)
 
-    resources "/users", UserController, only: [:show] do
-      resources("/tweaks", TweakController)
+    resources("/tweaks", TweakController, except: [:index]) do
+      get("/stargazers", StargazerController, :index)
+    end
+
+    resources("/users", UserController, only: [:show]) do
+      get("/tweaks", TweakController, :index)
     end
   end
 
