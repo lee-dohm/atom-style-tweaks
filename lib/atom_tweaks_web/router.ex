@@ -42,7 +42,7 @@ defmodule AtomTweaksWeb.Router do
     end
 
     resources("/users", UserController, only: [:show]) do
-      get("/tweaks", TweakController, :index)
+      get("/stars", StarController, :index)
     end
   end
 

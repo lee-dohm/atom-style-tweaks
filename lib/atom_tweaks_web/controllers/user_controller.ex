@@ -2,7 +2,6 @@ defmodule AtomTweaksWeb.UserController do
   use AtomTweaksWeb, :controller
 
   alias AtomTweaks.Accounts
-  alias AtomTweaks.Accounts.User
   alias AtomTweaks.Tweaks.Tweak
 
   def show(conn, %{"id" => name}) do
