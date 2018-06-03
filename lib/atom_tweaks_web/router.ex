@@ -40,7 +40,7 @@ defmodule AtomTweaksWeb.Router do
 
     resources("/tweaks", TweakController, except: [:index]) do
       get("/stargazers", StargazerController, :index)
-      get("/star", StarController, :toggle)
+      post("/star", StarController, :toggle)
     end
 
     resources("/users", UserController, only: [:show]) do

@@ -39,6 +39,6 @@ defmodule AtomTweaksWeb.StarController do
       {:ok, _} = Accounts.star_tweak(user, tweak)
     end
 
-    redirect_back(conn, 1)
+    redirect_back(conn)
   end
 end
