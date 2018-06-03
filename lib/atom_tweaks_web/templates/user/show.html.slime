@@ -1,8 +1,8 @@
 .columns
   .one-fourth.column
-    = render(UserView, "user_info.html", assigns)
+    = render(@view_module, "user_info.html", assigns)
   .three-fourths.column
-    = render(UserView, "underline_nav.html", assigns)
+    = render(@view_module, "underline_nav.html", assigns)
     = if !is_nil(@current_user) && @current_user.name == @user.name do
       .pb-3.clearfix
         a#new-tweak-button.btn.btn-primary.float-right href="#{tweak_path(@conn, :new)}"
@@ -10,4 +10,7 @@
           '
           = gettext "New"
     .border-y
-      = render_many_or_blank(@tweaks, TweakView, "table_row.html", "blankslate.html", assigns)
+      = if Enum.empty?(@tweaks) do
+        = render(@view_module, "blankslate.html", assigns)
+      - else
+        = render_many(@tweaks, @view_module, "table_row.html", Map.put(assigns, :as, :tweak))
