@@ -1,5 +1,5 @@
 .float-right.my-3
-  a.btn.btn-sm.btn-with-count href="#{star_path(@conn, :toggle, @tweak)}"
+  a.btn.btn-sm.btn-with-count href="#{tweak_star_path(@conn, :toggle, @tweak)}"
     = octicon(:star)
     '
     = if @starred do
