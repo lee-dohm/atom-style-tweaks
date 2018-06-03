@@ -4,6 +4,9 @@ defmodule AtomTweaksWeb.StarController do
   alias AtomTweaks.Accounts
   alias AtomTweaks.Tweaks
 
+  @doc """
+  Shows the list of stars for the named user.
+  """
   def index(conn, %{"user_id" => name}) do
     user = Accounts.get_user!(name)
     stars = Accounts.list_stars(user)
