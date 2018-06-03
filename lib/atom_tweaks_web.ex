@@ -23,8 +23,9 @@ defmodule AtomTweaksWeb do
       import Ecto
       import Ecto.Query
 
-      import AtomTweaksWeb.Router.Helpers
+      import AtomTweaksWeb.ControllerHelpers
       import AtomTweaksWeb.Gettext
+      import AtomTweaksWeb.Router.Helpers
     end
   end
 

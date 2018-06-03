@@ -15,6 +15,7 @@ defmodule AtomTweaksWeb.Router do
     plug(:put_secure_browser_headers)
     plug(:assign_current_user)
     plug(SlidingSessionTimeout)
+    plug(NavigationHistory.Tracker)
     plug(HerokuMetadata, only: ["HEROKU_RELEASE_VERSION", "HEROKU_SLUG_COMMIT"])
   end
 
@@ -40,6 +41,8 @@ defmodule AtomTweaksWeb.Router do
     resources("/tweaks", TweakController, except: [:index]) do
       get("/stargazers", StargazerController, :index)
     end
+
+    get("/tweaks/:tweak_id/star", StarController, :toggle)
 
     resources("/users", UserController, only: [:show]) do
       get("/stars", StarController, :index)
