@@ -1,11 +1,10 @@
 defmodule AtomTweaksWeb.UserController do
-  @doc """
+  @moduledoc """
   Handles requests for user resources.
   """
   use AtomTweaksWeb, :controller
 
   alias AtomTweaks.Accounts
-  alias AtomTweaks.Tweaks.Tweak
 
   @doc """
   Shows the named user.
