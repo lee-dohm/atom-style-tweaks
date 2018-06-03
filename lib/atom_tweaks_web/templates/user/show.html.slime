@@ -9,5 +9,5 @@
           = octicon(:beaker)
           '
           = gettext "New"
-    div.border-y
+    .border-y
       = render_many_or_blank(@tweaks, TweakView, "table_row.html", "blankslate.html", assigns)

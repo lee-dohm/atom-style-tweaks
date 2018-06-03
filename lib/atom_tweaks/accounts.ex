@@ -20,6 +20,20 @@ defmodule AtomTweaks.Accounts do
   end
 
   @doc """
+  Counts the number of stars belonging to `user`.
+  """
+  def count_stars(user = %User{}) do
+    Repo.one(from(s in Star, where: s.user_id == ^user.id, select: count(s.user_id)))
+  end
+
+  @doc """
+  Counts the number of tweaks belonging to `user`.
+  """
+  def count_tweaks(user = %User{}) do
+    Repo.one(from(t in Tweak, where: t.created_by == ^user.id, select: count(t.created_by)))
+  end
+
+  @doc """
   Gets a user by name.
 
   Returns `nil` if no user by that name exists.
@@ -47,6 +61,15 @@ defmodule AtomTweaks.Accounts do
     user
     |> Repo.preload(:stars)
     |> Map.fetch!(:stars)
+  end
+
+  @doc """
+  Lists the tweaks belonging to `user`.
+  """
+  def list_tweaks(user = %User{}) do
+    user
+    |> Repo.preload(:tweaks)
+    |> Map.fetch!(:tweaks)
   end
 
   @doc """

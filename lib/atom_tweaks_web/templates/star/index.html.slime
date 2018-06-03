@@ -3,3 +3,5 @@
     = render(UserView, "user_info.html", assigns)
   .three-fourths.column
     = render(UserView, "underline_nav.html", assigns)
+    .border-y
+      = render_many_or_blank(@stars, "table_row.html", "blankslate.html", assigns)
