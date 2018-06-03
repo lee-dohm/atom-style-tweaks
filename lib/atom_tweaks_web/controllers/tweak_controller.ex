@@ -105,15 +105,17 @@ defmodule AtomTweaksWeb.TweakController do
   @spec show(Plug.Conn.t(), Map.t(), current_user) :: Plug.Conn.t()
   def show(conn, params, current_user)
 
-  def show(conn, %{"id" => id}, _current_user) do
+  def show(conn, %{"id" => id}, current_user) do
     tweak =
       Tweak
       |> Repo.get(id)
       |> Repo.preload([:stargazers, :user])
 
+    starred = Tweaks.is_starred?(tweak, current_user)
+
     conn
     |> PageMetadata.add(Tweak.to_metadata(tweak))
-    |> render("show.html", tweak: tweak)
+    |> render("show.html", starred: starred, tweak: tweak)
   end
 
   @doc """

@@ -2,6 +2,9 @@
   button.btn.btn-sm.btn-with-count
     = octicon(:star)
     '
-    = gettext "Star"
+    = if @starred do
+      = gettext "Unstar"
+    - else
+      = gettext "Star"
   a.social-count href="#{tweak_stargazer_path(@conn, :index, @tweak)}"
     = length(@tweak.stargazers)

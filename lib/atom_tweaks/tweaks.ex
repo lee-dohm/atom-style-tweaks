@@ -6,7 +6,9 @@ defmodule AtomTweaks.Tweaks do
 
   alias Ecto.Changeset
 
+  alias AtomTweaks.Accounts.User
   alias AtomTweaks.Repo
+  alias AtomTweaks.Tweaks.Star
   alias AtomTweaks.Tweaks.Tweak
 
   @doc """
@@ -35,6 +37,18 @@ defmodule AtomTweaks.Tweaks do
     |> Repo.get!(id)
     |> Repo.preload([:user, :stargazers])
   end
+
+  @doc """
+  Checks to see if the given `tweak` is starred by `user`.
+  """
+  @spec is_starred?(Tweak.t(), User.t() | nil | atom) :: boolean
+  def is_starred?(tweak, user)
+
+  def is_starred?(%Tweak{id: tweak_id}, %User{id: user_id}) do
+    Repo.one(from(s in Star, where: s.tweak_id == ^tweak_id, where: s.user_id == ^user_id)) != nil
+  end
+
+  def is_starred?(%Tweak{}, _), do: false
 
   @doc """
   Lists the users that have starred the `tweak`.
