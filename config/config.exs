@@ -40,6 +40,14 @@ config :slime, :embedded_engines, %{
   markdown: AtomTweaksWeb.MarkdownEngine
 }
 
+# Error tracking service
+config :sentry,
+  dsn: "https://c0a79cd8641c4dca94dc88ca74c92baf@sentry.io/1218568",
+  environment_name: Mix.env(),
+  enable_source_code_context: true,
+  root_source_code_path: File.cwd!(),
+  included_environments: [:prod]
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"
