@@ -33,7 +33,7 @@ config :sentry,
   dsn: "https://c0a79cd8641c4dca94dc88ca74c92baf@sentry.io/1218568",
   environment_name: :prod,
   enable_source_code_context: true,
-  root_source_code_path: File.cwd!,
+  root_source_code_path: File.cwd!(),
   tags: %{
     env: "production"
   },
