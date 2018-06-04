@@ -28,6 +28,12 @@ config :atom_tweaks, AtomTweaks.Repo,
   pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10"),
   ssl: true
 
+# Error tracking service
+config :sentry,
+  tags: %{
+    env: "production"
+  }
+
 # ## SSL Support
 #
 # To get SSL working, you will need to add the `https` key

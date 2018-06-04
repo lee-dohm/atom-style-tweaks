@@ -70,6 +70,7 @@ defmodule AtomTweaks.Mixfile do
       {:phoenix_slime, "~> 0.10.0"},
       {:phoenix, "~> 1.3.0"},
       {:postgrex, ">= 0.0.0"},
+      {:sentry, "~> 6.2.1"},
       {:timex, "~> 3.1"},
       {:phoenix_octicons, "~> 0.2.0"},
       {:dotenv, "~> 3.0.0", only: :dev},

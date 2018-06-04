@@ -1,6 +1,8 @@
 defmodule AtomTweaksWeb.Router do
   use AtomTweaksWeb, :router
+
   use Plug.ErrorHandler
+  use Sentry.Plug
 
   require Logger
 
@@ -64,44 +66,4 @@ defmodule AtomTweaksWeb.Router do
 
     assign(conn, :current_user, user)
   end
-
-  def log_flash(conn, _params) do
-    Logger.debug(fn -> "Flash info = #{get_flash(conn, :info)}" end)
-    Logger.debug(fn -> "Flash error = #{get_flash(conn, :error)}" end)
-
-    conn
-  end
-
-  def log_assigns(conn, _params) do
-    Logger.debug("=== Assigns ===")
-    Enum.each(conn.assigns, fn assign -> Logger.debug(inspect(assign)) end)
-    Logger.debug("=== End Assigns ===")
-
-    conn
-  end
-
-  # defp handle_errors(_, %{kind: :error, reason: %NoRouteError{}}), do: :ok
-  #
-  # defp handle_errors(conn, %{kind: _kind, reason: _reason, stack: _stacktrace}) do
-  #   conn =
-  #     conn
-  #     |> Conn.fetch_cookies()
-  #     |> Conn.fetch_query_params()
-  #
-  #   conn_data = %{
-  #     "request" => %{
-  #       "cookies" => conn.req_cookies,
-  #       "url" => "#{conn.scheme}://#{conn.host}:#{conn.port}#{conn.request_path}",
-  #       "user_ip" => conn.remote_ip |> Tuple.to_list() |> Enum.join("."),
-  #       "headers" => Enum.into(conn.req_headers, %{}),
-  #       "params" => conn.params,
-  #       "method" => conn.method
-  #     },
-  #     "server" => %{
-  #       "pid" => System.get_env("MY_SERVER_PID"),
-  #       "host" => "#{System.get_env("MY_HOSTNAME")}:#{System.get_env("MY_PORT")}",
-  #       "root" => System.get_env("MY_APPLICATION_PATH")
-  #     }
-  #   }
-  # end
 end
