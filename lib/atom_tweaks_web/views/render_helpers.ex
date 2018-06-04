@@ -4,6 +4,8 @@ defmodule AtomTweaksWeb.RenderHelpers do
   """
   use Phoenix.HTML
 
+  require Logger
+
   import Phoenix.View
 
   alias AtomTweaks.Tweaks.Tweak

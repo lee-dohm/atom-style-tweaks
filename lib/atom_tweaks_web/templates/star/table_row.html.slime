@@ -1,0 +1,10 @@
+.Box-row.clearfix
+  .Box-btn-octicon.btn-octicon.float-left
+    = mega_octicon_for(@star)
+  .pl-2.overflow-hidden
+    a.Box-row-link.title href="#{tweak_path(@conn, :show, @star)}" = @star.title
+    br
+    = gettext "Created by "
+    a.Box-row-link href="#{user_path(@conn, :show, @star.user.name)}" = @star.user.name
+    = gettext " about "
+    = relative_time(@star.inserted_at)

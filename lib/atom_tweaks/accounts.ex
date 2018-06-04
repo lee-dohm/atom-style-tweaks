@@ -59,7 +59,7 @@ defmodule AtomTweaks.Accounts do
   @spec list_stars(User.t()) :: [Tweak.t()] | no_return
   def list_stars(user = %User{}) do
     user
-    |> Repo.preload(:stars)
+    |> Repo.preload(stars: [:user])
     |> Map.fetch!(:stars)
   end
 
