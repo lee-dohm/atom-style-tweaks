@@ -44,6 +44,7 @@ defmodule AtomTweaks.Mixfile do
       :phoenix_pubsub,
       :phoenix_html,
       :cowboy,
+      :sentry,
       :logger,
       :gettext,
       :phoenix_ecto,
