@@ -5,6 +5,6 @@
     = render(@view_module, "underline_nav.html", assigns)
     .border-y
       = if Enum.empty?(@stars) do
-        = render(@view_module, "blankslate.html")
+        = render(@view_module, "blankslate.html", assigns)
       - else
         = render_many(@stars, @view_module, "table_row.html", Map.put(assigns, :as, :star))
