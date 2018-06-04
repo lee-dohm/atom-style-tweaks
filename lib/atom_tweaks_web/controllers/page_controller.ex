@@ -1,7 +1,7 @@
 defmodule AtomTweaksWeb.PageController do
   use AtomTweaksWeb, :controller
 
-  alias AtomTweaks.Tweak
+  alias AtomTweaks.Tweaks.Tweak
 
   def index(conn, params) do
     query =

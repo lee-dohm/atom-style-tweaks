@@ -1,7 +1,7 @@
-defmodule AtomTweaks.UserTest do
+defmodule AtomTweaks.Accounts.UserTest do
   use AtomTweaks.DataCase
 
-  alias AtomTweaks.User
+  alias AtomTweaks.Accounts.User
 
   def build_user(params \\ []) do
     User.changeset(%User{}, params_for(:user, params))

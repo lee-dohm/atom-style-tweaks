@@ -3,19 +3,9 @@ defmodule AtomTweaks.Factory do
 
   alias FakerElixir, as: Faker
 
+  alias AtomTweaks.Accounts.User
   alias AtomTweaks.Markdown
-
-  alias AtomTweaks.Tweak
-  alias AtomTweaks.User
-
-  def user_factory do
-    %User{
-      name: Faker.Internet.user_name(),
-      site_admin: false,
-      github_id: Faker.Helper.pick(1..10_000),
-      avatar_url: Faker.Avatar.robohash()
-    }
-  end
+  alias AtomTweaks.Tweaks.Tweak
 
   def tweak_factory do
     %Tweak{
@@ -24,6 +14,15 @@ defmodule AtomTweaks.Factory do
       description: %Markdown{text: Faker.Lorem.sentences()},
       type: "style",
       user: build(:user)
+    }
+  end
+
+  def user_factory do
+    %User{
+      name: Faker.Internet.user_name(),
+      site_admin: false,
+      github_id: Faker.Helper.pick(1..10_000),
+      avatar_url: Faker.Avatar.robohash()
     }
   end
 end

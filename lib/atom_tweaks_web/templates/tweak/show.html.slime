@@ -1,15 +1,9 @@
-.tweak-title
-  .d-inline-block.my-3.mx-2
-    = mega_octicon_for(@tweak)
-  h3.d-inline-block.my-3 = @tweak.title
-  .d-inline-block.mx-2
-    ' Created by
-    a href="#{user_path(@conn, :show, @tweak.user.name)}" = @tweak.user.name
+= render(LayoutView, "tweak_title.html", assigns)
 .border.p-2
   .pb-2.clearfix
     = gettext "Last updated about "
     = relative_time(@tweak.updated_at)
-    = render_if(@current_user && @current_user.name == @tweak.user.name, TweakView, "edit_tweak_button.html", assigns)
+    = render_if(@current_user && @current_user.name == @tweak.user.name, "edit_tweak_button.html", assigns)
     = render("copy_tweak_button.html", assigns)
   = render_code(@tweak)
   .tweak-description.markdown-body

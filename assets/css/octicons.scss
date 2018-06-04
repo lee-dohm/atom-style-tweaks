@@ -6,7 +6,19 @@
   user-select: none;
 }
 
-.tweak-title .octicons {
+.btn {
+  &.btn-primary {
+    .octicons {
+      fill: $white;
+    }
+  }
+
+  .octicons {
+    vertical-align: text-top;
+  }
+}
+
+.tweak-title-octicon {
   vertical-align: bottom;
 }
 

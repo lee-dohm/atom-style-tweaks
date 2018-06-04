@@ -1,0 +1,10 @@
+.columns
+  .one-fourth.column
+    = render(UserView, "user_info.html", assigns)
+  .three-fourths.column
+    = render(@view_module, "underline_nav.html", assigns)
+    .border-y
+      = if Enum.empty?(@stars) do
+        = render(@view_module, "blankslate.html")
+      - else
+        = render_many(@stars, @view_module, "table_row.html", Map.put(assigns, :as, :star))

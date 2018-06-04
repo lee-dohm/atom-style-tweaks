@@ -1,0 +1,9 @@
+.tweak-title
+  .tweak-title-octicon.d-inline-block.my-3.mr-1
+    = mega_octicon_for(@tweak)
+  h3.d-inline-block.my-3 = @tweak.title
+  .d-inline-block.mx-2
+    = gettext "Created by"
+    '
+    a href="#{user_path(@conn, :show, @tweak.user.name)}" = @tweak.user.name
+  = render("star_button.html", assigns)

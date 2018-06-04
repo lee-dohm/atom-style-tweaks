@@ -1,4 +1,4 @@
-defmodule AtomTweaks.User do
+defmodule AtomTweaks.Accounts.User do
   @moduledoc """
   Represents a user of the application.
   """
@@ -7,8 +7,12 @@ defmodule AtomTweaks.User do
   import Ecto.Changeset
   import Ecto.Query
 
+  alias AtomTweaks.Accounts.User
   alias AtomTweaks.Repo
-  alias AtomTweaks.User
+  alias AtomTweaks.Tweaks.Tweak
+  alias AtomTweaks.Tweaks.Star
+
+  @type t :: %User{}
 
   @derive {Phoenix.Param, key: :name}
 
@@ -20,12 +24,13 @@ defmodule AtomTweaks.User do
     field(:name, :string)
     field(:site_admin, :boolean, default: false)
 
+    has_many(:tweaks, Tweak, foreign_key: :created_by)
+    many_to_many(:stars, Tweak, join_through: Star, on_replace: :delete, on_delete: :delete_all)
+
     timestamps()
   end
 
-  @doc """
-  Builds a changeset based on the `struct` and `params`.
-  """
+  @doc false
   def changeset(struct, params \\ %{}) do
     struct
     |> cast(params, [:avatar_url, :github_id, :name, :site_admin])

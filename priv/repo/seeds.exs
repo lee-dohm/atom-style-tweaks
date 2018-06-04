@@ -10,9 +10,9 @@
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
 
+alias AtomTweaks.Accounts.User
 alias AtomTweaks.Repo
-alias AtomTweaks.Tweak
-alias AtomTweaks.User
+alias AtomTweaks.Tweaks.Tweak
 
 if System.get_env("MIX_ENV") != "test" do
   users = [

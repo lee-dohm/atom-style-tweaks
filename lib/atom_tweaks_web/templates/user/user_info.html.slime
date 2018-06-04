@@ -1,0 +1,8 @@
+#user-info-block
+  = avatar(@user, size: 230)
+  h2.d-inline-block.mt-1 = @user.name
+  = if @user.site_admin do
+    span#staff-badge.state.bg-blue.d-inline-block.mt-2.float-right
+      = gettext "Staff"
+  a#github-link.float-right.mt-1.mr-2 href="https://github.com/#{@user.name}"
+    = mega_octicon(:"mark-github")

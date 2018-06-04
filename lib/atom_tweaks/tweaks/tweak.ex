@@ -1,4 +1,4 @@
-defmodule AtomTweaks.Tweak do
+defmodule AtomTweaks.Tweaks.Tweak do
   @moduledoc """
   Represents a tweak.
   """
@@ -8,8 +8,11 @@ defmodule AtomTweaks.Tweak do
   import Ecto.Query
 
   alias AtomTweaks.Ecto.Markdown
-  alias AtomTweaks.Tweak
-  alias AtomTweaks.User
+  alias AtomTweaks.Tweaks.Star
+  alias AtomTweaks.Tweaks.Tweak
+  alias AtomTweaks.Accounts.User
+
+  @type t :: %Tweak{}
 
   @primary_key {:id, :binary_id, autogenerate: true}
 
@@ -21,12 +24,18 @@ defmodule AtomTweaks.Tweak do
 
     belongs_to(:user, User, foreign_key: :created_by, type: :binary_id)
 
+    many_to_many(
+      :stargazers,
+      User,
+      join_through: Star,
+      on_replace: :delete,
+      on_delete: :delete_all
+    )
+
     timestamps()
   end
 
-  @doc """
-  Builds a changeset based on the `struct` and `params`.
-  """
+  @doc false
   def changeset(struct, params \\ %{}) do
     struct
     |> cast(params, [:title, :code, :created_by, :type, :description])

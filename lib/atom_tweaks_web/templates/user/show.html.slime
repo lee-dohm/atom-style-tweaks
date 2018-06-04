@@ -1,27 +1,16 @@
 .columns
-  #user-info-block.one-fourth.column
-    = avatar(@user, size: 230)
-    h2.d-inline-block.mt-1 = @user.name
-    = if @user.site_admin do
-      span#staff-badge.state.bg-blue.d-inline-block.mt-2.float-right
-        = gettext "Staff"
-    a#github-link.float-right.mt-1.mr-2 href="https://github.com/#{@user.name}"
-      = mega_octicon(:"mark-github")
+  .one-fourth.column
+    = render(@view_module, "user_info.html", assigns)
   .three-fourths.column
+    = render(@view_module, "underline_nav.html", assigns)
     = if !is_nil(@current_user) && @current_user.name == @user.name do
       .pb-3.clearfix
-        a#new-tweak-button.btn.btn-primary.float-right href="#{user_tweak_path(@conn, :new, @user.name)}" = gettext "New tweak"
-    = if Enum.count(@tweaks) == 0 do
-      .blankslate
-        span.mega-octicon.octicon-pencil
-        = if !is_nil(@current_user) && @current_user.name == @user.name do
-          h3 = gettext "This is where your tweaks will be listed"
-          p = gettext "Click \"New tweak\" to get started!"
-        - else
-          h3 = gettext "%{user_name} doesn't have any tweaks yet", user_name: @user.name
-    - else
-      .Box
-        .Box-header
-          h3 = gettext "Tweaks"
-        div
-          = render_many(@tweaks, AtomTweaksWeb.TweakView, "table_row.html", conn: @conn)
+        a#new-tweak-button.btn.btn-primary.float-right href="#{tweak_path(@conn, :new)}"
+          = octicon(:beaker)
+          '
+          = gettext "New"
+    .border-y
+      = if Enum.empty?(@tweaks) do
+        = render(@view_module, "blankslate.html", assigns)
+      - else
+        = render_many(@tweaks, @view_module, "table_row.html", Map.put(assigns, :as, :tweak))

@@ -2,7 +2,7 @@
   .Box-btn-octicon.btn-octicon.float-left
     = mega_octicon_for(@tweak)
   .pl-2.overflow-hidden
-    a.Box-row-link.title href="#{user_tweak_path(@conn, :show, @tweak.user, @tweak)}" = @tweak.title
+    a.Box-row-link.title href="#{tweak_path(@conn, :show, @tweak)}" = @tweak.title
     br
     = gettext "Created by "
     a.Box-row-link href="#{user_path(@conn, :show, @tweak.user.name)}" = @tweak.user.name

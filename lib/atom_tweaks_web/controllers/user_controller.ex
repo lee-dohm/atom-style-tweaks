@@ -1,27 +1,27 @@
 defmodule AtomTweaksWeb.UserController do
+  @moduledoc """
+  Handles requests for user resources.
+  """
   use AtomTweaksWeb, :controller
 
-  alias AtomTweaks.Tweak
-  alias AtomTweaks.User
+  alias AtomTweaks.Accounts
 
+  @doc """
+  Shows the named user.
+  """
   def show(conn, %{"id" => name}) do
-    case Repo.get_by(User, name: name) do
-      nil ->
-        not_found(conn)
+    user = Accounts.get_user!(name)
+    tweaks = Accounts.list_tweaks(user)
+    star_count = Accounts.count_stars(user)
+    tweak_count = Accounts.count_tweaks(user)
 
-      user ->
-        tweaks = Repo.all(from(t in Tweak, where: t.created_by == ^user.id, preload: [:user]))
-
-        conn
-        |> assign(:tweaks, tweaks)
-        |> assign(:user, user)
-        |> render("show.html")
-    end
-  end
-
-  defp not_found(conn) do
-    conn
-    |> put_status(:not_found)
-    |> render(AtomTweaksWeb.ErrorView, "404.html")
+    render(
+      conn,
+      "show.html",
+      user: user,
+      tweaks: tweaks,
+      tweak_count: tweak_count,
+      star_count: star_count
+    )
   end
 end
