@@ -54,3 +54,19 @@ config :atom_tweaks, AtomTweaks.Repo,
   pool_size: 10
 
 config :ex_doc, :markdown_processor, ExDoc.Markdown.Cmark
+
+# ExDebugToolbar config
+config :ex_debug_toolbar,
+  enable: true
+
+config :atom_tweaks, AtomTweaksWeb.Endpoint,
+  instrumenters: [ExDebugToolbar.Collector.InstrumentationCollector]
+
+config :atom_tweaks, AtomTweaks.Repo,
+  loggers: [ExDebugToolbar.Collector.EctoCollector, Ecto.LogEntry]
+
+config :phoenix, :template_engines,
+  eex: ExDebugToolbar.Template.EExEngine,
+  exs: ExDebugToolbar.Template.ExsEngine,
+  slim: ExDebugToolbar.Template.SlimEngine,
+  slime: ExDebugToolbar.Template.SlimEngine

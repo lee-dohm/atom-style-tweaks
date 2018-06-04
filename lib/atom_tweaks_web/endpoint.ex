@@ -1,5 +1,6 @@
 defmodule AtomTweaksWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :atom_tweaks
+  use ExDebugToolbar.Phoenix
 
   socket("/socket", AtomTweaksWeb.UserSocket)
 
