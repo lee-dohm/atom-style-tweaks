@@ -19,4 +19,4 @@ config :atom_tweaks, AtomTweaks.Repo,
   pool: Ecto.Adapters.SQL.Sandbox
 
 # Customize the test environment for CI systems
-if System.get_env("CI") == "true", do: import_config "ci.exs"
+if System.get_env("CI") == "true", do: import_config("ci.exs")
