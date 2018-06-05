@@ -30,6 +30,7 @@ config :atom_tweaks, AtomTweaks.Repo,
 
 # Error tracking service
 config :sentry,
+  release: System.get_env("HEROKU_SLUG_COMMIT"),
   tags: %{
     env: "production"
   }
