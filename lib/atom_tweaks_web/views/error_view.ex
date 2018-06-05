@@ -4,6 +4,8 @@ defmodule AtomTweaksWeb.ErrorView do
   """
   use AtomTweaksWeb, :view
 
+  require Logger
+
   @doc """
   Renders the page for the given template.
 
@@ -16,7 +18,9 @@ defmodule AtomTweaksWeb.ErrorView do
 
   # In case no render clause matches or no
   # template is found, let's render it as 500
-  def template_not_found(_template, assigns) do
+  def template_not_found(template, assigns) do
+    Logger.info(fn -> "No handler for #{template}" end)
+
     render("500.html", assigns)
   end
 end
