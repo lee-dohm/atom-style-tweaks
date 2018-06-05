@@ -4,10 +4,6 @@ elixir:
 otp_release:
   - 20.0
 
-branches:
-  only:
-  - master
-
 dist: trusty
 sudo: false
 addons:
