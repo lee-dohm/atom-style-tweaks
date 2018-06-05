@@ -9,6 +9,7 @@ defmodule AtomTweaksWeb.ErrorView do
 
   Since we don't have fancy error pages yet, we're just rendering the text of the status code.
   """
+  def render("400.html", _assigns), do: "Bad request"
   def render("404.html", _assigns), do: "Page not found"
   def render("422.html", _assigns), do: "Unprocessable entity"
   def render("500.html", _assigns), do: "Internal server error"
