@@ -9,9 +9,9 @@ defmodule AtomTweaks.Tweaks.Star do
 
   import Ecto.Changeset
 
+  alias AtomTweaks.Accounts.User
   alias AtomTweaks.Tweaks.Star
   alias AtomTweaks.Tweaks.Tweak
-  alias AtomTweaks.Accounts.User
 
   @type t :: %Star{}
 

@@ -1,5 +1,5 @@
 defmodule AtomTweaksWeb.ErrorView do
-  @doc """
+  @moduledoc """
   View functions for HTTP error states.
   """
   use AtomTweaksWeb, :view

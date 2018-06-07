@@ -9,8 +9,8 @@ defmodule AtomTweaks.Accounts.User do
 
   alias AtomTweaks.Accounts.User
   alias AtomTweaks.Repo
-  alias AtomTweaks.Tweaks.Tweak
   alias AtomTweaks.Tweaks.Star
+  alias AtomTweaks.Tweaks.Tweak
 
   @type t :: %User{}
 

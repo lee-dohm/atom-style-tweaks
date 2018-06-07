@@ -7,10 +7,10 @@ defmodule AtomTweaks.Tweaks.Tweak do
   import Ecto.Changeset
   import Ecto.Query
 
+  alias AtomTweaks.Accounts.User
   alias AtomTweaks.Ecto.Markdown
   alias AtomTweaks.Tweaks.Star
   alias AtomTweaks.Tweaks.Tweak
-  alias AtomTweaks.Accounts.User
 
   @type t :: %Tweak{}
 
