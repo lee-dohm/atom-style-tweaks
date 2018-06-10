@@ -1,4 +1,7 @@
 defmodule AtomTweaksWeb.Router do
+  @moduledoc """
+  Routes requests to the website to the appropriate controller.
+  """
   use AtomTweaksWeb, :router
 
   use Plug.ErrorHandler

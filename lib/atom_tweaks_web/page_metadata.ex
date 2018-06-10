@@ -10,12 +10,10 @@ defmodule AtomTweaksWeb.PageMetadata do
   [foo: "bar"]
   ```
 
-  And add the `PageMetadata.render/1` call to the layout template:
+  And add the `PageMetadata.render/1` call to the `head` section of the layout template:
 
-  ```html
-  <html>
-    <head>
-      <%= PageMetadata.render(@conn) %>
+  ```elixir
+  <%= PageMetadata.render(@conn) %>
   ```
 
   It will show up in the rendered page:
@@ -24,6 +22,10 @@ defmodule AtomTweaksWeb.PageMetadata do
   <html>
     <head>
       <meta foo="bar">
+    </head>
+    <body>
+    </body>
+  </html>
   ```
   """
   use Phoenix.HTML
