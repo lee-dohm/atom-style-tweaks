@@ -2,7 +2,8 @@ defmodule AtomTweaksWeb.MarkdownEngine do
   @moduledoc """
   Renders Markdown into HTML.
 
-  Used both directly and within Slime templates.
+  Besides using [CommonMark](http://commonmark.org) to render Markdown into HTML, it also links
+  at-mentions to user profile pages.
   """
   alias AtomTweaks.Accounts
 
@@ -22,15 +23,25 @@ defmodule AtomTweaksWeb.MarkdownEngine do
 
   @mention_link_pattern ~r{<a href="([^"]*)">(@[a-zA-Z0-9][a-zA-Z0-9-]*)</a>}
 
-  @spec render(String.t() | nil) :: String.t()
+  @doc """
+  Renders the given Markdown `text` into HTML with the default set of options.
+  """
+  @spec render(iodata() | nil) :: String.t()
   def render(text), do: render(text, [])
 
   @doc """
-  Renders the given Markdown text into HTML.
+  Renders the given Markdown `text` into HTML according to `options`.
 
   **See:** `Cmark.to_html/2`
+
+  ## Options
+
+  Currently, the `:safe`, `:smart`, and `:validate_utf8` options are hard-coded. All supplied
+  options are ignored.
   """
-  @spec render(String.t() | nil, Keyword.t()) :: String.t()
+  @spec render(iodata() | nil, Keyword.t()) :: String.t()
+  def render(text, options)
+
   def render(nil, options), do: render("", options)
 
   def render(list, options) when is_list(list) do
