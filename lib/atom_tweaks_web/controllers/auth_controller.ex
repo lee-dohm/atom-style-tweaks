@@ -6,9 +6,9 @@ defmodule AtomTweaksWeb.AuthController do
 
   require Logger
 
-  alias OAuth2.Client, as: OAuthClient
-
   alias AtomTweaks.Accounts.User
+  alias AtomTweaksWeb.GitHub
+  alias OAuth2.Client, as: OAuthClient
 
   @doc """
   Signs the user in by redirecting to the GitHub authorization URL.
