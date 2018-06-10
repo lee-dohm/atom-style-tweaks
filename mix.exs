@@ -112,51 +112,51 @@ defmodule AtomTweaks.Mixfile do
         ]
       ],
       groups_for_modules: [
-         Accounts: [
-           ~r{^AtomTweaks\.Accounts}
-         ],
-         Controllers: [
-           ~r{^AtomTweaks.*Controller$}
-         ],
-         "Ecto Types": [
-           ~r{^AtomTweaks.Ecto.*}
-         ],
-         Helpers: [
-           ~r{^AtomTweaks.*Helpers$}
-         ],
-         Localization: [
-           AtomTweaksWeb.Gettext
-         ],
-         Markdown: [
-           ~r{Markdown}
-         ],
-         Notes: [
-           ~r{^AtomTweaks.Notes}
-         ],
-         OAuth: [
-           AtomTweaksWeb.GitHub
-         ],
-         Plugs: [
-           AtomTweaksWeb.HerokuMetadata,
-           AtomTweaksWeb.PageMetadata,
-           AtomTweaksWeb.SlidingSessionTimeout
-         ],
-         Primer: [
-           ~r{^AtomTweaksWeb\.Primer}
-         ],
-         Sockets: [
-           ~r{^AtomTweaksWeb.*Socket$}
-         ],
-         Test: [
-           ~r{^AtomTweaks.*(Channel|Conn|Data)Case$},
-           ~r{^AtomTweaks.Support}
-         ],
-         Tweaks: [
-           ~r{^AtomTweaks\.Tweaks}
-         ],
-         Views: [
-           ~r{^AtomTweaksWeb.*View$}
-         ]
+        Accounts: [
+          ~r{^AtomTweaks\.Accounts}
+        ],
+        Controllers: [
+          ~r{^AtomTweaks.*Controller$}
+        ],
+        "Ecto Types": [
+          ~r{^AtomTweaks.Ecto.*}
+        ],
+        Helpers: [
+          ~r{^AtomTweaks.*Helpers$}
+        ],
+        Localization: [
+          AtomTweaksWeb.Gettext
+        ],
+        Markdown: [
+          ~r{Markdown}
+        ],
+        Notes: [
+          ~r{^AtomTweaks.Notes}
+        ],
+        OAuth: [
+          AtomTweaksWeb.GitHub
+        ],
+        Plugs: [
+          AtomTweaksWeb.HerokuMetadata,
+          AtomTweaksWeb.PageMetadata,
+          AtomTweaksWeb.SlidingSessionTimeout
+        ],
+        Primer: [
+          ~r{^AtomTweaksWeb\.Primer}
+        ],
+        Sockets: [
+          ~r{^AtomTweaksWeb.*Socket$}
+        ],
+        Test: [
+          ~r{^AtomTweaks.*(Channel|Conn|Data)Case$},
+          ~r{^AtomTweaks.Support}
+        ],
+        Tweaks: [
+          ~r{^AtomTweaks\.Tweaks}
+        ],
+        Views: [
+          ~r{^AtomTweaksWeb.*View$}
+        ]
       ]
     ]
   end
