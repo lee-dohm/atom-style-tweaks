@@ -1,4 +1,7 @@
 defmodule AtomTweaksWeb.StarController do
+  @moduledoc """
+  Handles requests of information about stars.
+  """
   use AtomTweaksWeb, :controller
 
   alias AtomTweaks.Accounts
@@ -24,7 +27,7 @@ defmodule AtomTweaksWeb.StarController do
   end
 
   @doc """
-  Toggles whether the `user` has starred the tweak.
+  Toggles whether the current `user` has starred the tweak.
 
   After the state has been toggled, it redirects back to wherever it came from.
   """
