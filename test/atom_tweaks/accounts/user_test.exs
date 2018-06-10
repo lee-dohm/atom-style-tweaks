@@ -94,18 +94,4 @@ defmodule AtomTweaks.Accounts.UserTest do
       assert has_error_on?(user, :site_admin)
     end
   end
-
-  describe "exists?" do
-    test "returns true when the record exists", _context do
-      user = insert(:user)
-
-      assert User.exists?(user.name)
-    end
-
-    test "returns false when the record does not exist", _context do
-      user = build(:user)
-
-      refute User.exists?(user.name)
-    end
-  end
 end

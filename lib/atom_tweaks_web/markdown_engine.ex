@@ -4,7 +4,7 @@ defmodule AtomTweaksWeb.MarkdownEngine do
 
   Used both directly and within Slime templates.
   """
-  alias AtomTweaks.Accounts.User
+  alias AtomTweaks.Accounts
 
   @behaviour Slime.Parser.EmbeddedEngine
 
@@ -40,7 +40,7 @@ defmodule AtomTweaksWeb.MarkdownEngine do
   def render(text, _options) do
     funcs = [
       fn _, name ->
-        if User.exists?(name) do
+        if Accounts.get_user(name) do
           "[@#{name}](/users/#{name})"
         end
       end
