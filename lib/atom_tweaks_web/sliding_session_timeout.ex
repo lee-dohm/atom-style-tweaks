@@ -42,8 +42,7 @@ defmodule AtomTweaksWeb.SlidingSessionTimeout do
   defp get_app, do: Application.get_application(__MODULE__)
 
   defp init_defaults do
-    [timeout: 3_600]
-    |> Keyword.merge(Application.get_env(get_app(), __MODULE__) || [])
+    Keyword.merge([timeout: 3_600], Application.get_env(get_app(), __MODULE__) || [])
   end
 
   defp logout_user(conn) do
