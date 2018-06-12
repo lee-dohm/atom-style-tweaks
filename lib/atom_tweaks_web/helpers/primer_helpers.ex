@@ -1,6 +1,6 @@
 defmodule AtomTweaksWeb.PrimerHelpers do
   @moduledoc """
-  Helper functions for generating elements that work with [Primer](https://primer.github.io/).
+  View helper functions for generating elements that work with [Primer](https://primer.github.io/).
   """
   use Phoenix.HTML
 
