@@ -1,4 +1,3 @@
-nav.UnderlineNav.mb-3
-  .UnderlineNav-body
-    = underline_nav_item(gettext("Tweaks"), user_path(@conn, :show, @user), id: "tweaks-nav", counter: @tweak_count)
-    = underline_nav_item(gettext("Stars"), user_star_path(@conn, :index, @user), id: "stars-nav", selected: true, counter: @star_count)
+= underline_nav(class: "mb-3") do
+  = underline_nav_item(gettext("Tweaks"), user_path(@conn, :show, @user), id: "tweaks-nav", counter: @tweak_count)
+  = underline_nav_item(gettext("Stars"), user_star_path(@conn, :index, @user), id: "stars-nav", selected: true, counter: @star_count)

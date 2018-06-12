@@ -27,6 +27,21 @@ defmodule AtomTweaksWeb.PrimerHelpers do
   end
 
   @doc """
+  Renders an `UnderlineNav` element.
+
+  **See:** <https://github.com/primer/primer/tree/master/modules/primer-navigation#underline-nav>
+  """
+  def underline_nav(options \\ [], do: block) do
+    class =
+      "UnderlineNav"
+      |> append_class(options[:class])
+
+    content_tag(:nav, class: class) do
+      content_tag(:div, block, class: "UnderlineNav-body")
+    end
+  end
+
+  @doc """
   Renders an `UnderlineNav-item` element.
 
   **See:** <https://github.com/primer/primer/tree/master/modules/primer-navigation#underline-nav>
