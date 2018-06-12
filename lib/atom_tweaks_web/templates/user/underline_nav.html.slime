@@ -1,8 +1,4 @@
 nav.UnderlineNav.mb-3
   .UnderlineNav-body
-    a#tweaks-nav.UnderlineNav-item.selected
-      = gettext "Tweaks"
-      span.Counter = @tweak_count
-    a#stars-nav.UnderlineNav-item href="#{user_star_path(@conn, :index, @user)}"
-      = gettext "Stars"
-      span.Counter = @star_count
+    = underline_nav_item(gettext("Tweaks"), user_path(@conn, :show, @user), id: "tweaks-nav", selected: true, counter: @tweak_count)
+    = underline_nav_item(gettext("Stars"), user_star_path(@conn, :index, @user), id: "stars-nav", counter: @star_count)
