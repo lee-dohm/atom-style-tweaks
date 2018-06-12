@@ -2,7 +2,7 @@
   .one-fourth.column
     = render(UserView, "user_info.html", assigns)
   .three-fourths.column
-    = render(@view_module, "underline_nav.html", assigns)
+    = render(UserView, "underline_nav.html", Map.put(assigns, :nav_selected, :stars))
     .border-y
       = if Enum.empty?(@stars) do
         = render(@view_module, "blankslate.html", assigns)
