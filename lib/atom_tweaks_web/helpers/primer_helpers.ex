@@ -60,6 +60,17 @@ defmodule AtomTweaksWeb.PrimerHelpers do
     link(text, options)
   end
 
+  @doc """
+  Renders a Primer menu item.
+
+  ## Options
+
+  * `:octicon` - Renders an [Octicon](https://octicons.github.com) with the menu item
+  * `:selected` - If `true`, renders the menu item as selected
+
+  All other options are passed through to the underlying HTML `a` element.
+  """
+  @spec menu_item(String.t(), String.t(), Keyword.t()) :: Phoenix.HTML.safe()
   def menu_item(text, link, options \\ []) do
     selected = options[:selected]
 
