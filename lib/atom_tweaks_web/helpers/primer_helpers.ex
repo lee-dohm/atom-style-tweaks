@@ -17,9 +17,7 @@ defmodule AtomTweaksWeb.PrimerHelpers do
 
   ## Options
 
-  Valid options are:
-
-  * `size` the value in pixels to use for both the width and height of the avatar image
+  * `:size` - value in pixels to use for both the width and height of the avatar image
   """
   @spec avatar(User.t(), Keword.t()) :: Phoenix.HTML.safe()
   def avatar(user, options \\ [])
@@ -33,7 +31,7 @@ defmodule AtomTweaksWeb.PrimerHelpers do
       :img,
       alt: user.name,
       class: "avatar",
-      src: append_query(user.avatar_url, %{s: size}),
+      src: append_query(user.avatar_url, s: size),
       width: size,
       height: size
     )
@@ -210,7 +208,8 @@ defmodule AtomTweaksWeb.PrimerHelpers do
   defp append_class(base, ""), do: base
   defp append_class(base, class) when is_binary(class), do: base <> " " <> class
 
-  defp append_query(avatar_url, map) do
+  defp append_query(avatar_url, options) do
+    map = Enum.into(options, %{})
     uri = URI.parse(avatar_url)
 
     new_query =
