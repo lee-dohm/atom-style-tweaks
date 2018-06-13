@@ -60,6 +60,33 @@ defmodule AtomTweaksWeb.PrimerHelpers do
     link(text, options)
   end
 
+  def menu_item(text, link, options \\ []) do
+    selected = options[:selected]
+
+    class =
+      "menu-item"
+      |> append_class(options[:class])
+      |> append_class(if selected, do: "selected", else: nil)
+
+    tag_options =
+      options
+      |> Keyword.drop([:selected])
+      |> Keyword.put(:href, link)
+      |> Keyword.put(:class, class)
+
+    content =
+      if options[:octicon] do
+        [
+          PhoenixOcticons.octicon(options[:octicon], %{"width" => "16"}),
+          text
+        ]
+      else
+        text
+      end
+
+    content_tag(:a, content, tag_options)
+  end
+
   @doc """
   Renders an `UnderlineNav` element.
 
