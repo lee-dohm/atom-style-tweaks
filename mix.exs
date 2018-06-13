@@ -21,6 +21,13 @@ defmodule AtomTweaks.Mixfile do
         coveralls: :test,
         "coveralls.html": :test,
         "coveralls.travis": :test
+      ],
+
+      # Silence deprecation warning
+      # See https://github.com/phoenixframework/phoenix/issues/2888 for details
+      # Should be able to remove when upgrading to Plug v1.5.1 or above
+      xref: [
+        exclude: [AtomTweaksWeb.Router, {Plug.Conn.WrapperError, :reraise, 3}]
       ]
     ]
   end
