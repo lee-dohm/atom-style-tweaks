@@ -1,6 +1,6 @@
 .columns
   .one-fifth.column
-    nav.menu
+    = menu do
       = menu_item(gettext("All"), page_path(@conn, :index), id: "all-menu-item", octicon: :beaker, selected: is_nil(@type))
       = menu_item(gettext("Init"), page_path(@conn, :index, type: :init), id: "init-menu-item", octicon: :code, selected: @type == "init")
       = menu_item(gettext("Styles"), page_path(@conn, :index, type: :style), id: "styles-menu-item", octicon: :paintcan, selected: @type == "style")

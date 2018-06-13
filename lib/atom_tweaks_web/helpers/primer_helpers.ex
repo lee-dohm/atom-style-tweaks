@@ -1,6 +1,7 @@
 defmodule AtomTweaksWeb.PrimerHelpers do
   @moduledoc """
-  View helper functions for generating elements that work with [Primer](https://primer.github.io/).
+  View helper functions for generating elements that work with
+  [GitHub's Primer](https://primer.github.io/) CSS framework.
 
   All functions can be used either within a template or composed together in code. Each function
   should always emit `t:Phoenix.HTML.safe/0` objects or throw an exception.
@@ -12,13 +13,15 @@ defmodule AtomTweaksWeb.PrimerHelpers do
   @doc """
   Renders the `avatar` element for the `user`.
 
+  **See:** [Avatar element documentation](https://github.com/primer/primer/tree/master/modules/primer-avatars#basic-example)
+
   ## Options
 
   Valid options are:
 
   * `size` the value in pixels to use for both the width and height of the avatar image
   """
-  @spec avatar(User.t(), keyword) :: Phoenix.HTML.safe()
+  @spec avatar(User.t(), Keword.t()) :: Phoenix.HTML.safe()
   def avatar(user, options \\ [])
 
   def avatar(user, []) do
@@ -39,7 +42,7 @@ defmodule AtomTweaksWeb.PrimerHelpers do
   @doc """
   Renders a `Counter` element.
 
-  **See:** <https://github.com/primer/primer/tree/master/modules/primer-labels#counters>
+  **See:** [Counter element documentation](https://github.com/primer/primer/tree/master/modules/primer-labels#counters)
   """
   @spec counter(non_neg_integer()) :: Phoenix.HTML.safe()
   def counter(count) do
@@ -47,7 +50,7 @@ defmodule AtomTweaksWeb.PrimerHelpers do
   end
 
   @doc """
-  Generates a link button with the given text and options.
+  Renders a link that visually appears as a button.
 
   ## Options
 
@@ -61,7 +64,38 @@ defmodule AtomTweaksWeb.PrimerHelpers do
   end
 
   @doc """
-  Renders a Primer menu item.
+  Renders a menu element.
+
+  **See:** [Menu element documentation](https://github.com/primer/primer/tree/master/modules/primer-navigation#menu)
+
+  ## Example
+
+  Slime template:
+
+  ```
+  = menu do
+    = menu_item("Foo", "/path/to/foo", selected: true)
+    = menu_item("Bar", "/path/to/bar")
+  ```
+
+  generates:
+
+  ```html
+  <nav class="menu">
+    <a class="menu-item selected" href="/path/to/foo">Foo</a>
+    <a class="menu-item" href="/path/to/bar">Bar</a>
+  </nav>
+  ```
+  """
+  @spec menu(Keyword.t()) :: Phoenix.HTML.safe()
+  def menu(block)
+
+  def menu(do: block) do
+    content_tag(:nav, block, class: "menu")
+  end
+
+  @doc """
+  Renders a menu item element.
 
   ## Options
 
@@ -103,7 +137,7 @@ defmodule AtomTweaksWeb.PrimerHelpers do
 
   The `underline_nav_item/3` function is used to generate the nav items within the nav element.
 
-  **See:** <https://github.com/primer/primer/tree/master/modules/primer-navigation#underline-nav>
+  **See:** [UnderlineNav element documentation](https://github.com/primer/primer/tree/master/modules/primer-navigation#underline-nav)
 
   ## Options
 
@@ -143,8 +177,6 @@ defmodule AtomTweaksWeb.PrimerHelpers do
 
   @doc """
   Renders an `UnderlineNav-item` element.
-
-  **See:** <https://github.com/primer/primer/tree/master/modules/primer-navigation#underline-nav>
 
   ## Options
 
