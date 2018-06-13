@@ -157,7 +157,7 @@ defmodule AtomTweaksWeb.PrimerHelpers do
       |> Keyword.drop([:counter, :selected])
       |> Keyword.put(:class, class)
 
-    tag_options = if !selected, do: Keyword.put(tag_options, :href, link), else: tag_options
+    tag_options = if selected, do: tag_options, else: Keyword.put(tag_options, :href, link)
     content = if count, do: [text, counter(count)], else: text
 
     content_tag(:a, content, tag_options)
