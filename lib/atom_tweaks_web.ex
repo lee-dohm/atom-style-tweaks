@@ -46,7 +46,6 @@ defmodule AtomTweaksWeb do
       # Project-specific view helpers
       import PhoenixOcticons
 
-      import AtomTweaksWeb.AvatarHelpers
       import AtomTweaksWeb.FormHelpers
       import AtomTweaksWeb.MenuHelpers
       import AtomTweaksWeb.PrimerHelpers

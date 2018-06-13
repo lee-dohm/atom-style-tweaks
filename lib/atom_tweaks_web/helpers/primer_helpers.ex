@@ -1,14 +1,47 @@
 defmodule AtomTweaksWeb.PrimerHelpers do
   @moduledoc """
   View helper functions for generating elements that work with [Primer](https://primer.github.io/).
+
+  All functions can be used either within a template or composed together in code. Each function
+  should always emit `t:Phoenix.HTML.safe/0` objects or throw an exception.
   """
   use Phoenix.HTML
+
+  alias AtomTweaks.Accounts.User
+
+  @doc """
+  Renders the `avatar` element for the `user`.
+
+  ## Options
+
+  Valid options are:
+
+  * `size` the value in pixels to use for both the width and height of the avatar image
+  """
+  @spec avatar(User.t(), keyword) :: Phoenix.HTML.safe()
+  def avatar(user, options \\ [])
+
+  def avatar(user, []) do
+    tag(:img, alt: user.name, class: "avatar", src: user.avatar_url)
+  end
+
+  def avatar(user, size: size) do
+    tag(
+      :img,
+      alt: user.name,
+      class: "avatar",
+      src: "#{user.avatar_url}&s=#{size}",
+      width: size,
+      height: size
+    )
+  end
 
   @doc """
   Renders a `Counter` element.
 
   **See:** <https://github.com/primer/primer/tree/master/modules/primer-labels#counters>
   """
+  @spec counter(non_neg_integer()) :: Phoenix.HTML.safe()
   def counter(count) do
     content_tag(:span, Integer.to_string(count), class: "Counter")
   end
@@ -20,6 +53,7 @@ defmodule AtomTweaksWeb.PrimerHelpers do
 
   * `:to` - the URL to link to
   """
+  @spec link_button(String.t(), Keyword.t()) :: Phoenix.HTML.safe()
   def link_button(text, options \\ []) do
     options = Keyword.merge(options, type: "button")
 
@@ -29,12 +63,40 @@ defmodule AtomTweaksWeb.PrimerHelpers do
   @doc """
   Renders an `UnderlineNav` element.
 
+  The `underline_nav_item/3` function is used to generate the nav items within the nav element.
+
   **See:** <https://github.com/primer/primer/tree/master/modules/primer-navigation#underline-nav>
+
+  ## Options
+
+  All options are passed through to the underlying HTML `nav` element.
+
+  ## Example
+
+  Slime template:
+
+  ```
+  = underline_nav do
+    = underline_nav_item "Foo", "/path/to/foo", selected: true
+    = underline_nav_item "Bar", "/path/to/bar"
+  ```
+
+  generates:
+
+  ```html
+  <nav class="UnderlineNav">
+    <div class="UnderlineNav-body">
+      <a class="UnderlineNav-item selected" href="/path/to/foo">Foo</a>
+      <a class="UnderlineNav-item" href="/path/to/bar">Bar</a>
+    </div>
+  </div>
+  ```
   """
-  def underline_nav(options \\ [], do: block) do
-    class =
-      "UnderlineNav"
-      |> append_class(options[:class])
+  @spec underline_nav(Keyword.t(), Keyword.t()) :: Phoenix.HTML.safe()
+  def underline_nav(options \\ [], block)
+
+  def underline_nav(options, do: block) do
+    class = append_class("UnderlineNav", options[:class])
 
     content_tag(:nav, class: class) do
       content_tag(:div, block, class: "UnderlineNav-body")
@@ -51,8 +113,9 @@ defmodule AtomTweaksWeb.PrimerHelpers do
   * `:counter` - When supplied with an integer value, renders a `Counter` element
   * `:selected` - When `true`, renders this item as selected
 
-  All other options are passed through to the actual HTML element.
+  All other options are passed through to the underlying HTML `a` element.
   """
+  @spec underline_nav_item(String.t(), String.t(), Keyword.t()) :: Phoenix.HTML.safe()
   def underline_nav_item(text, link, options \\ []) do
     selected = options[:selected]
 
