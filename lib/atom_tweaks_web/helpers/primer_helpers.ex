@@ -30,7 +30,7 @@ defmodule AtomTweaksWeb.PrimerHelpers do
       :img,
       alt: user.name,
       class: "avatar",
-      src: "#{user.avatar_url}&s=#{size}",
+      src: append_query(user.avatar_url, %{s: size}),
       width: size,
       height: size
     )
@@ -117,6 +117,7 @@ defmodule AtomTweaksWeb.PrimerHelpers do
   """
   @spec underline_nav_item(String.t(), String.t(), Keyword.t()) :: Phoenix.HTML.safe()
   def underline_nav_item(text, link, options \\ []) do
+    count = options[:counter]
     selected = options[:selected]
 
     class =
@@ -129,22 +130,8 @@ defmodule AtomTweaksWeb.PrimerHelpers do
       |> Keyword.drop([:counter, :selected])
       |> Keyword.put(:class, class)
 
-    tag_options =
-      if selected do
-        tag_options
-      else
-        Keyword.put(tag_options, :href, link)
-      end
-
-    content =
-      if options[:counter] do
-        [
-          text,
-          counter(options[:counter])
-        ]
-      else
-        text
-      end
+    tag_options = if !selected, do: Keyword.put(tag_options, :href, link), else: tag_options
+    content = if count, do: [text, counter(count)], else: text
 
     content_tag(:a, content, tag_options)
   end
@@ -152,4 +139,17 @@ defmodule AtomTweaksWeb.PrimerHelpers do
   defp append_class(base, nil), do: base
   defp append_class(base, ""), do: base
   defp append_class(base, class) when is_binary(class), do: base <> " " <> class
+
+  defp append_query(avatar_url, map) do
+    uri = URI.parse(avatar_url)
+
+    new_query =
+      uri.query
+      |> URI.decode_query(map)
+      |> URI.encode_query()
+
+    uri
+    |> Map.replace(:query, new_query)
+    |> to_string()
+  end
 end
