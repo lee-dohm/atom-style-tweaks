@@ -70,14 +70,14 @@ defmodule AtomTweaksWeb.PrimerHelpers do
 
     tag_options =
       options
-      |> Keyword.drop([:selected])
+      |> Keyword.drop([:octicon, :selected])
       |> Keyword.put(:href, link)
       |> Keyword.put(:class, class)
 
     content =
       if options[:octicon] do
         [
-          PhoenixOcticons.octicon(options[:octicon], %{"width" => "16"}),
+          PhoenixOcticons.octicon(options[:octicon], width: 16),
           text
         ]
       else
