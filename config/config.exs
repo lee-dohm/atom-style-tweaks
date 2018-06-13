@@ -48,6 +48,12 @@ config :sentry,
   root_source_code_path: File.cwd!(),
   included_environments: [:staging, :prod]
 
+# Silence deprecation warning
+# See https://github.com/phoenixframework/phoenix/issues/2888 for details
+# Should be able to remove when upgrading to Plug v1.5.1 or above
+config :xref,
+  exclude: [AtomTweaksWeb.Router, {Plug.Conn.WrapperError, :reraise, 3}]
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"

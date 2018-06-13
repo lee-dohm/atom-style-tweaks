@@ -219,7 +219,7 @@ defmodule AtomTweaksWeb.PrimerHelpers do
       |> URI.encode_query()
 
     uri
-    |> Map.replace(:query, new_query)
+    |> Map.put(:query, new_query)
     |> to_string()
   end
 end
