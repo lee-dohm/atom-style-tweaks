@@ -213,9 +213,10 @@ defmodule AtomTweaksWeb.PrimerHelpers do
     uri = URI.parse(avatar_url)
 
     new_query =
-      uri.query
-      |> URI.decode_query(map)
-      |> URI.encode_query()
+      uri.query ||
+        ""
+        |> URI.decode_query(map)
+        |> URI.encode_query()
 
     uri
     |> Map.put(:query, new_query)
