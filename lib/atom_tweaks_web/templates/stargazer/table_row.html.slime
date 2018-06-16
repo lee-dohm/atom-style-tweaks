@@ -1,0 +1,4 @@
+.Box-row.clearfix
+  = avatar(@stargazer, class: "float-left", size: 30)
+  .pl-2.overflow-hidden
+    a.Box-row-link.title href="#{user_path(@conn, :show, @stargazer)}" = @stargazer.name

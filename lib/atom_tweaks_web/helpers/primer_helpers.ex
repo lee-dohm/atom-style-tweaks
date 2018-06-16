@@ -22,19 +22,21 @@ defmodule AtomTweaksWeb.PrimerHelpers do
   @spec avatar(User.t(), Keword.t()) :: Phoenix.HTML.safe()
   def avatar(user, options \\ [])
 
-  def avatar(user, []) do
-    tag(:img, alt: user.name, class: "avatar", src: user.avatar_url)
-  end
+  def avatar(user, options) do
+    size = options[:size] || 35
 
-  def avatar(user, size: size) do
-    tag(
-      :img,
-      alt: user.name,
-      class: "avatar",
-      src: append_query(user.avatar_url, s: size),
-      width: size,
-      height: size
-    )
+    class = append_class("avatar", options[:class])
+
+    tag_options =
+      options
+      |> Keyword.drop([:size])
+      |> Keyword.put(:alt, user.name)
+      |> Keyword.put(:class, class)
+      |> Keyword.put(:src, append_query(user.avatar_url, s: size))
+      |> Keyword.put(:width, size)
+      |> Keyword.put(:height, size)
+
+    tag(:img, tag_options)
   end
 
   @doc """
