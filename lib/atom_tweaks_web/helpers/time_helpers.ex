@@ -14,14 +14,12 @@ defmodule AtomTweaksWeb.TimeHelpers do
   @spec relative_time(DateTime.t()) :: Phoenix.HTML.safe()
   def relative_time(from) do
     from_now = Timex.from_now(from, Gettext.get_locale(AtomTweaksWeb.Gettext))
-    title = strip_fractional_seconds(from)
+
+    title =
+      from
+      |> NaiveDateTime.truncate(:second)
+      |> to_string
 
     content_tag(:"time-ago", from_now, title: title)
-  end
-
-  defp strip_fractional_seconds(from) do
-    from
-    |> to_string
-    |> String.replace(~r/\.\d+$/, "")
   end
 end
