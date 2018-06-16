@@ -1,12 +1,7 @@
 defmodule AtomTweaksWeb.PrimerHelpersTest do
-  use ExUnit.Case
+  use AtomTweaksWeb.HelperCase
 
   import AtomTweaksWeb.PrimerHelpers
-  import Floki, only: [attribute: 2, find: 2, text: 1], warn: false
-
-  def render(safe) do
-    Phoenix.HTML.safe_to_string(safe)
-  end
 
   describe "avatar" do
     setup do
