@@ -58,6 +58,10 @@ defmodule Test.Helpers do
     PlugTest.init_test_session(conn, %{current_user: user})
   end
 
+  def render(safe) do
+    Phoenix.HTML.safe_to_string(safe)
+  end
+
   def text_in(html, selector) do
     html
     |> Floki.find(selector)

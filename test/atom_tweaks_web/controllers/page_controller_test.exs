@@ -22,8 +22,8 @@ defmodule AtomTweaksWeb.PageControllerTest do
       assert fetch_assign(context.conn, :tweaks) == []
     end
 
-    test "assigns an empty params list", context do
-      assert fetch_assign(context.conn, :params) == %{}
+    test "assigns a nil type", context do
+      assert fetch_assign(context.conn, :type) == nil
     end
 
     test "shows the home page link", context do

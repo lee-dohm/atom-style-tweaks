@@ -1,8 +1,10 @@
-defmodule GitHub do
+defmodule AtomTweaksWeb.GitHub do
   @moduledoc """
   An OAuth2 strategy for GitHub.
   """
   use OAuth2.Strategy
+
+  alias AtomTweaksWeb.GitHub
 
   defp config do
     [

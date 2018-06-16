@@ -1,4 +1,7 @@
 = render(LayoutView, "tweak_title.html", assigns)
 
 h2 = gettext "Stargazers"
-= render_many_or_blank(@stargazers, "table_row.html", "blankslate.html", assigns)
+= if Enum.empty?(@stargazers) do
+  = render(@view_module, "blankslate.html", assigns)
+- else
+  = render_many(@stargazers, @view_module, "table_row.html", assigns)

@@ -13,6 +13,8 @@ defmodule AtomTweaksWeb.StargazerController do
     tweak = Tweaks.get!(tweak_id)
     stargazers = Tweaks.list_stargazers(tweak)
 
-    render(conn, "index.html", stargazers: stargazers, tweak: tweak)
+    starred = Tweaks.is_starred?(tweak, conn.assigns.current_user)
+
+    render(conn, "index.html", stargazers: stargazers, starred: starred, tweak: tweak)
   end
 end

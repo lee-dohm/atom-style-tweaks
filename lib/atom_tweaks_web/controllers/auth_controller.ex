@@ -6,9 +6,9 @@ defmodule AtomTweaksWeb.AuthController do
 
   require Logger
 
-  alias OAuth2.Client, as: OAuthClient
-
   alias AtomTweaks.Accounts.User
+  alias AtomTweaksWeb.GitHub
+  alias OAuth2.Client, as: OAuthClient
 
   @doc """
   Signs the user in by redirecting to the GitHub authorization URL.
@@ -24,8 +24,7 @@ defmodule AtomTweaksWeb.AuthController do
   def index(conn, _) do
     Logger.debug(fn -> "Authorize user and return to home page" end)
 
-    conn
-    |> redirect(external: GitHub.authorize_url!())
+    redirect(conn, external: GitHub.authorize_url!())
   end
 
   @doc """

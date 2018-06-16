@@ -1,19 +1,16 @@
 defmodule AtomTweaksWeb do
   @moduledoc """
-  A module that keeps using definitions for controllers,
-  views and so on.
+  A module that keeps using definitions for controllers, views and so on.
 
   This can be used in your application as:
 
       use AtomTweaks.Web, :controller
       use AtomTweaks.Web, :view
 
-  The definitions below will be executed for every view,
-  controller, etc, so keep them short and clean, focused
-  on imports, uses and aliases.
+  The definitions below will be executed for every view, controller, etc, so keep them short and
+  clean, focused on imports, uses and aliases.
 
-  Do NOT define functions inside the quoted expressions
-  below.
+  Do NOT define functions inside the quoted expressions below.
   """
   def controller do
     quote do
@@ -49,9 +46,7 @@ defmodule AtomTweaksWeb do
       # Project-specific view helpers
       import PhoenixOcticons
 
-      import AtomTweaksWeb.AvatarHelpers
       import AtomTweaksWeb.FormHelpers
-      import AtomTweaksWeb.MenuHelpers
       import AtomTweaksWeb.PrimerHelpers
       import AtomTweaksWeb.OcticonHelpers
       import AtomTweaksWeb.RenderHelpers

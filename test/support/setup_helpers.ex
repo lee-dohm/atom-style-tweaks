@@ -10,7 +10,15 @@ defmodule Support.SetupHelpers do
   import AtomTweaks.Factory
   import AtomTweaksWeb.Router.Helpers
 
+  alias AtomTweaks.Accounts
+
   @endpoint AtomTweaksWeb.Endpoint
+
+  def insert_star(%{user: user, tweak: tweak}) do
+    {:ok, star} = Accounts.star_tweak(user, tweak)
+
+    {:ok, star: star}
+  end
 
   def insert_tweak(%{current_user: user}) do
     tweak = insert(:tweak, user: user)
@@ -145,6 +153,21 @@ defmodule Support.SetupHelpers do
 
   def request_show_user(%{conn: conn, user: user}) do
     path = user_path(conn, :show, user.name)
+    conn = get(conn, path)
+
+    {:ok, conn: conn, path: path}
+  end
+
+  @doc """
+  Navigates to the stars page for `user`.
+
+  ## Context modifications
+
+  * **Update:** `conn` context variable with the current state after the navigation
+  * **Add:** `path` context variable with the path navigated to
+  """
+  def request_stars(%{conn: conn, user: user}) do
+    path = user_star_path(conn, :index, user)
     conn = get(conn, path)
 
     {:ok, conn: conn, path: path}

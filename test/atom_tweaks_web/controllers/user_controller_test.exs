@@ -19,7 +19,7 @@ defmodule AtomTweaksWeb.UserControllerTest do
         |> html_response(:ok)
         |> find("img.avatar")
 
-      assert hd(attribute(image, "src")) =~ context.user.avatar_url
+      assert hd(attribute(image, "src")) =~ String.replace(context.user.avatar_url, ~r{\?.*$}, "")
     end
 
     test "does not display the staff badge", context do

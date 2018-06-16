@@ -21,6 +21,13 @@ defmodule AtomTweaks.Mixfile do
         coveralls: :test,
         "coveralls.html": :test,
         "coveralls.travis": :test
+      ],
+
+      # Silence deprecation warning
+      # See https://github.com/phoenixframework/phoenix/issues/2888 for details
+      # Should be able to remove when upgrading to Plug v1.5.1 or above
+      xref: [
+        exclude: [AtomTweaksWeb.Router, {Plug.Conn.WrapperError, :reraise, 3}]
       ]
     ]
   end
@@ -109,6 +116,53 @@ defmodule AtomTweaks.Mixfile do
         "LICENSE.md": [
           filename: "license",
           title: "License"
+        ]
+      ],
+      groups_for_modules: [
+        Accounts: [
+          ~r{^AtomTweaks\.Accounts}
+        ],
+        Controllers: [
+          ~r{^AtomTweaks.*Controller$}
+        ],
+        "Ecto Types": [
+          ~r{^AtomTweaks.Ecto.*}
+        ],
+        Helpers: [
+          ~r{^AtomTweaks.*Helpers$}
+        ],
+        Localization: [
+          AtomTweaksWeb.Gettext
+        ],
+        Markdown: [
+          ~r{Markdown}
+        ],
+        Notes: [
+          ~r{^AtomTweaks.Notes}
+        ],
+        OAuth: [
+          AtomTweaksWeb.GitHub
+        ],
+        Plugs: [
+          AtomTweaksWeb.HerokuMetadata,
+          AtomTweaksWeb.PageMetadata,
+          AtomTweaksWeb.SlidingSessionTimeout
+        ],
+        Primer: [
+          ~r{^AtomTweaksWeb\.Primer}
+        ],
+        Sockets: [
+          ~r{^AtomTweaksWeb.*Socket$}
+        ],
+        Test: [
+          ~r{^AtomTweaks.*(Channel|Conn|Data)Case$},
+          ~r{^AtomTweaks.Support}
+        ],
+        Tweaks: [
+          ~r{^AtomTweaks\.Tweaks}
+        ],
+        Views: [
+          ~r{^AtomTweaksWeb.*View$}
         ]
       ]
     ]

@@ -1,4 +1,7 @@
 defmodule AtomTweaks.Factory do
+  @moduledoc """
+  Factories for generating fake database records.
+  """
   use ExMachina.Ecto, repo: AtomTweaks.Repo
 
   alias FakerElixir, as: Faker

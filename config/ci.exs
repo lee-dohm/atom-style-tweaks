@@ -1,3 +1,5 @@
+# Loaded by `test.exs`
+
 use Mix.Config
 
 # Configure your database

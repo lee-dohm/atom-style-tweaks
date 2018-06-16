@@ -1,4 +1,7 @@
 defmodule AtomTweaksWeb.WrongUserError do
+  @moduledoc """
+  Exception raised when someone attempts to modify a resource they don't own.
+  """
   alias AtomTweaksWeb.WrongUserError
 
   defexception plug_status: 404,
