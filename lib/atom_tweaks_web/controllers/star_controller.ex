@@ -10,6 +10,8 @@ defmodule AtomTweaksWeb.StarController do
   @doc """
   Shows the list of stars for the named user.
   """
+  def index(conn, params)
+
   def index(conn, %{"user_id" => name}) do
     user = Accounts.get_user!(name)
     stars = Accounts.list_stars(user)
@@ -31,6 +33,8 @@ defmodule AtomTweaksWeb.StarController do
 
   After the state has been toggled, it redirects back to wherever it came from.
   """
+  def toggle(conn, params)
+
   def toggle(conn = %{assigns: %{current_user: user}}, %{"tweak_id" => id})
       when user != nil do
     tweak = Tweaks.get!(id)

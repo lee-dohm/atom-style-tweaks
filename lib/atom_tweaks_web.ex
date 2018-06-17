@@ -12,6 +12,10 @@ defmodule AtomTweaksWeb do
 
   Do NOT define functions inside the quoted expressions below.
   """
+
+  @doc """
+  Imports the common code for controllers.
+  """
   def controller do
     quote do
       use Phoenix.Controller, namespace: AtomTweaksWeb
@@ -26,6 +30,9 @@ defmodule AtomTweaksWeb do
     end
   end
 
+  @doc """
+  Imports the common code for views.
+  """
   def view do
     quote do
       use Phoenix.View,
@@ -54,12 +61,18 @@ defmodule AtomTweaksWeb do
     end
   end
 
+  @doc """
+  Imports the common code for routers.
+  """
   def router do
     quote do
       use Phoenix.Router
     end
   end
 
+  @doc """
+  Imports the common code for channels.
+  """
   def channel do
     quote do
       use Phoenix.Channel
