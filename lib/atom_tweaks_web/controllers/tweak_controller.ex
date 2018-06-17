@@ -1,4 +1,7 @@
 defmodule AtomTweaksWeb.TweakController do
+  @moduledoc """
+  Handles requests for tweak records.
+  """
   use AtomTweaksWeb, :controller
 
   alias AtomTweaks.Tweaks
