@@ -1,7 +1,6 @@
 defmodule AtomTweaksWeb.TweakController do
   use AtomTweaksWeb, :controller
 
-  alias AtomTweaks.Accounts.User
   alias AtomTweaks.Tweaks
   alias AtomTweaks.Tweaks.Tweak
   alias AtomTweaksWeb.NotLoggedInError
@@ -10,30 +9,16 @@ defmodule AtomTweaksWeb.TweakController do
 
   require Logger
 
-  @type current_user :: User.t() | atom
-
-  @doc """
-  Adds a third argument to every action that contains the current user or the atom `:guest`.
-
-  Runs before all other actions in the controller.
-  """
-  @spec action(Plug.Conn.t(), Map.t()) :: Plug.Conn.t()
-  def action(conn, params)
-
-  def action(conn, _) do
-    args = [conn, conn.params, conn.assigns[:current_user] || :guest]
-    apply(__MODULE__, action_name(conn), args)
-  end
-
   @doc """
   Creates a new tweak with the given parameters.
   """
-  @spec create(Plug.Conn.t(), Map.t(), current_user) :: Plug.Conn.t()
-  def create(conn, params, current_user)
+  @spec create(Plug.Conn.t(), Map.t()) :: Plug.Conn.t()
+  def create(conn, params)
 
-  def create(conn, _, :guest), do: raise(NotLoggedInError, conn: conn)
+  def create(conn = %{assigns: %{current_user: nil}}, _), do: raise(NotLoggedInError, conn: conn)
 
-  def create(conn, %{"tweak" => tweak_params}, current_user) do
+  def create(conn, %{"tweak" => tweak_params}) do
+    current_user = conn.assigns.current_user
     params = Map.merge(tweak_params, %{"created_by" => current_user.id})
     changeset = Tweak.changeset(%Tweak{}, params)
 
@@ -48,20 +33,22 @@ defmodule AtomTweaksWeb.TweakController do
 
   **Not implemented.**
   """
-  @spec delete(Plug.Conn.t(), Map.t(), current_user) :: Plug.Conn.t()
-  def delete(conn, _params, _current_user) do
+  @spec delete(Plug.Conn.t(), Map.t()) :: Plug.Conn.t()
+  def delete(conn, _params) do
     conn
   end
 
   @doc """
   Displays the edit tweak form.
   """
-  @spec edit(Plug.Conn.t(), Map.t(), current_user) :: Plug.Conn.t()
-  def edit(conn, params, current_user)
+  @spec edit(Plug.Conn.t(), Map.t()) :: Plug.Conn.t()
+  def edit(conn, params)
 
-  def edit(conn, _, :guest), do: raise(NotLoggedInError, conn: conn)
+  def edit(conn = %{assigns: %{current_user: nil}}, _), do: raise(NotLoggedInError, conn: conn)
 
-  def edit(conn, %{"id" => id}, current_user) do
+  def edit(conn, %{"id" => id}) do
+    current_user = conn.assigns.current_user
+
     tweak =
       Tweak
       |> Repo.get(id)
@@ -84,12 +71,12 @@ defmodule AtomTweaksWeb.TweakController do
   @doc """
   Displays the new tweak form.
   """
-  @spec new(Plug.Conn.t(), Map.t(), current_user) :: Plug.Conn.t()
-  def new(conn, params, current_user)
+  @spec new(Plug.Conn.t(), Map.t()) :: Plug.Conn.t()
+  def new(conn, params)
 
-  def new(conn, _, :guest), do: raise(NotLoggedInError, conn: conn)
+  def new(conn = %{assigns: %{current_user: nil}}, _), do: raise(NotLoggedInError, conn: conn)
 
-  def new(conn, _params, _current_user) do
+  def new(conn, _params) do
     changeset = Tweaks.change_tweak(%Tweak{})
 
     render(conn, "new.html", changeset: changeset)
@@ -98,10 +85,12 @@ defmodule AtomTweaksWeb.TweakController do
   @doc """
   Displays the given tweak.
   """
-  @spec show(Plug.Conn.t(), Map.t(), current_user) :: Plug.Conn.t()
-  def show(conn, params, current_user)
+  @spec show(Plug.Conn.t(), Map.t()) :: Plug.Conn.t()
+  def show(conn, params)
 
-  def show(conn, %{"id" => id}, current_user) do
+  def show(conn, %{"id" => id}) do
+    current_user = conn.assigns.current_user
+
     tweak =
       Tweak
       |> Repo.get(id)
@@ -117,10 +106,10 @@ defmodule AtomTweaksWeb.TweakController do
   @doc """
   Updates a tweak with the given parameters.
   """
-  @spec update(Plug.Conn.t(), Map.t(), current_user) :: Plug.Conn.t()
-  def update(conn, params, current_user)
+  @spec update(Plug.Conn.t(), Map.t()) :: Plug.Conn.t()
+  def update(conn, params)
 
-  def update(conn, %{"user_id" => name, "id" => id, "tweak" => tweak_params}, _current_user) do
+  def update(conn, %{"user_id" => name, "id" => id, "tweak" => tweak_params}) do
     tweak = Repo.get(Tweak, id)
     changeset = Tweak.changeset(tweak, tweak_params)
 
