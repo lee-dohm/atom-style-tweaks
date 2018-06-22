@@ -81,7 +81,7 @@ defmodule AtomTweaks.Mixfile do
       {:postgrex, ">= 0.0.0"},
       {:sentry, "~> 6.2.1"},
       {:timex, "~> 3.1"},
-      {:phoenix_octicons, "~> 0.2.0"},
+      {:phoenix_octicons, "~> 0.3.0"},
       {:ex_debug_toolbar, "~> 0.5"},
       {:dotenv, "~> 3.0.0", only: :dev},
       {:ex_doc, "~> 0.16", only: :dev, runtime: false},
