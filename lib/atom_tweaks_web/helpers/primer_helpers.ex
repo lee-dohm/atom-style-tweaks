@@ -19,11 +19,6 @@ defmodule AtomTweaksWeb.PrimerHelpers do
   """
   @type app_name :: atom
 
-  @typedoc """
-  The link information as a tuple of the author's name and URL to link to.
-  """
-  @type link_info :: {String.t(), String.t()}
-
   @doc """
   Renders the `avatar` element for the `user`.
 
@@ -56,6 +51,48 @@ defmodule AtomTweaksWeb.PrimerHelpers do
   @doc """
   Renders the GitHub-style `<> with ♥ by [author link]` footer item.
 
+  Retrieves the author's name and URL from the application configuration for the default application
+  for the current module. See `code_with_heart/2` for more information.
+  """
+  @spec code_with_heart() :: Phoenix.HTML.safe()
+  def code_with_heart do
+    code_with_heart(Application.get_application(__MODULE__))
+  end
+
+  @doc """
+  Renders the GitHub-style `<> with ♥ by [author link]` footer item.
+
+  Retrieves the author's name and URL from the application configuration before passing to
+  `code_with_heart/3`. This information can be added to the application configuration by adding the
+  following to your `config.exs`:
+
+  ```
+  config :app_name,
+    author_name: "Author's name",
+    author_url: "https://example.com"
+  ```
+
+  If passed two strings instead of an atom and a keyword list, this function will assume that you
+  mean to call `code_with_heart/3` with no options and do so for you.
+  """
+  @spec code_with_heart(atom, Keyword.t()) :: Phoenix.HTML.safe()
+  def code_with_heart(app_name, options \\ [])
+
+  def code_with_heart(app_name, options)
+
+  def code_with_heart(app_name, options) when is_atom(app_name) and is_list(options) do
+    name = Application.get_env(app_name, :author_name)
+    url = Application.get_env(app_name, :author_url)
+
+    code_with_heart(name, url, options)
+  end
+
+  def code_with_heart(name, url) when is_binary(name) and is_binary(url),
+    do: code_with_heart(name, url, [])
+
+  @doc """
+  Renders the GitHub-style `<> with ♥ by [author link]` footer item.
+
   The text in this element is intentionally left untranslated because the form of the element is
   intended to be recognizable in its specific format.
 
@@ -71,8 +108,6 @@ defmodule AtomTweaksWeb.PrimerHelpers do
   ```
   """
   @spec code_with_heart(String.t(), String.t(), Keyword.t()) :: Phoenix.HTML.safe()
-  def code_with_heart(name, url, options \\ [])
-
   def code_with_heart(name, url, options) do
     link_options = Keyword.merge([to: url, class: "link-gray-dark"], options)
 

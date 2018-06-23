@@ -41,6 +41,6 @@ html lang="en"
             span.px-3
             = github_link("lee-dohm/atom-style-tweaks", id: "github-link")
           .text-center.small.my-2
-            = code_with_heart("Lee Dohm", "https://www.lee-dohm.com")
+            = code_with_heart()
 
     script src="#{static_path(@conn, "/js/app.js")}"

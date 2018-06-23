@@ -7,6 +7,8 @@ use Mix.Config
 
 # General application configuration
 config :atom_tweaks,
+  author_name: "Lee Dohm",
+  author_url: "https://www.lee-dohm.com",
   ecto_repos: [AtomTweaks.Repo],
   site_name: "Atom Tweaks"
 
