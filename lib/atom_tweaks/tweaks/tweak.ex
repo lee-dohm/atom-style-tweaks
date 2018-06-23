@@ -23,6 +23,9 @@ defmodule AtomTweaks.Tweaks.Tweak do
     field(:description, Markdown)
 
     belongs_to(:user, User, foreign_key: :created_by, type: :binary_id)
+    belongs_to(:forked_from, Tweak, foreign_key: :parent, type: :binary_id)
+
+    has_many(:forks, Tweak, foreign_key: :parent)
 
     many_to_many(
       :stargazers,
