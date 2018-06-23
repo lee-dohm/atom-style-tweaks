@@ -44,6 +44,26 @@ defmodule AtomTweaksWeb.PrimerHelpersTest do
     end
   end
 
+  describe "code_with_heart" do
+    test "renders the element", _context do
+      element = render(code_with_heart("Author Name", "https://example.com"))
+      link = find(element, "a.link-gray-dark")
+
+      assert find(element, "svg.octicons.octicons-code")
+      assert find(element, "svg.octicons.octicons-heart")
+      assert text(element) =~ ~r{with\s+by}
+      assert text(link) == "Author Name"
+      assert attribute(link, "href") == ["https://example.com"]
+    end
+
+    test "passes through options to the link", _context do
+      element = render(code_with_heart("Author Name", "https://example.com", foo: "bar"))
+      link = find(element, "a.link-gray-dark")
+
+      assert attribute(link, "foo") == ["bar"]
+    end
+  end
+
   describe "counter" do
     test "renders the element", _context do
       counter = render(counter(11))

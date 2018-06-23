@@ -14,6 +14,16 @@ defmodule AtomTweaksWeb.PrimerHelpers do
 
   alias AtomTweaks.Accounts.User
 
+  @typedoc """
+  The application name as an atom.
+  """
+  @type app_name :: atom
+
+  @typedoc """
+  The link information as a tuple of the author's name and URL to link to.
+  """
+  @type link_info :: {String.t(), String.t()}
+
   @doc """
   Renders the `avatar` element for the `user`.
 
@@ -41,6 +51,38 @@ defmodule AtomTweaksWeb.PrimerHelpers do
       |> Keyword.put(:height, size)
 
     tag(:img, tag_options)
+  end
+
+  @doc """
+  Renders the GitHub-style `<> with ♥ by [author link]` footer item.
+
+  The text in this element is intentionally left untranslated because the form of the element is
+  intended to be recognizable in its specific format.
+
+  ## Options
+
+  All options are passed to the underlying HTML `a` element.
+
+  ## Examples
+
+  ```
+  Phoenix.HTML.safe_to_string(AtomTweaksWeb.PrimerHelpers.code_with_heart("Author's Name", "https://example.com"))
+  #=> "<svg .../> with <svg .../> by <a href=\"https://example.com\">Author's Name</a>"
+  ```
+  """
+  @spec code_with_heart(String.t(), String.t(), Keyword.t()) :: Phoenix.HTML.safe()
+  def code_with_heart(name, url, options \\ [])
+
+  def code_with_heart(name, url, options) do
+    link_options = Keyword.merge([to: url, class: "link-gray-dark"], options)
+
+    html_escape([
+      PhoenixOcticons.octicon(:code),
+      " with ",
+      PhoenixOcticons.octicon(:heart),
+      " by ",
+      link(name, link_options)
+    ])
   end
 
   @doc """

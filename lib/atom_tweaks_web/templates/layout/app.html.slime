@@ -41,13 +41,6 @@ html lang="en"
             span.px-3
             = github_link("lee-dohm/atom-style-tweaks", id: "github-link")
           .text-center.small.pt-2
-            / Intentionally not translated
-            = octicon("code")
-            '
-            ' with
-            = octicon("heart")
-            '
-            ' by
-            = link("Lee Dohm", to: "https://www.lee-dohm.com", class: "link-gray-dark")
+            = code_with_heart("Lee Dohm", "https://www.lee-dohm.com")
 
     script src="#{static_path(@conn, "/js/app.js")}"
