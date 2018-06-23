@@ -44,12 +44,49 @@ defmodule AtomTweaksWeb.PrimerHelpersTest do
     end
   end
 
+  describe "code_with_heart" do
+    test "renders the element", _context do
+      element = render(code_with_heart("Author Name", "https://example.com"))
+      link = find(element, "a.link-gray-dark")
+
+      assert find(element, "svg.octicons.octicons-code")
+      assert find(element, "svg.octicons.octicons-heart")
+      assert text(element) =~ ~r{with\s+by}
+      assert text(link) == "Author Name"
+      assert attribute(link, "href") == ["https://example.com"]
+    end
+
+    test "passes through options to the link", _context do
+      element = render(code_with_heart("Author Name", "https://example.com", foo: "bar"))
+      link = find(element, "a.link-gray-dark")
+
+      assert attribute(link, "foo") == ["bar"]
+    end
+  end
+
   describe "counter" do
     test "renders the element", _context do
       counter = render(counter(11))
 
       assert find(counter, "span.Counter")
       assert text(counter) == "11"
+    end
+  end
+
+  describe "github_link" do
+    test "renders the element", _context do
+      link = render(github_link("https://github.com/foo/bar"))
+
+      assert find(link, "a.link-gray-dark.tooltipped.tooltipped-n")
+      assert find(link, "a svg.octicons.octicons-mark-github")
+      assert attribute(link, "aria-label") == ["View this project on GitHub"]
+      assert attribute(link, "href") == ["https://github.com/foo/bar"]
+    end
+
+    test "prepends https://github.com if only the name with owner is specified", _context do
+      link = render(github_link("foo/bar"))
+
+      assert attribute(link, "href") == ["https://github.com/foo/bar"]
     end
   end
 

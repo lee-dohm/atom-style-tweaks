@@ -33,21 +33,14 @@ html lang="en"
       main role="main"
         = render @view_module, @view_template, assigns
 
-    footer.container.mt-5
+    footer.container.my-5
       .columns
         .two-fifths.column.centered
-          .border-top.text-center.small.pt-2
-            a#about-link href="#{page_path(@conn, :about)}"
-              = gettext "About"
+          .border-top.text-center.small.my-2.pt-2
+            = link(gettext("About"), to: page_path(@conn, :about), id: "about-link")
             span.px-3
-            a#github-link.link-gray-dark href="https://github.com/lee-dohm/atom-style-tweaks"
-              = octicon("mark-github")
-          .text-center.small.pt-2
-            = octicon("code")
-            = gettext " with "
-            = octicon("heart")
-            = gettext " by "
-            a.link-gray-dark href="http://www.lee-dohm.com"
-              = gettext " Lee Dohm"
+            = github_link(id: "github-link")
+          .text-center.small.my-2
+            = code_with_heart()
 
     script src="#{static_path(@conn, "/js/app.js")}"
