@@ -22,6 +22,7 @@ defmodule AtomTweaks.Accounts do
   @doc """
   Counts the number of stars belonging to `user`.
   """
+  @spec count_stars(User.t()) :: non_neg_integer
   def count_stars(user = %User{}) do
     Repo.one(from(s in Star, where: s.user_id == ^user.id, select: count(s.user_id)))
   end
@@ -29,6 +30,7 @@ defmodule AtomTweaks.Accounts do
   @doc """
   Counts the number of tweaks belonging to `user`.
   """
+  @spec count_tweaks(User.t()) :: non_neg_integer
   def count_tweaks(user = %User{}) do
     Repo.one(from(t in Tweak, where: t.created_by == ^user.id, select: count(t.created_by)))
   end
