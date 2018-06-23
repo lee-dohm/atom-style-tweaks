@@ -14,16 +14,18 @@ defmodule AtomTweaks.Tweaks.Tweak do
 
   @type t :: %Tweak{}
 
+  @changeset_keys ~w{code created_by description parent title type}a
+
   @primary_key {:id, :binary_id, autogenerate: true}
 
   schema "tweaks" do
-    field(:title, :string)
     field(:code, :string)
-    field(:type, :string)
     field(:description, Markdown)
+    field(:title, :string)
+    field(:type, :string)
 
-    belongs_to(:user, User, foreign_key: :created_by, type: :binary_id)
     belongs_to(:forked_from, Tweak, foreign_key: :parent, type: :binary_id)
+    belongs_to(:user, User, foreign_key: :created_by, type: :binary_id)
 
     has_many(:forks, Tweak, foreign_key: :parent)
 
@@ -41,12 +43,18 @@ defmodule AtomTweaks.Tweaks.Tweak do
   @doc false
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:title, :code, :created_by, :type, :description])
+    |> cast(params, @changeset_keys)
     |> validate_required([:title, :code, :created_by, :type])
     |> validate_inclusion(:type, ["init", "style"])
   end
 
   def by_type(query, type), do: from(t in query, where: t.type == ^type)
+
+  def fork_params(tweak, user) do
+    tweak
+    |> copy_params(@changeset_keys)
+    |> Map.merge(%{created_by: user.id, parent: tweak.id})
+  end
 
   def preload(query), do: from(t in query, preload: [:user])
 
@@ -57,5 +65,10 @@ defmodule AtomTweaks.Tweaks.Tweak do
       [property: "og:title", content: tweak.title],
       [property: "og:description", content: tweak.code]
     ]
+  end
+
+  # Copy only `keys` out of `map` into a new map
+  defp copy_params(map, keys) do
+    Enum.reduce(keys, %{}, fn(key, acc) -> Map.put(acc, key, Map.fetch!(map, key)) end)
   end
 end

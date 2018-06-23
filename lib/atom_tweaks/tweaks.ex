@@ -8,6 +8,7 @@ defmodule AtomTweaks.Tweaks do
 
   alias AtomTweaks.Accounts.User
   alias AtomTweaks.Repo
+  alias AtomTweaks.Tweaks
   alias AtomTweaks.Tweaks.Star
   alias AtomTweaks.Tweaks.Tweak
 
@@ -20,13 +21,31 @@ defmodule AtomTweaks.Tweaks do
   end
 
   @doc """
-  Creates a tweak.
+  Counts the number of forks of the given `tweak`.
+  """
+  @spec count_forks(Tweak.t()) :: non_neg_integer
+  def count_forks(tweak = %Tweak{}) do
+    Repo.one(from(t in Tweak, where: t.parent == ^tweak.id, select: count(t.parent)))
+  end
+
+  @doc """
+  Creates a new tweak.
   """
   @spec create_tweak(Map.t()) :: {:ok, Tweak.t()} | {:error, Changeset.t()}
   def create_tweak(attrs \\ %{}) do
     %Tweak{}
     |> Tweak.changeset(attrs)
     |> Repo.insert()
+  end
+
+  @doc """
+  Forks the `tweak` by the `user`.
+  """
+  @spec fork_tweak(Tweak.t(), User.t()) :: {:ok, Tweak.t()} | {:error, Changeset.t()}
+  def fork_tweak(tweak = %Tweak{}, user = %User{}) do
+    tweak
+    |> Tweak.fork_params(user)
+    |> Tweaks.create_tweak()
   end
 
   @doc """
