@@ -22,6 +22,7 @@ defmodule AtomTweaksWeb.Router do
     plug(SlidingSessionTimeout)
     plug(NavigationHistory.Tracker)
     plug(HerokuMetadata, only: ["HEROKU_RELEASE_VERSION", "HEROKU_SLUG_COMMIT"])
+    plug(Plug.Ribbon, [:dev, :staging, :test])
   end
 
   pipeline :api do
