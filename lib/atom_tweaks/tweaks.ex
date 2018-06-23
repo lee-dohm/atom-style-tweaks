@@ -32,7 +32,7 @@ defmodule AtomTweaks.Tweaks do
   @doc """
   Gets a tweak by ID.
   """
-  def get!(id) do
+  def get_tweak!(id) do
     Tweak
     |> Repo.get!(id)
     |> Repo.preload([:user, :stargazers])

@@ -37,7 +37,7 @@ defmodule AtomTweaksWeb.StarController do
 
   def toggle(conn = %{assigns: %{current_user: user}}, %{"tweak_id" => id})
       when user != nil do
-    tweak = Tweaks.get!(id)
+    tweak = Tweaks.get_tweak!(id)
     user = Accounts.get_user!(user.name)
 
     if Tweaks.is_starred?(tweak, user) do

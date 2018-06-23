@@ -10,7 +10,7 @@ defmodule AtomTweaksWeb.StargazerController do
   Displays the list of a tweak's stargazers.
   """
   def index(conn, %{"tweak_id" => tweak_id}) do
-    tweak = Tweaks.get!(tweak_id)
+    tweak = Tweaks.get_tweak!(tweak_id)
     stargazers = Tweaks.list_stargazers(tweak)
 
     starred = Tweaks.is_starred?(tweak, conn.assigns.current_user)
