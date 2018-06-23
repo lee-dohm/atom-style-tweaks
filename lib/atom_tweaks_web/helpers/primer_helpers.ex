@@ -8,6 +8,10 @@ defmodule AtomTweaksWeb.PrimerHelpers do
   """
   use Phoenix.HTML
 
+  require AtomTweaksWeb.Gettext
+
+  import AtomTweaksWeb.Gettext, only: [gettext: 1]
+
   alias AtomTweaks.Accounts.User
 
   @doc """
@@ -47,6 +51,31 @@ defmodule AtomTweaksWeb.PrimerHelpers do
   @spec counter(non_neg_integer()) :: Phoenix.HTML.safe()
   def counter(count) do
     content_tag(:span, Integer.to_string(count), class: "Counter")
+  end
+
+  @doc """
+  Renders a link to the project on GitHub.
+
+  `project` can be either the GitHub `owner/project` identifier or the full URL.
+  """
+  @spec github_link(String.t(), Keyword.t()) :: Phoenix.HTML.safe()
+  def github_link(project, options \\ []) do
+    # Prepend the `https://github.com/` if only the name with owner is specified
+    url = if project =~ ~r{^[^/]+/[^/]+$}, do: "https://github.com/#{project}", else: project
+
+    link_options =
+      Keyword.merge(
+        [
+          to: url,
+          "aria-label": gettext("View this project on GitHub"),
+          class: "link-gray-dark tooltipped tooltipped-n"
+        ],
+        options
+      )
+
+    link(link_options) do
+      PhoenixOcticons.octicon("mark-github")
+    end
   end
 
   @doc """

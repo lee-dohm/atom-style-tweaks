@@ -39,8 +39,7 @@ html lang="en"
           .border-top.text-center.small.pt-2
             = link(gettext("About"), to: page_path(@conn, :about), id: "about-link")
             span.px-3
-            = link(to: "https://github.com/lee-dohm/atom-style-tweaks", id: "github-link", class: "link-gray-dark tooltipped tooltipped-n", "aria-label": gettext("View this project on GitHub")) do
-              = octicon("mark-github")
+            = github_link("lee-dohm/atom-style-tweaks", id: "github-link")
           .text-center.small.pt-2
             / Intentionally not translated
             = octicon("code")

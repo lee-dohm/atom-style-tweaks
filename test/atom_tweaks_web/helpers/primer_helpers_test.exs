@@ -53,6 +53,23 @@ defmodule AtomTweaksWeb.PrimerHelpersTest do
     end
   end
 
+  describe "github_link" do
+    test "renders the element", _context do
+      link = render(github_link("https://github.com/foo/bar"))
+
+      assert find(link, "a.link-gray-dark.tooltipped.tooltipped-n")
+      assert find(link, "a svg.octicons.octicons-mark-github")
+      assert attribute(link, "aria-label") == ["View this project on GitHub"]
+      assert attribute(link, "href") == ["https://github.com/foo/bar"]
+    end
+
+    test "prepends https://github.com if only the name with owner is specified", _context do
+      link = render(github_link("foo/bar"))
+
+      assert attribute(link, "href") == ["https://github.com/foo/bar"]
+    end
+  end
+
   describe "link_button" do
     test "renders the element", _context do
       button = render(link_button("foo", to: "/path/to/foo"))
