@@ -6,24 +6,10 @@ defmodule AtomTweaksWeb.GitHub do
 
   alias AtomTweaksWeb.GitHub
 
-  defp config do
-    [
-      strategy: GitHub,
-      site: "https://api.github.com",
-      authorize_url: "https://github.com/login/oauth/authorize",
-      token_url: "https://github.com/login/oauth/access_token",
-      client_id: System.get_env("GITHUB_CLIENT_ID"),
-      client_secret: System.get_env("GITHUB_CLIENT_SECRET"),
-      redirect_uri: System.get_env("GITHUB_REDIRECT_URI")
-    ]
-  end
-
   # Public API
 
   def client do
-    config()
-    |> Keyword.merge(Application.get_env(:atom_tweaks, GitHub))
-    |> OAuth2.Client.new()
+    OAuth2.Client.new(config())
   end
 
   def authorize_url!(params \\ []) do
@@ -45,5 +31,23 @@ defmodule AtomTweaksWeb.GitHub do
     |> put_param(:client_secret, client.client_secret)
     |> put_header("Accept", "application/json")
     |> OAuth2.Strategy.AuthCode.get_token(params, headers)
+  end
+
+  defp config do
+    Keyword.merge(default_config(), Application.get_env(:atom_tweaks, GitHub) || [])
+  end
+
+  defp config(key), do: Keyword.get(config(), key)
+
+  defp default_config do
+    [
+      strategy: GitHub,
+      site: "https://api.github.com",
+      authorize_url: "https://github.com/login/oauth/authorize",
+      token_url: "https://github.com/login/oauth/access_token",
+      client_id: System.get_env("GITHUB_CLIENT_ID"),
+      client_secret: System.get_env("GITHUB_CLIENT_SECRET"),
+      redirect_uri: System.get_env("GITHUB_REDIRECT_URI")
+    ]
   end
 end
