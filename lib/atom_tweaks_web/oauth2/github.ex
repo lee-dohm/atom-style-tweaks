@@ -13,7 +13,8 @@ defmodule AtomTweaksWeb.GitHub do
   end
 
   def authorize_url!(params \\ []) do
-    OAuth2.Client.authorize_url!(client(), Keyword.merge(params, scope: "read:org"))
+    # OAuth2.Client.authorize_url!(client(), Keyword.merge(params, scope: "read:org"))
+    OAuth2.Client.authorize_url!(client(), Keyword.merge(params, scope: config(:scope) || ""))
   end
 
   def get_token!(params \\ [], _headers \\ []) do

@@ -17,6 +17,9 @@ config :atom_tweaks, AtomTweaksWeb.Endpoint,
   render_errors: [view: AtomTweaksWeb.ErrorView, accepts: ~w(html json)],
   pubsub: [name: AtomTweaksWeb.PubSub, adapter: Phoenix.PubSub.PG2]
 
+# Configure GitHub OAuth2 strategy
+config :atom_tweaks, AtomTweaksWeb.GitHub, scope: "read:org"
+
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
