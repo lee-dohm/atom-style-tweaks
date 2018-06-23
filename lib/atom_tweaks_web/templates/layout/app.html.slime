@@ -33,14 +33,14 @@ html lang="en"
       main role="main"
         = render @view_module, @view_template, assigns
 
-    footer.container.mt-5
+    footer.container.my-5
       .columns
         .two-fifths.column.centered
-          .border-top.text-center.small.pt-2
+          .border-top.text-center.small.my-2.pt-2
             = link(gettext("About"), to: page_path(@conn, :about), id: "about-link")
             span.px-3
             = github_link("lee-dohm/atom-style-tweaks", id: "github-link")
-          .text-center.small.pt-2
+          .text-center.small.my-2
             = code_with_heart("Lee Dohm", "https://www.lee-dohm.com")
 
     script src="#{static_path(@conn, "/js/app.js")}"
