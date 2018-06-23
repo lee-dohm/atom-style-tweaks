@@ -157,6 +157,7 @@ defmodule AtomTweaksWeb.PrimerHelpers do
 
   Retrieves the project name or URL from the application configuration for the default application.
   """
+  @spec github_link(Keyword.t()) :: Phoenix.HTML.safe()
   def github_link(options \\ [])
 
   def github_link(options), do: github_link(options, [])
@@ -183,7 +184,7 @@ defmodule AtomTweaksWeb.PrimerHelpers do
 
   All options are passed to the underlying HTML `a` element.
   """
-  @spec github_link(String.t(), Keyword.t()) :: Phoenix.HTML.safe()
+  @spec github_link(app_name | String.t(), Keyword.t()) :: Phoenix.HTML.safe()
   def github_link(app_name_or_project, options)
 
   def github_link(options, _no_options) when is_list(options) do
