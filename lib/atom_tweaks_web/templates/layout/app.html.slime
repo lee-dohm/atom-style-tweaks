@@ -39,7 +39,7 @@ html lang="en"
           .border-top.text-center.small.my-2.pt-2
             = link(gettext("About"), to: page_path(@conn, :about), id: "about-link")
             span.px-3
-            = github_link("lee-dohm/atom-style-tweaks", id: "github-link")
+            = github_link(id: "github-link")
           .text-center.small.my-2
             = code_with_heart()
 
