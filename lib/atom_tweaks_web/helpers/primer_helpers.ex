@@ -19,6 +19,20 @@ defmodule AtomTweaksWeb.PrimerHelpers do
   """
   @type app_name :: atom
 
+  defmodule MissingConfigurationError do
+    defexception [:missing_keys]
+
+    def exception(key) when is_atom(key), do: exception([key])
+
+    def exception(keys) when is_list(keys) do
+      %__MODULE__{missing_keys: keys}
+    end
+
+    def message(%{missing_keys: missing_keys}) do
+      "application configuration missing: #{inspect(missing_keys)}"
+    end
+  end
+
   @doc """
   Renders the `avatar` element for the `user`.
 
@@ -72,6 +86,9 @@ defmodule AtomTweaksWeb.PrimerHelpers do
     author_url: "https://example.com"
   ```
 
+  Raises a `AtomTweaksWeb.PrimerHelpers.MissingConfigurationError` if any of the required
+  application configuration information is not specified and this function is called.
+
   If passed two strings instead of an atom and a keyword list, this function will assume that you
   mean to call `code_with_heart/3` with no options and do so for you.
   """
@@ -83,6 +100,11 @@ defmodule AtomTweaksWeb.PrimerHelpers do
   def code_with_heart(app_name, options) when is_atom(app_name) and is_list(options) do
     name = Application.get_env(app_name, :author_name)
     url = Application.get_env(app_name, :author_url)
+
+    missing_keys = []
+    missing_keys = unless name, do: [:author_name | missing_keys], else: missing_keys
+    missing_keys = unless url, do: [:author_url | missing_keys], else: missing_keys
+    unless missing_keys == [], do: raise MissingConfigurationError, missing_keys
 
     code_with_heart(name, url, options)
   end
