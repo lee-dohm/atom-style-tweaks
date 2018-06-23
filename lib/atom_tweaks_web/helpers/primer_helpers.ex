@@ -104,7 +104,7 @@ defmodule AtomTweaksWeb.PrimerHelpers do
     name = config[:name]
     url = config[:url]
 
-    unless name && url, do: raise MissingConfigurationError, :code_with_heart
+    unless name && url, do: raise(MissingConfigurationError, :code_with_heart)
 
     code_with_heart(name, url, options)
   end
@@ -194,7 +194,7 @@ defmodule AtomTweaksWeb.PrimerHelpers do
   def github_link(app_name, options) when is_atom(app_name) do
     url = Application.get_env(app_name, :github_link)
 
-    unless url, do: raise MissingConfigurationError, :github_link
+    unless url, do: raise(MissingConfigurationError, :github_link)
 
     github_link(url, options)
   end

@@ -9,7 +9,7 @@ use Mix.Config
 config :atom_tweaks,
   code_with_heart: [
     name: "Lee Dohm",
-    url: "https://www.lee-dohm.com",
+    url: "https://www.lee-dohm.com"
   ],
   ecto_repos: [AtomTweaks.Repo],
   github_link: "lee-dohm/atom-style-tweaks",
