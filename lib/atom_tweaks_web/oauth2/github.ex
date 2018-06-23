@@ -21,8 +21,8 @@ defmodule AtomTweaksWeb.GitHub do
   # Public API
 
   def client do
-    Application.get_env(:atom_tweaks, GitHub)
-    |> Keyword.merge(config())
+    config()
+    |> Keyword.merge(Application.get_env(:atom_tweaks, GitHub))
     |> OAuth2.Client.new()
   end
 
