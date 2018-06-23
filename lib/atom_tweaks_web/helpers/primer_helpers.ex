@@ -82,8 +82,10 @@ defmodule AtomTweaksWeb.PrimerHelpers do
 
   ```
   config :app_name,
-    author_name: "Author's name",
-    author_url: "https://example.com"
+    code_with_heart: [
+      name: "Author's name",
+      url: "https://example.com"
+    ]
   ```
 
   Raises a `AtomTweaksWeb.PrimerHelpers.MissingConfigurationError` if any of the required
@@ -98,13 +100,11 @@ defmodule AtomTweaksWeb.PrimerHelpers do
   def code_with_heart(app_name, options)
 
   def code_with_heart(app_name, options) when is_atom(app_name) and is_list(options) do
-    name = Application.get_env(app_name, :author_name)
-    url = Application.get_env(app_name, :author_url)
+    config = Application.get_env(app_name, :code_with_heart)
+    name = config[:name]
+    url = config[:url]
 
-    missing_keys = []
-    missing_keys = unless name, do: [:author_name | missing_keys], else: missing_keys
-    missing_keys = unless url, do: [:author_url | missing_keys], else: missing_keys
-    unless missing_keys == [], do: raise MissingConfigurationError, missing_keys
+    unless name && url, do: raise MissingConfigurationError, :code_with_heart
 
     code_with_heart(name, url, options)
   end

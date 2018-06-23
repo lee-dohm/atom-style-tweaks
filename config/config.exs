@@ -7,8 +7,10 @@ use Mix.Config
 
 # General application configuration
 config :atom_tweaks,
-  author_name: "Lee Dohm",
-  author_url: "https://www.lee-dohm.com",
+  code_with_heart: [
+    name: "Lee Dohm",
+    url: "https://www.lee-dohm.com",
+  ],
   ecto_repos: [AtomTweaks.Repo],
   github_link: "lee-dohm/atom-style-tweaks",
   site_name: "Atom Tweaks"
