@@ -16,7 +16,7 @@ defmodule AtomTweaksWeb.PageController do
 
     tweaks =
       Tweak
-      |> Tweak.by_type(type)
+      |> Tweak.filter_by_type(type)
       |> from(
         order_by: [desc: :inserted_at],
         preload: [forked_from: [:user], user: []]

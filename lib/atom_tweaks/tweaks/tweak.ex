@@ -50,20 +50,14 @@ defmodule AtomTweaks.Tweaks.Tweak do
     |> validate_inclusion(:type, ["init", "style"])
   end
 
-  def by_type(query, nil), do: query
-  def by_type(query, type), do: from(t in query, where: t.type == ^type)
+  def filter_by_type(query, nil), do: query
+  def filter_by_type(query, type), do: from(t in query, where: t.type == ^type)
 
   def fork_params(tweak, user) do
     tweak
     |> copy_params(@changeset_keys)
     |> Map.merge(%{created_by: user.id, parent: tweak.id})
   end
-
-  def preload(query), do: from(t in query, preload: [:user])
-  def preload(query, preloads), do: from(t in query, preload: ^preloads)
-
-  def sorted(query), do: from(t in query, order_by: [desc: :inserted_at])
-  def sorted(query, order), do: from(t in query, order_by: ^order)
 
   def to_metadata(tweak) do
     [
