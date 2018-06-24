@@ -112,7 +112,7 @@ defmodule AtomTweaksWeb.TweakController do
     tweak =
       Tweak
       |> Repo.get(id)
-      |> Repo.preload([:stargazers, :user])
+      |> Repo.preload([forked_from: [:user], stargazers: [], user: []])
 
     fork_count = Tweaks.count_forks(tweak)
     starred = Tweaks.is_starred?(tweak, current_user)

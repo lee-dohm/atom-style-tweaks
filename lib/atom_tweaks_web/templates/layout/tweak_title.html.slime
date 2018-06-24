@@ -3,9 +3,14 @@
     = mega_octicon_for(@tweak)
   h3.d-inline-block.my-3 = @tweak.title
   .d-inline-block.mx-2
-    = gettext "Created by"
-    '
-    a href="#{user_path(@conn, :show, @tweak.user.name)}" = @tweak.user.name
+    = if is_nil(@tweak.parent) do
+      = gettext "Created by"
+      '
+      a href="#{user_path(@conn, :show, @tweak.user.name)}" = @tweak.user.name
+    - else
+      = gettext "Forked from"
+      '
+      = link("#{@tweak.forked_from.user.name} / #{@tweak.forked_from.title}", to: tweak_path(@conn, :show, @tweak.forked_from))
 
   = render("fork_button.html", assigns)
   = render("star_button.html", assigns)
