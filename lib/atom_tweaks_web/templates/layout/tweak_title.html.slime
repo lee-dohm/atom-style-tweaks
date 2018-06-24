@@ -6,4 +6,6 @@
     = gettext "Created by"
     '
     a href="#{user_path(@conn, :show, @tweak.user.name)}" = @tweak.user.name
+
+  = render("fork_button.html", assigns)
   = render("star_button.html", assigns)

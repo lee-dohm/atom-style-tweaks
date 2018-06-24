@@ -54,6 +54,7 @@ defmodule AtomTweaksWeb.Router do
     end
 
     get("/users/:user_id/tweaks/:tweak_id", ObsoleteRouteController, :long_tweak_path_to_short)
+    post("/tweaks/:tweak_id", TweakController, :fork)
   end
 
   # Other scopes may use custom stacks.
