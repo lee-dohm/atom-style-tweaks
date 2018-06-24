@@ -25,6 +25,7 @@ defmodule Support.SetupHelpers do
   import AtomTweaksWeb.Router.Helpers
 
   alias AtomTweaks.Accounts
+  alias Plug.Test, as: PlugTest
 
   @endpoint AtomTweaksWeb.Endpoint
 
@@ -162,14 +163,14 @@ defmodule Support.SetupHelpers do
   def log_in(context)
 
   def log_in(%{conn: conn, user: user}) do
-    conn = Plug.Test.init_test_session(conn, %{current_user: user})
+    conn = PlugTest.init_test_session(conn, %{current_user: user})
 
     {:ok, conn: conn, current_user: user}
   end
 
   def log_in(%{conn: conn}) do
     user = insert(:user)
-    conn = Plug.Test.init_test_session(conn, %{current_user: user})
+    conn = PlugTest.init_test_session(conn, %{current_user: user})
 
     {:ok, conn: conn, current_user: user}
   end

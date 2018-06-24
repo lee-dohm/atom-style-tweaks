@@ -3,10 +3,12 @@ defmodule Support.HTML do
   Test support functions for working with HTML.
   """
 
+  alias Phoenix.HTML
+
   @doc """
   Renders a `Phoenix.HTML.safe` object to string.
   """
   def render(safe) do
-    Phoenix.HTML.safe_to_string(safe)
+    HTML.safe_to_string(safe)
   end
 end

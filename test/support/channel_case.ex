@@ -15,6 +15,10 @@ defmodule AtomTweaksWeb.ChannelCase do
 
   use ExUnit.CaseTemplate
 
+  alias Ecto.Adapters.SQL.Sandbox
+
+  alias AtomTweaks.Repo
+
   using do
     quote do
       # Import conveniences for testing with channels
@@ -26,10 +30,10 @@ defmodule AtomTweaksWeb.ChannelCase do
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(StaffNotes.Repo)
+    :ok = Sandbox.checkout(Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(StaffNotes.Repo, {:shared, self()})
+      Sandbox.mode(Repo, {:shared, self()})
     end
 
     :ok

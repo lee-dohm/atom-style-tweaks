@@ -14,10 +14,11 @@ defmodule AtomTweaks.DataCase do
 
   use ExUnit.CaseTemplate
 
+  alias Ecto.Adapters.SQL.Sandbox
+  alias Ecto.Changeset
+
   using do
     quote do
-      alias AtomTweaks.Repo
-
       import Ecto
       import Ecto.Changeset
       import Ecto.Query
@@ -27,14 +28,16 @@ defmodule AtomTweaks.DataCase do
 
       import Support.AssertHelpers
       import Support.SetupHelpers
+
+      alias AtomTweaks.Repo
     end
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(AtomTweaks.Repo)
+    :ok = Sandbox.checkout(AtomTweaks.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(AtomTweaks.Repo, {:shared, self()})
+      Sandbox.mode(AtomTweaks.Repo, {:shared, self()})
     end
 
     :ok
@@ -49,7 +52,7 @@ defmodule AtomTweaks.DataCase do
 
   """
   def errors_on(changeset) do
-    Ecto.Changeset.traverse_errors(changeset, fn {message, opts} ->
+    Changeset.traverse_errors(changeset, fn {message, opts} ->
       Enum.reduce(opts, message, fn {key, value}, acc ->
         String.replace(acc, "%{#{key}}", to_string(value))
       end)

@@ -2,7 +2,12 @@ defmodule AtomTweaksWeb.HelperCase do
   @moduledoc """
   This module defines the test case to be used by tests of view helper functions.
   """
+
   use ExUnit.CaseTemplate
+
+  alias Ecto.Adapters.SQL.Sandbox
+
+  alias AtomTweaks.Repo
 
   using do
     quote do
@@ -14,10 +19,10 @@ defmodule AtomTweaksWeb.HelperCase do
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(AtomTweaks.Repo)
+    :ok = Sandbox.checkout(Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(AtomTweaks.Repo, {:shared, self()})
+      Sandbox.mode(Repo, {:shared, self()})
     end
   end
 end
