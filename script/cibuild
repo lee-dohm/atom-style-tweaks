@@ -11,11 +11,19 @@ export MIX_ENV="test"
 script/bootstrap
 
 echo "==> Setting up DB…"
+
 mix ecto.ci
 
 echo "==> App is now ready to go!"
 
+echo "==> Checking format…"
+
 mix format --check-formatted
+
+# No need to run the credo linter in CI because we have an extra service installed that runs it
+# separately
+
+echo "==> Running tests…"
 
 if [ -n "$TRAVIS" ]; then
   mix coveralls.travis
