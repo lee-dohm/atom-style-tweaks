@@ -69,6 +69,6 @@ defmodule AtomTweaks.Tweaks.Tweak do
 
   # Copy only `keys` out of `map` into a new map
   defp copy_params(map, keys) do
-    Enum.reduce(keys, %{}, fn(key, acc) -> Map.put(acc, key, Map.fetch!(map, key)) end)
+    Enum.reduce(keys, %{}, fn key, acc -> Map.put(acc, key, Map.fetch!(map, key)) end)
   end
 end

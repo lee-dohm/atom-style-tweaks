@@ -52,17 +52,14 @@ defmodule AtomTweaksWeb.PageControllerTest do
   end
 
   describe "GET home page with a logged in user" do
-    setup(context) do
-      user = build(:user)
+    setup [:insert_user, :log_in]
 
-      conn =
-        context.conn
-        |> log_in_as(user)
-        |> get(page_path(context.conn, :index, []))
+    setup(context) do
+      conn = get(context.conn, page_path(context.conn, :index))
 
       response = html_response(conn, :ok)
 
-      {:ok, conn: conn, response: response, user: user}
+      {:ok, conn: conn, response: response}
     end
 
     test "assigns a current user", context do
