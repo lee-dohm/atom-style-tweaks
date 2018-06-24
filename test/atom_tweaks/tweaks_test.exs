@@ -38,7 +38,7 @@ defmodule AtomTweaks.TweaksTest do
       tweak = Repo.preload(context.tweak, [:user])
       {:error, changeset} = Tweaks.fork_tweak(tweak, tweak.user)
 
-      assert has_error_on?(changeset, :created_by)
+      assert error_on?(changeset, :created_by)
       assert error_messages(changeset, :created_by) == ["cannot fork your own tweak"]
     end
   end

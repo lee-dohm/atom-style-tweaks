@@ -19,7 +19,7 @@ defmodule AtomTweaks.Accounts.UserTest do
 
       refute user.valid?
       assert length(user.errors) == 1
-      assert has_error_on?(user, :name)
+      assert error_on?(user, :name)
     end
 
     test "with a nil name", _context do
@@ -27,7 +27,7 @@ defmodule AtomTweaks.Accounts.UserTest do
 
       refute user.valid?
       assert length(user.errors) == 1
-      assert has_error_on?(user, :name)
+      assert error_on?(user, :name)
     end
 
     test "with a name that is not a string", _context do
@@ -35,7 +35,7 @@ defmodule AtomTweaks.Accounts.UserTest do
 
       refute user.valid?
       assert length(user.errors) == 1
-      assert has_error_on?(user, :name)
+      assert error_on?(user, :name)
     end
 
     test "with a nil github_id", _context do
@@ -43,7 +43,7 @@ defmodule AtomTweaks.Accounts.UserTest do
 
       refute user.valid?
       assert length(user.errors) == 1
-      assert has_error_on?(user, :github_id)
+      assert error_on?(user, :github_id)
     end
 
     test "with a github_id that is not a number", _context do
@@ -51,7 +51,7 @@ defmodule AtomTweaks.Accounts.UserTest do
 
       refute user.valid?
       assert length(user.errors) == 1
-      assert has_error_on?(user, :github_id)
+      assert error_on?(user, :github_id)
     end
 
     test "with an empty avatar_url", _context do
@@ -59,7 +59,7 @@ defmodule AtomTweaks.Accounts.UserTest do
 
       refute user.valid?
       assert length(user.errors) == 1
-      assert has_error_on?(user, :avatar_url)
+      assert error_on?(user, :avatar_url)
     end
 
     test "with a nil avatar_url", _context do
@@ -67,7 +67,7 @@ defmodule AtomTweaks.Accounts.UserTest do
 
       refute user.valid?
       assert length(user.errors) == 1
-      assert has_error_on?(user, :avatar_url)
+      assert error_on?(user, :avatar_url)
     end
 
     test "with an avatar_url that is not a string", _context do
@@ -75,7 +75,7 @@ defmodule AtomTweaks.Accounts.UserTest do
 
       refute user.valid?
       assert length(user.errors) == 1
-      assert has_error_on?(user, :avatar_url)
+      assert error_on?(user, :avatar_url)
     end
 
     test "with an avatar_url that is not a URL", _context do
@@ -83,7 +83,7 @@ defmodule AtomTweaks.Accounts.UserTest do
 
       refute user.valid?
       assert length(user.errors) == 1
-      assert has_error_on?(user, :avatar_url)
+      assert error_on?(user, :avatar_url)
     end
 
     test "with a site_admin value that is not boolean", _context do
@@ -91,7 +91,7 @@ defmodule AtomTweaks.Accounts.UserTest do
 
       refute user.valid?
       assert length(user.errors) == 1
-      assert has_error_on?(user, :site_admin)
+      assert error_on?(user, :site_admin)
     end
   end
 end
