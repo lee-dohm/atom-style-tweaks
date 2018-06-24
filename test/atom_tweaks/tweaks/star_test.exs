@@ -1,7 +1,7 @@
 defmodule AtomTweaks.Tweaks.StarTest do
   use AtomTweaks.DataCase
 
-  import Support.SetupHelpers
+  import Support.Setup
 
   alias AtomTweaks.Tweaks.Star
 

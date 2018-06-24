@@ -1,8 +1,8 @@
 defmodule AtomTweaks.TweaksTest do
   use AtomTweaks.DataCase
 
-  import Support.ChangesetHelpers
-  import Support.SetupHelpers
+  import Support.Changeset
+  import Support.Setup
 
   alias AtomTweaks.Accounts
   alias AtomTweaks.Tweaks

@@ -1,4 +1,4 @@
-defmodule Support.ChangesetHelpers do
+defmodule Support.Changeset do
   @moduledoc """
   Functions for testing `Ecto.Changeset` values.
   """

@@ -1,4 +1,4 @@
-defmodule Support.SetupHelpers do
+defmodule Support.Setup do
   @moduledoc """
   Functions that are designed to be used as chained `setup` callbacks.
 
