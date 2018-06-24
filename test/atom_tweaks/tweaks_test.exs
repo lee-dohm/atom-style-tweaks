@@ -1,7 +1,7 @@
 defmodule AtomTweaks.TweaksTest do
   use AtomTweaks.DataCase
 
-  import Support.AssertHelpers
+  import Support.ChangesetHelpers
   import Support.SetupHelpers
 
   alias AtomTweaks.Accounts

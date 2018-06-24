@@ -26,7 +26,7 @@ defmodule AtomTweaks.DataCase do
       import AtomTweaks.DataCase
       import AtomTweaks.Factory
 
-      import Support.AssertHelpers
+      import Support.ChangesetHelpers
       import Support.SetupHelpers
 
       alias AtomTweaks.Repo
