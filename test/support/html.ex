@@ -5,6 +5,10 @@ defmodule Support.HTML do
 
   alias Phoenix.HTML
 
+  def has_selector?(html, selector) do
+    Floki.find(html, selector) != []
+  end
+
   @doc """
   Renders a `Phoenix.HTML.safe` object to string.
   """

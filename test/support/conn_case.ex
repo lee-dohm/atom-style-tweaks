@@ -31,8 +31,9 @@ defmodule AtomTweaksWeb.ConnCase do
       import AtomTweaks.Factory
       import AtomTweaksWeb.Router.Helpers
 
+      import Support.Conn
+      import Support.HTML
       import Support.Setup
-      import Test.Helpers
 
       # The default endpoint for testing
       @endpoint AtomTweaksWeb.Endpoint
