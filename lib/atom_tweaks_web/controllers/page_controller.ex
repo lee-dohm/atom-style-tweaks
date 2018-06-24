@@ -6,6 +6,8 @@ defmodule AtomTweaksWeb.PageController do
 
   alias AtomTweaks.Tweaks.Tweak
 
+  import Ecto.Query
+
   @doc """
   Renders the root-level index page.
   """
@@ -13,11 +15,13 @@ defmodule AtomTweaksWeb.PageController do
     type = params["type"]
 
     query =
-      Tweak
-      |> Tweak.sorted()
-      |> Tweak.preload()
+      from(
+        t in Tweak,
+        order_by: [desc: :inserted_at],
+        preload: [forked_from: [:user], user: []]
+      )
 
-    query = if type, do: Tweak.by_type(query, type), else: query
+    query = Tweak.by_type(query, type)
     tweaks = Repo.all(query)
 
     render(conn, "index.html", tweaks: tweaks, type: type)

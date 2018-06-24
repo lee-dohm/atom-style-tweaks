@@ -1,0 +1,7 @@
+- time_ago = safe_to_string(relative_time(@tweak.inserted_at))
+= if is_nil(@tweak.parent) do
+  - author_link = safe_to_string(link(@tweak.user.name, to: user_path(@conn, :show, @tweak.user.name), class: "Box-row-link"))
+  = raw(gettext("Created by %{author_link} about %{time_ago}", author_link: author_link, time_ago: time_ago))
+- else
+  - author_link = safe_to_string(link(@tweak.forked_from.user.name, to: user_path(@conn, :show, @tweak.forked_from.user.name), class: "Box-row-link"))
+  = raw(gettext("Forked by %{author_link} about %{time_ago}", author_link: author_link, time_ago: time_ago))

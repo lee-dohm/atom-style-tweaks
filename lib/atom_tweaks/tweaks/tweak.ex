@@ -50,6 +50,7 @@ defmodule AtomTweaks.Tweaks.Tweak do
     |> validate_inclusion(:type, ["init", "style"])
   end
 
+  def by_type(query, nil), do: query
   def by_type(query, type), do: from(t in query, where: t.type == ^type)
 
   def fork_params(tweak, user) do

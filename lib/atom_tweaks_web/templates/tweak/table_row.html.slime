@@ -4,7 +4,4 @@
   .pl-2.overflow-hidden
     a.Box-row-link.title href="#{tweak_path(@conn, :show, @tweak)}" = @tweak.title
     br
-    = gettext "Created by "
-    a.Box-row-link href="#{user_path(@conn, :show, @tweak.user.name)}" = @tweak.user.name
-    = gettext " about "
-    = relative_time(@tweak.inserted_at)
+    = render("creator_info.html", assigns)
