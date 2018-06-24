@@ -7,6 +7,8 @@ defmodule AtomTweaks.Tweaks.Tweak do
   import Ecto.Changeset
   import Ecto.Query
 
+  alias Ecto.Changeset
+
   alias AtomTweaks.Accounts.User
   alias AtomTweaks.Ecto.Markdown
   alias AtomTweaks.Tweaks.Star
@@ -65,6 +67,26 @@ defmodule AtomTweaks.Tweaks.Tweak do
       [property: "og:title", content: tweak.title],
       [property: "og:description", content: tweak.code]
     ]
+  end
+
+  @doc """
+  Validates that the person forking the tweak is different from the original author of the tweak.
+  """
+  @spec validate_fork_by_different_user(Changeset.t(), t() | binary) :: Changeset.t()
+  def validate_fork_by_different_user(changeset, original_tweak)
+
+  def validate_fork_by_different_user(changeset, %Tweak{created_by: created_by}) do
+    validate_fork_by_different_user(changeset, created_by)
+  end
+
+  def validate_fork_by_different_user(changeset, original_id) when is_binary(original_id) do
+    validate_change(changeset, :created_by, fn _field, creator_id ->
+      if creator_id == original_id do
+        [{:created_by, "cannot fork your own tweak"}]
+      else
+        []
+      end
+    end)
   end
 
   # Copy only `keys` out of `map` into a new map

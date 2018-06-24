@@ -4,6 +4,15 @@ defmodule Support.AssertHelpers do
   """
 
   @doc """
+  Retrieves the error messages associated with `field` from `changeset`.
+  """
+  def error_messages(changeset, field) do
+    changeset.errors
+    |> Keyword.get_values(field)
+    |> Enum.map(fn tuple -> elem(tuple, 0) end)
+  end
+
+  @doc """
   Determines if the `field` in `changeset` has an error.
   """
   @spec has_error_on?(Ecto.Changeset.t(), atom) :: boolean

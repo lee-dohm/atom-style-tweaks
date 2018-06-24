@@ -8,7 +8,6 @@ defmodule AtomTweaks.Tweaks do
 
   alias AtomTweaks.Accounts.User
   alias AtomTweaks.Repo
-  alias AtomTweaks.Tweaks
   alias AtomTweaks.Tweaks.Star
   alias AtomTweaks.Tweaks.Tweak
 
@@ -40,12 +39,17 @@ defmodule AtomTweaks.Tweaks do
 
   @doc """
   Forks the `tweak` by the `user`.
+
+  Returns the newly created tweak or an error changeset.
   """
   @spec fork_tweak(Tweak.t(), User.t()) :: {:ok, Tweak.t()} | {:error, Changeset.t()}
-  def fork_tweak(tweak = %Tweak{}, user = %User{}) do
-    tweak
-    |> Tweak.fork_params(user)
-    |> Tweaks.create_tweak()
+  def fork_tweak(original_tweak = %Tweak{}, user = %User{}) do
+    params = Tweak.fork_params(original_tweak, user)
+
+    %Tweak{}
+    |> Tweak.changeset(params)
+    |> Tweak.validate_fork_by_different_user(original_tweak)
+    |> Repo.insert()
   end
 
   @doc """

@@ -1,6 +1,7 @@
 defmodule AtomTweaks.TweaksTest do
   use AtomTweaks.DataCase
 
+  import Support.AssertHelpers
   import Support.SetupHelpers
 
   alias AtomTweaks.Accounts
@@ -8,6 +9,39 @@ defmodule AtomTweaks.TweaksTest do
   alias AtomTweaks.Tweaks.Tweak
 
   setup [:insert_tweak]
+
+  describe "fork_tweak" do
+    setup [:insert_user]
+
+    setup context do
+      {:ok, tweak} = Tweaks.fork_tweak(context.tweak, context.user)
+
+      {:ok, forked_tweak: tweak}
+    end
+
+    test "has the original tweak as the parent", context do
+      assert context.forked_tweak.parent == context.tweak.id
+    end
+
+    test "is created by the new user", context do
+      assert context.forked_tweak.created_by == context.user.id
+    end
+
+    test "copies the appropriate values", context do
+      assert context.tweak.code == context.forked_tweak.code
+      assert context.tweak.description == context.forked_tweak.description
+      assert context.tweak.title == context.forked_tweak.title
+      assert context.tweak.type == context.forked_tweak.type
+    end
+
+    test "cannot fork your own tweak", context do
+      tweak = Repo.preload(context.tweak, [:user])
+      {:error, changeset} = Tweaks.fork_tweak(tweak, tweak.user)
+
+      assert has_error_on?(changeset, :created_by)
+      assert error_messages(changeset, :created_by) == ["cannot fork your own tweak"]
+    end
+  end
 
   describe "get_tweak!" do
     test "retrieve existing tweak", context do
