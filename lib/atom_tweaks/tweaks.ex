@@ -21,6 +21,8 @@ defmodule AtomTweaks.Tweaks do
 
   @doc """
   Counts the number of forks of the given `tweak`.
+
+  **Note:** Does not include transitive forks in this number.
   """
   @spec count_forks(Tweak.t()) :: non_neg_integer
   def count_forks(tweak = %Tweak{}) do
@@ -55,6 +57,7 @@ defmodule AtomTweaks.Tweaks do
   @doc """
   Gets a tweak by ID.
   """
+  @spec get_tweak!(binary) :: Tweak.t() | no_return
   def get_tweak!(id) do
     Tweak
     |> Repo.get!(id)
