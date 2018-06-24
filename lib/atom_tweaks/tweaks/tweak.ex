@@ -60,8 +60,10 @@ defmodule AtomTweaks.Tweaks.Tweak do
   end
 
   def preload(query), do: from(t in query, preload: [:user])
+  def preload(query, preloads), do: from(t in query, preload: ^preloads)
 
   def sorted(query), do: from(t in query, order_by: [desc: :inserted_at])
+  def sorted(query, order), do: from(t in query, order_by: ^order)
 
   def to_metadata(tweak) do
     [
