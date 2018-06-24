@@ -4,8 +4,10 @@ defmodule AtomTweaksWeb do
 
   This can be used in your application as:
 
-      use AtomTweaks.Web, :controller
-      use AtomTweaks.Web, :view
+  ```
+  use AtomTweaksWeb, :controller
+  use AtomTweaksWeb, :view
+  ```
 
   The definitions below will be executed for every view, controller, etc, so keep them short and
   clean, focused on imports, uses and aliases.
