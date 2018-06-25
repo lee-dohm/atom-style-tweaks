@@ -56,6 +56,7 @@ defmodule AtomTweaksWeb do
       import PhoenixOcticons
 
       import AtomTweaksWeb.FormHelpers
+      import AtomTweaksWeb.LinkHelpers
       import AtomTweaksWeb.PrimerHelpers
       import AtomTweaksWeb.OcticonHelpers
       import AtomTweaksWeb.RenderHelpers
