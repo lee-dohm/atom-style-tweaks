@@ -12,16 +12,6 @@ msgstr ""
 "Plural-Forms: nplurals=2\n"
 
 #, elixir-format
-#: lib/atom_tweaks_web/templates/layout/login_button.html.slime:1
-msgid " Sign Out"
-msgstr ""
-
-#, elixir-format
-#: lib/atom_tweaks_web/templates/star/table_row.html.slime:1
-msgid " about "
-msgstr ""
-
-#, elixir-format
 #: lib/atom_tweaks_web/templates/star/blankslate.html.slime:1
 msgid "%{name} hasn't starred any tweaks yet."
 msgstr ""
@@ -73,16 +63,6 @@ msgid "Copy"
 msgstr ""
 
 #, elixir-format
-#: lib/atom_tweaks_web/templates/user/table_row.html.slime:1
-msgid "Created about"
-msgstr ""
-
-#, elixir-format
-#: lib/atom_tweaks_web/templates/star/table_row.html.slime:1
-msgid "Created by "
-msgstr ""
-
-#, elixir-format
 #: lib/atom_tweaks_web/templates/layout/tweak_title.html.slime:1
 msgid "Created by %{author_link}"
 msgstr ""
@@ -125,11 +105,6 @@ msgstr ""
 #, elixir-format
 #: lib/atom_tweaks_web/views/page_view.ex:14
 msgid "Init Tweaks"
-msgstr ""
-
-#, elixir-format
-#: lib/atom_tweaks_web/templates/tweak/show.html.slime:1
-msgid "Last updated about "
 msgstr ""
 
 #, elixir-format
@@ -222,4 +197,24 @@ msgstr ""
 #, elixir-format
 #: lib/atom_tweaks_web/helpers/primer_helpers.ex:210
 msgid "View this project on GitHub"
+msgstr ""
+
+#, elixir-format
+#: lib/atom_tweaks_web/templates/star/table_row.html.slime:1
+msgid "Created by %{stargazer_link} about %{time_ago}"
+msgstr ""
+
+#, elixir-format
+#: lib/atom_tweaks_web/templates/layout/login_button.html.slime:1
+msgid "Sign Out"
+msgstr ""
+
+#, elixir-format
+#: lib/atom_tweaks_web/templates/user/table_row.html.slime:1
+msgid "Created about %{time_ago}"
+msgstr ""
+
+#, elixir-format
+#: lib/atom_tweaks_web/templates/tweak/show.html.slime:1
+msgid "Last updated about %{time_ago}"
 msgstr ""

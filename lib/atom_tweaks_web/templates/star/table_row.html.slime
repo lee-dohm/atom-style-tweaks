@@ -4,7 +4,6 @@
   .pl-2.overflow-hidden
     a.Box-row-link.title href="#{tweak_path(@conn, :show, @star)}" = @star.title
     br
-    = gettext "Created by "
-    a.Box-row-link href="#{user_path(@conn, :show, @star.user.name)}" = @star.user.name
-    = gettext " about "
-    = relative_time(@star.inserted_at)
+    - stargazer_link = safe_link(@star.user.name, to: user_path(@conn, :show, @star.user.name), class: "Box-row-link")
+    - time_ago = safe_to_string(relative_time(@star.inserted_at))
+    = raw(gettext("Created by %{stargazer_link} about %{time_ago}", stargazer_link: stargazer_link, time_ago: time_ago))

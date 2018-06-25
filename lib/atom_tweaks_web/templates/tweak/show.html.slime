@@ -1,8 +1,8 @@
 = render(LayoutView, "tweak_title.html", assigns)
 .border.p-2
   .pb-2.clearfix
-    = gettext "Last updated about "
-    = relative_time(@tweak.updated_at)
+    - time_ago = safe_to_string(relative_time(@tweak.updated_at))
+    = raw(gettext("Last updated about %{time_ago}", time_ago: time_ago))
     = render_if(@current_user && @current_user.name == @tweak.user.name, "edit_tweak_button.html", assigns)
     = render("copy_tweak_button.html", assigns)
   = render_code(@tweak)
