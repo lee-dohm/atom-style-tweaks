@@ -85,4 +85,27 @@ defmodule AtomTweaks.Tweaks do
     |> Repo.preload(:stargazers)
     |> Map.fetch!(:stargazers)
   end
+
+  @doc """
+  Lists all tweaks.
+
+  ## Options
+
+  * `:type` - Includes only tweaks of the given type, if `nil` lists all tweaks _(default: `nil`)_
+  """
+  def list_tweaks(options \\ []) do
+    type = options[:type]
+
+    query =
+      from(
+        t in Tweak,
+        where: is_nil(t.parent),
+        order_by: [desc: :inserted_at],
+        preload: [:user]
+      )
+
+    query = Tweak.filter_by_type(query, type)
+
+    Repo.all(query)
+  end
 end
