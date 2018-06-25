@@ -14,6 +14,8 @@ Browse [open issues](https://github.com/lee-dohm/atom-style-tweaks/issues) to se
 
 [Open an issue](https://github.com/lee-dohm/atom-style-tweaks/issues/new) to tell us about a bug. You may also open a pull request to propose specific changes, but it's always OK to start with an issue.
 
+[Help with translating](#translating) the website into other languages.
+
 ## Setting up the development environment
 
 You'll need to:
@@ -37,6 +39,7 @@ This project follows the [GitHub "scripts to rule them all" pattern](http://gith
 * `script/console` &mdash; Opens the development console
 * `script/db-console` &mdash; Opens the database console for the development database
 * `script/docs` &mdash; Generates developer documentation
+* `script/translate` &mdash; Extract and merge new message strings in `priv/gettext`
 
 See the documentation at the top of each script for more information about what each one does and is capable of.
 
@@ -54,6 +57,15 @@ Other scripts that are available but not intended to be used directly by develop
     * Session values
 * Controller specs **should not** verify content
 * View specs should verify that given the expected assigns, the right content is displayed
+
+## Translations
+
+If you would like to help with translating Atom Tweaks into languages other than US English, you can:
+
+1. Create a new directory under `priv/gettext` that is the [name of the locale](https://en.wikipedia.org/wiki/Locale_(computer_software)) for which you will be providing a translation (for example, to provide a translation for Brazilian Portuguese, it would be `priv/gettext/pt_BR`)
+1. Run the `script/translate` script to extract and merge the latest version of the strings
+1. Add your translations to the `.po` files under your new directory
+1. Submit a PR with your changes
 
 ## Resources
 
