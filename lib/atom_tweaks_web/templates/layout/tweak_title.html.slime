@@ -10,7 +10,9 @@
     - else
       = gettext "Forked from"
       '
-      = link("#{@tweak.forked_from.user.name} / #{@tweak.forked_from.title}", to: tweak_path(@conn, :show, @tweak.forked_from))
+      - link_text = "#{@tweak.forked_from.user.name} / #{@tweak.forked_from.title}"
+      span.css-truncate.css-truncate-target title="#{link_text}"
+        = link(link_text, to: tweak_path(@conn, :show, @tweak.forked_from))
 
   = render("fork_button.html", assigns)
   = render("star_button.html", assigns)
