@@ -21,4 +21,14 @@ defmodule AtomTweaksWeb.Gettext do
   See the [Gettext Docs](https://hexdocs.pm/gettext) for detailed usage.
   """
   use Gettext, otp_app: :atom_tweaks
+
+  alias Phoenix.HTML
+
+  alias AtomTweaksWeb.MarkdownEngine
+
+  def md(text) do
+    text
+    |> MarkdownEngine.render()
+    |> HTML.raw()
+  end
 end

@@ -1,15 +1,3 @@
 .columns
   .five-fifths.column.about-text
-    markdown:
-      # About Atom Tweaks
-
-      Atom Tweaks is a database of simple tweaks for the [Atom text editor](https://atom.io). These
-      are simple changes to one's environment that don't merit a full
-      [Atom package](https://atom.io/packages). Atom is very customizable because you can add these
-      small snippets that can radically change your editing environment. In the past, finding and
-      integrating these little chunks of code was a time-consuming and error-prone process. Atom
-      Tweaks seeks to solve all of that!
-
-      -----
-
-      _Atom and the Atom logo are registered trademarks of GitHub, Inc._
+    = md(dgettext("markdown", "about_atom_tweaks"))
