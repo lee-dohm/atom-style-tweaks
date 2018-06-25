@@ -61,7 +61,7 @@ defmodule AtomTweaks.Tweaks do
   def get_tweak!(id) do
     Tweak
     |> Repo.get!(id)
-    |> Repo.preload([forked_from: [:user], stargazers: [], user: []])
+    |> Repo.preload(forked_from: [:user], stargazers: [], user: [])
   end
 
   @doc """
