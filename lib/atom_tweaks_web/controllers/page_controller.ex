@@ -14,13 +14,15 @@ defmodule AtomTweaksWeb.PageController do
   def index(conn, params) do
     type = params["type"]
 
+    # credo:disable-for-lines:8
     tweaks =
-      Tweak
-      |> Tweak.filter_by_type(type)
-      |> from(
+      from(
+        t in Tweak,
+        where: is_nil(t.parent),
         order_by: [desc: :inserted_at],
-        preload: [forked_from: [:user], user: []]
+        preload: [:user]
       )
+      |> Tweak.filter_by_type(type)
       |> Repo.all()
 
     render(conn, "index.html", tweaks: tweaks, type: type)
