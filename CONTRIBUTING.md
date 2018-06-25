@@ -32,11 +32,13 @@ This project follows the [GitHub "scripts to rule them all" pattern](http://gith
 
 * `script/setup` &mdash; Performs first-time setup
 * `script/update` &mdash; Performs periodic updating
-* `script/test` &mdash; Runs automated tests
-* `script/server` &mdash; Launches the web server
+* `script/test` &mdash; Runs automated tests, format and linter checks
+* `script/server` &mdash; Launches the local development web server
 * `script/console` &mdash; Opens the development console
 * `script/db-console` &mdash; Opens the database console for the development database
 * `script/docs` &mdash; Generates developer documentation
+
+See the documentation at the top of each script for more information about what each one does and is capable of.
 
 Other scripts that are available but not intended to be used directly by developers:
 

@@ -15,21 +15,25 @@ defmodule AtomTweaksWeb.ConnCase do
 
   use ExUnit.CaseTemplate
 
+  alias Ecto.Adapters.SQL.Sandbox
+  alias Phoenix.ConnTest
+
+  alias AtomTweaks.Repo
+
   using do
     quote do
       # Import conveniences for testing with connections
       use Phoenix.ConnTest
 
+      import Floki, only: [attribute: 2, find: 2, text: 1]
       import Phoenix.Controller
 
       import AtomTweaks.Factory
       import AtomTweaksWeb.Router.Helpers
 
-      import Floki, only: [attribute: 2, find: 2, text: 1]
-
-      import Support.SetupHelpers
-
-      import Test.Helpers
+      import Support.Conn
+      import Support.HTML
+      import Support.Setup
 
       # The default endpoint for testing
       @endpoint AtomTweaksWeb.Endpoint
@@ -37,12 +41,12 @@ defmodule AtomTweaksWeb.ConnCase do
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(AtomTweaks.Repo)
+    :ok = Sandbox.checkout(Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(AtomTweaks.Repo, {:shared, self()})
+      Sandbox.mode(Repo, {:shared, self()})
     end
 
-    {:ok, conn: Phoenix.ConnTest.build_conn()}
+    {:ok, conn: ConnTest.build_conn()}
   end
 end

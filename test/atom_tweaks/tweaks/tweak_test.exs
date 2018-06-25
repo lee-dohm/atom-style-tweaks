@@ -21,7 +21,7 @@ defmodule AtomTweaks.Tweaks.TweakTest do
 
       refute tweak.valid?
       assert length(tweak.errors) == 1
-      assert has_error_on?(tweak, :title)
+      assert error_on?(tweak, :title)
     end
 
     test "with a nil title", context do
@@ -29,7 +29,7 @@ defmodule AtomTweaks.Tweaks.TweakTest do
 
       refute tweak.valid?
       assert length(tweak.errors) == 1
-      assert has_error_on?(tweak, :title)
+      assert error_on?(tweak, :title)
     end
 
     test "with empty code", context do
@@ -37,7 +37,7 @@ defmodule AtomTweaks.Tweaks.TweakTest do
 
       refute tweak.valid?
       assert length(tweak.errors) == 1
-      assert has_error_on?(tweak, :code)
+      assert error_on?(tweak, :code)
     end
 
     test "with nil code", context do
@@ -45,7 +45,7 @@ defmodule AtomTweaks.Tweaks.TweakTest do
 
       refute tweak.valid?
       assert length(tweak.errors) == 1
-      assert has_error_on?(tweak, :code)
+      assert error_on?(tweak, :code)
     end
 
     test "with an invalid tweak type", context do
@@ -53,7 +53,7 @@ defmodule AtomTweaks.Tweaks.TweakTest do
 
       refute tweak.valid?
       assert length(tweak.errors) == 1
-      assert has_error_on?(tweak, :type)
+      assert error_on?(tweak, :type)
     end
 
     test "with an empty description", context do
@@ -73,7 +73,7 @@ defmodule AtomTweaks.Tweaks.TweakTest do
 
       refute tweak.valid?
       assert length(tweak.errors) == 1
-      assert has_error_on?(tweak, :created_by)
+      assert error_on?(tweak, :created_by)
     end
 
     test "with a nil user", _context do
@@ -81,7 +81,7 @@ defmodule AtomTweaks.Tweaks.TweakTest do
 
       refute tweak.valid?
       assert length(tweak.errors) == 1
-      assert has_error_on?(tweak, :created_by)
+      assert error_on?(tweak, :created_by)
     end
   end
 end

@@ -1,5 +1,14 @@
 #!/bin/sh
 
+# script/docs: Generates the developer documentation.
+#
+# Use: script/docs [options]
+#
+# ## Options
+#
+# * `--open` - Launches the developer documentation in the default web browser
+# * `--test` - Generates the developer documentation with test modules included
+
 set -e
 cd "$(dirname "$0")/.."
 

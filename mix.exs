@@ -85,7 +85,7 @@ defmodule AtomTweaks.Mixfile do
       {:phoenix_octicons, "~> 0.3.0"},
       {:ex_debug_toolbar, "~> 0.5"},
       {:dotenv, "~> 3.0.0", only: :dev},
-      {:ex_doc, "~> 0.16", only: :dev, runtime: false},
+      {:ex_doc, "~> 0.16", only: [:dev, :test], runtime: false},
       {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:ex_machina, "~> 2.0", only: :test},
       {:faker_elixir_octopus, "~> 1.0", only: :test},
@@ -157,7 +157,8 @@ defmodule AtomTweaks.Mixfile do
         ],
         Test: [
           ~r{^AtomTweaks.*(Channel|Conn|Data)Case$},
-          ~r{^AtomTweaks.Support}
+          ~r{^AtomTweaks.Support},
+          ~r{^Support}
         ],
         Tweaks: [
           ~r{^AtomTweaks\.Tweaks}

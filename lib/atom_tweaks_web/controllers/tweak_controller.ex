@@ -4,6 +4,7 @@ defmodule AtomTweaksWeb.TweakController do
   """
   use AtomTweaksWeb, :controller
 
+  alias AtomTweaks.Accounts
   alias AtomTweaks.Tweaks
   alias AtomTweaks.Tweaks.Tweak
   alias AtomTweaksWeb.NotLoggedInError
@@ -72,6 +73,20 @@ defmodule AtomTweaksWeb.TweakController do
   end
 
   @doc """
+  Forks a tweak for the currently logged in user.
+
+  Redirects to the newly created tweak upon success.
+  """
+  def fork(conn = %{assigns: %{current_user: user}}, %{"tweak_id" => id}) when user != nil do
+    tweak = Tweaks.get_tweak!(id)
+    user = Accounts.get_user!(user.name)
+
+    {:ok, new_tweak} = Tweaks.fork_tweak(tweak, user)
+
+    redirect(conn, to: tweak_path(conn, :show, new_tweak))
+  end
+
+  @doc """
   Displays the new tweak form.
   """
   @spec new(Plug.Conn.t(), Map.t()) :: Plug.Conn.t()
@@ -97,13 +112,14 @@ defmodule AtomTweaksWeb.TweakController do
     tweak =
       Tweak
       |> Repo.get(id)
-      |> Repo.preload([:stargazers, :user])
+      |> Repo.preload(forked_from: [:user], stargazers: [], user: [])
 
+    fork_count = Tweaks.count_forks(tweak)
     starred = Tweaks.is_starred?(tweak, current_user)
 
     conn
     |> PageMetadata.add(Tweak.to_metadata(tweak))
-    |> render("show.html", starred: starred, tweak: tweak)
+    |> render("show.html", fork_count: fork_count, starred: starred, tweak: tweak)
   end
 
   @doc """

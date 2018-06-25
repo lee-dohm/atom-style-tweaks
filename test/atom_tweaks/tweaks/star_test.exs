@@ -1,7 +1,7 @@
 defmodule AtomTweaks.Tweaks.StarTest do
   use AtomTweaks.DataCase
 
-  import Support.SetupHelpers
+  import Support.Setup
 
   alias AtomTweaks.Tweaks.Star
 
@@ -22,14 +22,14 @@ defmodule AtomTweaks.Tweaks.StarTest do
       star = build_star(user_id: nil, tweak_id: context.tweak.id)
 
       refute star.valid?
-      assert has_error_on?(star, :user_id)
+      assert error_on?(star, :user_id)
     end
 
     test "with a nil tweak id", context do
       star = build_star(user_id: context.user.id, tweak_id: nil)
 
       refute star.valid?
-      assert has_error_on?(star, :tweak_id)
+      assert error_on?(star, :tweak_id)
     end
   end
 end

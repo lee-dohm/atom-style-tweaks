@@ -4,21 +4,15 @@ defmodule AtomTweaksWeb.PageController do
   """
   use AtomTweaksWeb, :controller
 
-  alias AtomTweaks.Tweaks.Tweak
+  alias AtomTweaks.Tweaks
+  alias AtomTweaks.Tweaks
 
   @doc """
   Renders the root-level index page.
   """
   def index(conn, params) do
     type = params["type"]
-
-    query =
-      Tweak
-      |> Tweak.sorted()
-      |> Tweak.preload()
-
-    query = if type, do: Tweak.by_type(query, type), else: query
-    tweaks = Repo.all(query)
+    tweaks = Tweaks.list_tweaks(type: type)
 
     render(conn, "index.html", tweaks: tweaks, type: type)
   end

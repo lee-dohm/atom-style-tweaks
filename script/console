@@ -4,6 +4,11 @@
 #                 environment to be passed in to let the script handle the
 #                 specific requirements for connecting to a console for that
 #                 environment.
+#
+# Use: script/console [environment]
+#
+# * `environment` - Name of the environment in which to launch the console, defaults to local
+#                   development
 
 set -e
 

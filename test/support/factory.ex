@@ -2,9 +2,13 @@ defmodule AtomTweaks.Factory do
   @moduledoc """
   Factories for generating fake database records.
   """
+
   use ExMachina.Ecto, repo: AtomTweaks.Repo
 
-  alias FakerElixir, as: Faker
+  alias FakerElixir.Avatar
+  alias FakerElixir.Helper
+  alias FakerElixir.Internet
+  alias FakerElixir.Lorem
 
   alias AtomTweaks.Accounts.User
   alias AtomTweaks.Markdown
@@ -12,9 +16,9 @@ defmodule AtomTweaks.Factory do
 
   def tweak_factory do
     %Tweak{
-      title: Faker.Lorem.words(2..4),
+      title: Lorem.words(2..4),
       code: "atom-text-editor { font-style: normal; }",
-      description: %Markdown{text: Faker.Lorem.sentences()},
+      description: %Markdown{text: Lorem.sentences()},
       type: "style",
       user: build(:user)
     }
@@ -22,10 +26,10 @@ defmodule AtomTweaks.Factory do
 
   def user_factory do
     %User{
-      name: Faker.Internet.user_name(),
+      name: Internet.user_name(),
       site_admin: false,
-      github_id: Faker.Helper.pick(1..10_000),
-      avatar_url: Faker.Avatar.robohash()
+      github_id: Helper.pick(1..10_000),
+      avatar_url: Avatar.robohash()
     }
   end
 end
