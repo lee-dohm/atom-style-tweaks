@@ -14,16 +14,22 @@ defmodule AtomTweaks.Factory do
   alias AtomTweaks.Markdown
   alias AtomTweaks.Tweaks.Tweak
 
+  @doc """
+  Generates realistic-looking `AtomTweaks.Tweaks.Tweak` records.
+  """
   def tweak_factory do
     %Tweak{
       title: Lorem.words(2..4),
       code: "atom-text-editor { font-style: normal; }",
       description: %Markdown{text: Lorem.sentences()},
-      type: "style",
+      type: Helper.pick(["init", "style"]),
       user: build(:user)
     }
   end
 
+  @doc """
+  Generates realistic-looking `AtomTweaks.Accounts.User` records.
+  """
   def user_factory do
     %User{
       name: Internet.user_name(),
