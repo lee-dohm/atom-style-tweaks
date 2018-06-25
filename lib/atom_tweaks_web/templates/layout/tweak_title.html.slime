@@ -4,14 +4,12 @@
   h3.d-inline-block.my-3 = @tweak.title
   .d-inline-block.mx-2
     = if is_nil(@tweak.parent) do
-      = gettext "Created by"
-      '
-      a href="#{user_path(@conn, :show, @tweak.user.name)}" = @tweak.user.name
+      - author_link = safe_to_string(link(@tweak.user.name, to: user_path(@conn, :show, @tweak.user.name)))
+      = raw(gettext("Created by %{author_link}", author_link: author_link))
     - else
-      = gettext "Forked from"
-      '
       - link_text = "#{@tweak.forked_from.user.name} / #{@tweak.forked_from.title}"
-      = link(link_text, to: tweak_path(@conn, :show, @tweak.forked_from))
+      - original_link = safe_to_string(link(link_text, to: tweak_path(@conn, :show, @tweak.forked_from)))
+      = raw(gettext("Forked from %{original_link}", original_link: original_link))
 
   = render("fork_button.html", assigns)
   = render("star_button.html", assigns)
