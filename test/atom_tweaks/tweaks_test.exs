@@ -4,6 +4,8 @@ defmodule AtomTweaks.TweaksTest do
   import Support.Changeset
   import Support.Setup
 
+  alias Ecto.Query
+
   alias AtomTweaks.Accounts
   alias AtomTweaks.Tweaks
   alias AtomTweaks.Tweaks.Tweak
@@ -77,24 +79,34 @@ defmodule AtomTweaks.TweaksTest do
   end
 
   describe "list_tweaks" do
-    setup [:insert_user_with_tweaks, :fork_tweak, :insert_init_tweak]
+    setup [:insert_user_with_tweaks, :fork_tweak, :insert_init_tweak, :insert_style_tweak]
 
     test "returns a list of tweaks", _context do
       tweaks = Tweaks.list_tweaks()
 
-      assert length(tweaks) == 4
+      assert length(tweaks) == 5
     end
 
     test "can include forks", _context do
       tweaks = Tweaks.list_tweaks(forks: true)
 
-      assert length(tweaks) == 5
+      assert length(tweaks) == 6
     end
 
     test "can filter by tweak type", _context do
       tweaks = Tweaks.list_tweaks(type: "init")
 
-      assert length(tweaks) == 1
+      init_count =
+        Repo.one(
+          Query.from(
+            t in Tweak,
+            where: t.type == "init",
+            where: is_nil(t.parent),
+            select: count(t.id)
+          )
+        )
+
+      assert length(tweaks) == init_count
     end
 
     test "can filter by user", context do

@@ -147,6 +147,12 @@ defmodule Support.Setup do
     {:ok, init_tweak: tweak}
   end
 
+  def insert_style_tweak(_context) do
+    tweak = insert(:tweak, type: "style")
+
+    {:ok, style_tweak: tweak}
+  end
+
   @doc """
   Creates an invalid set of parameters for a tweak.
 
