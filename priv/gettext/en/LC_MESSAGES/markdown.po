@@ -1,0 +1,28 @@
+## `msgid`s in this file come from POT (.pot) files.
+##
+## Do not add, change, or remove `msgid`s manually here as
+## they're tied to the ones in the corresponding POT file
+## (with the same domain).
+##
+## Use `mix gettext.extract --merge` or `mix gettext.merge`
+## to merge POT files into PO files.
+msgid ""
+msgstr ""
+"Language: en\n"
+"Plural-Forms: nplurals=2\n"
+
+#, elixir-format
+#: lib/atom_tweaks_web/templates/page/about.html.slime:1
+msgid "about_atom_tweaks"
+msgstr "# About Atom Tweaks\n"
+"\n"
+"Atom Tweaks is a database of simple tweaks for the [Atom text editor](https://atom.io). These\n"
+"are simple changes to one's environment that don't merit a full\n"
+"[Atom package](https://atom.io/packages). Atom is very customizable because you can add these\n"
+"small snippets that can radically change your editing environment. In the past, finding and\n"
+"integrating these little chunks of code was a time-consuming and error-prone process. Atom\n"
+"Tweaks seeks to solve all of that!\n"
+"\n"
+"-----\n"
+"\n"
+"_Atom and the Atom logo are registered trademarks of GitHub, Inc._\n"

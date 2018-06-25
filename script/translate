@@ -1,0 +1,15 @@
+#!/bin/sh
+
+# script/translate: Extracts new msgids and merges them into translation files in `priv/gettext`.
+
+set -e
+
+cd "$(dirname "$0")/.."
+
+script/update
+
+echo "==> Extracting strings…"
+mix gettext.extract
+
+echo "==> Merging strings…"
+mix gettext.merge priv/gettext

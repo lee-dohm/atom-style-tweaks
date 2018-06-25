@@ -1,10 +1,6 @@
 defmodule AtomTweaksWeb.PageView do
   use AtomTweaksWeb, :view
 
-  require AtomTweaksWeb.Gettext
-
-  import AtomTweaksWeb.Gettext, only: [gettext: 1]
-
   alias AtomTweaksWeb.TweakView
 
   @doc """

@@ -1,0 +1,219 @@
+## This file is a PO Template file.
+##
+## `msgid`s here are often extracted from source code.
+## Add new translations manually only if they're dynamic
+## translations that can't be statically extracted.
+##
+## Run `mix gettext.extract` to bring this file up to
+## date. Leave `msgstr`s empty as changing them here as no
+## effect: edit them in PO (`.po`) files instead.
+msgid ""
+msgstr ""
+
+#, elixir-format
+#: lib/atom_tweaks_web/templates/star/blankslate.html.slime:1
+msgid "%{name} hasn't starred any tweaks yet."
+msgstr ""
+
+#, elixir-format
+#: lib/atom_tweaks_web/templates/layout/app.html.slime:1
+msgid "About"
+msgstr ""
+
+#, elixir-format
+#: lib/atom_tweaks_web/templates/page/index.html.slime:1
+msgid "All"
+msgstr ""
+
+#, elixir-format
+#: lib/atom_tweaks_web/views/page_view.ex:13
+msgid "All Tweaks"
+msgstr ""
+
+#, elixir-format
+#: lib/atom_tweaks_web/templates/layout/app.html.slime:1
+#: lib/atom_tweaks_web/templates/layout/app.html.slime:1
+msgid "Atom Tweaks"
+msgstr ""
+
+#, elixir-format
+#: lib/atom_tweaks_web/templates/stargazer/blankslate.html.slime:1
+msgid "Be the first to star this tweak."
+msgstr ""
+
+#, elixir-format
+#: lib/atom_tweaks_web/templates/tweak/edit.html.slime:1
+msgid "Cancel"
+msgstr ""
+
+#, elixir-format
+#: lib/atom_tweaks_web/templates/tweak/blankslate.html.slime:1
+msgid "Click \"New Tweak\" to get started!"
+msgstr ""
+
+#, elixir-format
+#: lib/atom_tweaks_web/templates/user/blankslate.html.slime:1
+msgid "Click \"New\" to get started!"
+msgstr ""
+
+#, elixir-format
+#: lib/atom_tweaks_web/templates/tweak/copy_tweak_button.html.slime:1
+msgid "Copy"
+msgstr ""
+
+#, elixir-format
+#: lib/atom_tweaks_web/templates/layout/tweak_title.html.slime:1
+msgid "Created by %{author_link}"
+msgstr ""
+
+#, elixir-format
+#: lib/atom_tweaks_web/templates/tweak/creator_info.html.slime:1
+msgid "Created by %{owner_link} about %{time_ago}"
+msgstr ""
+
+#, elixir-format
+#: lib/atom_tweaks_web/templates/tweak/edit_tweak_button.html.slime:1
+msgid "Edit"
+msgstr ""
+
+#, elixir-format
+#: lib/atom_tweaks_web/templates/tweak/new.html.slime:1
+msgid "Enter tweak code"
+msgstr ""
+
+#, elixir-format
+#: lib/atom_tweaks_web/templates/layout/fork_button.html.slime:1
+msgid "Fork"
+msgstr ""
+
+#, elixir-format
+#: lib/atom_tweaks_web/templates/tweak/creator_info.html.slime:1
+msgid "Forked by %{owner_link} about %{time_ago}"
+msgstr ""
+
+#, elixir-format
+#: lib/atom_tweaks_web/templates/layout/tweak_title.html.slime:1
+msgid "Forked from %{original_link}"
+msgstr ""
+
+#, elixir-format
+#: lib/atom_tweaks_web/templates/page/index.html.slime:1
+msgid "Init"
+msgstr ""
+
+#, elixir-format
+#: lib/atom_tweaks_web/views/page_view.ex:14
+msgid "Init Tweaks"
+msgstr ""
+
+#, elixir-format
+#: lib/atom_tweaks_web/templates/user/show.html.slime:1
+msgid "New"
+msgstr ""
+
+#, elixir-format
+#: lib/atom_tweaks_web/templates/tweak/new_tweak_button.html.slime:1
+msgid "New tweak"
+msgstr ""
+
+#, elixir-format
+#: lib/atom_tweaks_web/templates/tweak/blankslate.html.slime:1
+#: lib/atom_tweaks_web/templates/user/blankslate.html.slime:1
+msgid "No tweaks for you to see here"
+msgstr ""
+
+#, elixir-format
+#: lib/atom_tweaks_web/templates/tweak/new.html.slime:1
+msgid "Save new tweak"
+msgstr ""
+
+#, elixir-format
+#: lib/atom_tweaks_web/templates/layout/login_button.html.slime:1
+msgid "Sign in with"
+msgstr ""
+
+#, elixir-format
+#: lib/atom_tweaks_web/templates/user/user_info.html.slime:1
+msgid "Staff"
+msgstr ""
+
+#, elixir-format
+#: lib/atom_tweaks_web/templates/layout/star_button.html.slime:1
+msgid "Star"
+msgstr ""
+
+#, elixir-format
+#: lib/atom_tweaks_web/templates/stargazer/index.html.slime:1
+msgid "Stargazers"
+msgstr ""
+
+#, elixir-format
+#: lib/atom_tweaks_web/templates/user/underline_nav.html.slime:1
+msgid "Stars"
+msgstr ""
+
+#, elixir-format
+#: lib/atom_tweaks_web/views/page_view.ex:15
+msgid "Style Tweaks"
+msgstr ""
+
+#, elixir-format
+#: lib/atom_tweaks_web/templates/page/index.html.slime:1
+msgid "Styles"
+msgstr ""
+
+#, elixir-format
+#: lib/atom_tweaks_web/templates/user/user_info.html.slime:1
+msgid "This person is an Atom Tweaks staff member"
+msgstr ""
+
+#, elixir-format
+#: lib/atom_tweaks_web/templates/tweak/edit.html.slime:1
+#: lib/atom_tweaks_web/templates/tweak/new.html.slime:1
+msgid "Title"
+msgstr ""
+
+#, elixir-format
+#: lib/atom_tweaks_web/templates/user/underline_nav.html.slime:1
+msgid "Tweaks"
+msgstr ""
+
+#, elixir-format
+#: lib/atom_tweaks_web/templates/layout/star_button.html.slime:1
+msgid "Unstar"
+msgstr ""
+
+#, elixir-format
+#: lib/atom_tweaks_web/templates/tweak/edit.html.slime:1
+msgid "Update tweak"
+msgstr ""
+
+#, elixir-format
+#: lib/atom_tweaks_web/templates/user/user_info.html.slime:1
+msgid "View this person on GitHub"
+msgstr ""
+
+#, elixir-format
+#: lib/atom_tweaks_web/helpers/primer_helpers.ex:210
+msgid "View this project on GitHub"
+msgstr ""
+
+#, elixir-format
+#: lib/atom_tweaks_web/templates/star/table_row.html.slime:1
+msgid "Created by %{stargazer_link} about %{time_ago}"
+msgstr ""
+
+#, elixir-format
+#: lib/atom_tweaks_web/templates/layout/login_button.html.slime:1
+msgid "Sign Out"
+msgstr ""
+
+#, elixir-format
+#: lib/atom_tweaks_web/templates/user/table_row.html.slime:1
+msgid "Created about %{time_ago}"
+msgstr ""
+
+#, elixir-format
+#: lib/atom_tweaks_web/templates/tweak/show.html.slime:1
+msgid "Last updated about %{time_ago}"
+msgstr ""

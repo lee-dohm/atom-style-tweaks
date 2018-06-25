@@ -1,7 +1,8 @@
 = if @current_user do
   a href="#{auth_path(@conn, :delete)}"
     = octicon("sign-out")
-    = gettext " Sign Out"
+    '
+    = gettext "Sign Out"
   a href="#{user_path(@conn, :show, @current_user.name)}"
     = @current_user.name
     = avatar(@current_user, size: 36)
