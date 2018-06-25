@@ -89,7 +89,7 @@ defmodule AtomTweaks.Tweaks do
   @doc """
   Lists the tweaks according to the `options`.
 
-  Defaults to listing all original (not forked) tweaks in descending order of creation.
+  Defaults to listing all original (not forked) tweaks, newest first.
 
   ## Options
 

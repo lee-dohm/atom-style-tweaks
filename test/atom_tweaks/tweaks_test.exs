@@ -8,10 +8,8 @@ defmodule AtomTweaks.TweaksTest do
   alias AtomTweaks.Tweaks
   alias AtomTweaks.Tweaks.Tweak
 
-  setup [:insert_tweak]
-
   describe "fork_tweak" do
-    setup [:insert_user]
+    setup [:insert_tweak, :insert_user]
 
     setup context do
       {:ok, tweak} = Tweaks.fork_tweak(context.tweak, context.user)
@@ -44,6 +42,8 @@ defmodule AtomTweaks.TweaksTest do
   end
 
   describe "get_tweak!" do
+    setup [:insert_tweak]
+
     test "retrieve existing tweak", context do
       tweak = Tweaks.get_tweak!(context.tweak.id)
 
@@ -57,7 +57,9 @@ defmodule AtomTweaks.TweaksTest do
     end
   end
 
-  describe "stargazers" do
+  describe "list_stargazers" do
+    setup [:insert_tweak]
+
     test "returns the list of stargazers", context do
       {:ok, _} = Accounts.star_tweak(context.user, context.tweak)
 
@@ -71,6 +73,34 @@ defmodule AtomTweaks.TweaksTest do
       stargazers = Tweaks.list_stargazers(%Tweak{})
 
       assert Enum.empty?(stargazers)
+    end
+  end
+
+  describe "list_tweaks" do
+    setup [:insert_user_with_tweaks, :fork_tweak, :insert_init_tweak]
+
+    test "returns a list of tweaks", _context do
+      tweaks = Tweaks.list_tweaks()
+
+      assert length(tweaks) == 4
+    end
+
+    test "can include forks", _context do
+      tweaks = Tweaks.list_tweaks(forks: true)
+
+      assert length(tweaks) == 5
+    end
+
+    test "can filter by tweak type", _context do
+      tweaks = Tweaks.list_tweaks(type: "init")
+
+      assert length(tweaks) == 1
+    end
+
+    test "can filter by user", context do
+      tweaks = Tweaks.list_tweaks(for: context.user)
+
+      assert length(tweaks) == 3
     end
   end
 end

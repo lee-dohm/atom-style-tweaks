@@ -25,6 +25,7 @@ defmodule Support.Setup do
   import AtomTweaksWeb.Router.Helpers
 
   alias AtomTweaks.Accounts
+  alias AtomTweaks.Tweaks
   alias Plug.Test, as: PlugTest
 
   @endpoint AtomTweaksWeb.Endpoint
@@ -131,6 +132,19 @@ defmodule Support.Setup do
     tweaks = insert_list(3, :tweak, user: user)
 
     {:ok, user: user, tweaks: tweaks}
+  end
+
+  def fork_tweak(%{tweaks: tweaks}) do
+    fork_user = insert(:user)
+    {:ok, fork_tweak} = Tweaks.fork_tweak(hd(tweaks), fork_user)
+
+    {:ok, fork_user: fork_user, fork_tweak: fork_tweak}
+  end
+
+  def insert_init_tweak(_context) do
+    tweak = insert(:tweak, type: "init")
+
+    {:ok, init_tweak: tweak}
   end
 
   @doc """

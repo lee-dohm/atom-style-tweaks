@@ -1,4 +1,8 @@
 defmodule AtomTweaksWeb.LinkHelpers do
+  @moduledoc """
+  Functions to assist in rendering links.
+  """
+
   use Phoenix.HTML
 
   def safe_link(text, options) do
