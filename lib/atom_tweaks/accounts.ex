@@ -66,15 +66,6 @@ defmodule AtomTweaks.Accounts do
   end
 
   @doc """
-  Lists the tweaks belonging to `user`.
-  """
-  def list_tweaks(user = %User{}) do
-    user
-    |> Repo.preload(:tweaks)
-    |> Map.fetch!(:tweaks)
-  end
-
-  @doc """
   Lists all users in the database.
   """
   @spec list_users() :: [User.t()]

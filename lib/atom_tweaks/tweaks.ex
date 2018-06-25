@@ -87,25 +87,29 @@ defmodule AtomTweaks.Tweaks do
   end
 
   @doc """
-  Lists all tweaks.
+  Lists the tweaks according to the `options`.
+
+  Defaults to listing all original (not forked) tweaks in descending order of creation.
 
   ## Options
 
+  * `:for` - User whose tweaks to list
+  * `:forks` - When `true`, includes forked tweaks in the list _(default: `false`)_
   * `:type` - Includes only tweaks of the given type, if `nil` lists all tweaks _(default: `nil`)_
   """
   def list_tweaks(options \\ []) do
     type = options[:type]
+    user = options[:for]
+    forks = options[:forks]
 
-    query =
-      from(
-        t in Tweak,
-        where: is_nil(t.parent),
-        order_by: [desc: :inserted_at],
-        preload: [:user]
-      )
-
-    query = Tweak.filter_by_type(query, type)
-
-    Repo.all(query)
+    Tweak
+    |> from(
+      order_by: [desc: :inserted_at],
+      preload: [:user]
+    )
+    |> Tweak.include_forks(forks)
+    |> Tweak.filter_by_type(type)
+    |> Tweak.filter_by_user(user)
+    |> Repo.all()
   end
 end

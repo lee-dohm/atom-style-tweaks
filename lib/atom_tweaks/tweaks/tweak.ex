@@ -53,11 +53,17 @@ defmodule AtomTweaks.Tweaks.Tweak do
   def filter_by_type(query, nil), do: query
   def filter_by_type(query, type), do: from(t in query, where: t.type == ^type)
 
+  def filter_by_user(query, nil), do: query
+  def filter_by_user(query, user = %User{}), do: from(t in query, where: t.created_by == ^user.id)
+
   def fork_params(tweak, user) do
     tweak
     |> copy_params(@changeset_keys)
     |> Map.merge(%{created_by: user.id, parent: tweak.id})
   end
+
+  def include_forks(query, true), do: query
+  def include_forks(query, _), do: from(t in query, where: is_nil(t.parent))
 
   def to_metadata(tweak) do
     [
