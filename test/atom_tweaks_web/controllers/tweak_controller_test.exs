@@ -1,6 +1,7 @@
 defmodule AtomTweaksWeb.TweakControllerTest do
   use AtomTweaksWeb.ConnCase
 
+  alias AtomTweaks.Tweaks
   alias AtomTweaksWeb.NotLoggedInError
 
   describe "create tweak when not logged in" do
@@ -253,6 +254,43 @@ defmodule AtomTweaksWeb.TweakControllerTest do
 
     test "does not show the edit button", context do
       refute has_selector?(html_response(context.conn, :ok), "a#edit-button")
+    end
+  end
+
+  describe "update tweak" do
+    setup [:insert_tweak]
+
+    test "updates the tweak when given the correct inputs", context do
+      tweak_params = params_for(:tweak)
+
+      params = %{
+        "user_id" => context.user.name,
+        "id" => context.tweak.id,
+        "tweak" => tweak_params
+      }
+
+      conn = put(context.conn, tweak_path(context.conn, :update, context.tweak), params)
+      updated_tweak = Tweaks.get_tweak!(context.tweak.id)
+
+      assert redirected_to(conn, :found) == tweak_path(conn, :show, context.tweak)
+      assert updated_tweak.title == tweak_params.title
+      assert updated_tweak.description.text == tweak_params.description.text
+    end
+
+    test "does not update the tweak when given erroneous inputs", context do
+      tweak_params = params_for(:tweak, title: "")
+
+      params = %{
+        "user_id" => context.user.name,
+        "id" => context.tweak.id,
+        "tweak" => tweak_params
+      }
+
+      conn = put(context.conn, tweak_path(context.conn, :update, context.tweak), params)
+      updated_tweak = Tweaks.get_tweak!(context.tweak.id)
+
+      assert html_response(conn, :ok)
+      assert updated_tweak.title != ""
     end
   end
 end
