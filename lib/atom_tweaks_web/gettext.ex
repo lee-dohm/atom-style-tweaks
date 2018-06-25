@@ -20,12 +20,16 @@ defmodule AtomTweaksWeb.Gettext do
 
   See the [Gettext Docs](https://hexdocs.pm/gettext) for detailed usage.
   """
+
   use Gettext, otp_app: :atom_tweaks
 
   alias Phoenix.HTML
 
   alias AtomTweaksWeb.MarkdownEngine
 
+  @doc """
+  Render the output of a `gettext` macro into HTML from Markdown.
+  """
   def md(text) do
     text
     |> MarkdownEngine.render()
