@@ -7,8 +7,6 @@
 /*.ez
 /cover
 
-package-lock.json
-
 # Development environment variables
 .env
 
