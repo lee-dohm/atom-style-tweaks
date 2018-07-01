@@ -69,6 +69,6 @@ defmodule AtomTweaksWeb.RenderHelpers do
     end
   end
 
-  defp code_class_for(%{type: "init"}), do: "coffee"
+  defp code_class_for(%{type: "init"}), do: ""
   defp code_class_for(%{type: "style"}), do: "less"
 end
