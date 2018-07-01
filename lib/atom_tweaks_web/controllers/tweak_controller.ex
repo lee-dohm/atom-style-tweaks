@@ -128,8 +128,8 @@ defmodule AtomTweaksWeb.TweakController do
   @spec update(Plug.Conn.t(), Map.t()) :: Plug.Conn.t()
   def update(conn, params)
 
-  def update(conn, %{"user_id" => name, "id" => id, "tweak" => tweak_params}) do
-    tweak = Repo.get(Tweak, id)
+  def update(conn, %{"id" => id, "tweak" => tweak_params}) do
+    tweak = Tweaks.get_tweak!(id)
     changeset = Tweak.changeset(tweak, tweak_params)
 
     case Repo.update(changeset) do
@@ -140,7 +140,7 @@ defmodule AtomTweaksWeb.TweakController do
         render(
           conn,
           "edit.html",
-          name: name,
+          name: tweak.user.name,
           tweak: tweak,
           changeset: changeset,
           errors: changeset.errors
