@@ -13,9 +13,10 @@ config :atom_tweaks, AtomTweaksWeb.Endpoint,
   check_origin: false,
   watchers: [
     node: [
-      "node_modules/brunch/bin/brunch",
-      "watch",
-      "--stdin",
+      "node_modules/webpack/bin/webpack.js",
+      "--watch-stdin",
+      "--progress",
+      "--color",
       cd: Path.expand("../assets", __DIR__)
     ]
   ]
@@ -24,7 +25,7 @@ config :atom_tweaks, AtomTweaksWeb.Endpoint,
 config :atom_tweaks, AtomTweaksWeb.Endpoint,
   live_reload: [
     patterns: [
-      ~r{priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$},
+      ~r{priv/static/.*(js|jsx|ts|tsx|css|png|jpeg|jpg|gif|svg)$},
       ~r{priv/gettext/.*(po)$},
       ~r{lib/atom_tweaks_web/views/.*(ex)$},
       ~r{lib/atom_tweaks_web/templates/.*(eex|slim|slime)$}
