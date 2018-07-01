@@ -15,8 +15,6 @@ config :atom_tweaks, AtomTweaksWeb.Endpoint,
     node: [
       "node_modules/webpack/bin/webpack.js",
       "--watch-stdin",
-      "--progress",
-      "--color",
       cd: Path.expand("../assets", __DIR__)
     ]
   ]

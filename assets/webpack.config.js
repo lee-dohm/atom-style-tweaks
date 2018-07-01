@@ -4,10 +4,12 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const env = process.env.MIX_ENV || 'dev'
 const isProduction = (env === 'prod')
+const mode = env === 'prod' ? 'production' : 'development'
 
 module.exports = {
   devtool: 'source-map',
   entry: ['./js/app.js', './css/app.scss'],
+  mode: mode,
   module: {
     rules: [
       {
