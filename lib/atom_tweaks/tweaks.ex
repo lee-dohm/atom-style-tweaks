@@ -56,12 +56,18 @@ defmodule AtomTweaks.Tweaks do
 
   @doc """
   Gets a tweak by ID.
+
+  ## Options
+
+  * `:with` - specifies what associated records to preload
   """
-  @spec get_tweak!(binary) :: Tweak.t() | no_return
-  def get_tweak!(id) do
+  @spec get_tweak!(binary, keyword) :: Tweak.t() | no_return
+  def get_tweak!(id, options \\ []) do
+    preload = options[:with] || [forked_from: [:user], stargazers: [], user: []]
+
     Tweak
     |> Repo.get!(id)
-    |> Repo.preload(forked_from: [:user], stargazers: [], user: [])
+    |> Repo.preload(preload)
   end
 
   @doc """
