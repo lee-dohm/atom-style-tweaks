@@ -45,6 +45,7 @@ defmodule AtomTweaksWeb.Router do
     get("/about", PageController, :about)
 
     resources("/tweaks", TweakController, except: [:index]) do
+      get("/forks", TweakController, :forks, as: :forks)
       get("/stargazers", StargazerController, :index)
       post("/star", StarController, :toggle)
     end
