@@ -1,0 +1,7 @@
+.Box-row.clearfix
+  .Box-btn-octicon.btn-octicon.float-left
+    = mega_octicon_for(@fork)
+  .pl-2.overflow-hidden
+    a.Box-row-link.title href="#{tweak_path(@conn, :show, @fork)}" = @fork.title
+    br
+    = render("creator_info.html", conn: @conn, tweak: @fork)

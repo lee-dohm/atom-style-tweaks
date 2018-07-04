@@ -73,7 +73,7 @@ defmodule AtomTweaksWeb.TweakController do
   end
 
   @doc """
-  Forks a tweak for the currently logged in user.
+  Creates a fork of a tweak for the currently logged in user.
 
   Redirects to the newly created tweak upon success.
   """
@@ -84,6 +84,19 @@ defmodule AtomTweaksWeb.TweakController do
     {:ok, new_tweak} = Tweaks.fork_tweak(tweak, user)
 
     redirect(conn, to: tweak_path(conn, :show, new_tweak))
+  end
+
+  @doc """
+  Displays the list of forks for a given tweak.
+  """
+  @spec forks(Plug.Conn.t(), map) :: Plug.Conn.t()
+  def forks(conn, %{"tweak_id" => id}) do
+    tweak = Tweaks.get_tweak!(id, with: [forked_from: [:user], forks: [:user], stargazers: [], user: []])
+
+    fork_count = Tweaks.count_forks(tweak)
+    starred = Tweaks.is_starred?(tweak, conn.assigns.current_user)
+
+    render(conn, "forks.html", fork_count: fork_count, starred: starred, tweak: tweak)
   end
 
   @doc """

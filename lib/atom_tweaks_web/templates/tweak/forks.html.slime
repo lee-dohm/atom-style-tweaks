@@ -1,0 +1,7 @@
+= render(LayoutView, "tweak_title.html", assigns)
+
+h2 = gettext "Forks"
+= if Enum.empty?(@tweak.forks) do
+  = render(@view_module, "fork_blankslate.html", assigns)
+- else
+  = render_many(@tweak.forks, @view_module, "fork_table_row.html", Map.put(assigns, :as, :fork))
