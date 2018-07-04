@@ -91,7 +91,11 @@ defmodule AtomTweaksWeb.TweakController do
   """
   @spec forks(Plug.Conn.t(), map) :: Plug.Conn.t()
   def forks(conn, %{"tweak_id" => id}) do
-    tweak = Tweaks.get_tweak!(id, with: [forked_from: [:user], forks: [:user], stargazers: [], user: []])
+    tweak =
+      Tweaks.get_tweak!(
+        id,
+        with: [forked_from: [:user], forks: [:user], stargazers: [], user: []]
+      )
 
     fork_count = Tweaks.count_forks(tweak)
     starred = Tweaks.is_starred?(tweak, conn.assigns.current_user)
