@@ -8,7 +8,7 @@ defmodule AtomTweaks.Mixfile do
       name: "Atom Tweaks",
       homepage_url: "https://www.atom-tweaks.com",
       source_url: "https://github.com/lee-dohm/atom-style-tweaks",
-      elixir: "~> 1.6",
+      elixir: "~> 1.7",
       elixirc_paths: elixirc_paths(Mix.env()),
       compilers: [:phoenix, :gettext] ++ Mix.compilers(),
       build_embedded: Mix.env() == :prod,
@@ -92,7 +92,7 @@ defmodule AtomTweaks.Mixfile do
       {:html_entities, "~> 0.4.0", only: [:dev, :test]},
       {:floki, "~> 0.20.0", only: [:dev, :test]},
       {:excoveralls, "~> 0.6", only: :test},
-      {:credo, "~> 0.9.2", only: [:dev, :test], runtime: false}
+      {:credo, "~> 0.10.0", only: [:dev, :test], runtime: false}
     ]
   end
 
