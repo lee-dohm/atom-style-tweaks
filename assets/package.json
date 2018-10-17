@@ -7,7 +7,7 @@
   },
   "dependencies": {
     "clipboard": "^2.0.1",
-    "highlight.js": "^9.9.0",
+    "highlight.js": "^9.13.1",
     "phoenix": "file:../deps/phoenix",
     "phoenix_html": "file:../deps/phoenix_html",
     "primer": "^10.8.1"
