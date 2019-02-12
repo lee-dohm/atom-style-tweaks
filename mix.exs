@@ -80,7 +80,7 @@ defmodule AtomTweaks.Mixfile do
       {:phoenix, "~> 1.3.0"},
       {:plug_ribbon, "~> 0.2"},
       {:postgrex, ">= 0.0.0"},
-      {:sentry, "~> 6.4.0"},
+      {:sentry, "~> 7.0.3"},
       {:timex, "~> 3.1"},
       {:phoenix_octicons, "~> 0.3.0"},
       {:ex_debug_toolbar, "~> 0.5"},
