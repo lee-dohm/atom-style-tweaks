@@ -92,7 +92,7 @@ defmodule AtomTweaks.Mixfile do
       {:html_entities, "~> 0.4.0", only: [:dev, :test]},
       {:floki, "~> 0.20.0", only: [:dev, :test]},
       {:excoveralls, "~> 0.6", only: :test},
-      {:credo, "~> 0.10.0", only: [:dev, :test], runtime: false}
+      {:credo, "~> 1.0.3", only: [:dev, :test], runtime: false}
     ]
   end
 
