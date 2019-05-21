@@ -9,16 +9,17 @@ defmodule AtomTweaksWeb.GitHub do
   # Public API
 
   def client do
-    OAuth2.Client.new(config())
+    config()
+    |> OAuth2.Client.new()
+    |> OAuth2.Client.put_serializer("application/json", Jason)
   end
 
   def authorize_url!(params \\ []) do
-    # OAuth2.Client.authorize_url!(client(), Keyword.merge(params, scope: "read:org"))
     OAuth2.Client.authorize_url!(client(), Keyword.merge(params, scope: config(:scope) || ""))
   end
 
-  def get_token!(params \\ [], _headers \\ []) do
-    OAuth2.Client.get_token!(client(), params)
+  def get_token!(params \\ [], headers \\ [], opts \\ []) do
+    OAuth2.Client.get_token!(client(), params, headers, opts)
   end
 
   # Strategy Callbacks
@@ -42,7 +43,7 @@ defmodule AtomTweaksWeb.GitHub do
 
   defp default_config do
     [
-      strategy: GitHub,
+      strategy: __MODULE__,
       site: "https://api.github.com",
       authorize_url: "https://github.com/login/oauth/authorize",
       token_url: "https://github.com/login/oauth/access_token",
