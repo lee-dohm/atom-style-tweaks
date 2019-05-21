@@ -69,7 +69,6 @@ defmodule AtomTweaks.Mixfile do
   defp deps do
     [
       {:cmark, "~> 0.7"},
-      {:cowboy, "~> 1.0"},
       {:gettext, "~> 0.11"},
       {:navigation_history, "~> 0.2"},
       {:oauth2, "~> 0.9.2"},
@@ -78,6 +77,7 @@ defmodule AtomTweaks.Mixfile do
       {:phoenix_pubsub, "~> 1.0"},
       {:phoenix_slime, "~> 0.10.0"},
       {:phoenix, "~> 1.3.0"},
+      {:plug_cowboy, "~> 1.0"},
       {:plug_ribbon, "~> 0.2"},
       {:postgrex, ">= 0.0.0"},
       {:sentry, "~> 6.4.0"},
