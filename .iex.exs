@@ -1,4 +1,4 @@
-import_file_if_available "~/.iex.exs"
+import_file_if_available("~/.iex.exs")
 
 use Phoenix.HTML
 
