@@ -68,13 +68,16 @@ defmodule AtomTweaks.Mixfile do
 
   defp deps do
     [
+      # Full dependencies
       {:cmark, "~> 0.7"},
+      {:ex_debug_toolbar, "~> 0.5"},
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.1"},
       {:navigation_history, "~> 0.2"},
       {:oauth2, "~> 1.0.1"},
       {:phoenix_ecto, "~> 3.0"},
       {:phoenix_html, "~> 2.6"},
+      {:phoenix_octicons, "~> 0.3.0"},
       {:phoenix_pubsub, "~> 1.0"},
       {:phoenix_slime, "~> 0.12.0"},
       {:phoenix, "~> 1.4.6"},
@@ -83,17 +86,18 @@ defmodule AtomTweaks.Mixfile do
       {:postgrex, ">= 0.0.0"},
       {:sentry, "~> 7.0.6"},
       {:timex, "~> 3.1"},
-      {:phoenix_octicons, "~> 0.3.0"},
-      {:ex_debug_toolbar, "~> 0.5"},
+
+      # Dev dependencies
+      {:credo, "~> 1.0.5", only: [:dev, :test], runtime: false},
       {:dotenv, "~> 3.0.0", only: :dev},
       {:ex_doc, "~> 0.16", only: [:dev, :test], runtime: false},
-      {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:ex_machina, "~> 2.0", only: :test},
-      {:faker_elixir_octopus, "~> 1.0", only: :test},
-      {:html_entities, "~> 0.4.0", only: [:dev, :test]},
-      {:floki, "~> 0.20.0", only: [:dev, :test]},
       {:excoveralls, "~> 0.6", only: :test},
-      {:credo, "~> 1.0.5", only: [:dev, :test], runtime: false}
+      {:faker_elixir_octopus, "~> 1.0", only: :test},
+      {:floki, "~> 0.20.0", only: [:dev, :test]},
+      {:html_entities, "~> 0.4.0", only: [:dev, :test]},
+      {:phoenix_live_reload, "~> 1.0", only: :dev},
+      {:uuid, "~> 1.1", only: [:dev, :test]}
     ]
   end
 
