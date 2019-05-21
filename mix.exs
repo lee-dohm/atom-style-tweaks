@@ -70,6 +70,7 @@ defmodule AtomTweaks.Mixfile do
     [
       {:cmark, "~> 0.7"},
       {:gettext, "~> 0.11"},
+      {:jason, "~> 1.1"},
       {:navigation_history, "~> 0.2"},
       {:oauth2, "~> 1.0.1"},
       {:phoenix_ecto, "~> 3.0"},
