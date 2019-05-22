@@ -2,7 +2,7 @@ defmodule AtomTweaksWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :atom_tweaks
   use ExDebugToolbar.Phoenix
 
-  socket("/socket", AtomTweaksWeb.UserSocket)
+  socket("/socket", AtomTweaksWeb.UserSocket, websocket: [timeout: 45_000])
 
   # Serve at "/" the static files from "priv/static" directory.
   #
