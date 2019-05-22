@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+
+# script/db-import-production: Imports the production db into the local development db for analysis.
+
+set -e
+
+heroku pg:backups:capture
+heroku pg:backups:download
+pg_restore --verbose --clean --no-acl --no-owner -h localhost -U postgres -d atom_tweaks_dev latest.dump
+rm latest.dump
