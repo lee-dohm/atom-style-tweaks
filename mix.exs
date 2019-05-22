@@ -74,7 +74,7 @@ defmodule AtomTweaks.Mixfile do
       {:phoenix_pubsub, "~> 1.0"},
       {:phoenix_slime, "~> 0.12.0"},
       {:phoenix, "~> 1.4.6"},
-      {:plug_cowboy, "~> 1.0"},
+      {:plug_cowboy, "~> 2.0"},
       {:plug_ribbon, "~> 0.2"},
       {:postgrex, ">= 0.0.0"},
       {:sentry, "~> 7.0.6"},
