@@ -15,7 +15,7 @@ html lang="en"
 
   body
     header.masthead
-      .container
+      .container.clearfix
         a.masthead-logo href="/"
           = mega_octicon(:beaker)
           = gettext "Atom Tweaks"
@@ -23,7 +23,7 @@ html lang="en"
         nav.masthead-nav
           = render("login_button.html", assigns)
 
-    .container
+    .container.clearfix
       = if get_flash(@conn, :info) do
         p.flash role="alert" = get_flash(@conn, :info)
 
@@ -33,14 +33,13 @@ html lang="en"
       main role="main"
         = render @view_module, @view_template, assigns
 
-    footer.container.my-5
-      .columns
-        .two-fifths.column.centered
-          .border-top.text-center.small.my-2.pt-2
-            = link(gettext("About"), to: page_path(@conn, :about), id: "about-link")
-            span.px-3
-            = github_link(id: "github-link")
-          .text-center.small.my-2
-            = code_with_heart()
+    footer.container.clearfix.my-5
+      .col-6.mx-auto
+        .border-top.text-center.small.my-2.pt-2
+          = link(gettext("About"), to: page_path(@conn, :about), id: "about-link")
+          span.px-3
+          = github_link(id: "github-link")
+        .text-center.small.my-2
+          = code_with_heart()
 
     script src="#{static_path(@conn, "/js/app.js")}"

@@ -1,16 +1,15 @@
-.columns
-  .one-fourth.column
-    = render(@view_module, "user_info.html", assigns)
-  .three-fourths.column
-    = render(@view_module, "underline_nav.html", Map.put(assigns, :nav_selected, :tweaks))
-    = if !is_nil(@current_user) && @current_user.name == @user.name do
-      .pb-3.clearfix
-        a#new-tweak-button.btn.btn-primary.float-right href="#{tweak_path(@conn, :new)}"
-          = octicon(:beaker)
-          '
-          = gettext "New"
-    .border-y
-      = if Enum.empty?(@tweaks) do
-        = render(@view_module, "blankslate.html", assigns)
-      - else
-        = render_many(@tweaks, @view_module, "table_row.html", Map.put(assigns, :as, :tweak))
+.col-3.float-left.p-2
+  = render(@view_module, "user_info.html", assigns)
+.col-9.float-left.p-2
+  = render(@view_module, "underline_nav.html", Map.put(assigns, :nav_selected, :tweaks))
+  = if !is_nil(@current_user) && @current_user.name == @user.name do
+    .pb-3.clearfix
+      a#new-tweak-button.btn.btn-primary.float-right href="#{tweak_path(@conn, :new)}"
+        = octicon(:beaker)
+        '
+        = gettext "New"
+  .border-y
+    = if Enum.empty?(@tweaks) do
+      = render(@view_module, "blankslate.html", assigns)
+    - else
+      = render_many(@tweaks, @view_module, "table_row.html", Map.put(assigns, :as, :tweak))

@@ -1,3 +1,2 @@
-.columns
-  .five-fifths.column.about-text
-    = md(dgettext("markdown", "about_atom_tweaks"))
+.col-12.about-text
+  = md(dgettext("markdown", "about_atom_tweaks"))
