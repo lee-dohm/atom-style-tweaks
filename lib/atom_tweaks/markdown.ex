@@ -1,12 +1,19 @@
 defmodule AtomTweaks.Markdown do
   @moduledoc """
-  A structure that represents a chunk of Markdown to be rendered.
+  A structure that represents a chunk of Markdown text.
+
+  The structure contains both the raw Markdown `text` and the rendered `html`. Rendering the text
+  using either `to_html/1` or `to_iodata/1` memoizes the
+  rendered HTML in the structure.
   """
   alias AtomTweaksWeb.MarkdownEngine
 
   @type t :: %__MODULE__{text: String.t(), html: nil | String.t()}
   defstruct text: "", html: nil
 
+  @typedoc """
+  An `AtomTweaks.Markdown` struct or a string of Markdown text.
+  """
   @type markdown :: %__MODULE__{} | String.t()
 
   @doc """
@@ -57,6 +64,7 @@ defmodule AtomTweaks.Markdown do
   @doc """
   Renders a chunk of Markdown to its `iodata` representation.
   """
+  @spec to_iodata(markdown) :: iodata
   def to_iodata(markdown = %__MODULE__{}), do: to_html(markdown)
 
   defimpl Phoenix.HTML.Safe do

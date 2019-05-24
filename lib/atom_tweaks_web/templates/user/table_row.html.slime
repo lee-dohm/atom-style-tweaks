@@ -1,8 +1,8 @@
 .Box-row.clearfix
-  .Box-btn-octicon.btn-octicon.float-left
+  .Box-btn-octicon.btn-octicon.float-left.tooltipped.tooltipped-w aria-label="#{Macro.camelize(@tweak.type)} tweak"
     = mega_octicon_for(@tweak)
-  .pl-2.overflow-hidden
+  .pl-2.overflow-hidden.lh-condensed
     a.Box-row-link.title href="#{tweak_path(@conn, :show, @tweak)}" = @tweak.title
-    br
-    - time_ago = safe_to_string(relative_time(@tweak.inserted_at))
-    = raw(gettext("Created about %{time_ago}", time_ago: time_ago))
+    .mt-1.text-small.text-gray
+      - time_ago = safe_to_string(relative_time(@tweak.inserted_at))
+      = raw(gettext("Created about %{time_ago}", time_ago: time_ago))

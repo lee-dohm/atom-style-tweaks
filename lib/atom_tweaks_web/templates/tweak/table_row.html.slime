@@ -1,7 +1,7 @@
-.Box-row.clearfix
-  .Box-btn-octicon.btn-octicon.float-left
+.Box-row.clearfix.p-3
+  .Box-btn-octicon.btn-octicon.float-left.tooltipped.tooltipped-w aria-label="#{Macro.camelize(@tweak.type)} tweak"
     = mega_octicon_for(@tweak)
-  .pl-2.overflow-hidden
+  .pl-2.overflow-hidden.lh-condensed
     a.Box-row-link.title href="#{tweak_path(@conn, :show, @tweak)}" = @tweak.title
-    br
-    = render("creator_info.html", assigns)
+    .mt-1.text-small.text-gray
+      = render("creator_info.html", assigns)
