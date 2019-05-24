@@ -2,7 +2,7 @@
   = render(UserView, "user_info.html", assigns)
 .col-9.float-left.p-2
   = render(UserView, "underline_nav.html", Map.put(assigns, :nav_selected, :stars))
-  .border-y
+  .Box
     = if Enum.empty?(@stars) do
       = render(@view_module, "blankslate.html", assigns)
     - else
