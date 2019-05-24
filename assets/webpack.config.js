@@ -19,11 +19,7 @@ module.exports = {
           fallback: 'style-loader',
           use: [
             {
-              loader: 'css-loader',
-              options: {
-                minimize: true,
-                sourceMap: !isProduction
-              }
+              loader: 'css-loader'
             },
             {
               loader: 'sass-loader',
