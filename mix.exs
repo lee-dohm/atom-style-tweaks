@@ -164,6 +164,10 @@ defmodule AtomTweaks.Mixfile do
         Views: [
           ~r{^AtomTweaksWeb.*View$}
         ]
+      ],
+      nest_modules_by_prefix: [
+        AtomTweaks,
+        AtomTweaksWeb
       ]
     ]
   end
