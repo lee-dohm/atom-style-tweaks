@@ -76,6 +76,7 @@ defmodule AtomTweaks.Mixfile do
       {:phoenix, "~> 1.4.6"},
       {:plug_cowboy, "~> 2.0"},
       {:plug_ribbon, "~> 0.2"},
+      {:poison, "~> 3.0"},              # Required for ex_debug_toolbar
       {:postgrex, ">= 0.0.0"},
       {:sentry, "~> 7.0.6"},
       {:timex, "~> 3.1"},
