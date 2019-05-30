@@ -14,7 +14,7 @@ defmodule AtomTweaks.Tweaks.Tweak do
   alias AtomTweaks.Tweaks.Star
   alias AtomTweaks.Tweaks.Tweak
 
-  @type t :: %Tweak{}
+  @type t :: %__MODULE__{}
 
   @changeset_keys ~w{code created_by description parent title type}a
 
@@ -50,9 +50,21 @@ defmodule AtomTweaks.Tweaks.Tweak do
     |> validate_inclusion(:type, ["init", "style"])
   end
 
+  @doc """
+  Filters `query` to include only tweaks of `type`.
+
+  If `nil` is given for the type, the query is not filtered. This allows for easily building the
+  query in a pipeline.
+  """
   def filter_by_type(query, nil), do: query
   def filter_by_type(query, type), do: from(t in query, where: t.type == ^type)
 
+  @doc """
+  Filters `query` to include only tweaks that were created by `user`.
+
+  If `nil` is given for the user, the query is not filtered. This allows for easily building the
+  query in a pipeline.
+  """
   def filter_by_user(query, nil), do: query
   def filter_by_user(query, user = %User{}), do: from(t in query, where: t.created_by == ^user.id)
 

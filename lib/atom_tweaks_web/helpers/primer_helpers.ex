@@ -145,7 +145,7 @@ defmodule AtomTweaksWeb.PrimerHelpers do
   @doc """
   Renders a `Counter` element.
 
-  **See:** [Counter element documentation](https://github.com/primer/primer/tree/master/modules/primer-labels#counters)
+  **See:** [Counter element documentation](https://primer.style/css/components/labels#Counters)
   """
   @spec counter(non_neg_integer()) :: Phoenix.HTML.safe()
   def counter(count) do
