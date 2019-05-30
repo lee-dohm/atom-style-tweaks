@@ -6,6 +6,7 @@ set -e
 cd "$(dirname "$0")/.."
 
 mix clean
+rm -rf _build
 rm -rf bin
 rm -rf deps
 rm -rf doc
