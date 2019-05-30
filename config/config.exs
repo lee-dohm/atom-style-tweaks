@@ -33,6 +33,8 @@ config :logger, :console,
 # Configure Phoenix Generators
 config :phoenix, :generators, binary_id: true
 
+config :phoenix, :json_library, Jason
+
 # Configure Phoenix template engines
 config :phoenix, :template_engines,
   slim: PhoenixSlime.Engine,
