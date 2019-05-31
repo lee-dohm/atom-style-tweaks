@@ -82,7 +82,7 @@ defmodule AtomTweaks.Tweaks do
   @spec list_forks(Tweak.t()) :: [Tweak.t()]
   def list_forks(tweak = %Tweak{}) do
     tweak
-    |> Repo.preload(:forks)
+    |> Repo.preload([:forks, forks: :user])
     |> Map.fetch!(:forks)
   end
 

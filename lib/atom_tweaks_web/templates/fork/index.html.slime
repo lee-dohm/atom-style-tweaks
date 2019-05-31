@@ -1,0 +1,5 @@
+.Box
+  = if Enum.empty?(@tweaks) do
+    = render(@view_module, "blankslate.html", assigns)
+  - else
+    = render_many(@tweaks, @view_module, "table_row.html", Map.put(assigns, :as, :tweak))

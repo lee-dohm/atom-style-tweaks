@@ -25,7 +25,12 @@ defmodule AtomTweaksWeb.ForkController do
   @doc """
   Displays the list of forks of a given tweak.
   """
-  def index(conn, %{"tweak_id" => _id}) do
-    conn
+  def index(conn, %{"tweak_id" => id}) do
+    forks =
+      id
+      |> Tweaks.get_tweak!()
+      |> Tweaks.list_forks()
+
+    render(conn, "index.html", tweaks: forks)
   end
 end
