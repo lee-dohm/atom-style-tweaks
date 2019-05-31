@@ -39,7 +39,8 @@ defmodule AtomTweaks.TweaksTest do
       {:error, changeset} = Tweaks.fork_tweak(tweak, tweak.user)
 
       assert error_on?(changeset, :created_by)
-      assert error_messages(changeset, :created_by) == ["cannot fork your own tweak"]
+      assert length(error_messages(changeset, :created_by)) == 1
+      assert "cannot fork your own tweak" in error_messages(changeset, :created_by)
     end
   end
 
@@ -79,7 +80,7 @@ defmodule AtomTweaks.TweaksTest do
       stargazers = Tweaks.list_stargazers(context.tweak)
 
       assert length(stargazers) == 1
-      assert hd(stargazers) == context.user
+      assert context.user in stargazers
     end
 
     test "list stargazers gives an empty list when given an invalid tweak", _context do
