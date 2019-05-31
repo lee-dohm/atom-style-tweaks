@@ -69,6 +69,12 @@ defmodule AtomTweaks.TweaksTest do
       assert length(forks) == 1
       assert hd(forks).id == context.fork_tweak.id
     end
+
+    test "returns an empty list when not forked", context do
+      forks = Tweaks.list_forks(context.fork_tweak)
+
+      assert Enum.empty?(forks)
+    end
   end
 
   describe "list_stargazers" do
