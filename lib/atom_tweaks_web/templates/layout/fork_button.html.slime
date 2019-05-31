@@ -5,5 +5,5 @@
         = octicon("repo-forked")
         '
         = gettext("Fork")
-      a.social-count href="#"
+      a.social-count href="#{tweak_fork_path(@conn, :index, @tweak)}"
         = @fork_count
