@@ -364,6 +364,22 @@ defmodule Support.Setup do
     {:ok, conn: conn, path: path}
   end
 
+  def request_forks(context)
+
+  def request_forks(%{conn: conn, forked_tweak: forked_tweak}) do
+    path = tweak_fork_path(conn, :index, forked_tweak)
+    conn = get(conn, path)
+
+    {:ok, conn: conn, path: path}
+  end
+
+  def request_forks(%{conn: conn, tweak: tweak}) do
+    path = tweak_fork_path(conn, :index, tweak)
+    conn = get(conn, path)
+
+    {:ok, conn: conn, path: path}
+  end
+
   def valid_tweak_params(_context) do
     {:ok, tweak_params: params_for(:tweak)}
   end
