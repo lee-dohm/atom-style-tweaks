@@ -26,11 +26,16 @@ defmodule AtomTweaksWeb.ForkController do
   Displays the list of forks of a given tweak.
   """
   def index(conn, %{"tweak_id" => id}) do
-    forks =
-      id
-      |> Tweaks.get_tweak!()
-      |> Tweaks.list_forks()
+    tweak = Tweaks.get_tweak!(id)
+    fork_count = Tweaks.count_forks(tweak)
+    forks = Tweaks.list_forks(tweak)
+    starred = Tweaks.is_starred?(tweak, conn.assigns.current_user)
 
-    render(conn, "index.html", tweaks: forks)
+    render(conn, "index.html",
+      fork_count: fork_count,
+      forks: forks,
+      starred: starred,
+      tweak: tweak
+    )
   end
 end
