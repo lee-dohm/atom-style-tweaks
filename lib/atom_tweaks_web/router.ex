@@ -45,6 +45,8 @@ defmodule AtomTweaksWeb.Router do
     get("/about", PageController, :about)
 
     resources("/tweaks", TweakController, except: [:index]) do
+      resources("/forks", ForkController, only: [:create, :index])
+
       get("/stargazers", StargazerController, :index)
       post("/star", StarController, :toggle)
     end
@@ -54,7 +56,6 @@ defmodule AtomTweaksWeb.Router do
     end
 
     get("/users/:user_id/tweaks/:tweak_id", ObsoleteRouteController, :long_tweak_path_to_short)
-    post("/tweaks/:tweak_id", TweakController, :fork)
   end
 
   # Other scopes may use custom stacks.
