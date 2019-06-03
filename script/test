@@ -11,21 +11,9 @@ cd "$(dirname "$0")/.."
 [ -z "$DEBUG" ] || set -x
 
 if [ "$MIX_ENV" = "test"  ] || [ "$CI" = "true" ]; then
-  # if executed and the environment is already set to `test`, then we want a
-  # clean from scratch application. This almost always means a ci environment,
-  # since we set the environment to `test` directly in `script/cibuild`.
-  export MIX_ENV="test"
-
-  script/setup
+  MIX_ENV="test" script/setup
 else
-  # if the environment isn't set to `test`, set it to `test` and update the
-  # application to ensure all dependencies are met as well as any other things
-  # that need to be up to date, like db migrations. The environment not having
-  # already been set to `test` almost always means this is being called on it's
-  # own from a `development` environment.
-  export MIX_ENV="test"
-
-  script/update
+  MIX_ENV="test" script/update
 fi
 
 echo "==> Checking format…"

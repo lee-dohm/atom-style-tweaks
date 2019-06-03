@@ -77,6 +77,16 @@ defmodule AtomTweaks.Tweaks do
   def is_starred?(%Tweak{}, _), do: false
 
   @doc """
+  Lists the forks of the given `tweak`.
+  """
+  @spec list_forks(Tweak.t()) :: [Tweak.t()]
+  def list_forks(tweak = %Tweak{}) do
+    tweak
+    |> Repo.preload([:forks, forks: :user])
+    |> Map.fetch!(:forks)
+  end
+
+  @doc """
   Lists the users that have starred the `tweak`.
   """
   @spec list_stargazers(Tweak.t()) :: [User.t()]

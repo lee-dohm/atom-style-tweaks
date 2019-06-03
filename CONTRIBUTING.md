@@ -21,6 +21,7 @@ Browse [open issues](https://github.com/lee-dohm/atom-style-tweaks/issues) to se
 You'll need to:
 
 1. Install [PostgreSQL][postgres-download] and start it
+1. Execute `createuser --createdb postgres` to create the standard development database user
 1. Create [a GitHub OAuth app][oauth-app] - set the callback URL to `http://localhost:4000/auth/callback`
 1. Copy `.env.example` to `.env` and set the `GITHUB_CLIENT_ID` and `GITHUB_CLIENT_SECRET` values to the ones obtained from the application in the previous step
 1. Run `script/setup`
@@ -28,7 +29,7 @@ You'll need to:
 [oauth-app]: https://developer.github.com/apps/building-oauth-apps/creating-an-oauth-app/
 [postgres-download]: https://www.postgresql.org/download/
 
-## Common Tasks
+## Common Local Development Tasks
 
 This project follows the [GitHub "scripts to rule them all" pattern](http://githubengineering.com/scripts-to-rule-them-all/). The contents of the `scripts` directory are scripts that cover all common tasks:
 
@@ -47,6 +48,25 @@ Other scripts that are available but not intended to be used directly by develop
 
 * `script/bootstrap` &mdash; Used to do a one-time install of all prerequisites for a development machine
 * `script/cibuild` &mdash; Used to run automated tests in the CI environment
+
+## Heroku Hosting Notes
+
+Heroku restricts us to 20 simultaneous database connections. We divide them like this:
+
+* 14 connections for serving normal traffic
+* 2 for scheduled tasks
+* 2 for manual maintenance (see [Executing Scripts](#executing-scripts))
+* 2 reserved for future use
+
+### Executing Scripts
+
+Occasionally, certain maintenance will need to be executed on staging or production. This is best achieved by the means of Elixir scripts. This way, they can be tested locally before we potentially screw up production. To execute a script in a Heroku environment, execute:
+
+```
+heroku run "POOL_SIZE=2 mix run path/to/script.exs"
+```
+
+The `POOL_SIZE` environment variable restricts the number of database connections that the task can utilize, since Heroku restricts us to 20 simultaneous database connections.
 
 ## Writing Tests
 

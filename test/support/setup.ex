@@ -136,9 +136,10 @@ defmodule Support.Setup do
 
   def fork_tweak(%{tweaks: tweaks}) do
     fork_user = insert(:user)
-    {:ok, fork_tweak} = Tweaks.fork_tweak(hd(tweaks), fork_user)
+    forked_tweak = hd(tweaks)
+    {:ok, fork_tweak} = Tweaks.fork_tweak(forked_tweak, fork_user)
 
-    {:ok, fork_user: fork_user, fork_tweak: fork_tweak}
+    {:ok, fork_user: fork_user, fork_tweak: fork_tweak, forked_tweak: forked_tweak}
   end
 
   def insert_init_tweak(_context) do
@@ -358,6 +359,22 @@ defmodule Support.Setup do
 
   def request_stars(%{conn: conn, user: user}) do
     path = user_star_path(conn, :index, user)
+    conn = get(conn, path)
+
+    {:ok, conn: conn, path: path}
+  end
+
+  def request_forks(context)
+
+  def request_forks(%{conn: conn, forked_tweak: forked_tweak}) do
+    path = tweak_fork_path(conn, :index, forked_tweak)
+    conn = get(conn, path)
+
+    {:ok, conn: conn, path: path}
+  end
+
+  def request_forks(%{conn: conn, tweak: tweak}) do
+    path = tweak_fork_path(conn, :index, tweak)
     conn = get(conn, path)
 
     {:ok, conn: conn, path: path}

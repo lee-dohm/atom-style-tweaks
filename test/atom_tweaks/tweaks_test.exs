@@ -39,23 +39,41 @@ defmodule AtomTweaks.TweaksTest do
       {:error, changeset} = Tweaks.fork_tweak(tweak, tweak.user)
 
       assert error_on?(changeset, :created_by)
-      assert error_messages(changeset, :created_by) == ["cannot fork your own tweak"]
+      assert length(error_messages(changeset, :created_by)) == 1
+      assert "cannot fork your own tweak" in error_messages(changeset, :created_by)
     end
   end
 
   describe "get_tweak!" do
     setup [:insert_tweak]
 
-    test "retrieve existing tweak", context do
+    test "retrieves an existing tweak", context do
       tweak = Tweaks.get_tweak!(context.tweak.id)
 
       assert tweak.id == context.tweak.id
     end
 
-    test "retrieve non-existent tweak raises NoResultsError", _context do
+    test "retrieving a non-existent tweak raises NoResultsError", _context do
       assert_raise Ecto.NoResultsError, fn ->
         Tweaks.get_tweak!(UUID.uuid4())
       end
+    end
+  end
+
+  describe "list_forks" do
+    setup [:insert_user_with_tweaks, :fork_tweak]
+
+    test "returns the list of forks", context do
+      forks = Tweaks.list_forks(context.forked_tweak)
+
+      assert length(forks) == 1
+      assert hd(forks).id == context.fork_tweak.id
+    end
+
+    test "returns an empty list when not forked", context do
+      forks = Tweaks.list_forks(context.fork_tweak)
+
+      assert Enum.empty?(forks)
     end
   end
 
@@ -68,7 +86,7 @@ defmodule AtomTweaks.TweaksTest do
       stargazers = Tweaks.list_stargazers(context.tweak)
 
       assert length(stargazers) == 1
-      assert hd(stargazers) == context.user
+      assert context.user in stargazers
     end
 
     test "list stargazers gives an empty list when given an invalid tweak", _context do

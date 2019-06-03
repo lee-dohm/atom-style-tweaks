@@ -1,9 +1,9 @@
 .Box-row.clearfix
-  .Box-btn-octicon.btn-octicon.float-left
+  .Box-btn-octicon.btn-octicon.float-left.tooltipped.tooltipped-w aria-label="#{Macro.camelize(@star.type)} tweak"
     = mega_octicon_for(@star)
-  .pl-2.overflow-hidden
+  .pl-2.overflow-hidden.lh-condensed
     a.Box-row-link.title href="#{tweak_path(@conn, :show, @star)}" = @star.title
-    br
-    - stargazer_link = safe_link(@star.user.name, to: user_path(@conn, :show, @star.user.name), class: "Box-row-link")
-    - time_ago = safe_to_string(relative_time(@star.inserted_at))
-    = raw(gettext("Created by %{stargazer_link} about %{time_ago}", stargazer_link: stargazer_link, time_ago: time_ago))
+    .mt-1.text-small.text-gray
+      - stargazer_link = safe_link(@star.user.name, to: user_path(@conn, :show, @star.user.name), class: "Box-row-link")
+      - time_ago = safe_to_string(relative_time(@star.inserted_at))
+      = raw(gettext("Created by %{stargazer_link} about %{time_ago}", stargazer_link: stargazer_link, time_ago: time_ago))
