@@ -1,7 +1,7 @@
 .tweak-title
-  .tweak-title-octicon.d-inline-block.my-3.mr-1
-    = mega_octicon_for(@tweak)
-  h3.d-inline-block.my-3 = @tweak.title
+  h3.d-inline-block.my-3
+    = mega_octicon_for(@tweak, class: "tweak-title-octicons mr-1")
+    = @tweak.title
   .d-inline-block.mx-2
     = if is_nil(@tweak.parent) do
       - author_link = safe_link(@tweak.user.name, to: user_path(@conn, :show, @tweak.user.name))
