@@ -1,23 +1,8 @@
 .octicons {
   display: inline-block;
-  vertical-align: text-bottom;
+  vertical-align: text-top;
   user-select: none;
-}
-
-.btn {
-  &.btn-primary {
-    .octicons {
-      fill: $white;
-    }
-  }
-
-  .octicons {
-    vertical-align: text-top;
-  }
-}
-
-.tweak-title-octicon {
-  vertical-align: bottom;
+  fill: currentColor;
 }
 
 .menu-item .octicons {
@@ -26,23 +11,10 @@
   fill: $gray-900;
 }
 
-.masthead a {
-  path {
-    fill: transparentize($white, .5);
-  }
-
-  &:hover {
-    path {
-      fill: $white;
-    }
-  }
-}
-
 .masthead-logo .octicons {
   margin-right: 5px;
-  vertical-align: -2px;
+}
 
-  path {
-    fill: $white;
-  }
+.tweak-title-octicons {
+  vertical-align: bottom;
 }
