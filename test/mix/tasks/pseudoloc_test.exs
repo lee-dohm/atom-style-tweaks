@@ -1,5 +1,6 @@
 defmodule Mix.Tasks.PseudolocTest do
-  use ExUnit.Case
+  use ExUnit.Case, async: true
+
   doctest Mix.Tasks.Pseudoloc
 
   alias Mix.Tasks.Pseudoloc
@@ -37,6 +38,25 @@ defmodule Mix.Tasks.PseudolocTest do
 
     test "returns a random alternative if there are some" do
       assert Pseudoloc.localize_grapheme("a", %{"a" => ["1", "2", "3"]}) in ["1", "2", "3"]
+    end
+  end
+
+  describe "localize_range/3" do
+    test "returns the string with the given range localized based on the alternatives" do
+      assert Pseudoloc.localize_range("foo", {0, 3}, %{"f" => ["ϝ"]}) == "ϝoo"
+    end
+  end
+
+  describe "localize_string/2" do
+    test "returns the string localized based on the alternatives" do
+      alternatives = %{
+        "a" => ["α"],
+        "f" => ["ϝ"],
+        "u" => ["ṵ"]
+      }
+
+      assert Pseudoloc.localize_string("foo%{bar}baz%{quux}quuux", alternatives) ==
+               "ϝoo%{bar}bαz%{quux}qṵṵṵx"
     end
   end
 end
