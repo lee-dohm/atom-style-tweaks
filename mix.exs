@@ -70,7 +70,7 @@ defmodule AtomTweaks.Mixfile do
       {:oauth2, "~> 1.0.1"},
       {:phoenix_ecto, "~> 3.0"},
       {:phoenix_html, "~> 2.6"},
-      {:phoenix_octicons, "~> 0.5"},
+      {:phoenix_octicons, "~> 0.6"},
       {:phoenix_pubsub, "~> 1.0"},
       {:phoenix_slime, "~> 0.12.0"},
       {:phoenix, "~> 1.4.6"},
