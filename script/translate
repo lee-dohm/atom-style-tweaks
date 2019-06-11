@@ -8,8 +8,5 @@ cd "$(dirname "$0")/.."
 
 script/update
 
-echo "==> Extracting strings…"
-mix gettext.extract
-
-echo "==> Merging strings…"
-mix gettext.merge priv/gettext
+echo "==> Generating i18n data files…"
+mix translate
