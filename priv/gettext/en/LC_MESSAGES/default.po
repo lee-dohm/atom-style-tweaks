@@ -27,7 +27,7 @@ msgid "All"
 msgstr ""
 
 #, elixir-format
-#: lib/atom_tweaks_web/views/page_view.ex:13
+#: lib/atom_tweaks_web/views/page_view.ex:9
 msgid "All Tweaks"
 msgstr ""
 
@@ -103,7 +103,7 @@ msgid "Init"
 msgstr ""
 
 #, elixir-format
-#: lib/atom_tweaks_web/views/page_view.ex:14
+#: lib/atom_tweaks_web/views/page_view.ex:10
 msgid "Init Tweaks"
 msgstr ""
 
@@ -154,7 +154,7 @@ msgid "Stars"
 msgstr ""
 
 #, elixir-format
-#: lib/atom_tweaks_web/views/page_view.ex:15
+#: lib/atom_tweaks_web/views/page_view.ex:11
 msgid "Style Tweaks"
 msgstr ""
 
@@ -217,4 +217,19 @@ msgstr ""
 #, elixir-format
 #: lib/atom_tweaks_web/templates/tweak/show.html.slime:1
 msgid "Last updated about %{time_ago}"
+msgstr ""
+
+#, elixir-format
+#: lib/atom_tweaks_web/templates/fork/table_row.html.slime:1
+msgid "Created by %{forker_link} about %{time_ago}"
+msgstr ""
+
+#, elixir-format
+#: lib/atom_tweaks_web/templates/fork/index.html.slime:1
+msgid "Forks"
+msgstr ""
+
+#, elixir-format
+#: lib/atom_tweaks_web/templates/fork/blankslate.html.slime:1
+msgid "No forks of this tweak"
 msgstr ""

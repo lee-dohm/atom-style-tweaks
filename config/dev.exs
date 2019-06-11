@@ -66,3 +66,6 @@ config :phoenix, :template_engines,
   exs: ExDebugToolbar.Template.ExsEngine,
   slim: ExDebugToolbar.Template.SlimEngine,
   slime: ExDebugToolbar.Template.SlimEngine
+
+# Use Pseudolocalized text for the default locale in development
+config :gettext, :default_locale, "ps"

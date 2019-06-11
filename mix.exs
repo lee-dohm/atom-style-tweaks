@@ -100,7 +100,8 @@ defmodule AtomTweaks.Mixfile do
     [
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.ci": ["ecto.create", "ecto.migrate"],
-      "ecto.reset": ["ecto.drop", "ecto.setup"]
+      "ecto.reset": ["ecto.drop", "ecto.setup"],
+      translate: ["gettext.extract", "gettext.merge priv/gettext", "pseudoloc priv/gettext"]
     ]
   end
 
