@@ -14,7 +14,7 @@ Browse [open issues](https://github.com/lee-dohm/atom-style-tweaks/issues) to se
 
 [Open an issue](https://github.com/lee-dohm/atom-style-tweaks/issues/new) to tell us about a bug. You may also open a pull request to propose specific changes, but it's always OK to start with an issue.
 
-[Help with translating](#translating) the website into other languages.
+[Help with translating](#translations) the website into other languages.
 
 ## Setting up the development environment
 
@@ -86,6 +86,8 @@ If you would like to help with translating Atom Tweaks into languages other than
 1. Run the `script/translate` script to extract and merge the latest version of the strings
 1. Add your translations to the `.po` files under your new directory
 1. Submit a PR with your changes
+
+See the [Gettext documentation](https://hexdocs.pm/gettext/Gettext.html) for information about the file format.
 
 ## Resources
 
