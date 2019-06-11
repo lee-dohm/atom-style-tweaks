@@ -1,7 +1,7 @@
 # Atom Tweaks
 
 [![Travis](https://img.shields.io/travis/lee-dohm/atom-style-tweaks.svg)](https://travis-ci.org/lee-dohm/atom-style-tweaks)
-[![Coveralls](https://img.shields.io/coveralls/lee-dohm/atom-style-tweaks.svg)](https://coveralls.io/github/lee-dohm/atom-style-tweaks)
+[![Coverage Status](https://coveralls.io/repos/github/lee-dohm/atom-style-tweaks/badge.svg?branch=master)](https://coveralls.io/github/lee-dohm/atom-style-tweaks?branch=master)
 [![Ebert](https://ebertapp.io/github/lee-dohm/atom-style-tweaks.svg)](https://ebertapp.io/github/lee-dohm/atom-style-tweaks)
 
 [A website](https://www.atom-tweaks.com) for collecting various simple tweaks for your [Atom editor](https://atom.io) environment.
