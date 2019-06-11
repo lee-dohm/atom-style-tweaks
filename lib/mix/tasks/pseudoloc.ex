@@ -15,6 +15,8 @@ defmodule Mix.Tasks.Pseudoloc do
   use Mix.Task
 
   alias Gettext.PO
+  alias Gettext.PO.PluralTranslation
+  alias Gettext.PO.Translation
   alias Mix.Shell
 
   @interpolation_pattern ~r/%\{[^}\s\t\n]+\}/
@@ -191,7 +193,9 @@ defmodule Mix.Tasks.Pseudoloc do
   end
 
   defp default_alternatives do
-    Code.eval_file(Path.join(__DIR__, "pseudoloc_alternatives.exs"))
+    {map, _} = Code.eval_file(Path.join(__DIR__, "pseudoloc_alternatives.exs"))
+
+    map
   end
 
   defp do_get_ranges(text, last_pos, interpolation_ranges, translate_ranges)
@@ -223,6 +227,7 @@ defmodule Mix.Tasks.Pseudoloc do
     data =
       path
       |> PO.parse_file!()
+      |> update_translations()
       |> PO.dump()
 
     File.write!(path, data)
@@ -233,5 +238,33 @@ defmodule Mix.Tasks.Pseudoloc do
     after_text = String.slice(text, at + 1, String.length(text))
 
     Enum.join([before_text, localize_grapheme(String.at(text, at), alternatives), after_text])
+  end
+
+  defp update_translation(translation = %Translation{}) do
+    localized_text = localize_string(hd(translation.msgid))
+
+    %Translation{translation | msgstr: [localized_text]}
+  end
+
+  defp update_translation(translation = %PluralTranslation{}) do
+    localized_singular = localize_string(hd(translation.msgid))
+    localized_plural = localize_string(hd(translation.msgid_plural))
+
+    {_, localized_msgstr} =
+      Enum.reduce(Map.keys(translation.msgstr), {:cont, %{}}, fn key, {_, map} ->
+        if key == 0 do
+          {:cont, Map.put(map, 0, [localized_singular])}
+        else
+          {:cont, Map.put(map, key, [localized_plural])}
+        end
+      end)
+
+    %PluralTranslation{translation | msgstr: localized_msgstr}
+  end
+
+  defp update_translations(po = %PO{}) do
+    localized = Enum.map(po.translations, fn translation -> update_translation(translation) end)
+
+    %PO{po | translations: localized}
   end
 end

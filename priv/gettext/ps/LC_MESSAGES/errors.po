@@ -12,73 +12,73 @@ msgstr ""
 "Plural-Forms: nplurals=2\n"
 
 msgid "can't be blank"
-msgstr ""
+msgstr "ͼαṇ'ṭ ḅḛ ḅḽαṇḳ"
 
 msgid "has already been taken"
-msgstr ""
+msgstr "ḥαṡ αḽṛḛαḍẏ ḅḛḛṇ ṭαḳḛṇ"
 
 msgid "is invalid"
-msgstr ""
+msgstr "ḭṡ ḭṇṽαḽḭḍ"
 
 msgid "has invalid format"
-msgstr ""
+msgstr "ḥαṡ ḭṇṽαḽḭḍ ϝṓṛṃαṭ"
 
 msgid "has an invalid entry"
-msgstr ""
+msgstr "ḥαṡ αṇ ḭṇṽαḽḭḍ ḛṇṭṛẏ"
 
 msgid "is reserved"
-msgstr ""
+msgstr "ḭṡ ṛḛṡḛṛṽḛḍ"
 
 msgid "does not match confirmation"
-msgstr ""
+msgstr "ḍṓḛṡ ṇṓṭ ṃαṭͼḥ ͼṓṇϝḭṛṃαṭḭṓṇ"
 
 msgid "is still associated to this entry"
-msgstr ""
+msgstr "ḭṡ ṡṭḭḽḽ αṡṡṓͼḭαṭḛḍ ṭṓ ṭḥḭṡ ḛṇṭṛẏ"
 
 msgid "are still associated to this entry"
-msgstr ""
+msgstr "αṛḛ ṡṭḭḽḽ αṡṡṓͼḭαṭḛḍ ṭṓ ṭḥḭṡ ḛṇṭṛẏ"
 
 msgid "should be %{count} character(s)"
 msgid_plural "should be %{count} character(s)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "ṡḥṓṵḽḍ ḅḛ %{count} ͼḥαṛαͼṭḛṛ(ṡ)"
+msgstr[1] "ṡḥṓṵḽḍ ḅḛ %{count} ͼḥαṛαͼṭḛṛ(ṡ)"
 
 msgid "should have %{count} item(s)"
 msgid_plural "should have %{count} item(s)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "ṡḥṓṵḽḍ ḥαṽḛ %{count} ḭṭḛṃ(ṡ)"
+msgstr[1] "ṡḥṓṵḽḍ ḥαṽḛ %{count} ḭṭḛṃ(ṡ)"
 
 msgid "should be at least %{count} character(s)"
 msgid_plural "should be at least %{count} character(s)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "ṡḥṓṵḽḍ ḅḛ αṭ ḽḛαṡṭ %{count} ͼḥαṛαͼṭḛṛ(ṡ)"
+msgstr[1] "ṡḥṓṵḽḍ ḅḛ αṭ ḽḛαṡṭ %{count} ͼḥαṛαͼṭḛṛ(ṡ)"
 
 msgid "should have at least %{count} item(s)"
 msgid_plural "should have at least %{count} item(s)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "ṡḥṓṵḽḍ ḥαṽḛ αṭ ḽḛαṡṭ %{count} ḭṭḛṃ(ṡ)"
+msgstr[1] "ṡḥṓṵḽḍ ḥαṽḛ αṭ ḽḛαṡṭ %{count} ḭṭḛṃ(ṡ)"
 
 msgid "should be at most %{count} character(s)"
 msgid_plural "should be at most %{count} character(s)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "ṡḥṓṵḽḍ ḅḛ αṭ ṃṓṡṭ %{count} ͼḥαṛαͼṭḛṛ(ṡ)"
+msgstr[1] "ṡḥṓṵḽḍ ḅḛ αṭ ṃṓṡṭ %{count} ͼḥαṛαͼṭḛṛ(ṡ)"
 
 msgid "should have at most %{count} item(s)"
 msgid_plural "should have at most %{count} item(s)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "ṡḥṓṵḽḍ ḥαṽḛ αṭ ṃṓṡṭ %{count} ḭṭḛṃ(ṡ)"
+msgstr[1] "ṡḥṓṵḽḍ ḥαṽḛ αṭ ṃṓṡṭ %{count} ḭṭḛṃ(ṡ)"
 
 msgid "must be less than %{number}"
-msgstr ""
+msgstr "ṃṵṡṭ ḅḛ ḽḛṡṡ ṭḥαṇ %{number}"
 
 msgid "must be greater than %{number}"
-msgstr ""
+msgstr "ṃṵṡṭ ḅḛ ḡṛḛαṭḛṛ ṭḥαṇ %{number}"
 
 msgid "must be less than or equal to %{number}"
-msgstr ""
+msgstr "ṃṵṡṭ ḅḛ ḽḛṡṡ ṭḥαṇ ṓṛ ḛʠṵαḽ ṭṓ %{number}"
 
 msgid "must be greater than or equal to %{number}"
-msgstr ""
+msgstr "ṃṵṡṭ ḅḛ ḡṛḛαṭḛṛ ṭḥαṇ ṓṛ ḛʠṵαḽ ṭṓ %{number}"
 
 msgid "must be equal to %{number}"
-msgstr ""
+msgstr "ṃṵṡṭ ḅḛ ḛʠṵαḽ ṭṓ %{number}"

@@ -14,4 +14,4 @@ msgstr ""
 #, elixir-format
 #: lib/atom_tweaks_web/templates/page/about.html.slime:1
 msgid "about_atom_tweaks"
-msgstr ""
+msgstr "αḅṓṵṭ_αṭṓṃ_ṭẁḛαḳṡ"
