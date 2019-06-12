@@ -1,6 +1,7 @@
+- logged_in = !!@current_user
 .float-right.my-3.ml-2
   = form_for @conn, tweak_star_path(@conn, :toggle, @tweak), fn _ ->
-    button.btn.btn-sm.btn-with-count type="submit"
+    button.btn.btn-sm.btn-with-count#star-button disabled=!logged_in type="submit"
       = octicon(:star)
       '
       = if @starred do
