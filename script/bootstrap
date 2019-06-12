@@ -14,6 +14,13 @@ if [ -f "Brewfile" ] && [ "$(uname -s)" = "Darwin" ]; then
   }
 fi
 
+if ! type "node" > /dev/null; then
+  echo "==> Installing node…"
+  version=$(cat .node-version)
+  nodenv install $version
+  nodenv rehash
+fi
+
 if [ -f "mix.exs" ]; then
   echo "==> Installing mix dependencies…"
   mix deps.get

@@ -1,4 +1,5 @@
 brew "elixir"
 brew "heroku"
 brew "jq"
+brew "nodenv"
 brew "postgresql"
