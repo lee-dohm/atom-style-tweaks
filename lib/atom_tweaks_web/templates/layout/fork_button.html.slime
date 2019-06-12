@@ -1,9 +1,9 @@
-= if @current_user && @tweak.user != @current_user do
-  .float-right.my-3.ml-2
-    = form_for @conn, tweak_fork_path(@conn, :create, @tweak), fn _ ->
-      button.btn.btn-sm.btn-with-count type="submit"
-        = octicon("repo-forked")
-        '
-        = gettext("Fork")
-      a.social-count href="#{tweak_fork_path(@conn, :index, @tweak)}"
-        = @fork_count
+- enabled = @current_user && @tweak.user != @current_user
+.float-right.my-3.ml-2
+  = form_for @conn, tweak_fork_path(@conn, :create, @tweak), fn _ ->
+    button#fork-button.btn.btn-sm.btn-with-count disabled=!enabled type="submit"
+      = octicon("repo-forked")
+      '
+      = gettext("Fork")
+    a.social-count href="#{tweak_fork_path(@conn, :index, @tweak)}"
+      = @fork_count

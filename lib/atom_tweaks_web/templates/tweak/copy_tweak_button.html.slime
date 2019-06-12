@@ -1,2 +1,2 @@
-a#copy-button.float-right.tooltipped.tooltipped-n aria-label="#{gettext "Copy"}" href="#" data-clipboard-target="#code"
+a#copy-button.float-right.tooltipped.tooltipped-n aria-label="#{gettext("Copy")}" href="#" data-clipboard-target="#code"
   = octicon(:clippy)

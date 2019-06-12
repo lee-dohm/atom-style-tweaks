@@ -194,6 +194,15 @@ defmodule AtomTweaksWeb.TweakControllerTest do
 
       assert attribute(button, "disabled") == ["disabled"]
     end
+
+    test "disables the fork button", context do
+      button =
+        context.conn
+        |> html_response(:ok)
+        |> find("#fork-button")
+
+      assert attribute(button, "disabled") == ["disabled"]
+    end
   end
 
   describe "show tweak of current user when logged in" do
@@ -238,6 +247,15 @@ defmodule AtomTweaksWeb.TweakControllerTest do
 
       assert attribute(button, "disabled") == []
     end
+
+    test "disables the fork button", context do
+      button =
+        context.conn
+        |> html_response(:ok)
+        |> find("#fork-button")
+
+      assert attribute(button, "disabled") == ["disabled"]
+    end
   end
 
   describe "show tweak of different user when logged in" do
@@ -272,6 +290,24 @@ defmodule AtomTweaksWeb.TweakControllerTest do
 
     test "does not show the edit button", context do
       refute has_selector?(html_response(context.conn, :ok), "a#edit-button")
+    end
+
+    test "enables the star button", context do
+      button =
+        context.conn
+        |> html_response(:ok)
+        |> find("#star-button")
+
+      assert attribute(button, "disabled") == []
+    end
+
+    test "enables the fork button", context do
+      button =
+        context.conn
+        |> html_response(:ok)
+        |> find("#fork-button")
+
+      assert attribute(button, "disabled") == []
     end
   end
 
