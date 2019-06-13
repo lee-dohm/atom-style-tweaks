@@ -12,7 +12,16 @@ defmodule AtomTweaks.Factory do
 
   alias AtomTweaks.Accounts.User
   alias AtomTweaks.Markdown
+  alias AtomTweaks.Releases.Note
   alias AtomTweaks.Tweaks.Tweak
+
+  def note_factory do
+    %Note{
+      description: %Markdown{text: Lorem.sentences()},
+      detail_url: Internet.url(),
+      title: Lorem.words(2..4)
+    }
+  end
 
   @doc """
   Generates realistic-looking `AtomTweaks.Tweaks.Tweak` records.
