@@ -29,20 +29,13 @@ defmodule AtomTweaksWeb.Router do
     plug(:accepts, ["json"])
   end
 
-  scope "/auth", AtomTweaksWeb do
-    pipe_through(:browser)
-
-    get("/", AuthController, :index)
-    get("/callback", AuthController, :callback)
-    get("/logout", AuthController, :delete)
-  end
-
   scope "/", AtomTweaksWeb do
     # Use the default browser stack
     pipe_through(:browser)
 
     get("/", PageController, :index)
     get("/about", PageController, :about)
+    get("/release-notes", PageController, :release_notes)
 
     resources("/tweaks", TweakController, except: [:index]) do
       resources("/forks", ForkController, only: [:create, :index])
@@ -56,6 +49,14 @@ defmodule AtomTweaksWeb.Router do
     end
 
     get("/users/:user_id/tweaks/:tweak_id", ObsoleteRouteController, :long_tweak_path_to_short)
+  end
+
+  scope "/auth", AtomTweaksWeb do
+    pipe_through(:browser)
+
+    get("/", AuthController, :index)
+    get("/callback", AuthController, :callback)
+    get("/logout", AuthController, :delete)
   end
 
   # Other scopes may use custom stacks.

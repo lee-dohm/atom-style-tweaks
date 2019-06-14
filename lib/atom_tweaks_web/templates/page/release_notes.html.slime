@@ -1,0 +1,5 @@
+.Box
+  .Box-header
+    h3 = gettext("Release notes")
+  .div
+    = render_many_or_blank(@notes, "release_notes_table_row.html", "release_notes_blankslate.html", Map.put(assigns, :as, :note))
