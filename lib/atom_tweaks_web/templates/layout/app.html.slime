@@ -36,9 +36,13 @@ html lang="en"
     footer.container.clearfix.my-5
       .col-6.mx-auto
         .border-top.text-center.small.my-2.pt-2
-          = link(gettext("About"), to: page_path(@conn, :about), id: "about-link")
-          span.px-3
-          = github_link(id: "github-link")
+          .d-flex.flex-justify-center
+            .px-1
+              = link(gettext("About"), to: page_path(@conn, :about), id: "about-link")
+            .px-5
+              = github_link(id: "github-link")
+            .px-1
+              = link(gettext("Release notes"), to: page_path(@conn, :release_notes), id: "release-notes-link")
         .text-center.small.my-2
           = code_with_heart()
 
