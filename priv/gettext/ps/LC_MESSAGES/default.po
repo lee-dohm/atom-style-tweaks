@@ -233,3 +233,14 @@ msgstr "Ḟṓṛḳṡ"
 #: lib/atom_tweaks_web/templates/fork/blankslate.html.slime:1
 msgid "No forks of this tweak"
 msgstr "Ṅṓ ϝṓṛḳṡ ṓϝ ṭḥḭṡ ṭẁḛαḳ"
+
+#, elixir-format
+#: lib/atom_tweaks_web/templates/page/release_notes_blankslate.html.slime:1
+msgid "No release notes uploaded yet"
+msgstr "Ṅṓ ṛḛḽḛαṡḛ ṇṓṭḛṡ ṵṗḽṓαḍḛḍ ẏḛṭ"
+
+#, elixir-format
+#: lib/atom_tweaks_web/templates/layout/app.html.slime:1
+#: lib/atom_tweaks_web/templates/page/release_notes.html.slime:1
+msgid "Release notes"
+msgstr "Ṛḛḽḛαṡḛ ṇṓṭḛṡ"

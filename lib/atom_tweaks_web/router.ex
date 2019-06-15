@@ -51,6 +51,12 @@ defmodule AtomTweaksWeb.Router do
     get("/users/:user_id/tweaks/:tweak_id", ObsoleteRouteController, :long_tweak_path_to_short)
   end
 
+  scope "/api", AtomTweaksWeb.Api, as: :api do
+    pipe_through(:api)
+
+    resources("/release-notes", ReleaseNotesController, only: [:create])
+  end
+
   scope "/auth", AtomTweaksWeb do
     pipe_through(:browser)
 

@@ -3,8 +3,7 @@ defmodule AtomTweaks.Markdown do
   A structure that represents a chunk of Markdown text.
 
   The structure contains both the raw Markdown `text` and the rendered `html`. Rendering the text
-  using either `to_html/1` or `to_iodata/1` memoizes the
-  rendered HTML in the structure.
+  using either `to_html/1` or `to_iodata/1` memoizes the rendered HTML in the structure.
   """
   alias AtomTweaksWeb.MarkdownEngine
 
@@ -67,8 +66,13 @@ defmodule AtomTweaks.Markdown do
   @spec to_iodata(markdown) :: iodata
   def to_iodata(markdown = %__MODULE__{}), do: to_html(markdown)
 
+  defimpl Jason.Encoder do
+    def encode(markdown = %AtomTweaks.Markdown{}, opts) do
+      Jason.Encode.string(markdown.text, opts)
+    end
+  end
+
   defimpl Phoenix.HTML.Safe do
-    # credo:disable-for-lines:2
     def to_iodata(markdown = %AtomTweaks.Markdown{}) do
       AtomTweaks.Markdown.to_iodata(markdown)
     end

@@ -47,4 +47,13 @@ defmodule AtomTweaks.Factory do
       avatar_url: Avatar.robohash()
     }
   end
+
+  @doc """
+  For when you need params for a given record to supply to an API.
+  """
+  def json_params_for(key, attrs \\ []) do
+    key
+    |> params_for(attrs)
+    |> Jason.encode!()
+  end
 end
