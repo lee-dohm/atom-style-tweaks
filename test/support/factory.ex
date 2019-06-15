@@ -10,16 +10,31 @@ defmodule AtomTweaks.Factory do
   alias FakerElixir.Internet
   alias FakerElixir.Lorem
 
+  alias AtomTweaks.Accounts.Token
   alias AtomTweaks.Accounts.User
   alias AtomTweaks.Markdown
   alias AtomTweaks.Releases.Note
   alias AtomTweaks.Tweaks.Tweak
 
+  @doc """
+  Generates realistic-looking `AtomTweaks.Releases.Note` records.
+  """
   def note_factory do
     %Note{
       description: %Markdown{text: Lorem.sentences()},
       detail_url: Internet.url(),
       title: Lorem.words(2..4)
+    }
+  end
+
+  @doc """
+  Generates realistic-looking `AtomTweaks.Accounts.Token` records.
+  """
+  def token_factory do
+    %Token{
+      description: Lorem.words(2..4),
+      scopes: ["release_notes/write"],
+      user: insert(:user)
     }
   end
 

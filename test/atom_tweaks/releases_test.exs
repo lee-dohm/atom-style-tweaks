@@ -66,6 +66,7 @@ defmodule AtomTweaks.ReleasesTest do
 
     test "change_note/1 returns a note changeset" do
       note = insert(:note)
+
       assert %Ecto.Changeset{} = Releases.change_note(note)
     end
   end
