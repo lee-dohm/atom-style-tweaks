@@ -31,7 +31,7 @@ config :logger, :console,
   metadata: [:request_id]
 
 # Configure Phoenix Generators
-config :phoenix, :generators, binary_id: true
+config :atom_tweaks, :generators, binary_id: true
 
 config :phoenix, :json_library, Jason
 
