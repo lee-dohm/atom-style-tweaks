@@ -4,6 +4,7 @@ defmodule AtomTweaks.AccountsTest do
   import Support.Setup
 
   alias AtomTweaks.Accounts
+  alias AtomTweaks.Accounts.Token
 
   describe "stars" do
     setup [:insert_tweak]
@@ -42,28 +43,28 @@ defmodule AtomTweaks.AccountsTest do
       params = params_for(:token, description: nil)
       {:error, changeset} = Accounts.create_token(params)
 
-      assert "can't be blank" in errors_on(changeset).description
+      assert "can't be blank" in errors_on(changeset, :description)
     end
 
     test "fails when given an empty description", _context do
       params = params_for(:token, description: "")
       {:error, changeset} = Accounts.create_token(params)
 
-      assert "can't be blank" in errors_on(changeset).description
+      assert "can't be blank" in errors_on(changeset, :description)
     end
 
     test "fails when given an empty scopes list", _context do
       params = params_for(:token, scopes: [])
       {:error, changeset} = Accounts.create_token(params)
 
-      assert "should have at least 1 item(s)" in errors_on(changeset).scopes
+      assert "should have at least 1 item(s)" in errors_on(changeset, :scopes)
     end
 
     test "fails when given an unrecognized scope", _context do
       params = params_for(:token, scopes: ["foo"])
       {:error, changeset} = Accounts.create_token(params)
 
-      assert "has an invalid entry" in errors_on(changeset).scopes
+      assert "has an invalid entry" in errors_on(changeset, :scopes)
     end
   end
 
@@ -84,6 +85,18 @@ defmodule AtomTweaks.AccountsTest do
       assert_raise Ecto.NoPrimaryKeyValueError, fn ->
         Accounts.delete_token(token)
       end
+    end
+  end
+
+  describe "get_token/1" do
+    test "succeeds when given a valid token code", _context do
+      token = insert(:token)
+      token_code = Token.to_code(token)
+      {:ok, returned} = Accounts.get_token(token_code)
+
+      assert returned.id == token.id
+      assert returned.description == token.description
+      assert returned.scopes == token.scopes
     end
   end
 end

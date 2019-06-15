@@ -44,12 +44,15 @@ defmodule AtomTweaks.DataCase do
   end
 
   @doc """
-  A helper that transform changeset errors to a map of messages.
+  Transforms changeset errors into a map of messages.
 
-      assert {:error, changeset} = Accounts.create_user(%{password: "short"})
-      assert "password is too short" in errors_on(changeset).password
-      assert %{password: ["password is too short"]} = errors_on(changeset)
+  ## Examples
 
+  ```
+  assert {:error, changeset} = Accounts.create_user(%{password: "short"})
+  assert "password is too short" in errors_on(changeset).password
+  assert %{password: ["password is too short"]} = errors_on(changeset)
+  ```
   """
   def errors_on(changeset) do
     Changeset.traverse_errors(changeset, fn {message, opts} ->
@@ -58,4 +61,15 @@ defmodule AtomTweaks.DataCase do
       end)
     end)
   end
+
+  @doc """
+  Returns the list of errors on `field` in the `changeset`.
+
+  ## Examples
+
+  ```
+  assert "password is too short" in errors_on(changeset, :password)
+  ```
+  """
+  def errors_on(changeset, field), do: Map.get(errors_on(changeset), field)
 end
