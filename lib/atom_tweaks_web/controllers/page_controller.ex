@@ -1,6 +1,6 @@
 defmodule AtomTweaksWeb.PageController do
   @moduledoc """
-  Handles requests for the root-level resources.
+  Handles requests for the root-level pages.
   """
   use AtomTweaksWeb, :controller
 
@@ -15,7 +15,7 @@ defmodule AtomTweaksWeb.PageController do
   end
 
   @doc """
-  Renders the root-level index page.
+  Renders the home page.
   """
   def index(conn, params) do
     type = params["type"]

@@ -9,6 +9,7 @@ defmodule AtomTweaksWeb.Router do
 
   require Logger
 
+  alias AtomTweaksWeb.ErrorView
   alias AtomTweaksWeb.HerokuMetadata
   alias AtomTweaksWeb.SlidingSessionTimeout
   alias AtomTweaksWeb.TokenAuthentication
@@ -31,8 +32,12 @@ defmodule AtomTweaksWeb.Router do
     plug(TokenAuthentication)
   end
 
+  pipeline :admin_checks do
+    plug(:ensure_authenticated_user)
+    plug(:ensure_site_admin)
+  end
+
   scope "/", AtomTweaksWeb do
-    # Use the default browser stack
     pipe_through(:browser)
 
     get("/", PageController, :index)
@@ -54,7 +59,14 @@ defmodule AtomTweaksWeb.Router do
       get("/stars", StarController, :index)
     end
 
+    # Obsolete routes used to redirect to new URLs
     get("/users/:user_id/tweaks/:tweak_id", ObsoleteRouteController, :long_tweak_path_to_short)
+  end
+
+  scope("/admin", AtomTweaksWeb.Admin, as: :admin) do
+    pipe_through([:browser, :admin_checks])
+
+    resources("/release-notes", ReleaseNotesController)
   end
 
   scope "/api", AtomTweaksWeb.Api, as: :api do
@@ -71,5 +83,29 @@ defmodule AtomTweaksWeb.Router do
     Logger.debug("Current user: #{inspect(user)}")
 
     assign(conn, :current_user, user)
+  end
+
+  def ensure_authenticated_user(conn, _) do
+    case conn.assigns[:current_user] do
+      nil ->
+        conn
+        |> put_status(:unauthorized)
+        |> render(ErrorView, "401.html")
+        |> halt()
+
+      _ ->
+        conn
+    end
+  end
+
+  def ensure_site_admin(conn, _) do
+    if conn.assigns[:current_user].site_admin do
+      conn
+    else
+      conn
+      |> put_status(:forbidden)
+      |> render(ErrorView, "403.html")
+      |> halt()
+    end
   end
 end
