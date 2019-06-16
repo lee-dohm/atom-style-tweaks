@@ -11,6 +11,7 @@ defmodule AtomTweaksWeb.Router do
 
   alias AtomTweaksWeb.HerokuMetadata
   alias AtomTweaksWeb.SlidingSessionTimeout
+  alias AtomTweaksWeb.TokenAuthentication
 
   pipeline :browser do
     plug(:accepts, ["html"])
@@ -27,6 +28,7 @@ defmodule AtomTweaksWeb.Router do
 
   pipeline :api do
     plug(:accepts, ["json"])
+    plug(TokenAuthentication)
   end
 
   scope "/", AtomTweaksWeb do
@@ -65,17 +67,12 @@ defmodule AtomTweaksWeb.Router do
     get("/logout", AuthController, :delete)
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", AtomTweaksWeb do
-  #   pipe_through :api
-  # end
-
   # Fetch the current user from the session and add it to `conn.assigns`. This
   # will allow you to have access to the current user in your views with
   # `@current_user`.
   def assign_current_user(conn, _) do
     user = get_session(conn, :current_user)
-    Logger.debug(fn -> "Current user = #{inspect(user)}" end)
+    Logger.debug("Current user: #{inspect(user)}")
 
     assign(conn, :current_user, user)
   end

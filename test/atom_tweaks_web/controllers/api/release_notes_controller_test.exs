@@ -1,6 +1,14 @@
 defmodule AtomTweaksWeb.Api.ReleaseNotesControllerTest do
   use AtomTweaksWeb.ApiCase
 
+  alias AtomTweaks.Accounts.Token
+
+  setup(context) do
+    conn = put_req_header(context.conn, "authorization", "token #{Token.to_code(insert(:token))}")
+
+    {:ok, conn: conn}
+  end
+
   describe "POST create" do
     test "returns created status when given valid params", context do
       params = json_params_for(:note)

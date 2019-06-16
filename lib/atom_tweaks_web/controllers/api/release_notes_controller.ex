@@ -7,6 +7,8 @@ defmodule AtomTweaksWeb.Api.ReleaseNotesController do
 
   alias AtomTweaks.Releases
 
+  plug(:authorize, [required_scope: "release_notes/write"] when action in [:create])
+
   @doc """
   Handles a request to create a release note.
 

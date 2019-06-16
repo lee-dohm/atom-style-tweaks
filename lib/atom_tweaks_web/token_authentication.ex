@@ -1,0 +1,61 @@
+defmodule AtomTweaksWeb.TokenAuthentication do
+  @moduledoc """
+  A `Plug` that authenticates an API connection based on the contents of the `Authorization` header.
+
+  The plug retrieves a `Phoenix.Token`-generated code from the `Authorization` request header.
+  If that code resolves to a valid `AtomTweaks.Accounts.Token`, then the token is stored in the
+  [connection assigns](https://hexdocs.pm/plug/Plug.Conn.html#module-connection-fields) under the
+  `:auth_token` key. Otherwise, the connection sends a `403 Forbidden` response.
+
+  This only authenticates the connection, ensuring that it has a valid `AtomTweaks.Accounts.Token`.
+  Each individual controller must ensure that the token contains the proper authorization to perform
+  the action that is being requested. See `AtomTweaksWeb.ApiHelpers.authorize/2` for more details.
+
+  ## Examples
+
+  ```
+  pipeline :api do
+    plug(:accepts, ["json"])
+    plug(AtomTweaksWeb.TokenAuthentication)
+  end
+  ```
+  """
+
+  alias AtomTweaks.Accounts
+
+  import Plug.Conn
+
+  require Logger
+
+  @doc false
+  def init(_options), do: nil
+
+  @doc false
+  def call(conn, _options) do
+    maybe_token =
+      conn
+      |> get_auth_header()
+      |> get_token_code()
+      |> get_token()
+
+    case maybe_token do
+      {:ok, token} ->
+        assign(conn, :auth_token, token)
+
+      {:error, err} ->
+        Logger.info("Unauthorized", error: err)
+
+        conn
+        |> send_resp(:forbidden, "403 Forbidden")
+        |> halt()
+    end
+  end
+
+  defp get_auth_header(conn), do: get_req_header(conn, "authorization")
+
+  defp get_token_code("token " <> rest), do: rest
+  defp get_token_code(_), do: nil
+
+  defp get_token(nil), do: {:error, "Invalid or missing authorization header"}
+  defp get_token(code), do: Accounts.get_token(code)
+end
