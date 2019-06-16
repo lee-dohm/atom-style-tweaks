@@ -1,4 +1,4 @@
-defmodule AtomTweaksWeb.Api.ReleaseNotesController do
+defmodule AtomTweaksWeb.Api.ReleaseNoteController do
   @moduledoc """
   Handles all release notes API routes.
   """

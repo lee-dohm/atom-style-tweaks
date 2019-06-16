@@ -66,13 +66,13 @@ defmodule AtomTweaksWeb.Router do
   scope("/admin", AtomTweaksWeb.Admin, as: :admin) do
     pipe_through([:browser, :admin_checks])
 
-    resources("/release-notes", ReleaseNotesController)
+    resources("/release-notes", ReleaseNoteController)
   end
 
   scope "/api", AtomTweaksWeb.Api, as: :api do
     pipe_through(:api)
 
-    resources("/release-notes", ReleaseNotesController, only: [:create])
+    resources("/release-notes", ReleaseNoteController, only: [:create])
   end
 
   # Fetch the current user from the session and add it to `conn.assigns`. This

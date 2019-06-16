@@ -1,4 +1,4 @@
-defmodule AtomTweaksWeb.Admin.ReleaseNotesController do
+defmodule AtomTweaksWeb.Admin.ReleaseNoteController do
   @moduledoc """
   Handles all admin release notes resources.
   """

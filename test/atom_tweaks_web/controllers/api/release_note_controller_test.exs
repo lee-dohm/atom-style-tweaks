@@ -1,4 +1,4 @@
-defmodule AtomTweaksWeb.Api.ReleaseNotesControllerTest do
+defmodule AtomTweaksWeb.Api.ReleaseNoteControllerTest do
   use AtomTweaksWeb.ApiCase
 
   alias AtomTweaks.Accounts.Token
