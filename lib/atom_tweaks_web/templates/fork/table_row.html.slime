@@ -2,8 +2,8 @@
   .Box-btn-octicon.btn-octicon.float-left.tooltipped.tooltipped-w aria-label="#{Macro.camelize(@tweak.type)} tweak"
     = mega_octicon_for(@tweak)
   .pl-2.overflow-hidden.lh-condensed
-    a.Box-row-link.title href="#{tweak_path(@conn, :show, @tweak)}" = @tweak.title
+    a.Box-row-link.title href="#{Routes.tweak_path(@conn, :show, @tweak)}" = @tweak.title
     .mt-1.text-small.text-gray
-      - forker_link = safe_link(@tweak.user.name, to: user_path(@conn, :show, @tweak.user.name), class: "Box-row-link")
+      - forker_link = safe_link(@tweak.user.name, to: Routes.user_path(@conn, :show, @tweak.user.name), class: "Box-row-link")
       - time_ago = safe_to_string(relative_time(@tweak.inserted_at))
       = raw(gettext("Created by %{forker_link} about %{time_ago}", forker_link: forker_link, time_ago: time_ago))

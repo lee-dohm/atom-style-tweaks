@@ -25,10 +25,11 @@ defmodule AtomTweaksWeb.ApiCase do
       # Import conveniences for testing with connections
       use Phoenix.ConnTest
 
+      alias AtomTweaksWeb.Router.Helpers, as: Routes
+
       import Phoenix.Controller
 
       import AtomTweaks.Factory
-      import AtomTweaksWeb.Router.Helpers
 
       import Support.Conn
       import Support.HTML

@@ -4,7 +4,7 @@
   = render(@view_module, "underline_nav.html", Map.put(assigns, :nav_selected, :tweaks))
   = if !is_nil(@current_user) && @current_user.name == @user.name do
     .pb-3.clearfix
-      a#new-tweak-button.btn.btn-primary.float-right href="#{tweak_path(@conn, :new)}"
+      a#new-tweak-button.btn.btn-primary.float-right href="#{Routes.tweak_path(@conn, :new)}"
         = octicon(:beaker)
         '
         = gettext "New"

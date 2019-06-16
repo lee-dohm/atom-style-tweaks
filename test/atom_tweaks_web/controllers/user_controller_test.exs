@@ -64,7 +64,7 @@ defmodule AtomTweaksWeb.UserControllerTest do
       assert Enum.all?(context.tweaks, &(text(tweaks) =~ &1.title))
 
       assert Enum.all?(context.tweaks, fn tweak ->
-               path = tweak_path(context.conn, :show, tweak)
+               path = Routes.tweak_path(context.conn, :show, tweak)
                Enum.member?(attribute(tweaks, "href"), path)
              end)
     end

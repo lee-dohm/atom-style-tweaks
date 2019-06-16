@@ -26,7 +26,7 @@ defmodule AtomTweaksWeb.TweakController do
     changeset = Tweak.changeset(%Tweak{}, params)
 
     case Repo.insert(changeset) do
-      {:ok, tweak} -> redirect(conn, to: tweak_path(conn, :show, tweak))
+      {:ok, tweak} -> redirect(conn, to: Routes.tweak_path(conn, :show, tweak))
       {:error, changeset} -> render(conn, "new.html", changeset: changeset)
     end
   end
@@ -119,7 +119,7 @@ defmodule AtomTweaksWeb.TweakController do
 
     case Repo.update(changeset) do
       {:ok, tweak} ->
-        redirect(conn, to: tweak_path(conn, :show, tweak))
+        redirect(conn, to: Routes.tweak_path(conn, :show, tweak))
 
       {:error, changeset} ->
         render(

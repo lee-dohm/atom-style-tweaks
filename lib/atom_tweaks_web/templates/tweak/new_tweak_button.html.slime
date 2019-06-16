@@ -1,1 +1,1 @@
-a#new-tweak-button.btn.btn-primary href="#{tweak_path(@conn, :new)}" = gettext "New tweak"
+a#new-tweak-button.btn.btn-primary href="#{Routes.tweak_path(@conn, :new)}" = gettext "New tweak"

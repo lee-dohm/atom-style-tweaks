@@ -1,12 +1,12 @@
 = if @current_user do
-  a href="#{auth_path(@conn, :delete)}"
+  a href="#{Routes.auth_path(@conn, :delete)}"
     = octicon("sign-out")
     '
     = gettext "Sign Out"
-  a href="#{user_path(@conn, :show, @current_user.name)}"
+  a href="#{Routes.user_path(@conn, :show, @current_user.name)}"
     = @current_user.name
     = avatar(@current_user, size: 36)
 - else
-  a.btn href="#{auth_path(@conn, :index, from: @conn.request_path)}"
+  a.btn href="#{Routes.auth_path(@conn, :index, from: @conn.request_path)}"
     = gettext "Sign in with"
     = octicon("mark-github")

@@ -30,7 +30,7 @@ defmodule AtomTweaksWeb.PageControllerTest do
       link = find(context.response, "a.masthead-logo")
 
       assert text(link) == "Atom Tweaks"
-      assert attribute(link, "href") == [page_path(context.conn, :index, [])]
+      assert attribute(link, "href") == [Routes.page_path(context.conn, :index, [])]
     end
 
     test "does not show the new tweak button", context do
@@ -41,7 +41,7 @@ defmodule AtomTweaksWeb.PageControllerTest do
       link = find(context.response, "footer a#about-link")
 
       assert text(link) == "About"
-      assert attribute(link, "href") == [page_path(context.conn, :about)]
+      assert attribute(link, "href") == [Routes.page_path(context.conn, :about)]
     end
 
     test "shows the GitHub link", context do
@@ -55,7 +55,7 @@ defmodule AtomTweaksWeb.PageControllerTest do
     setup [:insert_user, :log_in]
 
     setup(context) do
-      conn = get(context.conn, page_path(context.conn, :index))
+      conn = get(context.conn, Routes.page_path(context.conn, :index))
 
       response = html_response(conn, :ok)
 
@@ -77,7 +77,7 @@ defmodule AtomTweaksWeb.PageControllerTest do
     setup(context) do
       tweaks = insert_list(3, :tweak)
 
-      conn = get(context.conn, page_path(context.conn, :index, []))
+      conn = get(context.conn, Routes.page_path(context.conn, :index, []))
 
       response = html_response(conn, :ok)
 
@@ -107,7 +107,7 @@ defmodule AtomTweaksWeb.PageControllerTest do
       insert(:tweak, title: "Init tweak", type: "init")
       tweak = insert(:tweak, title: "Style tweak", type: "style")
 
-      conn = get(context.conn, page_path(context.conn, :index, type: :style))
+      conn = get(context.conn, Routes.page_path(context.conn, :index, type: :style))
 
       response = html_response(conn, :ok)
 
@@ -134,7 +134,7 @@ defmodule AtomTweaksWeb.PageControllerTest do
       tweak = insert(:tweak, title: "Init tweak", type: "init")
       insert(:tweak, title: "Style tweak", type: "style")
 
-      conn = get(context.conn, page_path(context.conn, :index, type: :init))
+      conn = get(context.conn, Routes.page_path(context.conn, :index, type: :init))
 
       response = html_response(conn, :ok)
 
@@ -160,7 +160,7 @@ defmodule AtomTweaksWeb.PageControllerTest do
     setup(context) do
       response =
         context.conn
-        |> get(page_path(context.conn, :about))
+        |> get(Routes.page_path(context.conn, :about))
         |> html_response(:ok)
 
       {:ok, response: response}

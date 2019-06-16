@@ -1,4 +1,4 @@
-= form_for @changeset, tweak_path(@conn, :create), fn f ->
+= form_for @changeset, Routes.tweak_path(@conn, :create), fn f ->
   = input(f, :title, class: "input-lg", placeholder: gettext("Title"))
   = input(f, :type, using: :tweak_type)
   = input(f, :code, using: :textarea, class: "tweak-textarea", placeholder: gettext("Enter tweak code"))

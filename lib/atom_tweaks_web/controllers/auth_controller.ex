@@ -38,7 +38,7 @@ defmodule AtomTweaksWeb.AuthController do
   def delete(conn, _params) do
     conn
     |> configure_session(drop: true)
-    |> redirect(to: page_path(conn, :index))
+    |> redirect(to: Routes.page_path(conn, :index))
   end
 
   @doc """
@@ -78,6 +78,6 @@ defmodule AtomTweaksWeb.AuthController do
     }
   end
 
-  defp return_to_path(conn, nil), do: page_path(conn, :index)
+  defp return_to_path(conn, nil), do: Routes.page_path(conn, :index)
   defp return_to_path(_, path), do: path
 end

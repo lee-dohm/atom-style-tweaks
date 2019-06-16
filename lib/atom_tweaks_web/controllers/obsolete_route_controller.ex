@@ -14,6 +14,6 @@ defmodule AtomTweaksWeb.ObsoleteRouteController do
   def long_tweak_path_to_short(conn, params)
 
   def long_tweak_path_to_short(conn, %{"tweak_id" => id}) do
-    redirect(conn, to: tweak_path(conn, :show, id))
+    redirect(conn, to: Routes.tweak_path(conn, :show, id))
   end
 end

@@ -1,4 +1,4 @@
-- owner_link = safe_link(@tweak.user.name, to: user_path(@conn, :show, @tweak.user.name), class: "Box-row-link")
+- owner_link = safe_link(@tweak.user.name, to: Routes.user_path(@conn, :show, @tweak.user.name), class: "Box-row-link")
 - time_ago = safe_to_string(relative_time(@tweak.inserted_at))
 = if is_nil(@tweak.parent) do
   = raw(gettext("Created by %{owner_link} about %{time_ago}", owner_link: owner_link, time_ago: time_ago))

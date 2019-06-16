@@ -1,4 +1,4 @@
-= form_for @changeset, tweak_path(@conn, :update, @tweak), [method: "PUT"], fn f ->
+= form_for @changeset, Routes.tweak_path(@conn, :update, @tweak), [method: "PUT"], fn f ->
   = input(f, :title, placeholder: gettext("Title"), class: "input-lg")
   = input(f, :type, using: :tweak_type)
   = input(f, :code, using: :textarea, class: "tweak-textarea", placeholder: "Enter tweak code")
@@ -6,4 +6,4 @@
 
   .form-actions
     = submit(gettext("Update tweak"), class: "btn btn-primary")
-    = link_button(gettext("Cancel"), class: "btn btn-danger", to: tweak_path(@conn, :show, @tweak))
+    = link_button(gettext("Cancel"), class: "btn btn-danger", to: Routes.tweak_path(@conn, :show, @tweak))
