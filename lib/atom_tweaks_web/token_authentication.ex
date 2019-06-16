@@ -1,8 +1,8 @@
 defmodule AtomTweaksWeb.TokenAuthentication do
   @moduledoc """
-  A `Plug` that authenticates an API connection based on the contents of the `Authorization` header.
+  A `Plug` that authenticates an API connection based on the contents of the `authorization` header.
 
-  The plug retrieves a `Phoenix.Token`-generated code from the `Authorization` request header.
+  The plug retrieves a `Phoenix.Token`-generated code from the `authorization` request header.
   If that code resolves to a valid `AtomTweaks.Accounts.Token`, then the token is stored in the
   [connection assigns](https://hexdocs.pm/plug/Plug.Conn.html#module-connection-fields) under the
   `:auth_token` key. Otherwise, the connection sends a `403 Forbidden` response.
@@ -46,6 +46,7 @@ defmodule AtomTweaksWeb.TokenAuthentication do
         Logger.info("Unauthorized", error: err)
 
         conn
+        |> put_resp_content_type("text/plain")
         |> send_resp(:forbidden, "403 Forbidden")
         |> halt()
     end
@@ -53,7 +54,7 @@ defmodule AtomTweaksWeb.TokenAuthentication do
 
   defp get_auth_header(conn), do: get_req_header(conn, "authorization")
 
-  defp get_token_code("token " <> rest), do: rest
+  defp get_token_code(["token " <> rest]), do: rest
   defp get_token_code(_), do: nil
 
   defp get_token(nil), do: {:error, "Invalid or missing authorization header"}
