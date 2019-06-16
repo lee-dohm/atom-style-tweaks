@@ -5,11 +5,11 @@ defmodule AtomTweaksWeb.TokenAuthenticationTest do
   alias AtomTweaksWeb.TokenAuthentication, as: Auth
 
   describe "call/2" do
-    test "returns forbidden when there is no authorization header", context do
+    test "returns unauthorized when there is no authorization header", context do
       conn = Auth.call(context.conn, nil)
 
       assert conn.halted
-      assert text_response(conn, :forbidden) == "403 Forbidden"
+      assert text_response(conn, :unauthorized) == "401 Unauthorized"
     end
 
     test "returns forbidden when the authorization header is invalid", context do

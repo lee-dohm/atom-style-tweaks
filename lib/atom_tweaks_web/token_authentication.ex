@@ -5,8 +5,7 @@ defmodule AtomTweaksWeb.TokenAuthentication do
   The plug retrieves a `Phoenix.Token`-generated code from the `authorization` request header.
   If that code resolves to a valid `AtomTweaks.Accounts.Token`, then the token is stored in the
   [connection assigns](https://hexdocs.pm/plug/Plug.Conn.html#module-connection-fields) under the
-  `:auth_token` key. Otherwise, the connection sends a `403 Forbidden` response. It expects the
-  header to be of the format:
+  `:auth_token` key. It expects the header to be of the format:
 
   ```text
   authorization: token [gigantically long token here]
@@ -15,6 +14,10 @@ defmodule AtomTweaksWeb.TokenAuthentication do
   Keep in mind that [HTTP header keys are case-insensitive][case-insensitive].
 
   [case-insensitive]: https://stackoverflow.com/questions/5258977/are-http-headers-case-sensitive
+
+  Otherwise, if the header is missing or malformatted, a `401 Unauthorized` response is returned. If
+  the header is present and properly formatted, but the code does not resolve to a valid token, then
+  a `403 Forbidden` response is returned.
 
   This only authenticates the connection, ensuring that it has a valid `AtomTweaks.Accounts.Token`.
   Each individual controller must ensure that the token contains the proper authorization to perform
@@ -51,6 +54,14 @@ defmodule AtomTweaksWeb.TokenAuthentication do
       {:ok, token} ->
         assign(conn, :auth_token, token)
 
+      {:error, :missing} ->
+        Logger.info("Missing or malformed authorization header")
+
+        conn
+        |> put_resp_content_type("text/plain")
+        |> send_resp(:unauthorized, "401 Unauthorized")
+        |> halt()
+
       {:error, err} ->
         Logger.info("Unauthorized: #{err}")
 
@@ -66,6 +77,6 @@ defmodule AtomTweaksWeb.TokenAuthentication do
   defp get_token_code(["token " <> rest]), do: rest
   defp get_token_code(_), do: nil
 
-  defp get_token(nil), do: {:error, "Invalid or missing authorization header"}
+  defp get_token(nil), do: {:error, :missing}
   defp get_token(code), do: Accounts.get_token(code)
 end
