@@ -39,6 +39,10 @@ defmodule AtomTweaksWeb.Router do
     get("/about", PageController, :about)
     get("/release-notes", PageController, :release_notes)
 
+    get("/auth", AuthController, :index)
+    get("/auth/callback", AuthController, :callback)
+    get("/auth/logout", AuthController, :delete)
+
     resources("/tweaks", TweakController, except: [:index]) do
       resources("/forks", ForkController, only: [:create, :index])
 
@@ -57,14 +61,6 @@ defmodule AtomTweaksWeb.Router do
     pipe_through(:api)
 
     resources("/release-notes", ReleaseNotesController, only: [:create])
-  end
-
-  scope "/auth", AtomTweaksWeb do
-    pipe_through(:browser)
-
-    get("/", AuthController, :index)
-    get("/callback", AuthController, :callback)
-    get("/logout", AuthController, :delete)
   end
 
   # Fetch the current user from the session and add it to `conn.assigns`. This
