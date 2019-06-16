@@ -8,6 +8,7 @@ defmodule AtomTweaksWeb.TokenAuthenticationTest do
     test "returns forbidden when there is no authorization header", context do
       conn = Auth.call(context.conn, nil)
 
+      assert conn.halted
       assert text_response(conn, :forbidden) == "403 Forbidden"
     end
 
@@ -17,6 +18,7 @@ defmodule AtomTweaksWeb.TokenAuthenticationTest do
         |> put_req_header("authorization", "token foo")
         |> Auth.call(nil)
 
+      assert conn.halted
       assert text_response(conn, :forbidden) == "403 Forbidden"
     end
 
