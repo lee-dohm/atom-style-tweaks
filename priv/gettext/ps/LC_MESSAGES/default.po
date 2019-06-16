@@ -12,7 +12,7 @@ msgstr ""
 "Plural-Forms: nplurals=2\n"
 
 #, elixir-format
-#: lib/atom_tweaks_web/templates/star/blankslate.html.slime:1
+#: lib/atom_tweaks_web/templates/star/_blankslate.html.slime:1
 msgid "%{name} hasn't starred any tweaks yet."
 msgstr "%{name} ḥαṡṇ'ṭ ṡṭαṛṛḛḍ αṇẏ ṭẁḛαḳṡ ẏḛṭ."
 
@@ -38,7 +38,7 @@ msgid "Atom Tweaks"
 msgstr "Ḁṭṓṃ Ṫẁḛαḳṡ"
 
 #, elixir-format
-#: lib/atom_tweaks_web/templates/stargazer/blankslate.html.slime:1
+#: lib/atom_tweaks_web/templates/stargazer/_blankslate.html.slime:1
 msgid "Be the first to star this tweak."
 msgstr "Ḃḛ ṭḥḛ ϝḭṛṡṭ ṭṓ ṡṭαṛ ṭḥḭṡ ṭẁḛαḳ."
 
@@ -48,32 +48,32 @@ msgid "Cancel"
 msgstr "Ḉαṇͼḛḽ"
 
 #, elixir-format
-#: lib/atom_tweaks_web/templates/tweak/blankslate.html.slime:1
+#: lib/atom_tweaks_web/templates/tweak/_blankslate.html.slime:1
 msgid "Click \"New Tweak\" to get started!"
 msgstr "Ḉḽḭͼḳ \"Ṅḛẁ Ṫẁḛαḳ\" ṭṓ ḡḛṭ ṡṭαṛṭḛḍ!"
 
 #, elixir-format
-#: lib/atom_tweaks_web/templates/user/blankslate.html.slime:1
+#: lib/atom_tweaks_web/templates/user/_blankslate.html.slime:1
 msgid "Click \"New\" to get started!"
 msgstr "Ḉḽḭͼḳ \"Ṅḛẁ\" ṭṓ ḡḛṭ ṡṭαṛṭḛḍ!"
 
 #, elixir-format
-#: lib/atom_tweaks_web/templates/tweak/copy_tweak_button.html.slime:1
+#: lib/atom_tweaks_web/templates/tweak/_copy_tweak_button.html.slime:1
 msgid "Copy"
 msgstr "Ḉṓṗẏ"
 
 #, elixir-format
-#: lib/atom_tweaks_web/templates/layout/tweak_title.html.slime:1
+#: lib/atom_tweaks_web/templates/layout/_tweak_title.html.slime:1
 msgid "Created by %{author_link}"
 msgstr "Ḉṛḛαṭḛḍ ḅẏ %{author_link}"
 
 #, elixir-format
-#: lib/atom_tweaks_web/templates/tweak/creator_info.html.slime:1
+#: lib/atom_tweaks_web/templates/tweak/_creator_info.html.slime:1
 msgid "Created by %{owner_link} about %{time_ago}"
 msgstr "Ḉṛḛαṭḛḍ ḅẏ %{owner_link} αḅṓṵṭ %{time_ago}"
 
 #, elixir-format
-#: lib/atom_tweaks_web/templates/tweak/edit_tweak_button.html.slime:1
+#: lib/atom_tweaks_web/templates/tweak/_edit_tweak_button.html.slime:1
 msgid "Edit"
 msgstr "Ḛḍḭṭ"
 
@@ -83,17 +83,17 @@ msgid "Enter tweak code"
 msgstr "Ḛṇṭḛṛ ṭẁḛαḳ ͼṓḍḛ"
 
 #, elixir-format
-#: lib/atom_tweaks_web/templates/layout/fork_button.html.slime:1
+#: lib/atom_tweaks_web/templates/layout/_fork_button.html.slime:1
 msgid "Fork"
 msgstr "Ḟṓṛḳ"
 
 #, elixir-format
-#: lib/atom_tweaks_web/templates/tweak/creator_info.html.slime:1
+#: lib/atom_tweaks_web/templates/tweak/_creator_info.html.slime:1
 msgid "Forked by %{owner_link} about %{time_ago}"
 msgstr "Ḟṓṛḳḛḍ ḅẏ %{owner_link} αḅṓṵṭ %{time_ago}"
 
 #, elixir-format
-#: lib/atom_tweaks_web/templates/layout/tweak_title.html.slime:1
+#: lib/atom_tweaks_web/templates/layout/_tweak_title.html.slime:1
 msgid "Forked from %{original_link}"
 msgstr "Ḟṓṛḳḛḍ ϝṛṓṃ %{original_link}"
 
@@ -113,13 +113,13 @@ msgid "New"
 msgstr "Ṅḛẁ"
 
 #, elixir-format
-#: lib/atom_tweaks_web/templates/tweak/new_tweak_button.html.slime:1
+#: lib/atom_tweaks_web/templates/tweak/_new_tweak_button.html.slime:1
 msgid "New tweak"
 msgstr "Ṅḛẁ ṭẁḛαḳ"
 
 #, elixir-format
-#: lib/atom_tweaks_web/templates/tweak/blankslate.html.slime:1
-#: lib/atom_tweaks_web/templates/user/blankslate.html.slime:1
+#: lib/atom_tweaks_web/templates/tweak/_blankslate.html.slime:1
+#: lib/atom_tweaks_web/templates/user/_blankslate.html.slime:1
 msgid "No tweaks for you to see here"
 msgstr "Ṅṓ ṭẁḛαḳṡ ϝṓṛ ẏṓṵ ṭṓ ṡḛḛ ḥḛṛḛ"
 
@@ -129,17 +129,17 @@ msgid "Save new tweak"
 msgstr "Ṣαṽḛ ṇḛẁ ṭẁḛαḳ"
 
 #, elixir-format
-#: lib/atom_tweaks_web/templates/layout/login_button.html.slime:1
+#: lib/atom_tweaks_web/templates/layout/_login_button.html.slime:1
 msgid "Sign in with"
 msgstr "Ṣḭḡṇ ḭṇ ẁḭṭḥ"
 
 #, elixir-format
-#: lib/atom_tweaks_web/templates/user/user_info.html.slime:1
+#: lib/atom_tweaks_web/templates/user/_user_info.html.slime:1
 msgid "Staff"
 msgstr "Ṣṭαϝϝ"
 
 #, elixir-format
-#: lib/atom_tweaks_web/templates/layout/star_button.html.slime:1
+#: lib/atom_tweaks_web/templates/layout/_star_button.html.slime:1
 msgid "Star"
 msgstr "Ṣṭαṛ"
 
@@ -149,7 +149,7 @@ msgid "Stargazers"
 msgstr "Ṣṭαṛḡαẓḛṛṡ"
 
 #, elixir-format
-#: lib/atom_tweaks_web/templates/user/underline_nav.html.slime:1
+#: lib/atom_tweaks_web/templates/user/_underline_nav.html.slime:1
 msgid "Stars"
 msgstr "Ṣṭαṛṡ"
 
@@ -164,7 +164,7 @@ msgid "Styles"
 msgstr "Ṣṭẏḽḛṡ"
 
 #, elixir-format
-#: lib/atom_tweaks_web/templates/user/user_info.html.slime:1
+#: lib/atom_tweaks_web/templates/user/_user_info.html.slime:1
 msgid "This person is an Atom Tweaks staff member"
 msgstr "Ṫḥḭṡ ṗḛṛṡṓṇ ḭṡ αṇ Ḁṭṓṃ Ṫẁḛαḳṡ ṡṭαϝϝ ṃḛṃḅḛṛ"
 
@@ -175,12 +175,12 @@ msgid "Title"
 msgstr "Ṫḭṭḽḛ"
 
 #, elixir-format
-#: lib/atom_tweaks_web/templates/user/underline_nav.html.slime:1
+#: lib/atom_tweaks_web/templates/user/_underline_nav.html.slime:1
 msgid "Tweaks"
 msgstr "Ṫẁḛαḳṡ"
 
 #, elixir-format
-#: lib/atom_tweaks_web/templates/layout/star_button.html.slime:1
+#: lib/atom_tweaks_web/templates/layout/_star_button.html.slime:1
 msgid "Unstar"
 msgstr "Ṳṇṡṭαṛ"
 
@@ -190,7 +190,7 @@ msgid "Update tweak"
 msgstr "Ṳṗḍαṭḛ ṭẁḛαḳ"
 
 #, elixir-format
-#: lib/atom_tweaks_web/templates/user/user_info.html.slime:1
+#: lib/atom_tweaks_web/templates/user/_user_info.html.slime:1
 msgid "View this person on GitHub"
 msgstr "Ṿḭḛẁ ṭḥḭṡ ṗḛṛṡṓṇ ṓṇ ḠḭṭḤṵḅ"
 
@@ -200,17 +200,17 @@ msgid "View this project on GitHub"
 msgstr "Ṿḭḛẁ ṭḥḭṡ ṗṛṓĵḛͼṭ ṓṇ ḠḭṭḤṵḅ"
 
 #, elixir-format
-#: lib/atom_tweaks_web/templates/star/table_row.html.slime:1
+#: lib/atom_tweaks_web/templates/star/_table_row.html.slime:1
 msgid "Created by %{stargazer_link} about %{time_ago}"
 msgstr "Ḉṛḛαṭḛḍ ḅẏ %{stargazer_link} αḅṓṵṭ %{time_ago}"
 
 #, elixir-format
-#: lib/atom_tweaks_web/templates/layout/login_button.html.slime:1
+#: lib/atom_tweaks_web/templates/layout/_login_button.html.slime:1
 msgid "Sign Out"
 msgstr "Ṣḭḡṇ Ṏṵṭ"
 
 #, elixir-format
-#: lib/atom_tweaks_web/templates/user/table_row.html.slime:1
+#: lib/atom_tweaks_web/templates/user/_table_row.html.slime:1
 msgid "Created about %{time_ago}"
 msgstr "Ḉṛḛαṭḛḍ αḅṓṵṭ %{time_ago}"
 
@@ -220,7 +220,7 @@ msgid "Last updated about %{time_ago}"
 msgstr "Ḻαṡṭ ṵṗḍαṭḛḍ αḅṓṵṭ %{time_ago}"
 
 #, elixir-format
-#: lib/atom_tweaks_web/templates/fork/table_row.html.slime:1
+#: lib/atom_tweaks_web/templates/fork/_table_row.html.slime:1
 msgid "Created by %{forker_link} about %{time_ago}"
 msgstr "Ḉṛḛαṭḛḍ ḅẏ %{forker_link} αḅṓṵṭ %{time_ago}"
 
@@ -230,12 +230,12 @@ msgid "Forks"
 msgstr "Ḟṓṛḳṡ"
 
 #, elixir-format
-#: lib/atom_tweaks_web/templates/fork/blankslate.html.slime:1
+#: lib/atom_tweaks_web/templates/fork/_blankslate.html.slime:1
 msgid "No forks of this tweak"
 msgstr "Ṅṓ ϝṓṛḳṡ ṓϝ ṭḥḭṡ ṭẁḛαḳ"
 
 #, elixir-format
-#: lib/atom_tweaks_web/templates/page/release_notes_blankslate.html.slime:1
+#: lib/atom_tweaks_web/templates/page/_release_notes_blankslate.html.slime:1
 msgid "No release notes uploaded yet"
 msgstr "Ṅṓ ṛḛḽḛαṡḛ ṇṓṭḛṡ ṵṗḽṓαḍḛḍ ẏḛṭ"
 

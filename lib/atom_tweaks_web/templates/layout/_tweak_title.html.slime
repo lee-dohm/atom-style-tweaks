@@ -11,5 +11,5 @@
       - original_link = safe_link(link_text, to: Routes.tweak_path(@conn, :show, @tweak.forked_from))
       = raw(gettext("Forked from %{original_link}", original_link: original_link))
 
-  = render("fork_button.html", assigns)
-  = render("star_button.html", assigns)
+  = render("_fork_button.html", assigns)
+  = render("_star_button.html", assigns)

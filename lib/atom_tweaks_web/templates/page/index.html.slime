@@ -3,10 +3,10 @@
     = menu_item(gettext("All"), Routes.page_path(@conn, :index), id: "all-menu-item", octicon: :beaker, selected: is_nil(@type))
     = menu_item(gettext("Init"), Routes.page_path(@conn, :index, type: :init), id: "init-menu-item", octicon: :code, selected: @type == "init")
     = menu_item(gettext("Styles"), Routes.page_path(@conn, :index, type: :style), id: "styles-menu-item", octicon: :paintcan, selected: @type == "style")
-  = render_if(@current_user, TweakView, "new_tweak_button.html", assigns)
+  = render_if(@current_user, TweakView, "_new_tweak_button.html", assigns)
 .col-9.float-left.p-2
   .Box
     .Box-header
       h3 = tweak_title(@type)
     div
-      = render_many_or_blank(@tweaks, TweakView, "table_row.html", "blankslate.html", assigns)
+      = render_many_or_blank(@tweaks, TweakView, "_table_row.html", "_blankslate.html", assigns)

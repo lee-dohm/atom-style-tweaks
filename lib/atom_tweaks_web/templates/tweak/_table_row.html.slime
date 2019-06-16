@@ -4,4 +4,4 @@
   .pl-2.overflow-hidden.lh-condensed
     a.Box-row-link.title href="#{Routes.tweak_path(@conn, :show, @tweak)}" = @tweak.title
     .mt-1.text-small.text-gray
-      = render("creator_info.html", assigns)
+      = render("_creator_info.html", assigns)
