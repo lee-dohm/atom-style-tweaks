@@ -13,6 +13,7 @@ action "Generate docs" {
   uses = "lee-dohm/generate-elixir-docs@master"
   env = {
     MIX_ENV = "test"
+    TAG_VERSION_WITH_HASH = "true"
   }
 }
 
