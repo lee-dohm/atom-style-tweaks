@@ -3,13 +3,13 @@ workflow "Generate documentation on push" {
   resolves = ["Publish docs"]
 }
 
-# action "Only on master branch" {
-#   uses = "actions/bin/filter@master"
-#   args = "branch master"
-# }
+action "Only on master branch" {
+  uses = "actions/bin/filter@master"
+  args = "branch master"
+}
 
 action "Generate docs" {
-#   needs = ["Only on master branch"]
+  needs = ["Only on master branch"]
   uses = "lee-dohm/generate-elixir-docs@master"
 }
 
