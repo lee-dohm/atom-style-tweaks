@@ -5,4 +5,5 @@ workflow "Generate documentation on push" {
 
 action "publish-elixir-docs" {
   uses = "lee-dohm/publish-elixir-docs@master"
+  secrets = ["GITHUB_TOKEN"]
 }
