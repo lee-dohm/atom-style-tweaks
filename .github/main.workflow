@@ -1,4 +1,4 @@
-workflow "Generate documentation on push" {
+workflow "Generate documentation on push to master" {
   on = "push"
   resolves = ["Publish docs"]
 }
@@ -11,6 +11,9 @@ action "Only on master branch" {
 action "Generate docs" {
   needs = ["Only on master branch"]
   uses = "lee-dohm/generate-elixir-docs@master"
+  env = {
+    MIX_ENV = "test"
+  }
 }
 
 action "Publish docs" {
