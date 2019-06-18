@@ -1,6 +1,6 @@
 workflow "Generate documentation on push" {
   on = "push"
-  resolves = ["Publish Elixir docs"]
+  resolves = ["Publish docs"]
 }
 
 # action "Only on master branch" {
@@ -9,7 +9,7 @@ workflow "Generate documentation on push" {
 # }
 
 action "Generate docs" {
-  needs = ["Only on master branch"]
+#   needs = ["Only on master branch"]
   uses = "lee-dohm/generate-elixir-docs@master"
 }
 
