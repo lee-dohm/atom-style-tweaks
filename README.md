@@ -8,6 +8,10 @@
 
 This is the source code for the website running at https://www.atom-tweaks.com.
 
+## Developer documentation
+
+Developer docs can be found at https://www.lee-dohm.com/atom-style-tweaks/
+
 ## Contributing
 
 See the [Contributing Guide](CONTRIBUTING.md).
