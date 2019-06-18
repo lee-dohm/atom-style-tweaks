@@ -1,9 +1,16 @@
 workflow "Generate documentation on push" {
   on = "push"
-  resolves = ["publish-elixir-docs"]
+  resolves = ["Publish Elixir docs"]
 }
 
-action "publish-elixir-docs" {
+action "Only on master branch" {
+  needs = "Test"
+  uses = "actions/bin/filter@master"
+  args = "branch master"
+}
+
+action "Publish Elixir docs" {
+  needs = "Only on master branch"
   uses = "lee-dohm/publish-elixir-docs@master"
   secrets = ["GITHUB_TOKEN"]
 }
