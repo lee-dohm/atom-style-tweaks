@@ -4,7 +4,6 @@ workflow "Generate documentation on push" {
 }
 
 action "Only on master branch" {
-  needs = "Test"
   uses = "actions/bin/filter@master"
   args = "branch master"
 }
