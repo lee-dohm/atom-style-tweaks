@@ -3,6 +3,10 @@ workflow "Generate documentation on push to master" {
   resolves = ["Publish docs"]
 }
 
+action "debug" {
+  uses = "actions/bin/debug"
+}
+
 action "Only on master branch" {
   uses = "actions/bin/filter@master"
   args = "branch master"
@@ -18,7 +22,7 @@ action "Generate docs" {
 }
 
 action "Publish docs" {
-  needs = ["Generate docs"]
+  needs = ["debug", "Generate docs"]
   uses = "peaceiris/actions-gh-pages@v1.0.1"
   secrets = ["ACTIONS_DEPLOY_KEY"]
   env = {
