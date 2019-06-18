@@ -4,7 +4,7 @@ workflow "Generate documentation on push to master" {
 }
 
 action "debug" {
-  uses = "actions/bin/debug"
+  uses = "actions/bin/debug@master"
 }
 
 action "Only on master branch" {
