@@ -36,6 +36,10 @@ defmodule AtomTweaks.Accounts do
     Repo.one(from(t in Tweak, where: t.created_by == ^user.id, select: count(t.created_by)))
   end
 
+  @doc """
+  Create a changeset from the given `token`.
+  """
+  @spec change_token(Token.t()) :: Changeset.t()
   def change_token(token = %Token{}) do
     Token.changeset(token, %{})
   end

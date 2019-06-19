@@ -12,6 +12,20 @@ defmodule AtomTweaksWeb.Api.ReleaseNoteController do
   @doc """
   Handles a request to create a release note.
 
+  ## Request
+
+  The request body should contain data in the format:
+
+  ```json
+  {
+    title: "Some title",
+    detail_url: "https://github.com/lee-dohm/atom-style-tweaks/pull/1234",
+    description: "A bunch of Markdown text"
+  }
+  ```
+
+  All fields are required.
+
   ## Responses
 
   * `201 Created` on success
