@@ -1,14 +1,16 @@
 defmodule AtomTweaksWeb.PlugHelpers do
   @moduledoc """
-  Plug functions for various uses.
+  [Function plugs](https://hexdocs.pm/plug/readme.html#the-plug-conn-struct) to be used within
+  either a router or controller.
   """
 
   alias AtomTweaksWeb.ForbiddenUserError
   alias AtomTweaksWeb.NotLoggedInError
 
   @doc """
-  A [function plug](https://hexdocs.pm/plug/readme.html#the-plug-conn-struct) used within a
-  router or controller that verifies that there is a currently logged in user.
+  Verifies that there is a currently logged in user.
+
+  Raises `AtomTweaksWeb.NotLoggedInError` when there is no user logged in.
 
   ## Examples
 
@@ -18,6 +20,9 @@ defmodule AtomTweaksWeb.PlugHelpers do
   plug :ensure_authenticated_user when action in [:create]
   ```
   """
+  @spec ensure_authenticated_user(Plug.Conn.t(), Map.t()) :: Plug.Conn.t() | no_return
+  def ensure_authenticated_user(conn, options)
+
   def ensure_authenticated_user(conn, _) do
     case conn.assigns[:current_user] do
       nil -> raise(NotLoggedInError, conn: conn)
@@ -26,8 +31,9 @@ defmodule AtomTweaksWeb.PlugHelpers do
   end
 
   @doc """
-  A [function plug](https://hexdocs.pm/plug/readme.html#the-plug-conn-struct) used within a
-  router or controller that verifies that there is a currently logged in user.
+  Verifies that the currently logged in user is a site admin.
+
+  Raises `AtomTweaksWeb.ForbiddenUserError` when the current user is not a site admin.
 
   ## Examples
 
@@ -37,6 +43,9 @@ defmodule AtomTweaksWeb.PlugHelpers do
   plug :ensure_site_admin when action in [:create]
   ```
   """
+  @spec ensure_site_admin(Plug.Conn.t(), Map.t()) :: Plug.Conn.t() | no_return
+  def ensure_site_admin(conn, options)
+
   def ensure_site_admin(conn, _) do
     if conn.assigns[:current_user].site_admin do
       conn
