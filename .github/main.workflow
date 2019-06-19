@@ -1,9 +1,9 @@
 workflow "Generate documentation on push to master" {
   on = "push"
-  resolves = ["Publish docs"]
+  resolves = ["Debug info", "Publish docs"]
 }
 
-action "debug" {
+action "Debug info" {
   uses = "actions/bin/debug@master"
 }
 
@@ -22,7 +22,7 @@ action "Generate docs" {
 }
 
 action "Publish docs" {
-  needs = ["debug", "Generate docs"]
+  needs = ["Generate docs"]
   uses = "peaceiris/actions-gh-pages@v1.0.1"
   secrets = ["ACTIONS_DEPLOY_KEY"]
   env = {
