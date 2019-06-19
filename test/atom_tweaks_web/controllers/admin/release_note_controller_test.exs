@@ -45,6 +45,11 @@ defmodule AtomTweaksWeb.Admin.ReleaseNoteControllerTest do
         |> find("a.title")
 
       assert text(link) == context.note.title
+
+      assert Routes.admin_release_note_path(context.conn, :show, context.note) in attribute(
+               link,
+               "href"
+             )
     end
   end
 end
