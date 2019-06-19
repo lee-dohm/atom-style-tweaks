@@ -38,7 +38,7 @@ defmodule AtomTweaksWeb.Admin.ReleaseNoteControllerTest do
   describe "index when logged in as an admin and there are notes" do
     setup [:insert_site_admin, :log_in, :insert_release_note, :request_admin_release_note_index]
 
-    test "displays the release notes list", context do
+    test "displays the link to the release note record", context do
       link =
         context.conn
         |> html_response(:ok)
@@ -50,6 +50,15 @@ defmodule AtomTweaksWeb.Admin.ReleaseNoteControllerTest do
                link,
                "href"
              )
+    end
+
+    test "displays when the release note was created", context do
+      created =
+        context.conn
+        |> html_response(:ok)
+        |> find(".release-info")
+
+      assert text(created) == "Released about now"
     end
   end
 end

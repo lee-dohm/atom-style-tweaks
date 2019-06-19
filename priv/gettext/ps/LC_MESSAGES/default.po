@@ -249,3 +249,8 @@ msgstr "Ṛḛḽḛαṡḛ ṇṓṭḛṡ"
 #: lib/atom_tweaks_web/templates/admin/release_note/_blankslate.html.slime:1
 msgid "No release notes for you to see here"
 msgstr "Ṅṓ ṛḛḽḛαṡḛ ṇṓṭḛṡ ϝṓṛ ẏṓṵ ṭṓ ṡḛḛ ḥḛṛḛ"
+
+#, elixir-format
+#: lib/atom_tweaks_web/templates/admin/release_note/_release_info.html.slime:1
+msgid "Released about %{time_ago}"
+msgstr "Ṛḛḽḛαṡḛḍ αḅṓṵṭ %{time_ago}"

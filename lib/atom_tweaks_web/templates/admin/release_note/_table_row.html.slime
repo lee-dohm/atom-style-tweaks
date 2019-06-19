@@ -1,3 +1,4 @@
 .Box-row
   .lh-condensed
     a.Box-row-link.title href="#{Routes.admin_release_note_path(@conn, :show, @note)}" = @note.title
+    = render("_release_info.html", assigns)
