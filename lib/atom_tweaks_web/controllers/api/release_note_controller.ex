@@ -12,9 +12,11 @@ defmodule AtomTweaksWeb.Api.ReleaseNoteController do
   @doc """
   Handles a request to create a release note.
 
-  On success, returns a `201 Created` status with an empty body.
+  ## Responses
 
-  On failure, returns a `401 Bad Request` status with an empty body.
+  * `201 Created` on success
+  * `400 Bad Request` on failure
+  * `403 Forbidden` if the API token does not contain the `release_notes/write` scope
   """
   @spec create(Plug.Conn.t(), Map.t()) :: Plug.Conn.t()
   def create(conn, params) do

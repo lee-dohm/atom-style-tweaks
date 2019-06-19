@@ -2,17 +2,21 @@ defmodule AtomTweaksWeb.Router do
   @moduledoc """
   Routes requests to the website to the appropriate controller.
   """
+
   use AtomTweaksWeb, :router
 
   use Plug.ErrorHandler
   use Sentry.Plug
 
-  require Logger
-
   alias AtomTweaksWeb.HerokuMetadata
   alias AtomTweaksWeb.SlidingSessionTimeout
   alias AtomTweaksWeb.TokenAuthentication
 
+  require Logger
+
+  @doc """
+  Plug pipeline for requests sent from a browser.
+  """
   pipeline :browser do
     plug(:accepts, ["html"])
     plug(:fetch_session)
@@ -26,11 +30,17 @@ defmodule AtomTweaksWeb.Router do
     plug(Plug.Ribbon, [:dev, :staging, :test])
   end
 
+  @doc """
+  Plug pipeline for requests sent to the API.
+  """
   pipeline :api do
     plug(:accepts, ["json"])
     plug(TokenAuthentication)
   end
 
+  @doc """
+  Plug pipeline of additional checks for routes that require a site admin.
+  """
   pipeline :admin_checks do
     plug(:ensure_authenticated_user)
     plug(:ensure_site_admin)
@@ -74,9 +84,13 @@ defmodule AtomTweaksWeb.Router do
     resources("/release-notes", ReleaseNoteController, only: [:create])
   end
 
-  # Fetch the current user from the session and add it to `conn.assigns`. This
-  # will allow you to have access to the current user in your views with
-  # `@current_user`.
+  @doc """
+  Fetch the current user from the session and add it to `conn.assigns`.
+
+  This will allows access to the current user in views with `@current_user`.
+  """
+  def assign_current_user(conn, opts)
+
   def assign_current_user(conn, _) do
     user = get_session(conn, :current_user)
     Logger.debug("Current user: #{inspect(user)}")
