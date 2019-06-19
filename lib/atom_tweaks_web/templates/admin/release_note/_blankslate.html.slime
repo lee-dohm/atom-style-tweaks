@@ -1,0 +1,2 @@
+.blankslate
+  h3 = gettext "No release notes for you to see here"

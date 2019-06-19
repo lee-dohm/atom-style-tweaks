@@ -6,19 +6,18 @@ defmodule AtomTweaksWeb.TweakController do
 
   alias AtomTweaks.Tweaks
   alias AtomTweaks.Tweaks.Tweak
-  alias AtomTweaksWeb.NotLoggedInError
   alias AtomTweaksWeb.PageMetadata
   alias AtomTweaksWeb.WrongUserError
 
   require Logger
+
+  plug(:ensure_authenticated_user when action in [:create, :edit, :new])
 
   @doc """
   Creates a new tweak with the given parameters.
   """
   @spec create(Plug.Conn.t(), Map.t()) :: Plug.Conn.t()
   def create(conn, params)
-
-  def create(conn = %{assigns: %{current_user: nil}}, _), do: raise(NotLoggedInError, conn: conn)
 
   def create(conn, %{"tweak" => tweak_params}) do
     current_user = conn.assigns.current_user
@@ -47,8 +46,6 @@ defmodule AtomTweaksWeb.TweakController do
   @spec edit(Plug.Conn.t(), Map.t()) :: Plug.Conn.t()
   def edit(conn, params)
 
-  def edit(conn = %{assigns: %{current_user: nil}}, _), do: raise(NotLoggedInError, conn: conn)
-
   def edit(conn, %{"id" => id}) do
     current_user = conn.assigns.current_user
 
@@ -76,8 +73,6 @@ defmodule AtomTweaksWeb.TweakController do
   """
   @spec new(Plug.Conn.t(), Map.t()) :: Plug.Conn.t()
   def new(conn, params)
-
-  def new(conn = %{assigns: %{current_user: nil}}, _), do: raise(NotLoggedInError, conn: conn)
 
   def new(conn, _params) do
     changeset = Tweaks.change_tweak(%Tweak{})

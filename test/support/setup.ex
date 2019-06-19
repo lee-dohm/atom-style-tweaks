@@ -30,6 +30,14 @@ defmodule Support.Setup do
 
   @endpoint AtomTweaksWeb.Endpoint
 
+  def insert_release_note(context)
+
+  def insert_release_note(_context) do
+    note = insert(:note)
+
+    {:ok, note: note}
+  end
+
   @doc """
   Inserts a site admin user into the database.
 
@@ -194,6 +202,14 @@ defmodule Support.Setup do
     conn = PlugTest.init_test_session(conn, %{current_user: user})
 
     {:ok, conn: conn, current_user: user}
+  end
+
+  def request_admin_release_note_index(context)
+
+  def request_admin_release_note_index(%{conn: conn}) do
+    conn = get(conn, Routes.admin_release_note_path(conn, :index))
+
+    {:ok, conn: conn}
   end
 
   @doc """

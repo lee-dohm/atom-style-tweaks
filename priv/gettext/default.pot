@@ -243,3 +243,8 @@ msgstr ""
 #: lib/atom_tweaks_web/templates/page/release_notes.html.slime:1
 msgid "Release notes"
 msgstr ""
+
+#, elixir-format
+#: lib/atom_tweaks_web/templates/admin/release_note/_blankslate.html.slime:1
+msgid "No release notes for you to see here"
+msgstr ""

@@ -9,7 +9,6 @@ defmodule AtomTweaksWeb.Router do
 
   require Logger
 
-  alias AtomTweaksWeb.ErrorView
   alias AtomTweaksWeb.HerokuMetadata
   alias AtomTweaksWeb.SlidingSessionTimeout
   alias AtomTweaksWeb.TokenAuthentication
@@ -83,29 +82,5 @@ defmodule AtomTweaksWeb.Router do
     Logger.debug("Current user: #{inspect(user)}")
 
     assign(conn, :current_user, user)
-  end
-
-  def ensure_authenticated_user(conn, _) do
-    case conn.assigns[:current_user] do
-      nil ->
-        conn
-        |> put_status(:unauthorized)
-        |> render(ErrorView, "401.html")
-        |> halt()
-
-      _ ->
-        conn
-    end
-  end
-
-  def ensure_site_admin(conn, _) do
-    if conn.assigns[:current_user].site_admin do
-      conn
-    else
-      conn
-      |> put_status(:forbidden)
-      |> render(ErrorView, "403.html")
-      |> halt()
-    end
   end
 end

@@ -31,6 +31,7 @@ defmodule AtomTweaksWeb do
       import AtomTweaksWeb.ApiHelpers
       import AtomTweaksWeb.ControllerHelpers
       import AtomTweaksWeb.Gettext
+      import AtomTweaksWeb.PlugHelpers
     end
   end
 
@@ -73,6 +74,8 @@ defmodule AtomTweaksWeb do
   def router do
     quote do
       use Phoenix.Router
+
+      import AtomTweaksWeb.PlugHelpers
     end
   end
 
