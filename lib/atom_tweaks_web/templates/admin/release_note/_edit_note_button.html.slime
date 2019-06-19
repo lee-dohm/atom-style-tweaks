@@ -1,0 +1,2 @@
+a#edit-button.float-right.tooltipped.tooltipped-n.ml-3 aria-label="#{gettext "Edit"}" href="#{Routes.admin_release_note_path(@conn, :edit, @note)}"
+  = octicon(:pencil)

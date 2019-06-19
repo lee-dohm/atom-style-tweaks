@@ -1,0 +1,11 @@
+.release-note-title
+  h3.d-inline-block
+    = @note.title
+
+.border.p-2
+  .pb-2.clearfix
+    - time_ago = safe_to_string(relative_time(@note.inserted_at))
+    = raw(gettext("Released about %{time_ago}", time_ago: time_ago))
+    = render("_edit_note_button.html", assigns)
+  .release-note-notes.markdown-body
+    = @note.description

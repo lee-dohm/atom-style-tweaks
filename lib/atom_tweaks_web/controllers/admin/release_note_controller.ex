@@ -15,4 +15,10 @@ defmodule AtomTweaksWeb.Admin.ReleaseNoteController do
 
     render(conn, "index.html", notes: notes)
   end
+
+  def show(conn, %{"id" => id}) do
+    note = Releases.get_note!(id)
+
+    render(conn, "show.html", note: note)
+  end
 end
