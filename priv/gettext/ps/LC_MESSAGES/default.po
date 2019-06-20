@@ -43,6 +43,7 @@ msgid "Be the first to star this tweak."
 msgstr "Ḃḛ ṭḥḛ ϝḭṛṡṭ ṭṓ ṡṭαṛ ṭḥḭṡ ṭẁḛαḳ."
 
 #, elixir-format
+#: lib/atom_tweaks_web/templates/admin/release_note/edit.html.slime:1
 #: lib/atom_tweaks_web/templates/tweak/edit.html.slime:1
 msgid "Cancel"
 msgstr "Ḉαṇͼḛḽ"
@@ -73,6 +74,8 @@ msgid "Created by %{owner_link} about %{time_ago}"
 msgstr "Ḉṛḛαṭḛḍ ḅẏ %{owner_link} αḅṓṵṭ %{time_ago}"
 
 #, elixir-format
+#:
+#: lib/atom_tweaks_web/templates/admin/release_note/_edit_note_button.html.slime:1
 #: lib/atom_tweaks_web/templates/tweak/_edit_tweak_button.html.slime:1
 msgid "Edit"
 msgstr "Ḛḍḭṭ"
@@ -169,6 +172,8 @@ msgid "This person is an Atom Tweaks staff member"
 msgstr "Ṫḥḭṡ ṗḛṛṡṓṇ ḭṡ αṇ Ḁṭṓṃ Ṫẁḛαḳṡ ṡṭαϝϝ ṃḛṃḅḛṛ"
 
 #, elixir-format
+#: lib/atom_tweaks_web/templates/admin/release_note/edit.html.slime:1
+#: lib/atom_tweaks_web/templates/admin/release_note/new.html.slime:1
 #: lib/atom_tweaks_web/templates/tweak/edit.html.slime:1
 #: lib/atom_tweaks_web/templates/tweak/new.html.slime:1
 msgid "Title"
@@ -252,5 +257,21 @@ msgstr "Ṅṓ ṛḛḽḛαṡḛ ṇṓṭḛṡ ϝṓṛ ẏṓṵ ṭṓ �
 
 #, elixir-format
 #: lib/atom_tweaks_web/templates/admin/release_note/_release_info.html.slime:1
+#: lib/atom_tweaks_web/templates/admin/release_note/show.html.slime:1
 msgid "Released about %{time_ago}"
 msgstr "Ṛḛḽḛαṡḛḍ αḅṓṵṭ %{time_ago}"
+
+#, elixir-format
+#: lib/atom_tweaks_web/templates/admin/release_note/index.html.slime:1
+msgid "New release note"
+msgstr "Ṅḛẁ ṛḛḽḛαṡḛ ṇṓṭḛ"
+
+#, elixir-format
+#: lib/atom_tweaks_web/templates/admin/release_note/new.html.slime:1
+msgid "Save new release note"
+msgstr "Ṣαṽḛ ṇḛẁ ṛḛḽḛαṡḛ ṇṓṭḛ"
+
+#, elixir-format
+#: lib/atom_tweaks_web/templates/admin/release_note/edit.html.slime:1
+msgid "Update release note"
+msgstr "Ṳṗḍαṭḛ ṛḛḽḛαṡḛ ṇṓṭḛ"

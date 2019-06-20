@@ -42,6 +42,7 @@ msgid "Be the first to star this tweak."
 msgstr ""
 
 #, elixir-format
+#: lib/atom_tweaks_web/templates/admin/release_note/edit.html.slime:1
 #: lib/atom_tweaks_web/templates/tweak/edit.html.slime:1
 msgid "Cancel"
 msgstr ""
@@ -72,6 +73,8 @@ msgid "Created by %{owner_link} about %{time_ago}"
 msgstr ""
 
 #, elixir-format
+#:
+#: lib/atom_tweaks_web/templates/admin/release_note/_edit_note_button.html.slime:1
 #: lib/atom_tweaks_web/templates/tweak/_edit_tweak_button.html.slime:1
 msgid "Edit"
 msgstr ""
@@ -168,6 +171,8 @@ msgid "This person is an Atom Tweaks staff member"
 msgstr ""
 
 #, elixir-format
+#: lib/atom_tweaks_web/templates/admin/release_note/edit.html.slime:1
+#: lib/atom_tweaks_web/templates/admin/release_note/new.html.slime:1
 #: lib/atom_tweaks_web/templates/tweak/edit.html.slime:1
 #: lib/atom_tweaks_web/templates/tweak/new.html.slime:1
 msgid "Title"
@@ -251,5 +256,21 @@ msgstr ""
 
 #, elixir-format
 #: lib/atom_tweaks_web/templates/admin/release_note/_release_info.html.slime:1
+#: lib/atom_tweaks_web/templates/admin/release_note/show.html.slime:1
 msgid "Released about %{time_ago}"
+msgstr ""
+
+#, elixir-format
+#: lib/atom_tweaks_web/templates/admin/release_note/index.html.slime:1
+msgid "New release note"
+msgstr ""
+
+#, elixir-format
+#: lib/atom_tweaks_web/templates/admin/release_note/new.html.slime:1
+msgid "Save new release note"
+msgstr ""
+
+#, elixir-format
+#: lib/atom_tweaks_web/templates/admin/release_note/edit.html.slime:1
+msgid "Update release note"
 msgstr ""

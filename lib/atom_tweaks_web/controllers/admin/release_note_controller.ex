@@ -62,7 +62,9 @@ defmodule AtomTweaksWeb.Admin.ReleaseNoteController do
     |> Note.changeset(note_params)
     |> Repo.update()
     |> case do
-      {:ok, note} -> redirect(conn, to: Routes.admin_release_note_path(conn, :show, note))
+      {:ok, note} ->
+        redirect(conn, to: Routes.admin_release_note_path(conn, :show, note))
+
       {:error, changeset} ->
         render(conn, "edit.html", changeset: changeset, note: note, errors: changeset.errors)
     end
