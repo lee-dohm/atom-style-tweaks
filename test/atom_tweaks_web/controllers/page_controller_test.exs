@@ -1,75 +1,66 @@
 defmodule AtomTweaksWeb.PageControllerTest do
   use AtomTweaksWeb.ConnCase
 
-  describe "GET home page" do
-    setup(context) do
-      conn = get(context.conn, :index, [])
+  describe "home page when not logged in" do
+    setup [:request_page_index]
 
-      response = html_response(conn, :ok)
-
-      {:ok, conn: conn, response: response}
-    end
-
-    test "renders the index.html template", context do
-      assert view_template(context.conn) == "index.html"
-    end
-
-    test "assigns no current user", context do
-      refute fetch_assign(context.conn, :current_user)
-    end
-
-    test "assigns an empty tweaks list", context do
-      assert fetch_assign(context.conn, :tweaks) == []
-    end
-
-    test "assigns a nil type", context do
-      assert fetch_assign(context.conn, :type) == nil
-    end
-
-    test "shows the home page link", context do
-      link = find(context.response, "a.masthead-logo")
-
-      assert text(link) == "Atom Tweaks"
-      assert attribute(link, "href") == [Routes.page_path(context.conn, :index, [])]
-    end
+    use AtomTweaksWeb.Shared.HeaderTests, logged_in: false
+    use AtomTweaksWeb.Shared.FooterTests
 
     test "does not show the new tweak button", context do
-      refute has_selector?(context.response, "a#new-tweak-button")
+      response = html_response(context.conn, :ok)
+
+      refute has_selector?(response, "a#new-tweak-button")
     end
 
-    test "shows the about page link", context do
-      link = find(context.response, "footer a#about-link")
+    test "shows the all tweaks menu item", context do
+      item =
+        context.conn
+        |> html_response(:ok)
+        |> find("a#all-menu-item")
 
-      assert text(link) == "About"
-      assert attribute(link, "href") == [Routes.page_path(context.conn, :about)]
+      assert text(item) == "All"
+      assert attribute(item, "href") == [Routes.page_path(context.conn, :index)]
+      assert selected?(item)
     end
 
-    test "shows the GitHub link", context do
-      link = find(context.response, "footer a#github-link")
+    test "shows the init tweaks menu item", context do
+      item =
+        context.conn
+        |> html_response(:ok)
+        |> find("a#init-menu-item")
 
-      assert attribute(link, "href") == ["https://github.com/lee-dohm/atom-style-tweaks"]
+      assert text(item) == "Init"
+      assert attribute(item, "href") == [Routes.page_path(context.conn, :index, type: "init")]
+      refute selected?(item)
+    end
+
+    test "shows the style tweaks menu item", context do
+      item =
+        context.conn
+        |> html_response(:ok)
+        |> find("a#styles-menu-item")
+
+      assert text(item) == "Styles"
+      assert attribute(item, "href") == [Routes.page_path(context.conn, :index, type: "style")]
+      refute selected?(item)
     end
   end
 
-  describe "GET home page with a logged in user" do
-    setup [:insert_user, :log_in]
+  describe "home page when logged in as a normal user" do
+    setup [:insert_user, :log_in, :request_page_index]
 
-    setup(context) do
-      conn = get(context.conn, Routes.page_path(context.conn, :index))
-
-      response = html_response(conn, :ok)
-
-      {:ok, conn: conn, response: response}
-    end
-
-    test "assigns a current user", context do
-      assert fetch_assign(context.conn, :current_user) == context.user
-    end
+    use AtomTweaksWeb.Shared.HeaderTests, logged_in: true
+    use AtomTweaksWeb.Shared.FooterTests
 
     test "shows the new tweak button", context do
-      link = find(context.response, "a#new-tweak-button")
+      link =
+        context.conn
+        |> html_response(:ok)
+        |> find("a#new-tweak-button")
 
       assert text(link) == "New tweak"
+      assert attribute(link, "href") == [Routes.tweak_path(context.conn, :new)]
     end
   end
 
