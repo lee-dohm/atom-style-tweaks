@@ -1,0 +1,21 @@
+#!/bin/sh
+
+# script/migrate: Migrates the database to the latest version.
+#
+# Use: script/migrate [environment]
+#
+# `environment` - The environment to migrate. Defaults to development.
+
+set -e
+cd "$(dirname "$0")/.."
+
+if [ "$1" = "production" ] || ["$1" = "prod" ]; then
+  echo "==> Updating $1 db…"
+  heroku run --app atom-tweaks "POOL_SIZE=2 mix ecto.migrate"
+elif [ "$1" = "staging" ]; then
+  echo "==> Updating $1 db…"
+  heroku run --app atom-tweaks-staging "POOL_SIZE=2 mix ecto.migrate"
+else
+  echo "==> Updating development db…"
+  mix ecto.migrate
+fi
