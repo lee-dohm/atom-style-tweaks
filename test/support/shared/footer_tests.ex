@@ -1,4 +1,13 @@
 defmodule AtomTweaksWeb.Shared.FooterTests do
+  @moduledoc """
+  Shared tests for the common page footer.
+
+  ## Examples
+
+  ```
+  use AtomTweaksWeb.Shared.FooterTests
+  ```
+  """
   defmacro __using__(_options) do
     quote do
       alias AtomTweaksWeb.Router.Helpers, as: Routes

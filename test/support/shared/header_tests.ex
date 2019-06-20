@@ -1,4 +1,22 @@
 defmodule AtomTweaksWeb.Shared.HeaderTests do
+  @moduledoc """
+  Shared tests for the common page header.
+
+  ## Examples
+
+  When testing the page when logged in:
+
+  ```
+  use AtomTweaksWeb.Shared.HeaderTests, logged_in: true
+  ```
+
+  When testing the page logged out:
+
+  ```
+  use AtomTweaksWeb.Shared.HeaderTests. logged_in: false
+  ```
+  """
+
   defmacro __using__(options) do
     if options[:logged_in] do
       quote do
@@ -21,7 +39,10 @@ defmodule AtomTweaksWeb.Shared.HeaderTests do
             |> find("#current-user")
 
           assert text(link) == context.current_user.name
-          assert attribute(link, "href") == [Routes.user_path(context.conn, :show, context.current_user)]
+
+          assert attribute(link, "href") == [
+                   Routes.user_path(context.conn, :show, context.current_user)
+                 ]
         end
       end
     else
