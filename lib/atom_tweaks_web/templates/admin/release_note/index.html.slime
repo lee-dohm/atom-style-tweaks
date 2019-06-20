@@ -1,2 +1,4 @@
-.Box
+.clearfix
+  a#new-note-button.btn.btn-primary.float-right href="#{Routes.admin_release_note_path(@conn, :new)}" = gettext "New release note"
+.Box.mt-2
   = render_many_or_blank(@notes, "_table_row.html", "_blankslate.html", Map.put(assigns, :as, :note))

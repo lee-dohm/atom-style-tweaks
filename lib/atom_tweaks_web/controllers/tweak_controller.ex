@@ -49,10 +49,7 @@ defmodule AtomTweaksWeb.TweakController do
   def edit(conn, %{"id" => id}) do
     current_user = conn.assigns.current_user
 
-    tweak =
-      Tweak
-      |> Repo.get(id)
-      |> Repo.preload([:user])
+    tweak = Tweaks.get_tweak!(id)
 
     if current_user.id != tweak.user.id do
       raise WrongUserError, conn: conn, current_user: current_user, resource_owner: tweak.user
