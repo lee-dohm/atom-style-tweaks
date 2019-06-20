@@ -147,20 +147,103 @@ defmodule AtomTweaksWeb.PageControllerTest do
     end
   end
 
-  describe "GET about page" do
-    setup(context) do
-      response =
+  describe "about page when logged out" do
+    setup [:request_page_about]
+
+    use AtomTweaksWeb.Shared.HeaderTests, logged_in: false
+    use AtomTweaksWeb.Shared.FooterTests
+
+    test "it displays the about text", context do
+      header =
         context.conn
-        |> get(Routes.page_path(context.conn, :about))
         |> html_response(:ok)
-
-      {:ok, response: response}
-    end
-
-    test "it displays some about text", context do
-      header = find(context.response, "main h1")
+        |> find("main h1")
 
       assert text(header) == "About Atom Tweaks"
+    end
+  end
+
+  describe "about page when logged in" do
+    setup [:insert_user, :log_in, :request_page_about]
+
+    use AtomTweaksWeb.Shared.HeaderTests, logged_in: true
+    use AtomTweaksWeb.Shared.FooterTests
+
+    test "it displays the about text", context do
+      header =
+        context.conn
+        |> html_response(:ok)
+        |> find("main h1")
+
+      assert text(header) == "About Atom Tweaks"
+    end
+  end
+
+  describe "release notes page when logged out" do
+    setup [:insert_release_note, :request_page_release_notes]
+
+    use AtomTweaksWeb.Shared.HeaderTests, logged_in: false
+    use AtomTweaksWeb.Shared.FooterTests
+
+    test "displays the release notes table header", context do
+      header =
+        context.conn
+        |> html_response(:ok)
+        |> find(".Box-header h3")
+
+      assert text(header) == "Release notes"
+    end
+
+    test "displays the time the note was created", context do
+      created_time =
+        context.conn
+        |> html_response(:ok)
+        |> find("#release-date")
+
+      assert text(created_time) == "Released about now"
+    end
+
+    test "displays the release notes", context do
+      text =
+        context.conn
+        |> html_response(:ok)
+        |> find(".markdown-body")
+
+      assert inner_html(text) == String.trim(html(context.note.description))
+    end
+  end
+
+  describe "release notes page when logged in" do
+    setup [:insert_user, :log_in, :insert_release_note, :request_page_release_notes]
+
+    use AtomTweaksWeb.Shared.HeaderTests, logged_in: true
+    use AtomTweaksWeb.Shared.FooterTests
+
+    test "it displays the release notes table header", context do
+      header =
+        context.conn
+        |> html_response(:ok)
+        |> find(".Box-header h3")
+
+      assert text(header) == "Release notes"
+    end
+
+    test "it displays the time the note was created", context do
+      created_time =
+        context.conn
+        |> html_response(:ok)
+        |> find("#release-date")
+
+      assert text(created_time) == "Released about now"
+    end
+
+    test "displays the release notes", context do
+      text =
+        context.conn
+        |> html_response(:ok)
+        |> find(".markdown-body")
+
+      assert inner_html(text) == String.trim(html(context.note.description))
     end
   end
 end

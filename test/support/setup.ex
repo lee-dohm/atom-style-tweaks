@@ -505,12 +505,34 @@ defmodule Support.Setup do
   end
 
   @doc """
+  Requests the about page.
+  """
+  def request_page_about(context)
+
+  def request_page_about(%{conn: conn}) do
+    conn = get(conn, Routes.page_path(conn, :about))
+
+    {:ok, conn: conn}
+  end
+
+  @doc """
   Requests the home page.
   """
   def request_page_index(context)
 
   def request_page_index(%{conn: conn}) do
     conn = get(conn, Routes.page_path(conn, :index))
+
+    {:ok, conn: conn}
+  end
+
+  @doc """
+  Requests the release notes page.
+  """
+  def request_page_release_notes(context)
+
+  def request_page_release_notes(%{conn: conn}) do
+    conn = get(conn, Routes.page_path(conn, :release_notes))
 
     {:ok, conn: conn}
   end

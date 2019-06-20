@@ -66,7 +66,7 @@ defmodule AtomTweaksWeb.Shared.HeaderTests do
             |> find("#sign-in")
 
           assert text(button) == "Sign in with"
-          assert attribute(button, "href") == [Routes.auth_path(context.conn, :index, from: "/")]
+          assert hd(attribute(button, "href")) =~ Routes.auth_path(context.conn, :index)
         end
       end
     end

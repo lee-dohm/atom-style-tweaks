@@ -1,5 +1,9 @@
 .Box-row.clearfix
-  a.Box-row-link.title href=@note.detail_url
-    = @note.title
-  div
+  .pb-2.clearfix
+    a.Box-row-link.title href=@note.detail_url
+      = @note.title
+    #release-date.mt-1.float-right.text-small.text-gray
+      - time_ago = safe_to_string(relative_time(@note.inserted_at))
+      = raw(gettext("Released about %{time_ago}", time_ago: time_ago))
+  .markdown-body
     = @note.description
