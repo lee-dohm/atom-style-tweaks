@@ -27,7 +27,7 @@ defmodule AtomTweaksWeb.ConnCase do
 
       alias AtomTweaksWeb.Router.Helpers, as: Routes
 
-      import Floki, only: [attribute: 2, find: 2, text: 1]
+      import Floki
       import Phoenix.Controller
 
       import AtomTweaks.Factory

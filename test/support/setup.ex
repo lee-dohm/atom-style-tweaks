@@ -204,10 +204,37 @@ defmodule Support.Setup do
     {:ok, conn: conn, current_user: user}
   end
 
+  @doc """
+  Requests the admin release notes index page.
+
+  ## Inputs
+
+  * `context.conn`
+  """
   def request_admin_release_note_index(context)
 
   def request_admin_release_note_index(%{conn: conn}) do
     conn = get(conn, Routes.admin_release_note_path(conn, :index))
+
+    {:ok, conn: conn}
+  end
+
+  @doc """
+  Requests the admin release note show page.
+
+  ## Inputs
+
+  * `context.conn`
+  * `context.note`
+
+  ## Outputs
+
+  * `context.conn`
+  """
+  def request_admin_release_note_show(context)
+
+  def request_admin_release_note_show(%{conn: conn, note: note}) do
+    conn = get(conn, Routes.admin_release_note_path(conn, :show, note))
 
     {:ok, conn: conn}
   end

@@ -61,4 +61,57 @@ defmodule AtomTweaksWeb.Admin.ReleaseNoteControllerTest do
       assert text(created) == "Released about now"
     end
   end
+
+  describe "show when not logged in" do
+    setup [:insert_release_note]
+
+    test "returns unauthorized", context do
+      assert_raise NotLoggedInError, fn ->
+        request_admin_release_note_show(context)
+      end
+    end
+  end
+
+  describe "show when logged in as a normal user" do
+    setup [:insert_user, :log_in, :insert_release_note]
+
+    test "returns forbidden", context do
+      assert_raise ForbiddenUserError, fn ->
+        request_admin_release_note_show(context)
+      end
+    end
+  end
+
+  describe "show when logged in as an admin user" do
+    setup [:insert_site_admin, :log_in, :insert_release_note, :request_admin_release_note_show]
+
+    test "displays the note's title", context do
+      title =
+        context.conn
+        |> html_response(:ok)
+        |> find(".release-note-title")
+
+      assert text(title) == context.note.title
+    end
+
+    test "displays an edit button", context do
+      button =
+        context.conn
+        |> html_response(:ok)
+        |> find("a#edit-button")
+
+      path = Routes.admin_release_note_path(context.conn, :edit, context.note)
+
+      assert path in attribute(button, "href")
+    end
+
+    test "displays the note's description", context do
+      description =
+        context.conn
+        |> html_response(:ok)
+        |> find(".markdown-body")
+
+      assert inner_html(description) == String.trim(html(context.note.description))
+    end
+  end
 end
