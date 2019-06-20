@@ -30,6 +30,13 @@ defmodule Support.Setup do
 
   @endpoint AtomTweaksWeb.Endpoint
 
+  @doc """
+  Inserts a release note.
+
+  ## Outputs
+
+  * `:note` -- Release note that was inserted into the database
+  """
   def insert_release_note(context)
 
   def insert_release_note(_context) do
@@ -43,7 +50,7 @@ defmodule Support.Setup do
 
   ## Outputs
 
-  * `context.user` - Site admin user record
+  * `:user` - Site admin user record
   """
   def insert_site_admin(context)
 
@@ -58,12 +65,12 @@ defmodule Support.Setup do
 
   ## Inputs
 
-  * `context.user` - User to star the tweak
-  * `context.tweak` - Tweak to be starred
+  * `:user` - User to star the tweak
+  * `:tweak` - Tweak to be starred
 
   ## Outputs
 
-  * `context.star` - Star record
+  * `:star` - Star record
   """
   def insert_star(context)
 
@@ -78,16 +85,16 @@ defmodule Support.Setup do
 
   ## Inputs
 
-  Inserts a tweak for (in order of priority):
+  Inserts a tweak for the first of:
 
-  1. `context.current_user`
-  1. `context.user`
+  1. `:current_user`
+  1. `:user`
   1. Inserts a new user
 
   ## Outputs
 
-  * `context.tweak` - New tweak record
-  * `context.user` - User record that created the tweak
+  * `:tweak` - New tweak record
+  * `:user` - User record that created the tweak
   """
   def insert_tweak(context)
 
@@ -115,7 +122,7 @@ defmodule Support.Setup do
 
   ## Outputs
 
-  * `context.user` - New user record
+  * `:user` - New user record
   """
   def insert_user(context)
 
@@ -130,8 +137,8 @@ defmodule Support.Setup do
 
   ## Outputs
 
-  * `context.user` - New user record
-  * `context.tweaks` - New tweak records
+  * `:user` - New user record
+  * `:tweaks` - New tweak records
   """
   def insert_user_with_tweaks(context)
 
@@ -142,6 +149,19 @@ defmodule Support.Setup do
     {:ok, user: user, tweaks: tweaks}
   end
 
+  @doc """
+  Forks a tweak.
+
+  ## Inputs
+
+  * `:tweaks`
+
+  ## Outputs
+
+  * `:fork_user` -- User that forked the tweak
+  * `:fork_tweak` -- New fork tweak
+  * `:forked_tweak` -- Tweak that was forked
+  """
   def fork_tweak(%{tweaks: tweaks}) do
     fork_user = insert(:user)
     forked_tweak = hd(tweaks)
@@ -150,11 +170,29 @@ defmodule Support.Setup do
     {:ok, fork_user: fork_user, fork_tweak: fork_tweak, forked_tweak: forked_tweak}
   end
 
+  @doc """
+  Inserts an init tweak.
+
+  ## Outputs
+
+  * `:init_tweak` -- Tweak that was created
+  """
+  def insert_init_tweak(context)
+
   def insert_init_tweak(_context) do
     tweak = insert(:tweak, type: "init")
 
     {:ok, init_tweak: tweak}
   end
+
+  @doc """
+  Inserts a style tweak.
+
+  ## Outputs
+
+  * `:style_tweak` -- Tweak that was created
+  """
+  def insert_style_tweak(context)
 
   def insert_style_tweak(_context) do
     tweak = insert(:tweak, type: "style")
@@ -167,7 +205,7 @@ defmodule Support.Setup do
 
   ## Outputs
 
-  * `context.tweak_params` - Invalid params
+  * `:tweak_params` -- Invalid params
   """
   def invalid_tweak_params(_context) do
     {:ok, tweak_params: params_for(:tweak, title: "")}
@@ -178,16 +216,16 @@ defmodule Support.Setup do
 
   ## Inputs
 
-  * `context.conn` - `Plug.Conn` object
+  * `:conn` -- Connection object
 
   Logs in as (in priority order):
 
-  1. `context.user`
+  1. `:user`
   1. Inserts a new user into the database
 
   ## Outputs
 
-  * `context.current_user` - User record used to log in
+  * `:current_user` - User record used to log in
   """
   def log_in(context)
 
@@ -209,12 +247,12 @@ defmodule Support.Setup do
 
   ## Inputs
 
-  * `context.conn`
-  * `context.note`
+  * `:conn` -- Connection object
+  * `:note` -- Release note to edit
 
   ## Outputs
 
-  * `context.conn`
+  * `:conn` -- Updated connection object
   """
   def request_admin_release_note_edit(context)
 
@@ -229,11 +267,11 @@ defmodule Support.Setup do
 
   ## Inputs
 
-  * `context.conn`
+  * `:conn` -- Connection object
 
   ## Outputs
 
-  * `context.conn`
+  * `:conn` -- Updated connection object
   """
   def request_admin_release_note_index(context)
 
@@ -248,11 +286,11 @@ defmodule Support.Setup do
 
   ## Inputs
 
-  * `context.conn`
+  * `:conn` -- Connection object
 
   ## Outputs
 
-  * `context.conn`
+  * `:conn` -- Updated connection object
   """
   def request_admin_release_note_new(context)
 
@@ -267,12 +305,12 @@ defmodule Support.Setup do
 
   ## Inputs
 
-  * `context.conn`
-  * `context.note`
+  * `:conn` -- Connection object
+  * `:note` -- Release note to show
 
   ## Outputs
 
-  * `context.conn`
+  * `:conn` -- Updated connection object
   """
   def request_admin_release_note_show(context)
 
@@ -287,7 +325,7 @@ defmodule Support.Setup do
 
   ## Outputs
 
-  * `context.request_user` - User record that requests a page
+  * `:request_user` - User record that requests a page
   """
   def request_user(_context) do
     {:ok, request_user: insert(:user)}
@@ -298,14 +336,14 @@ defmodule Support.Setup do
 
   ## Inputs
 
-  * `context.conn` - `Plug.Conn` object
-  * `context.current_user` - Currently logged in user record, if any
-  * `context.request_user` - User record requesting the page
-  * `context.tweak_params` - Parameters to use to create the tweak
+  * `:conn` -- Connection object
+  * `:current_user` - Currently logged in user record, if any
+  * `:request_user` - User record requesting the page
+  * `:tweak_params` - Parameters to use to create the tweak
 
   ## Outputs
 
-  * `context.conn` - `Plug.Conn` object after the page is rendered
+  * `:conn` - Updated connection object
   """
   def request_create_tweak(context)
 
@@ -343,12 +381,12 @@ defmodule Support.Setup do
 
   ## Inputs
 
-  * `context.conn` - `Plug.Conn` object
-  * `context.tweak` - Tweak record to edit
+  * `:conn` - `Plug.Conn` object
+  * `:tweak` - Tweak record to edit
 
   ## Outputs
 
-  * `context.conn` - `Plug.Conn` object after the page is rendered
+  * `:conn` - `Plug.Conn` object after the page is rendered
   """
   def request_edit_tweak(context)
 
@@ -363,11 +401,11 @@ defmodule Support.Setup do
 
   ## Inputs
 
-  * `context.conn` - `Plug.Conn` object
+  * `:conn` - `Plug.Conn` object
 
   ## Outputs
 
-  * `context.conn` - `Plug.Conn` object after the page is rendered
+  * `:conn` - `Plug.Conn` object after the page is rendered
   """
   def request_new_tweak(context)
 
@@ -382,12 +420,12 @@ defmodule Support.Setup do
 
   ## Inputs
 
-  * `context.conn` - `Plug.Conn` object
-  * `context.tweak` - Tweak record to show
+  * `:conn` - `Plug.Conn` object
+  * `:tweak` - Tweak record to show
 
   ## Outputs
 
-  * `context.conn` - `Plug.Conn` object after the page is rendered
+  * `:conn` - `Plug.Conn` object after the page is rendered
   """
   def request_show_tweak(context)
 
@@ -402,15 +440,15 @@ defmodule Support.Setup do
 
   ## Inputs
 
-  * `context.conn` - `Plug.Conn` object
-  * `context.current_user` - Currently logged in user record
-  * `context.request_user` - User record to show
-  * `context.user` - User record to show
+  * `:conn` - `Plug.Conn` object
+  * `:current_user` - Currently logged in user record
+  * `:request_user` - User record to show
+  * `:user` - User record to show
 
   ## Outputs
 
-  * `context.conn` - `Plug.Conn` object after the page is rendered
-  * `context.path` - Path that was navigated to
+  * `:conn` - `Plug.Conn` object after the page is rendered
+  * `:path` - Path that was navigated to
   """
   def request_show_user(context)
 
@@ -433,13 +471,13 @@ defmodule Support.Setup do
 
   ## Inputs
 
-  * `context.conn` - `Plug.Conn` object
-  * `context.user` - User whose stars we will view
+  * `:conn` - `Plug.Conn` object
+  * `:user` - User whose stars we will view
 
   ## Outputs
 
-  * `context.conn` - Updated `Plug.Conn` object
-  * `context.path` - Path that was navigated to
+  * `:conn` - Updated `Plug.Conn` object
+  * `:path` - Path that was navigated to
   """
   def request_stars(context)
 
