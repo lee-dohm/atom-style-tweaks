@@ -114,4 +114,139 @@ defmodule AtomTweaksWeb.Admin.ReleaseNoteControllerTest do
       assert inner_html(description) == String.trim(html(context.note.description))
     end
   end
+
+  describe "edit when not logged in" do
+    setup [:insert_release_note]
+
+    test "returns unauthorized", context do
+      assert_raise NotLoggedInError, fn ->
+        request_admin_release_note_edit(context)
+      end
+    end
+  end
+
+  describe "edit when logged in as a normal user" do
+    setup [:insert_user, :log_in, :insert_release_note]
+
+    test "returns forbidden", context do
+      assert_raise ForbiddenUserError, fn ->
+        request_admin_release_note_edit(context)
+      end
+    end
+  end
+
+  describe "edit when logged in as a site admin" do
+    setup [:insert_site_admin, :log_in, :insert_release_note, :request_admin_release_note_edit]
+
+    test "displays the title edit box", context do
+      edit =
+        context.conn
+        |> html_response(:ok)
+        |> find("#note_title")
+
+      assert attribute(edit, "placeholder") == ["Title"]
+      assert attribute(edit, "value") == [context.note.title]
+    end
+
+    test "displays the detail url edit box", context do
+      edit =
+        context.conn
+        |> html_response(:ok)
+        |> find("#note_detail_url")
+
+      assert attribute(edit, "placeholder") == [
+               "https://github.com/lee-dohm/atom-style-tweaks/pull/1234"
+             ]
+
+      assert attribute(edit, "value") == [context.note.detail_url]
+    end
+
+    test "displays the description text area", context do
+      text_area =
+        context.conn
+        |> html_response(:ok)
+        |> find("#note_description")
+
+      assert attribute(text_area, "placeholder") == ["Release notes"]
+      assert String.trim(text(text_area)) == md(context.note.description)
+    end
+
+    test "displays the submit button", context do
+      button =
+        context.conn
+        |> html_response(:ok)
+        |> find("button[type=\"submit\"].btn.btn-primary")
+
+      assert text(button) == "Update release note"
+    end
+
+    test "displays the cancel button", context do
+      button =
+        context.conn
+        |> html_response(:ok)
+        |> find(".btn.btn-danger")
+
+      assert text(button) == "Cancel"
+    end
+  end
+
+  describe "new when not logged in" do
+    test "returns unauthorized", context do
+      assert_raise NotLoggedInError, fn ->
+        request_admin_release_note_new(context)
+      end
+    end
+  end
+
+  describe "new when logged in as a normal user" do
+    setup [:insert_user, :log_in]
+
+    test "returns forbidden", context do
+      assert_raise ForbiddenUserError, fn ->
+        request_admin_release_note_new(context)
+      end
+    end
+  end
+
+  describe "new when logged in as a site admin" do
+    setup [:insert_site_admin, :log_in, :request_admin_release_note_new]
+
+    test "displays the title edit box", context do
+      edit =
+        context.conn
+        |> html_response(:ok)
+        |> find("#note_title")
+
+      assert attribute(edit, "placeholder") == ["Title"]
+    end
+
+    test "displays the detail url edit box", context do
+      edit =
+        context.conn
+        |> html_response(:ok)
+        |> find("#note_detail_url")
+
+      assert attribute(edit, "placeholder") == [
+               "https://github.com/lee-dohm/atom-style-tweaks/pull/1234"
+             ]
+    end
+
+    test "displays the description text area", context do
+      text_area =
+        context.conn
+        |> html_response(:ok)
+        |> find("#note_description")
+
+      assert attribute(text_area, "placeholder") == ["Release notes"]
+    end
+
+    test "displays the submit button", context do
+      button =
+        context.conn
+        |> html_response(:ok)
+        |> find("button[type=\"submit\"].btn.btn-primary")
+
+      assert text(button) == "Save new release note"
+    end
+  end
 end
