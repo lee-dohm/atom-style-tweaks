@@ -1,0 +1,3 @@
+.release-info.mt-1.text-small.text-gray
+  - time_ago = safe_to_string(relative_time(@note.inserted_at))
+  = raw(gettext("Released about %{time_ago}", time_ago: time_ago))

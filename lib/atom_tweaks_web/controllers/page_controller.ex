@@ -1,14 +1,21 @@
 defmodule AtomTweaksWeb.PageController do
   @moduledoc """
-  Handles requests for the root-level resources.
+  Handles requests for the root-level pages.
   """
   use AtomTweaksWeb, :controller
 
-  alias AtomTweaks.Tweaks
+  alias AtomTweaks.Releases
   alias AtomTweaks.Tweaks
 
   @doc """
-  Renders the root-level index page.
+  Renders the about page.
+  """
+  def about(conn, _params) do
+    render(conn, "about.html")
+  end
+
+  @doc """
+  Renders the home page.
   """
   def index(conn, params) do
     type = params["type"]
@@ -18,9 +25,11 @@ defmodule AtomTweaksWeb.PageController do
   end
 
   @doc """
-  Renders the about page.
+  Renders the release notes index page.
   """
-  def about(conn, _params) do
-    render(conn, "about.html")
+  def release_notes(conn, _params) do
+    notes = Releases.list_notes()
+
+    render(conn, "release_notes.html", notes: notes)
   end
 end

@@ -6,6 +6,7 @@ defmodule AtomTweaks.Accounts.User do
 
   import Ecto.Changeset
 
+  alias AtomTweaks.Accounts.Token
   alias AtomTweaks.Accounts.User
   alias AtomTweaks.Tweaks.Star
   alias AtomTweaks.Tweaks.Tweak
@@ -22,7 +23,9 @@ defmodule AtomTweaks.Accounts.User do
     field(:name, :string)
     field(:site_admin, :boolean, default: false)
 
+    has_many(:tokens, Token, foreign_key: :user_id)
     has_many(:tweaks, Tweak, foreign_key: :created_by)
+
     many_to_many(:stars, Tweak, join_through: Star, on_replace: :delete, on_delete: :delete_all)
 
     timestamps()

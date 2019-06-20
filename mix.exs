@@ -148,16 +148,21 @@ defmodule AtomTweaks.Mixfile do
         Plugs: [
           AtomTweaksWeb.HerokuMetadata,
           AtomTweaksWeb.PageMetadata,
-          AtomTweaksWeb.SlidingSessionTimeout
+          AtomTweaksWeb.SlidingSessionTimeout,
+          AtomTweaksWeb.TokenAuthentication
         ],
         Primer: [
           ~r{^AtomTweaksWeb\.Primer}
+        ],
+        Releases: [
+          ~r{^AtomTweaks\.Releases}
         ],
         Sockets: [
           ~r{^AtomTweaksWeb.*Socket$}
         ],
         Test: [
-          ~r{^AtomTweaks.*(Channel|Conn|Data)Case$},
+          ~r{^AtomTweaks(Web)?\..*Case$},
+          ~r{^AtomTweaks.Factory$},
           ~r{^AtomTweaks.Support},
           ~r{^Support}
         ],
@@ -170,7 +175,8 @@ defmodule AtomTweaks.Mixfile do
       ],
       nest_modules_by_prefix: [
         AtomTweaks,
-        AtomTweaksWeb
+        AtomTweaksWeb,
+        Support
       ]
     ]
   end

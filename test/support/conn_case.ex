@@ -25,11 +25,12 @@ defmodule AtomTweaksWeb.ConnCase do
       # Import conveniences for testing with connections
       use Phoenix.ConnTest
 
-      import Floki, only: [attribute: 2, find: 2, text: 1]
+      alias AtomTweaksWeb.Router.Helpers, as: Routes
+
+      import Floki
       import Phoenix.Controller
 
       import AtomTweaks.Factory
-      import AtomTweaksWeb.Router.Helpers
 
       import Support.Conn
       import Support.HTML

@@ -19,7 +19,7 @@ defmodule AtomTweaksWeb.ForkController do
 
     {:ok, new_tweak} = Tweaks.fork_tweak(tweak, user)
 
-    redirect(conn, to: tweak_path(conn, :show, new_tweak))
+    redirect(conn, to: Routes.tweak_path(conn, :show, new_tweak))
   end
 
   @doc """

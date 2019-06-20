@@ -1,2 +1,0 @@
-a#edit-button.float-right.tooltipped.tooltipped-n.ml-3 aria-label="#{gettext "Edit"}" href="#{tweak_path(@conn, :edit, @tweak)}"
-  = octicon(:pencil)

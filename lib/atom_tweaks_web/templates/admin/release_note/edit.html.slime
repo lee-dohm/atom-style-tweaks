@@ -1,0 +1,8 @@
+= form_for @changeset, Routes.admin_release_note_path(@conn, :update, @note), [method: "PUT"], fn f ->
+  = input(f, :title, placeholder: gettext("Title"), class: "input-lg")
+  = input(f, :detail_url, placeholder: "https://github.com/lee-dohm/atom-style-tweaks/pull/1234", class: "input-lg")
+  = input(f, :description, using: :markdown, class: "description-textarea", placeholder: "Release notes")
+
+  .form-actions
+    = submit(gettext("Update release note"), class: "btn btn-primary")
+    = link_button(gettext("Cancel"), class: "btn btn-danger", to: Routes.admin_release_note_path(@conn, :show, @note))

@@ -6,11 +6,12 @@ defmodule AtomTweaksWeb.TweakController do
 
   alias AtomTweaks.Tweaks
   alias AtomTweaks.Tweaks.Tweak
-  alias AtomTweaksWeb.NotLoggedInError
   alias AtomTweaksWeb.PageMetadata
   alias AtomTweaksWeb.WrongUserError
 
   require Logger
+
+  plug(:ensure_authenticated_user when action in [:create, :edit, :new])
 
   @doc """
   Creates a new tweak with the given parameters.
@@ -18,15 +19,13 @@ defmodule AtomTweaksWeb.TweakController do
   @spec create(Plug.Conn.t(), Map.t()) :: Plug.Conn.t()
   def create(conn, params)
 
-  def create(conn = %{assigns: %{current_user: nil}}, _), do: raise(NotLoggedInError, conn: conn)
-
   def create(conn, %{"tweak" => tweak_params}) do
     current_user = conn.assigns.current_user
     params = Map.merge(tweak_params, %{"created_by" => current_user.id})
     changeset = Tweak.changeset(%Tweak{}, params)
 
     case Repo.insert(changeset) do
-      {:ok, tweak} -> redirect(conn, to: tweak_path(conn, :show, tweak))
+      {:ok, tweak} -> redirect(conn, to: Routes.tweak_path(conn, :show, tweak))
       {:error, changeset} -> render(conn, "new.html", changeset: changeset)
     end
   end
@@ -47,15 +46,10 @@ defmodule AtomTweaksWeb.TweakController do
   @spec edit(Plug.Conn.t(), Map.t()) :: Plug.Conn.t()
   def edit(conn, params)
 
-  def edit(conn = %{assigns: %{current_user: nil}}, _), do: raise(NotLoggedInError, conn: conn)
-
   def edit(conn, %{"id" => id}) do
     current_user = conn.assigns.current_user
 
-    tweak =
-      Tweak
-      |> Repo.get(id)
-      |> Repo.preload([:user])
+    tweak = Tweaks.get_tweak!(id)
 
     if current_user.id != tweak.user.id do
       raise WrongUserError, conn: conn, current_user: current_user, resource_owner: tweak.user
@@ -76,8 +70,6 @@ defmodule AtomTweaksWeb.TweakController do
   """
   @spec new(Plug.Conn.t(), Map.t()) :: Plug.Conn.t()
   def new(conn, params)
-
-  def new(conn = %{assigns: %{current_user: nil}}, _), do: raise(NotLoggedInError, conn: conn)
 
   def new(conn, _params) do
     changeset = Tweaks.change_tweak(%Tweak{})
@@ -119,7 +111,7 @@ defmodule AtomTweaksWeb.TweakController do
 
     case Repo.update(changeset) do
       {:ok, tweak} ->
-        redirect(conn, to: tweak_path(conn, :show, tweak))
+        redirect(conn, to: Routes.tweak_path(conn, :show, tweak))
 
       {:error, changeset} ->
         render(

@@ -4,12 +4,12 @@
     = @tweak.title
   .d-inline-block.mx-2
     = if is_nil(@tweak.parent) do
-      - author_link = safe_link(@tweak.user.name, to: user_path(@conn, :show, @tweak.user.name))
+      - author_link = safe_link(@tweak.user.name, to: Routes.user_path(@conn, :show, @tweak.user.name))
       = raw(gettext("Created by %{author_link}", author_link: author_link))
     - else
       - link_text = "#{@tweak.forked_from.user.name} / #{@tweak.forked_from.title}"
-      - original_link = safe_link(link_text, to: tweak_path(@conn, :show, @tweak.forked_from))
+      - original_link = safe_link(link_text, to: Routes.tweak_path(@conn, :show, @tweak.forked_from))
       = raw(gettext("Forked from %{original_link}", original_link: original_link))
 
-  = render("fork_button.html", assigns)
-  = render("star_button.html", assigns)
+  = render("_fork_button.html", assigns)
+  = render("_star_button.html", assigns)

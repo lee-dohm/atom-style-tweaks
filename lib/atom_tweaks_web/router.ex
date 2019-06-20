@@ -2,16 +2,21 @@ defmodule AtomTweaksWeb.Router do
   @moduledoc """
   Routes requests to the website to the appropriate controller.
   """
+
   use AtomTweaksWeb, :router
 
   use Plug.ErrorHandler
   use Sentry.Plug
 
-  require Logger
-
   alias AtomTweaksWeb.HerokuMetadata
   alias AtomTweaksWeb.SlidingSessionTimeout
+  alias AtomTweaksWeb.TokenAuthentication
 
+  require Logger
+
+  @doc """
+  Plug pipeline for requests sent from a browser.
+  """
   pipeline :browser do
     plug(:accepts, ["html"])
     plug(:fetch_session)
@@ -25,24 +30,32 @@ defmodule AtomTweaksWeb.Router do
     plug(Plug.Ribbon, [:dev, :staging, :test])
   end
 
+  @doc """
+  Plug pipeline for requests sent to the API.
+  """
   pipeline :api do
     plug(:accepts, ["json"])
+    plug(TokenAuthentication)
   end
 
-  scope "/auth", AtomTweaksWeb do
-    pipe_through(:browser)
-
-    get("/", AuthController, :index)
-    get("/callback", AuthController, :callback)
-    get("/logout", AuthController, :delete)
+  @doc """
+  Plug pipeline of additional checks for routes that require a site admin.
+  """
+  pipeline :admin_checks do
+    plug(:ensure_authenticated_user)
+    plug(:ensure_site_admin)
   end
 
   scope "/", AtomTweaksWeb do
-    # Use the default browser stack
     pipe_through(:browser)
 
     get("/", PageController, :index)
     get("/about", PageController, :about)
+    get("/release-notes", PageController, :release_notes)
+
+    get("/auth", AuthController, :index)
+    get("/auth/callback", AuthController, :callback)
+    get("/auth/logout", AuthController, :delete)
 
     resources("/tweaks", TweakController, except: [:index]) do
       resources("/forks", ForkController, only: [:create, :index])
@@ -55,20 +68,32 @@ defmodule AtomTweaksWeb.Router do
       get("/stars", StarController, :index)
     end
 
+    # Obsolete routes used to redirect to new URLs
     get("/users/:user_id/tweaks/:tweak_id", ObsoleteRouteController, :long_tweak_path_to_short)
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", AtomTweaksWeb do
-  #   pipe_through :api
-  # end
+  scope("/admin", AtomTweaksWeb.Admin, as: :admin) do
+    pipe_through([:browser, :admin_checks])
 
-  # Fetch the current user from the session and add it to `conn.assigns`. This
-  # will allow you to have access to the current user in your views with
-  # `@current_user`.
+    resources("/release-notes", ReleaseNoteController)
+  end
+
+  scope "/api", AtomTweaksWeb.Api, as: :api do
+    pipe_through(:api)
+
+    resources("/release-notes", ReleaseNoteController, only: [:create])
+  end
+
+  @doc """
+  Fetch the current user from the session and add it to `conn.assigns`.
+
+  This will allows access to the current user in views with `@current_user`.
+  """
+  def assign_current_user(conn, opts)
+
   def assign_current_user(conn, _) do
     user = get_session(conn, :current_user)
-    Logger.debug(fn -> "Current user = #{inspect(user)}" end)
+    Logger.debug("Current user: #{inspect(user)}")
 
     assign(conn, :current_user, user)
   end

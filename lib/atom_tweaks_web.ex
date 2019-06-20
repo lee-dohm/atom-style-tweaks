@@ -23,12 +23,15 @@ defmodule AtomTweaksWeb do
       use Phoenix.Controller, namespace: AtomTweaksWeb
 
       alias AtomTweaks.Repo
+      alias AtomTweaksWeb.Router.Helpers, as: Routes
+
       import Ecto
       import Ecto.Query
 
+      import AtomTweaksWeb.ApiHelpers
       import AtomTweaksWeb.ControllerHelpers
       import AtomTweaksWeb.Gettext
-      import AtomTweaksWeb.Router.Helpers
+      import AtomTweaksWeb.PlugHelpers
     end
   end
 
@@ -47,8 +50,9 @@ defmodule AtomTweaksWeb do
       # Use all HTML functionality (forms, tags, etc)
       use Phoenix.HTML
 
+      alias AtomTweaksWeb.Router.Helpers, as: Routes
+
       # Built-in view helpers
-      import AtomTweaksWeb.Router.Helpers
       import AtomTweaksWeb.ErrorHelpers
       import AtomTweaksWeb.Gettext
 
@@ -70,6 +74,8 @@ defmodule AtomTweaksWeb do
   def router do
     quote do
       use Phoenix.Router
+
+      import AtomTweaksWeb.PlugHelpers
     end
   end
 

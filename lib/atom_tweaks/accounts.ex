@@ -6,6 +6,7 @@ defmodule AtomTweaks.Accounts do
 
   alias Ecto.Changeset
 
+  alias AtomTweaks.Accounts.Token
   alias AtomTweaks.Accounts.User
   alias AtomTweaks.Repo
   alias AtomTweaks.Tweaks.Star
@@ -33,6 +34,45 @@ defmodule AtomTweaks.Accounts do
   @spec count_tweaks(User.t()) :: non_neg_integer
   def count_tweaks(user = %User{}) do
     Repo.one(from(t in Tweak, where: t.created_by == ^user.id, select: count(t.created_by)))
+  end
+
+  @doc """
+  Create a changeset from the given `token`.
+  """
+  @spec change_token(Token.t()) :: Changeset.t()
+  def change_token(token = %Token{}) do
+    Token.changeset(token, %{})
+  end
+
+  @doc """
+  Creates a token for a user.
+  """
+  @spec create_token(Map.t()) :: {:ok, Token.t()} | {:error, Changeset.t()}
+  def create_token(attrs \\ %{}) do
+    %Token{}
+    |> Token.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  @doc """
+  Deletes the given `token`.
+  """
+  @spec delete_token(Token.t()) :: {:ok, Token.t()} | {:error, Changeset.t()}
+  def delete_token(token = %Token{}) do
+    token
+    |> change_token()
+    |> Repo.delete()
+  end
+
+  @doc """
+  Gets the token from the signed token code.
+  """
+  @spec get_token(String.t()) :: {:ok, Token.t()} | {:error, :invalid}
+  def get_token(code) when is_binary(code) do
+    case Phoenix.Token.verify(AtomTweaksWeb.Endpoint, Token.salt(), code, max_age: :infinity) do
+      {:ok, id} -> {:ok, Repo.get(Token, id)}
+      error -> error
+    end
   end
 
   @doc """

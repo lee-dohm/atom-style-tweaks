@@ -146,7 +146,7 @@ defmodule AtomTweaksWeb.TweakControllerTest do
         |> html_response(:ok)
         |> find("a.btn.btn-danger")
 
-      path = tweak_path(context.conn, :show, context.tweak)
+      path = Routes.tweak_path(context.conn, :show, context.tweak)
 
       assert attribute(button, "href") == [path]
     end
@@ -323,10 +323,10 @@ defmodule AtomTweaksWeb.TweakControllerTest do
         "tweak" => tweak_params
       }
 
-      conn = put(context.conn, tweak_path(context.conn, :update, context.tweak), params)
+      conn = put(context.conn, Routes.tweak_path(context.conn, :update, context.tweak), params)
       updated_tweak = Tweaks.get_tweak!(context.tweak.id)
 
-      assert redirected_to(conn, :found) == tweak_path(conn, :show, context.tweak)
+      assert redirected_to(conn, :found) == Routes.tweak_path(conn, :show, context.tweak)
       assert updated_tweak.title == tweak_params.title
       assert updated_tweak.description.text == tweak_params.description.text
     end
@@ -340,7 +340,7 @@ defmodule AtomTweaksWeb.TweakControllerTest do
         "tweak" => tweak_params
       }
 
-      conn = put(context.conn, tweak_path(context.conn, :update, context.tweak), params)
+      conn = put(context.conn, Routes.tweak_path(context.conn, :update, context.tweak), params)
       updated_tweak = Tweaks.get_tweak!(context.tweak.id)
 
       assert html_response(conn, :ok)

@@ -10,9 +10,33 @@ defmodule AtomTweaks.Factory do
   alias FakerElixir.Internet
   alias FakerElixir.Lorem
 
+  alias AtomTweaks.Accounts.Token
   alias AtomTweaks.Accounts.User
   alias AtomTweaks.Markdown
+  alias AtomTweaks.Releases.Note
   alias AtomTweaks.Tweaks.Tweak
+
+  @doc """
+  Generates realistic-looking `AtomTweaks.Releases.Note` records.
+  """
+  def note_factory do
+    %Note{
+      description: %Markdown{text: Lorem.sentences()},
+      detail_url: Internet.url(),
+      title: Lorem.words(2..4)
+    }
+  end
+
+  @doc """
+  Generates realistic-looking `AtomTweaks.Accounts.Token` records.
+  """
+  def token_factory do
+    %Token{
+      description: Lorem.words(2..4),
+      scopes: ["release_notes/write"],
+      user: insert(:user)
+    }
+  end
 
   @doc """
   Generates realistic-looking `AtomTweaks.Tweaks.Tweak` records.
@@ -37,5 +61,14 @@ defmodule AtomTweaks.Factory do
       github_id: Helper.pick(1..10_000),
       avatar_url: Avatar.robohash()
     }
+  end
+
+  @doc """
+  For when you need params for a given record to supply to an API.
+  """
+  def json_params_for(key, attrs \\ []) do
+    key
+    |> params_for(attrs)
+    |> Jason.encode!()
   end
 end

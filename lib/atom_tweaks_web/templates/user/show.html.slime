@@ -1,15 +1,15 @@
 .col-3.float-left.p-2
-  = render(@view_module, "user_info.html", assigns)
+  = render(@view_module, "_user_info.html", assigns)
 .col-9.float-left.p-2
-  = render(@view_module, "underline_nav.html", Map.put(assigns, :nav_selected, :tweaks))
+  = render(@view_module, "_underline_nav.html", Map.put(assigns, :nav_selected, :tweaks))
   = if !is_nil(@current_user) && @current_user.name == @user.name do
     .pb-3.clearfix
-      a#new-tweak-button.btn.btn-primary.float-right href="#{tweak_path(@conn, :new)}"
+      a#new-tweak-button.btn.btn-primary.float-right href="#{Routes.tweak_path(@conn, :new)}"
         = octicon(:beaker)
         '
         = gettext "New"
   .Box
     = if Enum.empty?(@tweaks) do
-      = render(@view_module, "blankslate.html", assigns)
+      = render(@view_module, "_blankslate.html", assigns)
     - else
-      = render_many(@tweaks, @view_module, "table_row.html", Map.put(assigns, :as, :tweak))
+      = render_many(@tweaks, @view_module, "_table_row.html", Map.put(assigns, :as, :tweak))

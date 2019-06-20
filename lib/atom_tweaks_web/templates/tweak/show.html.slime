@@ -1,10 +1,10 @@
-= render(LayoutView, "tweak_title.html", assigns)
+= render(LayoutView, "_tweak_title.html", assigns)
 .border.p-2
   .pb-2.clearfix
     - time_ago = safe_to_string(relative_time(@tweak.updated_at))
     = raw(gettext("Last updated about %{time_ago}", time_ago: time_ago))
-    = render_if(@current_user && @current_user.name == @tweak.user.name, "edit_tweak_button.html", assigns)
-    = render("copy_tweak_button.html", assigns)
+    = render_if(@current_user && @current_user.name == @tweak.user.name, "_edit_tweak_button.html", assigns)
+    = render("_copy_tweak_button.html", assigns)
   = render_code(@tweak)
   .tweak-description.markdown-body
     = @tweak.description

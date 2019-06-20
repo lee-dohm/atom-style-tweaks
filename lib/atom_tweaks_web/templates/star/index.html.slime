@@ -1,9 +1,9 @@
 .col-3.float-left.p-2
-  = render(UserView, "user_info.html", assigns)
+  = render(UserView, "_user_info.html", assigns)
 .col-9.float-left.p-2
-  = render(UserView, "underline_nav.html", Map.put(assigns, :nav_selected, :stars))
+  = render(UserView, "_underline_nav.html", Map.put(assigns, :nav_selected, :stars))
   .Box
     = if Enum.empty?(@stars) do
-      = render(@view_module, "blankslate.html", assigns)
+      = render(@view_module, "_blankslate.html", assigns)
     - else
-      = render_many(@stars, @view_module, "table_row.html", Map.put(assigns, :as, :star))
+      = render_many(@stars, @view_module, "_table_row.html", Map.put(assigns, :as, :star))

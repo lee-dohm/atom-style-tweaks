@@ -1,0 +1,5 @@
+.Box-row.clearfix
+  a.Box-row-link.title href=@note.detail_url
+    = @note.title
+  div
+    = @note.description

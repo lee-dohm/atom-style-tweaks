@@ -22,13 +22,21 @@ defmodule Support.Setup do
   import Phoenix.ConnTest
 
   import AtomTweaks.Factory
-  import AtomTweaksWeb.Router.Helpers
 
   alias AtomTweaks.Accounts
   alias AtomTweaks.Tweaks
+  alias AtomTweaksWeb.Router.Helpers, as: Routes
   alias Plug.Test, as: PlugTest
 
   @endpoint AtomTweaksWeb.Endpoint
+
+  def insert_release_note(context)
+
+  def insert_release_note(_context) do
+    note = insert(:note)
+
+    {:ok, note: note}
+  end
 
   @doc """
   Inserts a site admin user into the database.
@@ -197,6 +205,84 @@ defmodule Support.Setup do
   end
 
   @doc """
+  Requests the admin release note edit page.
+
+  ## Inputs
+
+  * `context.conn`
+  * `context.note`
+
+  ## Outputs
+
+  * `context.conn`
+  """
+  def request_admin_release_note_edit(context)
+
+  def request_admin_release_note_edit(%{conn: conn, note: note}) do
+    conn = get(conn, Routes.admin_release_note_path(conn, :edit, note))
+
+    {:ok, conn: conn}
+  end
+
+  @doc """
+  Requests the admin release notes index page.
+
+  ## Inputs
+
+  * `context.conn`
+
+  ## Outputs
+
+  * `context.conn`
+  """
+  def request_admin_release_note_index(context)
+
+  def request_admin_release_note_index(%{conn: conn}) do
+    conn = get(conn, Routes.admin_release_note_path(conn, :index))
+
+    {:ok, conn: conn}
+  end
+
+  @doc """
+  Requests the admin release note new page.
+
+  ## Inputs
+
+  * `context.conn`
+
+  ## Outputs
+
+  * `context.conn`
+  """
+  def request_admin_release_note_new(context)
+
+  def request_admin_release_note_new(%{conn: conn}) do
+    conn = get(conn, Routes.admin_release_note_path(conn, :new))
+
+    {:ok, conn: conn}
+  end
+
+  @doc """
+  Requests the admin release note show page.
+
+  ## Inputs
+
+  * `context.conn`
+  * `context.note`
+
+  ## Outputs
+
+  * `context.conn`
+  """
+  def request_admin_release_note_show(context)
+
+  def request_admin_release_note_show(%{conn: conn, note: note}) do
+    conn = get(conn, Routes.admin_release_note_path(conn, :show, note))
+
+    {:ok, conn: conn}
+  end
+
+  @doc """
   Creates a new user in the database to request a page.
 
   ## Outputs
@@ -231,7 +317,7 @@ defmodule Support.Setup do
       }) do
     params = %{"name" => user.name, "tweak" => tweak_params}
 
-    conn = post(conn, tweak_path(conn, :create), params)
+    conn = post(conn, Routes.tweak_path(conn, :create), params)
 
     {:ok, conn: conn}
   end
@@ -239,7 +325,7 @@ defmodule Support.Setup do
   def request_create_tweak(%{conn: conn, current_user: user, tweak_params: tweak_params}) do
     params = %{"name" => user.name, "tweak" => tweak_params}
 
-    conn = post(conn, tweak_path(conn, :create), params)
+    conn = post(conn, Routes.tweak_path(conn, :create), params)
 
     {:ok, conn: conn}
   end
@@ -247,7 +333,7 @@ defmodule Support.Setup do
   def request_create_tweak(%{conn: conn, tweak_params: tweak_params, user: user}) do
     params = %{"name" => user.name, "tweak" => tweak_params}
 
-    conn = post(conn, tweak_path(conn, :create), params)
+    conn = post(conn, Routes.tweak_path(conn, :create), params)
 
     {:ok, conn: conn}
   end
@@ -267,7 +353,7 @@ defmodule Support.Setup do
   def request_edit_tweak(context)
 
   def request_edit_tweak(%{conn: conn, tweak: tweak}) do
-    conn = get(conn, tweak_path(conn, :edit, tweak))
+    conn = get(conn, Routes.tweak_path(conn, :edit, tweak))
 
     {:ok, conn: conn}
   end
@@ -286,7 +372,7 @@ defmodule Support.Setup do
   def request_new_tweak(context)
 
   def request_new_tweak(%{conn: conn}) do
-    conn = get(conn, tweak_path(conn, :new))
+    conn = get(conn, Routes.tweak_path(conn, :new))
 
     {:ok, conn: conn}
   end
@@ -306,7 +392,7 @@ defmodule Support.Setup do
   def request_show_tweak(context)
 
   def request_show_tweak(%{conn: conn, tweak: tweak}) do
-    conn = get(conn, tweak_path(conn, :show, tweak))
+    conn = get(conn, Routes.tweak_path(conn, :show, tweak))
 
     {:ok, conn: conn}
   end
@@ -329,14 +415,14 @@ defmodule Support.Setup do
   def request_show_user(context)
 
   def request_show_user(%{conn: conn, current_user: _, request_user: user}) do
-    path = user_path(conn, :show, user.name)
+    path = Routes.user_path(conn, :show, user.name)
     conn = get(conn, path)
 
     {:ok, conn: conn, path: path}
   end
 
   def request_show_user(%{conn: conn, user: user}) do
-    path = user_path(conn, :show, user.name)
+    path = Routes.user_path(conn, :show, user.name)
     conn = get(conn, path)
 
     {:ok, conn: conn, path: path}
@@ -358,7 +444,7 @@ defmodule Support.Setup do
   def request_stars(context)
 
   def request_stars(%{conn: conn, user: user}) do
-    path = user_star_path(conn, :index, user)
+    path = Routes.user_star_path(conn, :index, user)
     conn = get(conn, path)
 
     {:ok, conn: conn, path: path}
@@ -367,14 +453,14 @@ defmodule Support.Setup do
   def request_forks(context)
 
   def request_forks(%{conn: conn, forked_tweak: forked_tweak}) do
-    path = tweak_fork_path(conn, :index, forked_tweak)
+    path = Routes.tweak_fork_path(conn, :index, forked_tweak)
     conn = get(conn, path)
 
     {:ok, conn: conn, path: path}
   end
 
   def request_forks(%{conn: conn, tweak: tweak}) do
-    path = tweak_fork_path(conn, :index, tweak)
+    path = Routes.tweak_fork_path(conn, :index, tweak)
     conn = get(conn, path)
 
     {:ok, conn: conn, path: path}

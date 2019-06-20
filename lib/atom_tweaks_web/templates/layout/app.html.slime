@@ -8,10 +8,10 @@ html lang="en"
     meta name="author" content="Lee Dohm"
 
     title = gettext "Atom Tweaks"
-    link rel="stylesheet" href="#{static_path(@conn, "/css/app.css")}"
+    link rel="stylesheet" href="#{Routes.static_path(@conn, "/css/app.css")}"
 
     = PageMetadata.render(@conn)
-    = render("google_analytics.html", assigns)
+    = render("_google_analytics.html", assigns)
 
   body
     header.masthead
@@ -21,7 +21,7 @@ html lang="en"
           = gettext "Atom Tweaks"
 
         nav.masthead-nav
-          = render("login_button.html", assigns)
+          = render("_login_button.html", assigns)
 
     .container.clearfix
       = if get_flash(@conn, :info) do
@@ -36,10 +36,14 @@ html lang="en"
     footer.container.clearfix.my-5
       .col-6.mx-auto
         .border-top.text-center.small.my-2.pt-2
-          = link(gettext("About"), to: page_path(@conn, :about), id: "about-link")
-          span.px-3
-          = github_link(id: "github-link")
+          .d-flex.flex-justify-center
+            .px-1
+              = link(gettext("About"), to: Routes.page_path(@conn, :about), id: "about-link")
+            .px-5
+              = github_link(id: "github-link")
+            .px-1
+              = link(gettext("Release notes"), to: Routes.page_path(@conn, :release_notes), id: "release-notes-link")
         .text-center.small.my-2
           = code_with_heart()
 
-    script src="#{static_path(@conn, "/js/app.js")}"
+    script src="#{Routes.static_path(@conn, "/js/app.js")}"

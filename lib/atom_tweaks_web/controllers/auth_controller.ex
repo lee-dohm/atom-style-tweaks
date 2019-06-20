@@ -13,6 +13,9 @@ defmodule AtomTweaksWeb.AuthController do
   @doc """
   Signs the user in by redirecting to the GitHub authorization URL.
   """
+  @spec index(Plug.Conn.t(), Map.t()) :: Plug.Conn.t()
+  def index(conn, params)
+
   def index(conn, %{"from" => return_to}) do
     Logger.debug(fn -> "Authorize user and return to #{return_to}" end)
 
@@ -31,15 +34,19 @@ defmodule AtomTweaksWeb.AuthController do
   Signs the user out by dropping the session, thereby throwing away the access
   token, and redirecting to the home page.
   """
+  @spec delete(Plug.Conn.t(), Map.t()) :: Plug.Conn.t()
   def delete(conn, _params) do
     conn
     |> configure_session(drop: true)
-    |> redirect(to: page_path(conn, :index))
+    |> redirect(to: Routes.page_path(conn, :index))
   end
 
   @doc """
   Handles the OAuth2 callback from GitHub.
   """
+  @spec callback(Plug.Conn.t(), Map.t()) :: Plug.Conn.t()
+  def callback(conn, params)
+
   def callback(conn, %{"code" => code}) do
     token = GitHub.get_token!(code: code)
     github_user = get_user!(token)
@@ -71,6 +78,6 @@ defmodule AtomTweaksWeb.AuthController do
     }
   end
 
-  defp return_to_path(conn, nil), do: page_path(conn, :index)
+  defp return_to_path(conn, nil), do: Routes.page_path(conn, :index)
   defp return_to_path(_, path), do: path
 end

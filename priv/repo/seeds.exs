@@ -11,6 +11,7 @@
 # and so on) as they will fail if something goes wrong.
 
 alias AtomTweaks.Accounts.User
+alias AtomTweaks.Releases.Note
 alias AtomTweaks.Repo
 alias AtomTweaks.Tweaks.Tweak
 
@@ -35,6 +36,16 @@ if System.get_env("MIX_ENV") != "test" do
     unless Repo.get_by(Tweak, title: tweak.title) do
       tweak = Map.put_new(tweak, :created_by, user.id)
       Repo.insert!(Tweak.changeset(%Tweak{}, tweak))
+    end
+  end)
+
+  notes = [
+    %{description: "Test description", detail_url: "https://github.com/lee-dohm/atom-style-tweaks", title: "Test"}
+  ]
+
+  Enum.each(notes, fn note ->
+    unless Repo.get_by(Note, title: note.title) do
+      Repo.insert!(Note.changeset(%Note{}, note))
     end
   end)
 end
