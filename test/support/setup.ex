@@ -504,6 +504,17 @@ defmodule Support.Setup do
     {:ok, conn: conn, path: path}
   end
 
+  @doc """
+  Requests the home page.
+  """
+  def request_page_index(context)
+
+  def request_page_index(%{conn: conn}) do
+    conn = get(conn, Routes.page_path(conn, :index))
+
+    {:ok, conn: conn}
+  end
+
   def valid_tweak_params(_context) do
     {:ok, tweak_params: params_for(:tweak)}
   end

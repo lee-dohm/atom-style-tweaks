@@ -41,4 +41,13 @@ defmodule Support.HTML do
   def render(safe) do
     HTML.safe_to_string(safe)
   end
+
+  @doc """
+  Determines whether the `menu_item` is selected.
+  """
+  def selected?(menu_item) do
+    class_list = Floki.attribute(menu_item, "class")
+
+    length(class_list) == 1 && hd(class_list) =~ ~r/\bselected\b/
+  end
 end

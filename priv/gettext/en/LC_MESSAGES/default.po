@@ -210,11 +210,6 @@ msgid "Created by %{stargazer_link} about %{time_ago}"
 msgstr ""
 
 #, elixir-format
-#: lib/atom_tweaks_web/templates/layout/_login_button.html.slime:1
-msgid "Sign Out"
-msgstr ""
-
-#, elixir-format
 #: lib/atom_tweaks_web/templates/user/_table_row.html.slime:1
 msgid "Created about %{time_ago}"
 msgstr ""
@@ -274,4 +269,9 @@ msgstr ""
 #, elixir-format
 #: lib/atom_tweaks_web/templates/admin/release_note/edit.html.slime:1
 msgid "Update release note"
+msgstr ""
+
+#, elixir-format
+#: lib/atom_tweaks_web/templates/layout/_login_button.html.slime:1
+msgid "Sign out"
 msgstr ""
