@@ -5,12 +5,12 @@ workflow "Generate documentation on push" {
 
 workflow "Validate release notes on pull request" {
   on = "pull_request"
-  resolves = ["Debug info", "Validate release notes"]
+  resolves = ["Debug info", "Extract release notes"]
 }
 
 workflow "Post release notes on pull request" {
   on = "pull_request"
-  resolves = ["Debug info", "Post release notes"]
+  resolves = ["Post release notes"]
 }
 
 action "Debug info" {
@@ -41,30 +41,23 @@ action "Publish docs" {
   }
 }
 
-action "Only merged pull requests" {
-  uses = "actions/bin/filter@master"
-  args = "merged true"
-}
-
 action "Except dependency pull requests" {
   uses = "actions/bin/filter@master"
   args = "not label 'dependencies :gear:'"
 }
 
 action "Extract release notes" {
+  needs = ["Except dependency pull requests"]
   uses = "lee-dohm/extract-release-notes@master"
 }
 
-action "Post release notes" {
-  needs = ["Only merged pull requests", "Except dependency pull requests", "Extract release notes"]
-  uses = "./.github/post-release-notes"
-  secrets = ["ATOM_TWEAKS_API_KEY"]
+action "Only merged pull requests" {
+  uses = "actions/bin/filter@master"
+  args = "merged true"
 }
 
-action "Validate release notes" {
-  needs = ["Except dependency pull requests", "Extract release notes"]
-  uses = "actions/bin/sh@master"
-  args = [
-    "[ ! -z \"$(cat \"$GITHUB_WORKSPACE/__RELEASE_NOTES.md\")\"]"
-  ]
+action "Post release notes" {
+  needs = ["Only merged pull requests", "Extract release notes"]
+  uses = "./.github/post-release-notes"
+  secrets = ["ATOM_TWEAKS_API_KEY"]
 }
