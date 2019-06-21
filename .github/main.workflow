@@ -1,6 +1,16 @@
-workflow "Generate documentation on push to master" {
+workflow "Generate documentation on push" {
   on = "push"
-  resolves = ["Debug info", "Publish docs"]
+  resolves = ["Publish docs"]
+}
+
+workflow "Validate release notes on pull request" {
+  on = "pull_request"
+  resolves = ["Debug info", "Validate release notes"]
+}
+
+workflow "Post release notes on pull request" {
+  on = "pull_request"
+  resolves = ["Debug info", "Post release notes"]
 }
 
 action "Debug info" {
@@ -29,4 +39,32 @@ action "Publish docs" {
     PUBLISH_DIR = "./doc"
     PUBLISH_BRANCH = "gh-pages"
   }
+}
+
+action "Only merged pull requests" {
+  uses = "actions/bin/filter@master"
+  args = "merged true"
+}
+
+action "Except dependency pull requests" {
+  uses = "actions/bin/filter@master"
+  args = "not label 'dependencies :gear:'"
+}
+
+action "Extract release notes" {
+  uses = "lee-dohm/extract-release-notes@master"
+}
+
+action "Post release notes" {
+  needs = ["Only merged pull requests", "Except dependency pull requests", "Extract release notes"]
+  uses = "./.github/post-release-notes"
+  secrets = ["ATOM_TWEAKS_API_KEY"]
+}
+
+action "Validate release notes" {
+  needs = ["Except dependency pull requests", "Extract release notes"]
+  uses = "actions/bin/sh@master"
+  args = [
+    "[ ! -z \"$(cat \"$GITHUB_WORKSPACE/__RELEASE_NOTES.md\")\"]"
+  ]
 }

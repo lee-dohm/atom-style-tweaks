@@ -1,0 +1,20 @@
+#!/usr/bin/env elixir
+
+require Logger
+
+contents =
+  System.argv()
+  |> hd()
+  |> File.read!()
+  |> String.trim()
+
+no_notes_patterns =
+  [
+    ~R/\Afalse\z/im,
+    ~R/\Ano(\s+release)?\s+note(s)?\z/im
+  ]
+
+if Enum.any?(no_notes_patterns, fn pattern -> contents =~ pattern end) do
+  Logger.info("No release notes to post")
+  Kernel.exit({:shutdown, 78})
+end
