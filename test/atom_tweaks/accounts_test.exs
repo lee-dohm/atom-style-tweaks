@@ -99,4 +99,15 @@ defmodule AtomTweaks.AccountsTest do
       assert returned.scopes == token.scopes
     end
   end
+
+  describe "list_tokens/1" do
+    test "returns the tokens for the user", _context do
+      user = insert(:user)
+      tokens = insert_list(3, :token, user: user)
+      returned = Accounts.list_tokens(user)
+
+      assert length(tokens) == length(returned)
+      assert Enum.all?(tokens, fn token -> token in returned end)
+    end
+  end
 end

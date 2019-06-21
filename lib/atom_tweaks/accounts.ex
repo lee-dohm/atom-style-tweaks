@@ -106,6 +106,16 @@ defmodule AtomTweaks.Accounts do
   end
 
   @doc """
+  Lists all tokens owned by `user`.
+  """
+  @spec list_tokens(User.t()) :: [Token.t()] | no_return
+  def list_tokens(user = %User{}) do
+    user
+    |> Repo.preload(tokens: [:user])
+    |> Map.fetch!(:tokens)
+  end
+
+  @doc """
   Lists all users in the database.
   """
   @spec list_users() :: [User.t()]
