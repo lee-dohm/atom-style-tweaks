@@ -29,7 +29,7 @@ defmodule AtomTweaksWeb.TokenController do
     changeset = Token.changeset(%Token{}, params)
 
     case Repo.insert(changeset) do
-      {:ok, token} ->
+      {:ok, _token} ->
         redirect(conn, to: Routes.user_token_path(conn, :index, user))
 
       {:error, changeset} ->
