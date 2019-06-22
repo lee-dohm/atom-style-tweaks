@@ -66,6 +66,7 @@ defmodule AtomTweaksWeb.Router do
 
     resources("/users", UserController, only: [:show]) do
       get("/stars", StarController, :index)
+      resources("/tokens", TokenController, only: [:create, :delete, :index, :new])
     end
 
     # Obsolete routes used to redirect to new URLs

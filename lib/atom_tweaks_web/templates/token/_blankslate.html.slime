@@ -1,0 +1,3 @@
+.blankslate
+  = mega_octicon(:"credit-card", class: "blankslate-icon")
+  h3 = gettext "You haven't created any tokens yet."

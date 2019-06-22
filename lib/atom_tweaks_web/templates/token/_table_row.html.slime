@@ -1,0 +1,4 @@
+.Box-row.clearfix
+  .pl-2.overflow-hidden.lh-condensed
+    .title
+      = @token.description
