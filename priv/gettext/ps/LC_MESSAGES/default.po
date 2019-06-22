@@ -111,6 +111,7 @@ msgid "Init Tweaks"
 msgstr "Ḭṇḭṭ Ṫẁḛαḳṡ"
 
 #, elixir-format
+#: lib/atom_tweaks_web/templates/token/index.html.slime:1
 #: lib/atom_tweaks_web/templates/user/show.html.slime:1
 msgid "New"
 msgstr "Ṅḛẁ"
@@ -253,6 +254,7 @@ msgstr "Ṅṓ ṛḛḽḛαṡḛ ṇṓṭḛṡ ϝṓṛ ẏṓṵ ṭṓ �
 #, elixir-format
 #: lib/atom_tweaks_web/templates/admin/release_note/_release_info.html.slime:1
 #: lib/atom_tweaks_web/templates/admin/release_note/show.html.slime:1
+#: lib/atom_tweaks_web/templates/page/_release_notes_table_row.html.slime:1
 msgid "Released about %{time_ago}"
 msgstr "Ṛḛḽḛαṡḛḍ αḅṓṵṭ %{time_ago}"
 
@@ -275,3 +277,23 @@ msgstr "Ṳṗḍαṭḛ ṛḛḽḛαṡḛ ṇṓṭḛ"
 #: lib/atom_tweaks_web/templates/layout/_login_button.html.slime:1
 msgid "Sign out"
 msgstr "Ṣḭḡṇ ṓṵṭ"
+
+#, elixir-format
+#: lib/atom_tweaks_web/templates/token/new.html.slime:1
+msgid "Description"
+msgstr "Ḍḛṡͼṛḭṗṭḭṓṇ"
+
+#, elixir-format
+#: lib/atom_tweaks_web/templates/token/new.html.slime:1
+msgid "Save new token"
+msgstr "Ṣαṽḛ ṇḛẁ ṭṓḳḛṇ"
+
+#, elixir-format
+#: lib/atom_tweaks_web/templates/user/_underline_nav.html.slime:1
+msgid "Tokens"
+msgstr "Ṫṓḳḛṇṡ"
+
+#, elixir-format
+#: lib/atom_tweaks_web/templates/token/_blankslate.html.slime:1
+msgid "You haven't created any tokens yet."
+msgstr "Ŷṓṵ ḥαṽḛṇ'ṭ ͼṛḛαṭḛḍ αṇẏ ṭṓḳḛṇṡ ẏḛṭ."

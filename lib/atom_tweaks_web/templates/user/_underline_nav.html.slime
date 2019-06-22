@@ -1,5 +1,5 @@
 = underline_nav(class: "mb-3") do
   = underline_nav_item(gettext("Tweaks"), Routes.user_path(@conn, :show, @user), id: "tweaks-nav", selected: @nav_selected == :tweaks, counter: @tweak_count)
   = underline_nav_item(gettext("Stars"), Routes.user_star_path(@conn, :index, @user), id: "stars-nav", selected: @nav_selected == :stars, counter: @star_count)
-  = if @current_user.site_admin && @current_user.id == @user.id do
+  = if @current_user && @current_user.site_admin && @current_user.id == @user.id do
     = underline_nav_item(gettext("Tokens"), Routes.user_token_path(@conn, :index, @user), id: "token-nav", selected: @nav_selected == :tokens)

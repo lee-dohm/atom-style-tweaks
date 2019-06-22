@@ -1,0 +1,10 @@
+.col-3.float-left.p-2
+  = render(UserView, "_user_info.html", assigns)
+.col-9.float-left.p-2
+  = render(UserView, "_underline_nav.html", Map.put(assigns, :nav_selected, :tokens))
+  = form_for @changeset, Routes.user_token_path(@conn, :create, @user), fn f ->
+    = input(f, :description, class: "input-lg", placeholder: gettext("Description"))
+    = hidden_input(f, :scopes)
+
+    .form-actions
+      = submit(gettext("Save new token"), class: "btn btn-primary")
