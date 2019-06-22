@@ -14,6 +14,10 @@ defmodule AtomTweaksWeb.TokenController do
   plug(:ensure_authenticated_user)
   plug(:ensure_site_admin)
 
+  @doc """
+  Creates a new token.
+  """
+  @spec create(Plug.Conn.t(), Map.t()) :: Plug.Conn.t()
   def create(conn, %{"token" => token_params, "user_id" => name}) do
     user = Accounts.get_user!(name)
 
@@ -41,6 +45,10 @@ defmodule AtomTweaksWeb.TokenController do
     end
   end
 
+  @doc """
+  Displays the list of tokens for a user.
+  """
+  @spec index(Plug.Conn.t(), Map.t()) :: Plug.Conn.t()
   def index(conn, %{"user_id" => name}) do
     user = Accounts.get_user!(name)
 
@@ -60,6 +68,10 @@ defmodule AtomTweaksWeb.TokenController do
     )
   end
 
+  @doc """
+  Displays the new token form.
+  """
+  @spec new(Plug.Conn.t(), Map.t()) :: Plug.Conn.t()
   def new(conn, %{"user_id" => name}) do
     user = Accounts.get_user!(name)
 
