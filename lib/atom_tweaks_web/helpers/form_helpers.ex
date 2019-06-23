@@ -1,6 +1,7 @@
 defmodule AtomTweaksWeb.FormHelpers do
   @moduledoc """
-  Functions for more easily building forms.
+  Functions for building HTML forms, specifically designed to work with
+  [GitHub Primer](https://primer.style).
   """
   use Phoenix.HTML
 
@@ -9,32 +10,16 @@ defmodule AtomTweaksWeb.FormHelpers do
   alias AtomTweaks.Markdown
   alias AtomTweaksWeb.ErrorHelpers
 
-  def form_group(errors, field, do: block),
-    do: form_group(errors_for_field(errors, field), do: block)
-
-  def form_group([], do: block) do
-    content_tag(:dl, class: "form-group") do
-      content_tag(:dd, block)
-    end
-  end
-
-  def form_group([error | _], do: block) do
-    content_tag(:dl, class: "form-group errored") do
-      [
-        content_tag(:dd, block),
-        content_tag(:dd, ErrorHelpers.translate_error(error), class: "error")
-      ]
-    end
-  end
-
   @doc """
   Displays the appropriate input control for the given field.
 
   ## Options
 
   * `:using` -- override the built-in selection of input field based on data type. Can be any of the
-    `Phoenix.HTML.Form` input function names or the special value `:markdown` which displays a
-    specially-formatted `textarea`
+    `Phoenix.HTML.Form` input function names or the following special values:
+      * `:markdown` -- displays a specially-formatted `textarea` suitable for entering or editing
+        Markdown text
+      * `:tweak_type` -- displays a drop-down list of available `AtomTweaks.Tweaks.Tweak` types
 
   See:
   [Dynamic forms with Phoenix](http://blog.plataformatec.com.br/2016/09/dynamic-forms-with-phoenix/)
@@ -117,7 +102,4 @@ defmodule AtomTweaksWeb.FormHelpers do
       end
     end)
   end
-
-  defp errors_for_field(nil, _), do: []
-  defp errors_for_field(errors, field), do: Keyword.get_values(errors, field)
 end
