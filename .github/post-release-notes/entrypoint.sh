@@ -19,7 +19,7 @@ if [ ! -e "$file_path" ]; then
   exit 1
 fi
 
-./validate-release-notes "$file_path"
+/validate-release-notes "$file_path"
 
 title=$(jq --raw-output .pull_request.title "$GITHUB_EVENT_PATH")
 detail_url=$(jq --raw-output .pull_request.url "$GITHUB_EVENT_PATH")
