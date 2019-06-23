@@ -29,8 +29,10 @@ defmodule AtomTweaksWeb.TokenController do
     changeset = Token.changeset(%Token{}, params)
 
     case Repo.insert(changeset) do
-      {:ok, _token} ->
-        redirect(conn, to: Routes.user_token_path(conn, :index, user))
+      {:ok, token} ->
+        conn
+        |> put_flash(:token_code, Token.to_code(token))
+        |> redirect(to: Routes.user_token_path(conn, :index, user))
 
       {:error, changeset} ->
         star_count = Accounts.count_stars(user)
