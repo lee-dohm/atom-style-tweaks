@@ -69,6 +69,13 @@ defmodule AtomTweaksWeb.PageMetadataTest do
       assert Enum.member?(metadata, property: "og:title", content: "Test title")
       assert Enum.member?(metadata, foo: "bar", bar: "baz")
     end
+
+    test "handles values that implement the Metadata protocol", context do
+      metadata = add_metadata(context.conn, %Support.TestMetadata{foo: "bar"})
+
+      assert length(metadata) == 3
+      assert [foo: "bar"] in metadata
+    end
   end
 
   describe "render" do

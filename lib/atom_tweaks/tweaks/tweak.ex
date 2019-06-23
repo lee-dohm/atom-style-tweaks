@@ -14,6 +14,8 @@ defmodule AtomTweaks.Tweaks.Tweak do
   alias AtomTweaks.Tweaks.Star
   alias AtomTweaks.Tweaks.Tweak
 
+  alias AtomTweaksWeb.PageMetadata.Metadata
+
   @type t :: %__MODULE__{}
 
   @changeset_keys ~w{code created_by description parent title type}a
@@ -77,13 +79,6 @@ defmodule AtomTweaks.Tweaks.Tweak do
   def include_forks(query, true), do: query
   def include_forks(query, _), do: from(t in query, where: is_nil(t.parent))
 
-  def to_metadata(tweak) do
-    [
-      [property: "og:title", content: tweak.title],
-      [property: "og:description", content: tweak.code]
-    ]
-  end
-
   @doc """
   Validates that the person forking the tweak is different from the original author of the tweak.
   """
@@ -102,6 +97,15 @@ defmodule AtomTweaks.Tweaks.Tweak do
         []
       end
     end)
+  end
+
+  defimpl Metadata do
+    def to_metadata(tweak) do
+      [
+        [property: "og:title", content: tweak.title],
+        [property: "og:description", content: tweak.code]
+      ]
+    end
   end
 
   # Copy only `keys` out of `map` into a new map

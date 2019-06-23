@@ -203,6 +203,21 @@ defmodule AtomTweaksWeb.TweakControllerTest do
 
       assert attribute(button, "disabled") == ["disabled"]
     end
+
+    test "inserts the expected metadata", context do
+      title_meta =
+        context.conn
+        |> html_response(:ok)
+        |> find("meta[property='og:title']")
+
+      description_meta =
+        context.conn
+        |> html_response(:ok)
+        |> find("meta[property='og:description']")
+
+      assert attribute(title_meta, "content") == [context.tweak.title]
+      assert attribute(description_meta, "content") == [context.tweak.code]
+    end
   end
 
   describe "show tweak of current user when logged in" do
