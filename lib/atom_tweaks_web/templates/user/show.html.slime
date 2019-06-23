@@ -6,7 +6,7 @@
     .pb-3.clearfix
       a#new-tweak-button.btn.btn-primary.float-right href="#{Routes.tweak_path(@conn, :new)}"
         = octicon(:beaker)
-        '
+        spam.px-1
         = gettext "New"
   .Box
     = if Enum.empty?(@tweaks) do

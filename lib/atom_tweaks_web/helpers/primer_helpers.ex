@@ -20,6 +20,10 @@ defmodule AtomTweaksWeb.PrimerHelpers do
   @type app_name :: atom
 
   defmodule MissingConfigurationError do
+    @moduledoc """
+    Exception raised when there is an element of required application configuration missing.
+    """
+
     defexception [:missing_keys]
 
     def exception(key) when is_atom(key), do: exception([key])
@@ -40,7 +44,7 @@ defmodule AtomTweaksWeb.PrimerHelpers do
 
   ## Options
 
-  * `:size` - value in pixels to use for both the width and height of the avatar image
+  * `:size` -- value in pixels to use for both the width and height of the avatar image
   """
   @spec avatar(User.t(), Keword.t()) :: Phoenix.HTML.safe()
   def avatar(user, options \\ [])

@@ -67,8 +67,8 @@ defmodule AtomTweaks.Accounts do
   @doc """
   Gets the token from the signed token code.
   """
-  @spec get_token(String.t()) :: {:ok, Token.t()} | {:error, :invalid}
-  def get_token(code) when is_binary(code) do
+  @spec get_token_from_code(String.t()) :: {:ok, Token.t()} | {:error, :invalid}
+  def get_token_from_code(code) when is_binary(code) do
     case Phoenix.Token.verify(AtomTweaksWeb.Endpoint, Token.salt(), code, max_age: :infinity) do
       {:ok, id} -> {:ok, Repo.get(Token, id)}
       error -> error
@@ -103,6 +103,16 @@ defmodule AtomTweaks.Accounts do
     user
     |> Repo.preload(stars: [:user])
     |> Map.fetch!(:stars)
+  end
+
+  @doc """
+  Lists all tokens owned by `user`.
+  """
+  @spec list_tokens(User.t()) :: [Token.t()] | no_return
+  def list_tokens(user = %User{}) do
+    user
+    |> Repo.preload(tokens: [:user])
+    |> Map.fetch!(:tokens)
   end
 
   @doc """

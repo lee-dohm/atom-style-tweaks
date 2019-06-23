@@ -25,6 +25,10 @@ config :atom_tweaks, AtomTweaksWeb.Endpoint,
 # Configure GitHub OAuth2 strategy
 config :atom_tweaks, AtomTweaksWeb.GitHub, scope: "read:org"
 
+# Configure AtomTweaks.Accounts.Token salt
+config :atom_tweaks, AtomTweaks.Accounts.Token,
+  salt: "THMpFN//T+51SQLrC2XH7YlyH5FeCAcAHs5eXeHwX1v0gho6uZ2/xrL4/pzDf2Up"
+
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
