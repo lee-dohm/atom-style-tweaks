@@ -1,6 +1,10 @@
 tt,
 code {
   font-size: $body-font-size;
+
+  &.force-wrap {
+    word-wrap: break-word;
+  }
 }
 
 .hljs-comment,
