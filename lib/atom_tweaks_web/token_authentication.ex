@@ -78,5 +78,5 @@ defmodule AtomTweaksWeb.TokenAuthentication do
   defp get_token_code(_), do: nil
 
   defp get_token(nil), do: {:error, :missing}
-  defp get_token(code), do: Accounts.get_token(code)
+  defp get_token(code), do: Accounts.get_token_from_code(code)
 end

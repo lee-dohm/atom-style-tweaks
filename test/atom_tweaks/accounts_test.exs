@@ -88,11 +88,11 @@ defmodule AtomTweaks.AccountsTest do
     end
   end
 
-  describe "get_token/1" do
+  describe "get_token_from_code/1" do
     test "succeeds when given a valid token code", _context do
       token = insert(:token)
       token_code = Token.to_code(token)
-      {:ok, returned} = Accounts.get_token(token_code)
+      {:ok, returned} = Accounts.get_token_from_code(token_code)
 
       assert returned.id == token.id
       assert returned.description == token.description

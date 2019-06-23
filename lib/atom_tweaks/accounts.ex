@@ -67,8 +67,8 @@ defmodule AtomTweaks.Accounts do
   @doc """
   Gets the token from the signed token code.
   """
-  @spec get_token(String.t()) :: {:ok, Token.t()} | {:error, :invalid}
-  def get_token(code) when is_binary(code) do
+  @spec get_token_from_code(String.t()) :: {:ok, Token.t()} | {:error, :invalid}
+  def get_token_from_code(code) when is_binary(code) do
     case Phoenix.Token.verify(AtomTweaksWeb.Endpoint, Token.salt(), code, max_age: :infinity) do
       {:ok, id} -> {:ok, Repo.get(Token, id)}
       error -> error

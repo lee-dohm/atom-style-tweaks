@@ -46,6 +46,17 @@ defmodule AtomTweaksWeb.TokenController do
   end
 
   @doc """
+  Deletes the token with the given `id` belonging to user `name`.
+  """
+  def delete(conn, %{"id" => id, "user_id" => name}) do
+    user = Accounts.get_user!(name)
+
+    Repo.delete(%Token{id: id})
+
+    redirect(conn, to: Routes.user_token_path(conn, :index, user))
+  end
+
+  @doc """
   Displays the list of tokens for a user.
   """
   @spec index(Plug.Conn.t(), Map.t()) :: Plug.Conn.t()

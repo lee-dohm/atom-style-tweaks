@@ -201,7 +201,7 @@ msgid "View this person on GitHub"
 msgstr "Ṿḭḛẁ ṭḥḭṡ ṗḛṛṡṓṇ ṓṇ ḠḭṭḤṵḅ"
 
 #, elixir-format
-#: lib/atom_tweaks_web/helpers/primer_helpers.ex:210
+#: lib/atom_tweaks_web/helpers/primer_helpers.ex:214
 msgid "View this project on GitHub"
 msgstr "Ṿḭḛẁ ṭḥḭṡ ṗṛṓĵḛͼṭ ṓṇ ḠḭṭḤṵḅ"
 

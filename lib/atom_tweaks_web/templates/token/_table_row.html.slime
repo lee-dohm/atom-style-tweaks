@@ -1,4 +1,10 @@
 .Box-row.clearfix
   .pl-2.overflow-hidden.lh-condensed
-    .title
-      = @token.description
+    .clearfix
+      .title.float-left
+        = @token.description
+      .float-right.px-2
+        = link to: Routes.user_token_path(@conn, :delete, @user, @token), method: :delete do
+          = octicon(:x)
+      .float-right
+        = @token.id
