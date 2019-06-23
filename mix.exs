@@ -162,6 +162,7 @@ defmodule AtomTweaks.Mixfile do
         ],
         Test: [
           ~r{^AtomTweaks(Web)?\..*Case$},
+          ~r{^AtomTweaks(Web?)\.Shared},
           ~r{^AtomTweaks.Factory$},
           ~r{^AtomTweaks.Support},
           ~r{^Support}

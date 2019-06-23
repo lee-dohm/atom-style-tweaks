@@ -1,10 +1,20 @@
 defmodule AtomTweaks.Markdown do
   @moduledoc """
-  A structure that represents a chunk of Markdown text.
+  A structure that represents a chunk of Markdown text in memory.
 
-  The structure contains both the raw Markdown `text` and the rendered `html`. Rendering the text
-  using either `to_html/1` or `to_iodata/1` memoizes the rendered HTML in the structure.
+  For the database type, see `AtomTweaks.Ecto.Markdown` instead.
+
+  The structure contains both the raw Markdown `text` and, potentially, the rendered `html`. Upon
+  a request to render the structure using either `to_html/1` or `to_iodata/1`, the `html` field is
+  given preference and returned unchanged, if available. If the `html` value is `nil`, then the
+  contents of the `text` field are rendered using `AtomTweaksWeb.MarkdownEngine.render/1` and
+  returned.
+
+  This type requires special handling in forms because Phoenix's form builder functions call
+  `Phoenix.HTML.html_escape/1` on all field values, which returns the `html` field on this type. But
+  what we want when we show an `AtomTweaks.Markdown` value in a form is the `text` field.
   """
+
   alias AtomTweaksWeb.MarkdownEngine
 
   @type t :: %__MODULE__{text: String.t(), html: nil | String.t()}

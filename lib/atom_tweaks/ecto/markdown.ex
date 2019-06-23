@@ -1,20 +1,19 @@
 defmodule AtomTweaks.Ecto.Markdown do
   @moduledoc """
-  An `Ecto.Type` that handles the conversion between a string in the database and a
-  `AtomTweaks.Markdown` struct in memory.
+  An `Ecto.Type` that handles the conversion between a Markdown-formatted string in the database and
+  a `AtomTweaks.Markdown` struct in memory.
 
   Use this as the type of the database field in the schema:
 
   ```
   defmodule AtomTweaks.Tweaks.Tweak do
     use Ecto.Schema
-    alias AtomTweaks.Ecto.Markdown
 
     schema "tweaks" do
       field :title, :string
       field :code, :string
       field :type, :string
-      field :description, Markdown
+      field :description, AtomTweaks.Ecto.Markdown
       belongs_to :user, AtomTweaks.Accounts.User, foreign_key: :created_by, type: :binary_id
 
       timestamps()
@@ -22,11 +21,11 @@ defmodule AtomTweaks.Ecto.Markdown do
   end
   ```
 
-  This type requires special handling in forms because Phoenix's form builder functions call
-  `Phoenix.HTML.html_escape/1` on all field values, which returns the `html` field on this type. But
-  what we want when we show an `AtomTweaks.Markdown` value in a form is the `text` field.
+  All other references in the codebase should be to the `AtomTweaks.Markdown` module. See that
+  module's documentation on how it is used.
 
-  See: [Beyond Functions in Elixir: Refactoring for Maintainability][beyond-functions]
+  **See:** [Beyond Functions in Elixir: Refactoring for Maintainability][beyond-functions] for
+  details on this pattern.
 
   [beyond-functions]: https://blog.usejournal.com/beyond-functions-in-elixir-refactoring-for-maintainability-5c73daba77f3
   """
@@ -60,7 +59,6 @@ defmodule AtomTweaks.Ecto.Markdown do
   """
   @impl Ecto.Type
   def load(binary) when is_binary(binary) do
-    # credo:disable-for-next-line
     {:ok, %AtomTweaks.Markdown{text: binary, html: AtomTweaks.Markdown.to_html(binary)}}
   end
 
