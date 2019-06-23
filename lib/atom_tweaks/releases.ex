@@ -84,15 +84,25 @@ defmodule AtomTweaks.Releases do
   @doc """
   Returns the list of notes.
 
+  ## Options
+
+  * `:order_by` -- Passed to `Ecto.Query.order_by/3`
+
   ## Examples
+
+  List release notes with newest first:
 
   ```
   iex> list_notes()
   [%Note{}, ...]
   ```
   """
-  def list_notes do
-    Repo.all(Note)
+  def list_notes(options \\ []) do
+    order = Keyword.get(options, :order_by, desc: :inserted_at)
+
+    Note
+    |> order_by(^order)
+    |> Repo.all()
   end
 
   @doc """

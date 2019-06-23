@@ -22,6 +22,14 @@ defmodule AtomTweaks.ReleasesTest do
       assert Releases.list_notes() == [render_md(note)]
     end
 
+    test "list_notes/0 orders release notes newest first", _context do
+      third = insert(:note)
+      second = insert(:note)
+      first = insert(:note)
+
+      assert Releases.list_notes() == Enum.map([first, second, third], &render_md/1)
+    end
+
     test "get_note!/1 returns the note with given id" do
       note = insert(:note)
 

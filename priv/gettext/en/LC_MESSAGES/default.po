@@ -297,3 +297,8 @@ msgstr ""
 #: lib/atom_tweaks_web/templates/token/_blankslate.html.slime:1
 msgid "You haven't created any tokens yet."
 msgstr ""
+
+#, elixir-format
+#: lib/atom_tweaks_web/templates/token/index.html.slime:1
+msgid "Record this code, it will only be shown once:"
+msgstr ""
