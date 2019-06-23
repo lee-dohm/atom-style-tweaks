@@ -9,8 +9,6 @@ defmodule AtomTweaks.Accounts.Token do
 
   alias AtomTweaks.Accounts.User
 
-  @salt "api token salt"
-
   @valid_scopes [
     "release_notes/write"
   ]
@@ -36,12 +34,12 @@ defmodule AtomTweaks.Accounts.Token do
   end
 
   @doc false
-  def salt, do: @salt
+  def salt, do: Application.get_env(:atom_tweaks, __MODULE__)[:salt]
 
   @doc """
   Generates the token code from the given `token`.
   """
   def to_code(token = %__MODULE__{}) do
-    Phoenix.Token.sign(AtomTweaksWeb.Endpoint, @salt, token.id, max_age: :infinity)
+    Phoenix.Token.sign(AtomTweaksWeb.Endpoint, salt(), token.id, max_age: :infinity)
   end
 end

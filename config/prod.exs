@@ -18,6 +18,9 @@ config :atom_tweaks, AtomTweaksWeb.Endpoint,
   secret_key_base: System.get_env("SECRET_KEY_BASE"),
   force_ssl: [rewrite_on: [:x_forwarded_proto]]
 
+# Configure AtomTweaks.Accounts.Token salt
+config :atom_tweaks, AtomTweaks.Accounts.Token, salt: System.get_env("API_TOKEN_SALT")
+
 # Do not print debug messages in production
 config :logger, level: :info
 
