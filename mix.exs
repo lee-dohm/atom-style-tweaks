@@ -148,6 +148,7 @@ defmodule AtomTweaks.Mixfile do
         Plugs: [
           AtomTweaksWeb.HerokuMetadata,
           AtomTweaksWeb.PageMetadata,
+          AtomTweaksWeb.PageMetadata.Metadata,
           AtomTweaksWeb.SlidingSessionTimeout,
           AtomTweaksWeb.TokenAuthentication
         ],

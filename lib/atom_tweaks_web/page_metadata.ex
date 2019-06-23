@@ -28,27 +28,25 @@ defmodule AtomTweaksWeb.PageMetadata do
   </html>
   ```
   """
+
   use Phoenix.HTML
 
-  import Plug.Conn, only: [assign: 3]
+  alias AtomTweaksWeb.PageMetadata.Metadata
+  alias Plug.Conn
 
   @doc """
-  Adds an item of metadata for the page.
+  Adds metadata to the page.
 
-  An item of metadata is a keyword list of attributes and their values to be rendered as a `meta`
-  tag in the page. A list of keyword lists can be supplied to add multiple items of metadata to be
-  rendered.
+  The metadata for any type that implements the `AtomTweaksWeb.PageMetadata.Metadata` protocol can
+  be added to a page.
   """
-  @spec add(Plug.Conn.t(), list | keyword(String.t())) :: Plug.Conn.t()
-  def add(conn, nil), do: conn
-  def add(conn, []), do: assign(conn, :page_metadata, get(conn))
+  @spec add(Plug.Conn.t(), Metadata.t() | nil) :: Plug.Conn.t()
+  def add(conn, metadata)
 
-  def add(conn, list) do
-    if Keyword.keyword?(list) do
-      assign(conn, :page_metadata, [list | get(conn)])
-    else
-      Enum.reduce(list, conn, &add(&2, &1))
-    end
+  def add(conn, nil), do: conn
+
+  def add(conn, metadata) do
+    do_add(conn, Metadata.to_metadata(metadata))
   end
 
   @doc """
@@ -71,6 +69,16 @@ defmodule AtomTweaksWeb.PageMetadata do
       [property: "og:url", content: "#{conn.scheme}://#{conn.host}#{conn.request_path}"],
       [property: "og:site_name", content: Application.get_env(:atom_tweaks, :site_name)]
     ]
+  end
+
+  defp do_add(conn, []), do: Conn.assign(conn, :page_metadata, get(conn))
+
+  defp do_add(conn, list) do
+    if Keyword.keyword?(list) do
+      Conn.assign(conn, :page_metadata, [list | get(conn)])
+    else
+      Enum.reduce(list, conn, &add(&2, &1))
+    end
   end
 
   defp get(conn) do

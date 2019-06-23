@@ -95,7 +95,7 @@ defmodule AtomTweaksWeb.TweakController do
     starred = Tweaks.is_starred?(tweak, current_user)
 
     conn
-    |> PageMetadata.add(Tweak.to_metadata(tweak))
+    |> PageMetadata.add(tweak)
     |> render("show.html", fork_count: fork_count, starred: starred, tweak: tweak)
   end
 
