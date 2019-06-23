@@ -7,11 +7,11 @@
 
 [A website](https://www.atom-tweaks.com) for collecting various simple tweaks for your [Atom editor](https://atom.io) environment.
 
-This is the source code for the website running at https://www.atom-tweaks.com.
+This is the source code for the website running at <https://www.atom-tweaks.com>.
 
 ## Developer documentation
 
-Developer docs can be found at https://www.lee-dohm.com/atom-style-tweaks/
+Developer docs can be found at <https://www.lee-dohm.com/atom-style-tweaks/>.
 
 ## Contributing
 
