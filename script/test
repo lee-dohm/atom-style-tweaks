@@ -11,9 +11,15 @@ cd "$(dirname "$0")/.."
 [ -z "$DEBUG" ] || set -x
 
 if [ "$MIX_ENV" = "test"  ] || [ "$CI" = "true" ]; then
-  MIX_ENV="test" script/setup
+  (
+    MIX_ENV="test"
+    script/setup
+  )
 else
-  MIX_ENV="test" script/update
+  (
+    MIX_ENV="test"
+    script/update
+  )
 fi
 
 echo "==> Checking format…"

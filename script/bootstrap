@@ -14,7 +14,7 @@ if [ -f "Brewfile" ] && [ "$(uname -s)" = "Darwin" ]; then
   }
 fi
 
-if ! type "node" > /dev/null; then
+if ! command -v node >/dev/null 2>&1; then
   echo "==> Installing node…"
   version=$(cat .node-version)
   nodenv install "$version"
