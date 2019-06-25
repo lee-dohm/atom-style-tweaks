@@ -42,7 +42,7 @@ action "Publish docs" {
 }
 
 action "Except dependency pull requests" {
-  uses = "actions/bin/filter@master"
+  uses = "lee-dohm/bin/filter@fix-label-matching"
   args = ["not", "label", "dependencies :gear:"]
 }
 
