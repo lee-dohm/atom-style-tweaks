@@ -9,7 +9,7 @@
 set -e
 cd "$(dirname "$0")/.."
 
-if [ "$1" = "production" ] || ["$1" = "prod" ]; then
+if [ "$1" = "production" ] || [ "$1" = "prod" ]; then
   echo "==> Updating $1 db…"
   heroku run --app atom-tweaks "POOL_SIZE=2 mix ecto.migrate"
 elif [ "$1" = "staging" ]; then

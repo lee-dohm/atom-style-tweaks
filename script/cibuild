@@ -20,6 +20,10 @@ echo "==> Checking format…"
 
 mix format --check-formatted
 
+echo "==> Running shellcheck…"
+
+shellcheck script/*
+
 # No need to run the credo linter in CI because we have an extra service installed that runs it
 # separately
 

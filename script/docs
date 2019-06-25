@@ -12,17 +12,23 @@
 set -e
 cd "$(dirname "$0")/.."
 
-options=()
-while test $# -gt 0
-do
+open=
+test_env=
+
+while :; do
   case "$1" in
-    --open) open="1"
+    --open)
+      open="1"
       ;;
-    --test) test_env="1"
+
+    --test)
+      test_env="1"
       ;;
-    *) options+=("$1")
-      ;;
+
+    *)
+      break
   esac
+
   shift
 done
 
@@ -34,7 +40,7 @@ fi
 script/bootstrap
 
 echo "==> Generating documentation..."
-mix docs $options
+mix docs "$@"
 
 if [ -n "$open" ]; then
   echo "==> Open documentation in primary browser..."

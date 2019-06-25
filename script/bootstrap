@@ -8,16 +8,16 @@ set -e
 cd "$(dirname "$0")/.."
 
 if [ -f "Brewfile" ] && [ "$(uname -s)" = "Darwin" ]; then
-  brew bundle check 2>&1 >/dev/null || {
+  brew bundle check >/dev/null 2>&1 || {
     echo "==> Installing Homebrew dependencies…"
     brew bundle
   }
 fi
 
-if ! type "node" > /dev/null; then
+if ! command -v node >/dev/null 2>&1; then
   echo "==> Installing node…"
   version=$(cat .node-version)
-  nodenv install $version
+  nodenv install "$version"
   nodenv rehash
 fi
 
@@ -28,7 +28,8 @@ fi
 
 if [ -f "assets/package.json" ]; then
   echo "==> Installing npm dependencies…"
-  cd assets
-  npm install
-  cd -
+  (
+    cd assets || exit
+    npm install
+  )
 fi
