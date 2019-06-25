@@ -20,9 +20,11 @@ echo "==> Checking format…"
 
 mix format --check-formatted
 
-echo "==> Running linter…"
+echo "==> Running linters…"
 
 mix credo
+
+shellcheck script/*
 
 echo "==> Running tests…"
 
