@@ -1,12 +1,10 @@
 #!/usr/bin/env bash
 
-set -e
+# shellcheck disable=SC2154
+true
 
-if [ -n "$phoenix_ex" ]; then
-  phoenix_ex="phx"
-fi
-
-cd "$(dirname "$0")/.."
+# shellcheck disable=SC2164
+cd "$phoenix_dir"
 
 npm --prefix ./assets run deploy
 
