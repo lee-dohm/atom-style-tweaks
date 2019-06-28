@@ -43,7 +43,7 @@ action "Publish docs" {
 
 action "Except dependency pull requests" {
   uses = "lee-dohm/bin/filter@fix-label-matching"
-  args = ["not", "label", "dependencies :gear:"]
+  args = "not label \"dependencies :gear:\""
 }
 
 action "Extract release notes" {
