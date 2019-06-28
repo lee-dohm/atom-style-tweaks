@@ -5,8 +5,8 @@ LABEL "com.github.actions.description"="Posts release notes to the Atom Tweaks A
 LABEL "com.github.actions.icon"="upload"
 LABEL "com.github.actions.color"="purple"
 
-LABEL "repository"="https://github.com/lee-dohm/post-release-notes"
-LABEL "homepage"="https://github.com/lee-dohm/post-release-notes"
+LABEL "repository"="https://github.com/lee-dohm/atom-style-tweaks"
+LABEL "homepage"="https://github.com/lee-dohm/atom-style-tweaks"
 LABEL "maintainer"="Lee Dohm <lee-dohm@github.com>"
 
 RUN set -e \
