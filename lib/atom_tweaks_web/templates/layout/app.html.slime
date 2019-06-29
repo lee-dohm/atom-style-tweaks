@@ -40,7 +40,7 @@ html lang="en"
             .px-1
               = link(gettext("About"), to: Routes.page_path(@conn, :about), id: "about-link")
             .px-5
-              = github_link(id: "github-link")
+              = github_link(id: "site-github-link")
             .px-1
               = link(gettext("Release notes"), to: Routes.page_path(@conn, :release_notes), id: "release-notes-link")
         .text-center.small.my-2

@@ -117,6 +117,14 @@ defmodule Support.Setup do
     {:ok, tweak: tweak, user: user}
   end
 
+  def insert_tokens(context)
+
+  def insert_tokens(%{user: user}) do
+    tokens = insert_list(3, :token, user: user)
+
+    {:ok, tokens: tokens}
+  end
+
   @doc """
   Inserts a user into the database.
 
@@ -533,6 +541,14 @@ defmodule Support.Setup do
 
   def request_page_release_notes(%{conn: conn}) do
     conn = get(conn, Routes.page_path(conn, :release_notes))
+
+    {:ok, conn: conn}
+  end
+
+  def request_user_token_index(context)
+
+  def request_user_token_index(%{conn: conn, user: user}) do
+    conn = get(conn, Routes.user_token_path(conn, :index, user))
 
     {:ok, conn: conn}
   end
