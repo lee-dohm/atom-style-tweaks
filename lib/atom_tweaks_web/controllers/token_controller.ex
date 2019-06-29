@@ -19,6 +19,10 @@ defmodule AtomTweaksWeb.TokenController do
   """
   @spec create(Plug.Conn.t(), Map.t()) :: Plug.Conn.t()
   def create(conn, %{"token" => token_params, "user_id" => name}) do
+    unless conn.assigns[:current_user].name == name do
+      raise(ForbiddenUserError, conn: conn)
+    end
+
     user = Accounts.get_user!(name)
 
     params =

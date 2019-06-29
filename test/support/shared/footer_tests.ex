@@ -26,7 +26,7 @@ defmodule AtomTweaksWeb.Shared.FooterTests do
         link =
           context.conn
           |> html_response(:ok)
-          |> find("footer a#github-link")
+          |> find("footer a#site-github-link")
 
         assert attribute(link, "href") == ["https://github.com/lee-dohm/atom-style-tweaks"]
       end

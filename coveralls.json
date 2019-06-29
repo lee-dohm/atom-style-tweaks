@@ -3,12 +3,12 @@
     "lib/atom_tweaks/endpoint.ex",
     "lib/atom_tweaks/markdown_engine.ex",
     "lib/atom_tweaks/repo.ex",
-    "test",
-    "web/channels/user_socket.ex",
-    "web/controllers/auth_controller.ex",
-    "web/gettext.ex",
-    "web/oauth2/github.ex",
-    "web/router.ex",
-    "web/web.ex"
+    "lib/atom_tweaks_web/channels/user_socket.ex",
+    "lib/atom_tweaks_web/controllers/auth_controller.ex",
+    "lib/atom_tweaks_web/gettext.ex",
+    "lib/atom_tweaks_web/oauth2/github.ex",
+    "lib/atom_tweaks_web/router.ex",
+    "lib/atom_tweaks_web.ex",
+    "test"
   ]
 }

@@ -30,7 +30,7 @@ defmodule AtomTweaksWeb.UserControllerTest do
       link =
         context.conn
         |> html_response(:ok)
-        |> find("a#github-link")
+        |> find("a#user-github-link")
 
       assert hd(attribute(link, "href")) == "https://github.com/#{context.user.name}"
     end

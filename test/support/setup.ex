@@ -117,6 +117,14 @@ defmodule Support.Setup do
     {:ok, tweak: tweak, user: user}
   end
 
+  def insert_tokens(context)
+
+  def insert_tokens(%{user: user}) do
+    tokens = insert_list(3, :token, user: user)
+
+    {:ok, tokens: tokens}
+  end
+
   @doc """
   Inserts a user into the database.
 
@@ -537,7 +545,55 @@ defmodule Support.Setup do
     {:ok, conn: conn}
   end
 
+  def request_user_token_create(context)
+
+  def request_user_token_create(%{conn: conn, token_params: token_params, user: user}) do
+    conn = post(conn, Routes.user_token_path(conn, :create, user), token: token_params)
+
+    {:ok, conn: conn}
+  end
+
+  @doc """
+  Requests the user's token index page.
+  """
+  def request_user_token_index(context)
+
+  def request_user_token_index(%{conn: conn, user: user}) do
+    conn = get(conn, Routes.user_token_path(conn, :index, user))
+
+    {:ok, conn: conn}
+  end
+
+  @doc """
+  Requests the user's new token page.
+  """
+  def request_user_token_new(context)
+
+  def request_user_token_new(%{conn: conn, user: user}) do
+    conn = get(conn, Routes.user_token_path(conn, :new, user))
+
+    {:ok, conn: conn}
+  end
+
+  @doc """
+  Generates valid tweak parameters.
+  """
   def valid_tweak_params(_context) do
     {:ok, tweak_params: params_for(:tweak)}
+  end
+
+  def invalid_token_params(context)
+
+  def invalid_token_params(%{user: user}) do
+    {:ok, token_params: params_for(:token, user: user, description: "")}
+  end
+
+  @doc """
+  Generates valid token parameters.
+  """
+  def valid_token_params(context)
+
+  def valid_token_params(%{user: user}) do
+    {:ok, token_params: params_for(:token, user: user)}
   end
 end
