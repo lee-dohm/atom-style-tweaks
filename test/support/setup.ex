@@ -545,10 +545,24 @@ defmodule Support.Setup do
     {:ok, conn: conn}
   end
 
+  @doc """
+  Requests the user's token index page.
+  """
   def request_user_token_index(context)
 
   def request_user_token_index(%{conn: conn, user: user}) do
     conn = get(conn, Routes.user_token_path(conn, :index, user))
+
+    {:ok, conn: conn}
+  end
+
+  @doc """
+  Requests the user's new token page.
+  """
+  def request_user_token_new(context)
+
+  def request_user_token_new(%{conn: conn, user: user}) do
+    conn = get(conn, Routes.user_token_path(conn, :new, user))
 
     {:ok, conn: conn}
   end
