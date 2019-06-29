@@ -56,9 +56,9 @@ defmodule AtomTweaks.Factory do
   """
   def user_factory do
     %User{
-      name: Internet.user_name(),
+      name: Helper.unique!(:user_names, fn -> Internet.user_name() end),
       site_admin: false,
-      github_id: Helper.pick(1..10_000),
+      github_id: Helper.unique!(:user_ids, fn -> Helper.pick(1..10_000) end),
       avatar_url: Avatar.robohash()
     }
   end

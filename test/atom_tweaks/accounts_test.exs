@@ -5,6 +5,7 @@ defmodule AtomTweaks.AccountsTest do
 
   alias AtomTweaks.Accounts
   alias AtomTweaks.Accounts.Token
+  alias AtomTweaks.Accounts.User
 
   describe "stars" do
     setup [:insert_tweak]
@@ -26,6 +27,19 @@ defmodule AtomTweaks.AccountsTest do
       assert Enum.empty?(stars)
       assert deleted_star.user_id == context.user.id
       assert deleted_star.tweak_id == context.tweak.id
+    end
+  end
+
+  describe "users" do
+    test "creating two users with the same name causes an error", _context do
+      name = "some-user"
+      insert(:user, name: name)
+      params = params_for(:user, name: name)
+
+      {:error, _changeset} =
+        %User{}
+        |> User.changeset(params)
+        |> Repo.insert()
     end
   end
 
