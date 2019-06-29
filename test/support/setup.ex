@@ -545,6 +545,14 @@ defmodule Support.Setup do
     {:ok, conn: conn}
   end
 
+  def request_user_token_create(context)
+
+  def request_user_token_create(%{conn: conn, token_params: token_params, user: user}) do
+    conn = post(conn, Routes.user_token_path(conn, :create, user), token: token_params)
+
+    {:ok, conn: conn}
+  end
+
   @doc """
   Requests the user's token index page.
   """
@@ -567,7 +575,25 @@ defmodule Support.Setup do
     {:ok, conn: conn}
   end
 
+  @doc """
+  Generates valid tweak parameters.
+  """
   def valid_tweak_params(_context) do
     {:ok, tweak_params: params_for(:tweak)}
+  end
+
+  def invalid_token_params(context)
+
+  def invalid_token_params(%{user: user}) do
+    {:ok, token_params: params_for(:token, user: user, description: "")}
+  end
+
+  @doc """
+  Generates valid token parameters.
+  """
+  def valid_token_params(context)
+
+  def valid_token_params(%{user: user}) do
+    {:ok, token_params: params_for(:token, user: user)}
   end
 end
