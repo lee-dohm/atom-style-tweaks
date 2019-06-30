@@ -4,6 +4,15 @@ defmodule AtomTweaks.Tweaks.Star do
 
   The list of tweaks that a user has starred is called their "stars". The list of users that have
   starred a specific tweak is called the tweak's "stargazers".
+
+  ## Fields
+
+  None. This record is used as a many-to-many relationship between users and tweaks.
+
+  ### Associations
+
+  * `user` - The `AtomTweaks.Accounts.User` who starred the tweak
+  * `tweak` - The `AtomTweaks.Tweaks.Tweak` that was starred
   """
   use Ecto.Schema
 

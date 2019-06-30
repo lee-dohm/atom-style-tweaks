@@ -1,6 +1,22 @@
 defmodule AtomTweaks.Tweaks.Tweak do
   @moduledoc """
   Represents a tweak.
+
+  ## Fields
+
+  * `code` - Source code of the tweak
+  * `description` - Markdown description of what the tweak does
+  * `title` - Title of the tweak
+  * `type` - The type of the tweak
+
+  ### Associations
+
+  Must be preloaded before they can be used.
+
+  * `forked_from` - The `AtomTweaks.Tweaks.Tweak` this tweak was forked from
+  * `forks` - The `AtomTweaks.Tweaks.Tweak` records that have been forked from this tweak
+  * `stargazers` - The `AtomTweaks.Accounts.User` records that have starred this tweak
+  * `user` - The `AtomTweaks.Accounts.User` that created or forked this tweak
   """
   use Ecto.Schema
 

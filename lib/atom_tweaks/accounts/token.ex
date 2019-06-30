@@ -1,6 +1,17 @@
 defmodule AtomTweaks.Accounts.Token do
   @moduledoc """
   Represents a user access token for authenticating against the API.
+
+  ## Fields
+
+  * `description` - Text description for remembering what the token is used for
+  * `scopes` - Array of access rights that control what the token is used to access
+
+  ### Associations
+
+  Must be preloaded before they can be used.
+
+  * `user` - The `AtomTweaks.Accounts.User` who created the token
   """
 
   use Ecto.Schema

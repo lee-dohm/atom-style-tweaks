@@ -1,6 +1,12 @@
 defmodule AtomTweaks.Releases.Note do
   @moduledoc """
   Represents a release note record.
+
+  ## Fields
+
+  * `description` - Markdown text of the note
+  * `detail_url` - URL of where to get more details
+  * `title` - Title of the release note
   """
 
   use Ecto.Schema

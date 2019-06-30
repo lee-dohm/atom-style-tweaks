@@ -1,6 +1,22 @@
 defmodule AtomTweaks.Accounts.User do
   @moduledoc """
   Represents a user of the application.
+
+  ## Fields
+
+  * `avatar_url` - URL of the user's avatar
+  * `github_id` - GitHub database ID for the user, unused except to relate the Atom Tweaks member to
+    their GitHub user record
+  * `name` - Username
+  * `site_admin` - `true` if the user is a site admin; `false` otherwise
+
+  ### Associations
+
+  Must be preloaded before they can be used.
+
+  * `stars` - List of `AtomTweaks.Tweaks.Tweak` records the user has starred
+  * `tokens` - List of `AtomTweaks.Accounts.Token` records the user has created
+  * `tweaks` - List of `AtomTweaks.Tweaks.Tweak` records the user has created or forked
   """
   use Ecto.Schema
 
