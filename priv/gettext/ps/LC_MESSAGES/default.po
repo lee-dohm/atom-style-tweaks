@@ -60,6 +60,7 @@ msgstr "Ḉḽḭͼḳ \"Ṅḛẁ\" ṭṓ ḡḛṭ ṡṭαṛṭḛḍ!"
 
 #, elixir-format
 #: lib/atom_tweaks_web/templates/tweak/_copy_tweak_button.html.slime:1
+#: lib/atom_tweaks_web/templates/tweak/_copy_tweak_button.html.slime:1
 msgid "Copy"
 msgstr "Ḉṓṗẏ"
 
@@ -76,6 +77,8 @@ msgstr "Ḉṛḛαṭḛḍ ḅẏ %{owner_link} αḅṓṵṭ %{time_ago}"
 #, elixir-format
 #:
 #: lib/atom_tweaks_web/templates/admin/release_note/_edit_note_button.html.slime:1
+#: lib/atom_tweaks_web/templates/admin/release_note/_edit_note_button.html.slime:1
+#: lib/atom_tweaks_web/templates/tweak/_edit_tweak_button.html.slime:1
 #: lib/atom_tweaks_web/templates/tweak/_edit_tweak_button.html.slime:1
 msgid "Edit"
 msgstr "Ḛḍḭṭ"
@@ -169,6 +172,7 @@ msgstr "Ṣṭẏḽḛṡ"
 
 #, elixir-format
 #: lib/atom_tweaks_web/templates/user/_user_info.html.slime:1
+#: lib/atom_tweaks_web/templates/user/_user_info.html.slime:1
 msgid "This person is an Atom Tweaks staff member"
 msgstr "Ṫḥḭṡ ṗḛṛṡṓṇ ḭṡ αṇ Ḁṭṓṃ Ṫẁḛαḳṡ ṡṭαϝϝ ṃḛṃḅḛṛ"
 
@@ -196,6 +200,7 @@ msgid "Update tweak"
 msgstr "Ṳṗḍαṭḛ ṭẁḛαḳ"
 
 #, elixir-format
+#: lib/atom_tweaks_web/templates/user/_user_info.html.slime:1
 #: lib/atom_tweaks_web/templates/user/_user_info.html.slime:1
 msgid "View this person on GitHub"
 msgstr "Ṿḭḛẁ ṭḥḭṡ ṗḛṛṡṓṇ ṓṇ ḠḭṭḤṵḅ"
