@@ -7,7 +7,7 @@ otp_release:
 dist: trusty
 sudo: false
 addons:
-  postgresql: '9.6'
+  postgresql: '11'
 services:
   - postgresql
 
