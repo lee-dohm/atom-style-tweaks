@@ -4,11 +4,11 @@ defmodule AtomTweaksWeb.AuthController do
   """
   use AtomTweaksWeb, :controller
 
-  require Logger
-
   alias AtomTweaks.Accounts.User
   alias AtomTweaksWeb.GitHub
   alias OAuth2.Client, as: OAuthClient
+
+  require Logger
 
   @doc """
   Signs the user in by redirecting to the GitHub authorization URL.
