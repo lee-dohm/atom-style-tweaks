@@ -1,12 +1,18 @@
 defmodule AtomTweaksWeb.Admin.ReleaseNoteController do
   @moduledoc """
-  Handles all admin release notes resources.
+  Handles all admin release notes resource routes.
   """
 
   use AtomTweaksWeb, :controller
 
   alias AtomTweaks.Releases
   alias AtomTweaks.Releases.Note
+
+  @doc """
+  Creates a new release note.
+  """
+  @spec create(Plug.Conn.t(), Map.t()) :: Plug.Conn.t()
+  def create(conn, params)
 
   def create(conn, %{"note" => note_params}) do
     %Note{}
@@ -21,6 +27,9 @@ defmodule AtomTweaksWeb.Admin.ReleaseNoteController do
   @doc """
   Displays the edit form for a release note.
   """
+  @spec edit(Plug.Conn.t(), Map.t()) :: Plug.Conn.t()
+  def edit(conn, params)
+
   def edit(conn, %{"id" => id}) do
     note = Releases.get_note!(id)
     changeset = Releases.change_note(note)
@@ -31,6 +40,7 @@ defmodule AtomTweaksWeb.Admin.ReleaseNoteController do
   @doc """
   Renders the list of release notes.
   """
+  @spec index(Plug.Conn.t(), Map.t()) :: Plug.Conn.t()
   def index(conn, _params) do
     notes = Releases.list_notes()
 
@@ -40,6 +50,7 @@ defmodule AtomTweaksWeb.Admin.ReleaseNoteController do
   @doc """
   Renders the new form for a release note.
   """
+  @spec new(Plug.Conn.t(), Map.t()) :: Plug.Conn.t()
   def new(conn, _params) do
     changeset = Releases.change_note(%Note{})
 
@@ -49,11 +60,20 @@ defmodule AtomTweaksWeb.Admin.ReleaseNoteController do
   @doc """
   Renders the release note with the given `id`.
   """
+  @spec show(Plug.Conn.t(), Map.t()) :: Plug.Conn.t()
+  def show(conn, params)
+
   def show(conn, %{"id" => id}) do
     note = Releases.get_note!(id)
 
     render(conn, "show.html", note: note)
   end
+
+  @doc """
+  Updates a release note.
+  """
+  @spec update(Plug.Conn.t(), Map.t()) :: Plug.Conn.t()
+  def update(conn, params)
 
   def update(conn, %{"id" => id, "note" => note_params}) do
     note = Releases.get_note!(id)
