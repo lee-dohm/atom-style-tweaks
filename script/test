@@ -30,7 +30,7 @@ echo "==> Running linters…"
 
 mix credo
 
-shellcheck script/*
+shellcheck script/* .github/actions/**/*.sh
 
 echo "==> Running tests…"
 
