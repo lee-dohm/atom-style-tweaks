@@ -42,8 +42,7 @@ action "Publish docs" {
 }
 
 action "Except dependency pull requests" {
-  uses = "lee-dohm/bin/filter@fix-label-matching"
-  args = "not label \"dependencies :gear:\""
+  uses = "./.github/actions/not-dependencies"
 }
 
 action "Extract release notes" {
@@ -58,6 +57,6 @@ action "Only merged pull requests" {
 
 action "Post release notes" {
   needs = ["Only merged pull requests", "Extract release notes"]
-  uses = "./.github/post-release-notes"
+  uses = "./.github/actions/post-release-notes"
   secrets = ["ATOM_TWEAKS_API_KEY"]
 }
