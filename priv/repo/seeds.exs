@@ -17,11 +17,21 @@ alias AtomTweaks.Tweaks.Tweak
 
 if System.get_env("MIX_ENV") != "test" do
   users = [
-    %{name: "lee-dohm", github_id: 1_038_121, avatar_url: "https://avatars.githubusercontent.com/u/1038121?v=3", site_admin: true},
-    %{name: "hubot", github_id: 480_938, avatar_url: "https://avatars3.githubusercontent.com/u/480938?v=3&s=400", site_admin: false}
+    %{
+      name: "lee-dohm",
+      github_id: 1_038_121,
+      avatar_url: "https://avatars.githubusercontent.com/u/1038121?v=3",
+      site_admin: true
+    },
+    %{
+      name: "hubot",
+      github_id: 480_938,
+      avatar_url: "https://avatars3.githubusercontent.com/u/480938?v=3&s=400",
+      site_admin: false
+    }
   ]
 
-  Enum.each(users, fn(user) ->
+  Enum.each(users, fn user ->
     unless Repo.get_by(User, github_id: user.github_id) do
       Repo.insert!(User.changeset(%User{}, user))
     end
@@ -32,7 +42,8 @@ if System.get_env("MIX_ENV") != "test" do
   ]
 
   user = Repo.get_by!(User, name: "lee-dohm")
-  Enum.each(tweaks, fn(tweak) ->
+
+  Enum.each(tweaks, fn tweak ->
     unless Repo.get_by(Tweak, title: tweak.title) do
       tweak = Map.put_new(tweak, :created_by, user.id)
       Repo.insert!(Tweak.changeset(%Tweak{}, tweak))
@@ -40,7 +51,11 @@ if System.get_env("MIX_ENV") != "test" do
   end)
 
   notes = [
-    %{description: "Test description", detail_url: "https://github.com/lee-dohm/atom-style-tweaks", title: "Test"}
+    %{
+      description: "Test description",
+      detail_url: "https://github.com/lee-dohm/atom-style-tweaks",
+      title: "Test"
+    }
   ]
 
   Enum.each(notes, fn note ->

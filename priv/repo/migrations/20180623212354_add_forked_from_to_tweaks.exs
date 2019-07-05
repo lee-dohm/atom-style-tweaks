@@ -3,7 +3,7 @@ defmodule AtomTweaks.Repo.Migrations.AddForkedFromToTweaks do
 
   def change do
     alter table(:tweaks) do
-      add :parent, references(:tweaks, on_delete: :nothing, type: :binary_id)
+      add(:parent, references(:tweaks, on_delete: :nothing, type: :binary_id))
     end
   end
 end
