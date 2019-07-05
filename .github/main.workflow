@@ -42,7 +42,7 @@ action "Publish docs" {
 }
 
 action "Except dependency pull requests" {
-  uses = "./github/actions/not-dependencies"
+  uses = "./.github/actions/not-dependencies"
 }
 
 action "Extract release notes" {
