@@ -58,6 +58,6 @@ action "Only merged pull requests" {
 
 action "Post release notes" {
   needs = ["Only merged pull requests", "Extract release notes"]
-  uses = "./.github/post-release-notes"
+  uses = "./.github/actions/post-release-notes"
   secrets = ["ATOM_TWEAKS_API_KEY"]
 }
