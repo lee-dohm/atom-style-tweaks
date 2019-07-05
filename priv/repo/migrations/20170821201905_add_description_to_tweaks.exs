@@ -3,7 +3,7 @@ defmodule AtomTweaks.Repo.Migrations.AddDescriptionToTweaks do
 
   def change do
     alter table(:tweaks) do
-      add :description, :text
+      add(:description, :text)
     end
   end
 end

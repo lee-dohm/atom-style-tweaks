@@ -3,7 +3,7 @@ defmodule AtomTweaks.Repo.Migrations.ConvertStyleCodeToTextType do
 
   def change do
     alter table(:styles) do
-      modify :code, :text
+      modify(:code, :text)
     end
   end
 end

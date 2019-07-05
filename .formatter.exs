@@ -1,6 +1,6 @@
 [
   inputs: [
     "*.exs",
-    "{config,lib,test}/**/*.{ex,exs}"
+    "{config,lib,priv,test}/**/*.{ex,exs}"
   ]
 ]
