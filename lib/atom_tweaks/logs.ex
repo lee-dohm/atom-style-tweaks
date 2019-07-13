@@ -63,46 +63,6 @@ defmodule AtomTweaks.Logs do
   end
 
   @doc """
-  Updates a entry.
-
-  ## Examples
-
-  ```
-  iex> update_entry(entry, %{field: new_value})
-  {:ok, %Entry{}}
-  ```
-
-  ```
-  iex> update_entry(entry, %{field: bad_value})
-  {:error, %Ecto.Changeset{}}
-  ```
-  """
-  def update_entry(entry = %Entry{}, attrs) do
-    entry
-    |> Entry.changeset(attrs)
-    |> Repo.update()
-  end
-
-  @doc """
-  Deletes a Entry.
-
-  ## Examples
-
-  ```
-  iex> delete_entry(entry)
-  {:ok, %Entry{}}
-  ```
-
-  ```
-  iex> delete_entry(entry)
-  {:error, %Ecto.Changeset{}}
-  ```
-  """
-  def delete_entry(entry = %Entry{}) do
-    Repo.delete(entry)
-  end
-
-  @doc """
   Returns an `%Ecto.Changeset{}` for tracking entry changes.
 
   ## Examples

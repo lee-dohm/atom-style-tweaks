@@ -12,9 +12,17 @@ defmodule AtomTweaks.Factory do
 
   alias AtomTweaks.Accounts.Token
   alias AtomTweaks.Accounts.User
+  alias AtomTweaks.Logs.Entry
   alias AtomTweaks.Markdown
   alias AtomTweaks.Releases.Note
   alias AtomTweaks.Tweaks.Tweak
+
+  def entry_factory do
+    %Entry{
+      key: "category.subcategory",
+      value: %{}
+    }
+  end
 
   @doc """
   Generates realistic-looking `AtomTweaks.Releases.Note` records.
