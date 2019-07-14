@@ -9,37 +9,18 @@ defmodule AtomTweaks.Logs do
   alias AtomTweaks.Repo
 
   @doc """
-  Returns the list of entries.
+  Returns an `%Ecto.Changeset{}` for tracking entry changes.
 
   ## Examples
 
   ```
-  iex> list_entries()
-  [%Entry{}, ...]
+  iex> change_entry(entry)
+  %Ecto.Changeset{source: %Entry{}}
   ```
   """
-  def list_entries do
-    Repo.all(Entry)
+  def change_entry(entry = %Entry{}) do
+    Entry.changeset(entry, %{})
   end
-
-  @doc """
-  Gets a single entry.
-
-  Raises `Ecto.NoResultsError` if the Entry does not exist.
-
-  ## Examples
-
-  ```
-  iex> get_entry!(123)
-  %Entry{}
-  ```
-
-  ```
-  iex> get_entry!(456)
-  ** (Ecto.NoResultsError)
-  ```
-  """
-  def get_entry!(id), do: Repo.get!(Entry, id)
 
   @doc """
   Creates a entry.
@@ -63,16 +44,46 @@ defmodule AtomTweaks.Logs do
   end
 
   @doc """
-  Returns an `%Ecto.Changeset{}` for tracking entry changes.
+  Gets a single entry.
+
+  Raises `Ecto.NoResultsError` if the Entry does not exist.
 
   ## Examples
 
   ```
-  iex> change_entry(entry)
-  %Ecto.Changeset{source: %Entry{}}
+  iex> get_entry!(123)
+  %Entry{}
+  ```
+
+  ```
+  iex> get_entry!(456)
+  ** (Ecto.NoResultsError)
   ```
   """
-  def change_entry(entry = %Entry{}) do
-    Entry.changeset(entry, %{})
+  def get_entry!(id), do: Repo.get!(Entry, id)
+
+  @doc """
+  Returns the list of entries.
+
+  ## Options
+
+  * `limit` Limits the number of entries listed (_default:_ 25)
+  * `offset` Offset from the first entry to list (_default:_ 0)
+
+  ## Examples
+
+  ```
+  iex> list_entries()
+  [%Entry{}, ...]
+  ```
+  """
+  def list_entries(options \\ []) do
+    limit = Keyword.get(options, :limit, 25)
+    offset = Keyword.get(options, :offset, 0)
+
+    Entry
+    |> limit(^limit)
+    |> offset(^offset)
+    |> Repo.all()
   end
 end

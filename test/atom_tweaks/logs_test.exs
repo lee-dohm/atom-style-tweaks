@@ -30,13 +30,35 @@ defmodule AtomTweaks.LogsTest do
     end
   end
 
-  describe "entries" do
-    test "list_entries/0 returns all entries" do
-      entry = insert(:entry)
+  describe "list_entries/1" do
+    test "returns 25 entries if no limit is set" do
+      entries = insert_list(30, :entry)
+      retrieved_entries = Logs.list_entries()
 
-      assert Logs.list_entries() == [entry]
+      assert length(retrieved_entries) == 25
+      assert Enum.all?(retrieved_entries, fn entry -> entry in entries end)
     end
 
+    test "allows setting the limit" do
+      entries = insert_list(5, :entry)
+      retrieved_entries = Logs.list_entries(limit: 3)
+
+      assert length(retrieved_entries) == 3
+      assert Enum.all?(retrieved_entries, fn entry -> entry in entries end)
+    end
+
+    test "allows setting offset" do
+      entries = insert_list(5, :entry)
+      retrieved_entries = Logs.list_entries(limit: 3)
+      more_entries = Logs.list_entries(limit: 3, offset: 3)
+      all_entries = retrieved_entries ++ more_entries
+
+      assert length(all_entries) == 5
+      assert Enum.all?(all_entries, fn entry -> entry in entries end)
+    end
+  end
+
+  describe "entries" do
     test "get_entry!/1 returns the entry with given id" do
       entry = insert(:entry)
 
