@@ -1,12 +1,12 @@
 defmodule AtomTweaks.Logs do
   @moduledoc """
-  The Logs context.
+  Operations having to do with the audit log.
   """
 
   import Ecto.Query, warn: false
-  alias AtomTweaks.Repo
 
   alias AtomTweaks.Logs.Entry
+  alias AtomTweaks.Repo
 
   @doc """
   Returns the list of entries.

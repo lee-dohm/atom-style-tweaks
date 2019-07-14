@@ -17,6 +17,9 @@ defmodule AtomTweaks.Factory do
   alias AtomTweaks.Releases.Note
   alias AtomTweaks.Tweaks.Tweak
 
+  @doc """
+  Generates realistic-looking `AtomTweaks.Logs.Entry` records.
+  """
   def entry_factory do
     %Entry{
       key: "category.subcategory",
