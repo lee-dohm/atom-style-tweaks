@@ -76,6 +76,7 @@ defmodule AtomTweaksWeb.Router do
   scope("/admin", AtomTweaksWeb.Admin, as: :admin) do
     pipe_through([:browser, :admin_checks])
 
+    get("/", RootController, :main)
     resources("/release-notes", ReleaseNoteController)
   end
 

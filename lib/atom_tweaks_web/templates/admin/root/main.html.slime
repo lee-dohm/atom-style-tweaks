@@ -1,0 +1,2 @@
+.Box
+  = render_many_or_blank(@entries, "_table_row.html", "_blankslate.html", Map.put(assigns, :as, :entry))
