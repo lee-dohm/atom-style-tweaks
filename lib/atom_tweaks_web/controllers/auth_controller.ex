@@ -5,6 +5,7 @@ defmodule AtomTweaksWeb.AuthController do
   use AtomTweaksWeb, :controller
 
   alias AtomTweaks.Accounts.User
+  alias AtomTweaks.Logs
   alias AtomTweaksWeb.GitHub
   alias OAuth2.Client, as: OAuthClient
 
@@ -36,6 +37,11 @@ defmodule AtomTweaksWeb.AuthController do
   """
   @spec delete(Plug.Conn.t(), Map.t()) :: Plug.Conn.t()
   def delete(conn, _params) do
+    Logs.create_entry(%{
+      key: "user.logout",
+      value: %{name: get_session(conn, :current_user).name}
+    })
+
     conn
     |> configure_session(drop: true)
     |> redirect(to: Routes.page_path(conn, :index))
@@ -54,6 +60,11 @@ defmodule AtomTweaksWeb.AuthController do
 
     redirect_path = return_to_path(conn, get_session(conn, :return_to))
 
+    Logs.create_entry(%{
+      key: "user.login",
+      value: %{name: user.name}
+    })
+
     conn
     |> delete_session(:return_to)
     |> put_session(:current_user, user)
@@ -63,8 +74,16 @@ defmodule AtomTweaksWeb.AuthController do
 
   defp create_user(github_user) do
     case Repo.get_by(User, name: github_user.name, github_id: github_user.github_id) do
-      nil -> Repo.insert!(User.changeset(%User{}, github_user))
-      user -> Map.merge(user, github_user)
+      nil ->
+        Repo.insert!(User.changeset(%User{}, github_user))
+
+        Logs.create_entry(%{
+          key: "user.create",
+          value: %{name: github_user.name, id: github_user.github_id}
+        })
+
+      user ->
+        Map.merge(user, github_user)
     end
   end
 
