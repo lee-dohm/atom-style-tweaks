@@ -21,5 +21,7 @@ defmodule AtomTweaks.Logs.Entry do
     entry
     |> cast(attrs, [:key, :value])
     |> validate_required([:key, :value])
+    |> validate_format(:key, ~r/^\S+$/, message: "contains whitespace")
+    |> validate_format(:key, ~r/^[^.]+\.[^.]+$/, message: "contains more than one subcategory")
   end
 end
