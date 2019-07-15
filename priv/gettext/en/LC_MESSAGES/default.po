@@ -307,3 +307,8 @@ msgstr ""
 #: lib/atom_tweaks_web/templates/token/index.html.slime:1
 msgid "Record this code, it will only be shown once:"
 msgstr ""
+
+#, elixir-format
+#: lib/atom_tweaks_web/templates/admin/root/_blankslate.html.slime:1
+msgid "No audit log entries yet"
+msgstr ""

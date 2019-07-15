@@ -81,12 +81,17 @@ defmodule AtomTweaks.Logs do
     per_page = Keyword.get(options, :per_page, 25)
     page = Keyword.get(options, :page, 1)
 
-    limit = if per_page > 100, do: 100, else: per_page
-    limit = if per_page < 1, do: 1, else: limit
+    limit =
+      cond do
+        per_page > 100 -> 100
+        per_page < 1 -> 1
+        true -> per_page
+      end
+
     offset = (page - 1) * limit
 
     Entry
-    |> order_by([desc: :inserted_at])
+    |> order_by(desc: :inserted_at)
     |> limit(^limit)
     |> offset(^offset)
     |> Repo.all()
