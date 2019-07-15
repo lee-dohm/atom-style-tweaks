@@ -31,7 +31,7 @@ defmodule AtomTweaks.LogsTest do
   end
 
   describe "list_entries/1" do
-    test "returns 25 entries if no limit is set" do
+    test "returns 25 entries if no per_page value is set" do
       entries = insert_list(30, :entry)
       retrieved_entries = Logs.list_entries()
 
@@ -39,18 +39,34 @@ defmodule AtomTweaks.LogsTest do
       assert Enum.all?(retrieved_entries, fn entry -> entry in entries end)
     end
 
-    test "allows setting the limit" do
+    test "allows setting the per_page value" do
       entries = insert_list(5, :entry)
-      retrieved_entries = Logs.list_entries(limit: 3)
+      retrieved_entries = Logs.list_entries(per_page: 3)
 
       assert length(retrieved_entries) == 3
       assert Enum.all?(retrieved_entries, fn entry -> entry in entries end)
     end
 
-    test "allows setting offset" do
+    test "uses a max per_page value of 100" do
+      entries = insert_list(105, :entry)
+      retrieved_entries = Logs.list_entries(per_page: 1_000)
+
+      assert length(retrieved_entries) == 100
+      assert Enum.all?(retrieved_entries, fn entry -> entry in entries end)
+    end
+
+    test "uses a min per_page value of 1" do
       entries = insert_list(5, :entry)
-      retrieved_entries = Logs.list_entries(limit: 3)
-      more_entries = Logs.list_entries(limit: 3, offset: 3)
+      retrieved_entries = Logs.list_entries(per_page: 0)
+
+      assert length(retrieved_entries) == 1
+      assert Enum.all?(retrieved_entries, fn entry -> entry in entries end)
+    end
+
+    test "allows setting the page number" do
+      entries = insert_list(5, :entry)
+      retrieved_entries = Logs.list_entries(per_page: 3)
+      more_entries = Logs.list_entries(per_page: 3, page: 2)
       all_entries = retrieved_entries ++ more_entries
 
       assert length(all_entries) == 5

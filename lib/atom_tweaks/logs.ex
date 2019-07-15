@@ -67,8 +67,8 @@ defmodule AtomTweaks.Logs do
 
   ## Options
 
-  * `limit` Limits the number of entries listed (_default:_ 25)
-  * `offset` Offset from the first entry to list (_default:_ 0)
+  * `page` Page number of entries to return (_default:_ 1)
+  * `per_page` Limits the number of entries listed per page (_default:_ 25, _max:_ 100, _min:_ 1)
 
   ## Examples
 
@@ -78,8 +78,12 @@ defmodule AtomTweaks.Logs do
   ```
   """
   def list_entries(options \\ []) do
-    limit = Keyword.get(options, :limit, 25)
-    offset = Keyword.get(options, :offset, 0)
+    per_page = Keyword.get(options, :per_page, 25)
+    page = Keyword.get(options, :page, 1)
+
+    limit = if per_page > 100, do: 100, else: per_page
+    limit = if per_page < 1, do: 1, else: limit
+    offset = (page - 1) * limit
 
     Entry
     |> limit(^limit)
