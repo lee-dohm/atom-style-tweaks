@@ -1,3 +1,7 @@
-.Box-row
-  .lh-condensed
-    a.Box-row-link.title href="#" = @entry.key
+.Box-row.lh-condensed
+  .clearfix.mb-2
+    .float-left
+      a.Box-row-link href="#" = @entry.key
+    .float-right
+      = @entry.inserted_at
+  = render_entry_value(@entry)

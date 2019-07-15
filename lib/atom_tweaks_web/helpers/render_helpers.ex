@@ -14,7 +14,7 @@ defmodule AtomTweaksWeb.RenderHelpers do
   Renders the code for the given `tweak`.
   """
   @spec render_code(Tweak.t()) :: Phoenix.HTML.safe()
-  def render_code(tweak) do
+  def render_code(tweak = %Tweak{}) do
     content_tag(:pre) do
       content_tag(:code, tweak.code, class: code_class_for(tweak), id: "code")
     end
