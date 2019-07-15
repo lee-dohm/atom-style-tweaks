@@ -86,6 +86,7 @@ defmodule AtomTweaks.Logs do
     offset = (page - 1) * limit
 
     Entry
+    |> order_by([desc: :inserted_at])
     |> limit(^limit)
     |> offset(^offset)
     |> Repo.all()

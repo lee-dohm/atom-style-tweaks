@@ -72,6 +72,15 @@ defmodule AtomTweaks.LogsTest do
       assert length(all_entries) == 5
       assert Enum.all?(all_entries, fn entry -> entry in entries end)
     end
+
+    test "orders entries newest first" do
+      first = insert(:entry)
+      second = insert(:entry)
+      third = insert(:entry)
+      entries = Logs.list_entries()
+
+      assert entries == [third, second, first]
+    end
   end
 
   describe "entries" do
