@@ -47,7 +47,7 @@ defmodule AtomTweaks.Mixfile do
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.1"},
       {:navigation_history, "~> 0.2"},
-      {:oauth2, "~> 1.0.1"},
+      {:oauth2, "~> 2.0.0"},
       {:phoenix_ecto, "~> 3.0"},
       {:phoenix_html, "~> 2.6"},
       {:phoenix_octicons, "~> 0.6"},
