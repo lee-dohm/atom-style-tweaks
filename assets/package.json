@@ -8,7 +8,7 @@
   "dependencies": {
     "@primer/css": "^12.5.0",
     "clipboard": "^2.0.4",
-    "highlight.js": "^9.15.8",
+    "highlight.js": "^9.15.9",
     "phoenix": "file:../deps/phoenix",
     "phoenix_html": "file:../deps/phoenix_html"
   },
