@@ -1,0 +1,20 @@
+on: pull_request
+name: Post release notes
+jobs:
+  postReleaseNotes:
+    name: Post release notes
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Except dependency pull requests
+      uses: ./.github/actions/not-dependencies
+    - name: Extract release notes
+      uses: lee-dohm/extract-release-notes@master
+    - name: Only merged pull requests
+      uses: actions/bin/filter@master
+      with:
+        args: merged true
+    - name: Post release notes
+      uses: ./.github/actions/post-release-notes
+      env:
+        ATOM_TWEAKS_API_KEY: ${{ secrets.ATOM_TWEAKS_API_KEY }}
