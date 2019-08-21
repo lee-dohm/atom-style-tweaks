@@ -10,7 +10,6 @@ jobs:
         GITHUB_CONTEXT: ${{ toJson(github) }}
       run: echo "$GITHUB_CONTEXT"
     - uses: actions/checkout@master
-    - name: Except dependency pull requests
-      uses: ./.github/actions/not-dependencies
     - name: Extract release notes
       uses: lee-dohm/extract-release-notes@master
+      if: contains(join(github.event.pull_request.labels), 'dependencies')
