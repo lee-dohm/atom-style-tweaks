@@ -5,10 +5,6 @@ jobs:
     name: Validate release notes
     runs-on: ubuntu-latest
     steps:
-    - name: Dump github context
-      env:
-        GITHUB_CONTEXT: ${{ toJson(github) }}
-      run: echo "$GITHUB_CONTEXT"
     - uses: actions/checkout@master
     - name: Extract release notes
       uses: lee-dohm/extract-release-notes@master
