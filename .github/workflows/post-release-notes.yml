@@ -16,6 +16,6 @@ jobs:
       if: "! contains(join(github.event.pull_request.labels), 'dependencies')"
     - name: Post release notes
       uses: ./.github/actions/post-release-notes
-      if: github.event.pull_request.merged && job.steps.extract.status == success
+      if: github.event.pull_request.merged && job.steps.extract.status == success()
       env:
         ATOM_TWEAKS_API_KEY: ${{ secrets.ATOM_TWEAKS_API_KEY }}
