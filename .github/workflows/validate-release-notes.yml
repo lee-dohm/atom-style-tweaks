@@ -6,6 +6,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
+    - name: List labels
+      env:
+        LABELS: ${{ join(github.event.pull_request.labels) }}
+      run: echo "$LABELS"
     - name: Extract release notes
       uses: lee-dohm/extract-release-notes@master
       if: "! contains(join(github.event.pull_request.labels), 'dependencies')"
