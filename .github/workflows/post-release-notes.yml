@@ -6,15 +6,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-    - name: Except dependency pull requests
-      uses: ./.github/actions/not-dependencies
     - name: Extract release notes
+      id: extract
       uses: lee-dohm/extract-release-notes@master
-    - name: Only merged pull requests
-      uses: actions/bin/filter@master
-      with:
-        args: merged true
+      if: github.event.pull_request.merged && ! contains(join(github.event.pull_request.labels), 'dependencies')
     - name: Post release notes
       uses: ./.github/actions/post-release-notes
+      if: github.event.pull_request.merged && job.steps.extract.status == success()
       env:
         ATOM_TWEAKS_API_KEY: ${{ secrets.ATOM_TWEAKS_API_KEY }}
