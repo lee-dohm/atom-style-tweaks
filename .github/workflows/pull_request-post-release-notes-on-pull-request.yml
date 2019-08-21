@@ -5,6 +5,10 @@ jobs:
     name: Post release notes
     runs-on: ubuntu-latest
     steps:
+    - name: Dump github context
+      env:
+        GITHUB_CONTEXT: ${{ toJson(github) }}
+      run: echo "$GITHUB_CONTEXT"
     - uses: actions/checkout@master
     - name: Except dependency pull requests
       uses: ./.github/actions/not-dependencies
