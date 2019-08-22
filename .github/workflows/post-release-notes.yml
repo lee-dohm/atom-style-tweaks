@@ -9,7 +9,7 @@ jobs:
     - name: Extract release notes
       id: extract
       uses: lee-dohm/extract-release-notes@master
-      if: github.event.pull_request.merged && ! contains(join(github.event.pull_request.labels), 'dependencies')
+      if: "github.event.pull_request.merged && ! contains(join(github.event.pull_request.labels.*.name), 'dependencies')"
     - name: Post release notes
       uses: ./.github/actions/post-release-notes
       if: github.event.pull_request.merged && job.steps.extract.status == success()
