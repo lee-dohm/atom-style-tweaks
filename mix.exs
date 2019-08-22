@@ -69,7 +69,7 @@ defmodule AtomTweaks.Mixfile do
       {:ex_machina, "~> 2.0", only: :test},
       {:excoveralls, "~> 0.6", only: :test},
       {:faker_elixir_octopus, "~> 1.0", only: :test},
-      {:floki, "~> 0.21.0", only: [:dev, :test]},
+      {:floki, "~> 0.22.0", only: [:dev, :test]},
       {:html_entities, "~> 0.4.0", only: [:dev, :test]},
       {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:pseudoloc, "~> 0.2", only: [:dev, :test]},
