@@ -9,7 +9,7 @@ jobs:
     - name: DEBUG labels
       env:
         LABELS: ${{ join(github.event.pull_request.labels.*.name) }}
-      run: "echo \"LABELS = $LABELS\"; echo\ "CONTAINS_DEPENDENCIES = $CONTAINS_DEPENDENCIES\""
+      run: echo "LABELS = $LABELS"
     - name: Extract release notes
       uses: lee-dohm/extract-release-notes@master
       if: "! contains(join(github.event.pull_request.labels.*.name), 'dependencies')"
