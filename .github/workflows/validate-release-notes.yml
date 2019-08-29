@@ -6,10 +6,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-    - name: DEBUG labels
-      env:
-        LABELS: ${{ join(github.event.pull_request.labels.*.name) }}
-      run: echo "LABELS = $LABELS"
     - name: Extract release notes
       uses: lee-dohm/extract-release-notes@master
-      if: "! contains(join(github.event.pull_request.labels.*.name), 'dependencies')"
+      if: github.event.pull_request.user.type != "Bot"
