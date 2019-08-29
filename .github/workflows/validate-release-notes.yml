@@ -8,4 +8,4 @@ jobs:
     - uses: actions/checkout@master
     - name: Extract release notes
       uses: lee-dohm/extract-release-notes@master
-      if: github.event.pull_request.user.type != "Bot"
+      if: "github.event.pull_request.user.type != 'Bot'"
