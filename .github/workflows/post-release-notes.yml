@@ -1,4 +1,6 @@
-on: pull_request
+on:
+  pull_request:
+    types: [closed]
 name: Post release notes
 jobs:
   postReleaseNotes:
@@ -6,6 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
+      if: github.event.pull_request.merged
     - name: Extract release notes
       id: extract
       uses: lee-dohm/extract-release-notes@master
