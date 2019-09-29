@@ -5,7 +5,7 @@ jobs:
     name: Validate release notes
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
+    - uses: actions/checkout@v1.0.0
     - name: Extract release notes
-      uses: lee-dohm/extract-release-notes@master
+      uses: lee-dohm/extract-release-notes@v1.0.2
       if: "github.event.pull_request.user.type != 'Bot'"
