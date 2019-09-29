@@ -24,5 +24,5 @@ fi
 title=$(jq --raw-output .pull_request.title "$GITHUB_EVENT_PATH")
 detail_url=$(jq --raw-output .pull_request.url "$GITHUB_EVENT_PATH")
 
-http "authorization:token $ATOM_TWEAKS_API_KEY" "title=$title" "detail_url=$detail_url" \
-     "description=@$file_path"
+echo "http --ignore-stdin authorization:token REDACTED title=$title detail_url=$detail_url description=@$file_path"
+http --ignore-stdin "authorization:token $ATOM_TWEAKS_API_KEY" "title=$title" "detail_url=$detail_url" "description=@$file_path"
