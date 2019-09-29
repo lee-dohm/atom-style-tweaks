@@ -9,7 +9,7 @@ jobs:
     steps:
     - uses: actions/checkout@v1.0.0
       with:
-        ref: ${{ github.sha }}
+        ref: refs/heads/${{ github.head_ref }}
       if: github.event.pull_request.merged
     - name: Extract release notes
       id: extract
