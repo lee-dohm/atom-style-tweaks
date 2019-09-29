@@ -22,7 +22,7 @@ fi
 /validate-release-notes "$file_path"
 
 title=$(jq --raw-output .pull_request.title "$GITHUB_EVENT_PATH")
-detail_url=$(jq --raw-output .pull_request.url "$GITHUB_EVENT_PATH")
+detail_url=$(jq --raw-output .pull_request.html_url "$GITHUB_EVENT_PATH")
 
 echo "http --ignore-stdin POST https://www.atom-tweaks.com/api/release-notes 'authorization:token REDACTED' 'title=$title' 'detail_url=$detail_url' 'description=@$file_path'"
 http --ignore-stdin POST https://www.atom-tweaks.com/api/release-notes "authorization:token $ATOM_TWEAKS_API_KEY" "title=$title" "detail_url=$detail_url" "description=@$file_path"
