@@ -2,7 +2,7 @@ on:
   push:
     branches:
     - master
-name: Publish project documentation
+name: Publish docs
 jobs:
   publishProjectDocs:
     name: Publish project documentation
