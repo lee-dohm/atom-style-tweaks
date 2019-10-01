@@ -21,3 +21,6 @@ jobs:
           otp-version: 22.x
           elixir-version: 1.9.x
       - run: script/cibuild
+        env:
+          ACTIONS: true
+          COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
