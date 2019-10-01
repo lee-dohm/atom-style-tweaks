@@ -27,16 +27,12 @@ shellcheck script/*
 # No need to run the credo linter in CI because we have an extra service installed that runs it
 # separately
 
-echo "---- Event JSON -----"
-cat "$GITHUB_EVENT_PATH"
-echo "---------------------"
-
 echo "==> Running tests…"
 
 if [ -n "$TRAVIS" ]; then
   mix coveralls.travis
 elif [ -n "$ACTIONS" ]; then
-  message=$(jq --raw-output ".push.commits[-1].message" "$GITHUB_EVENT_PATH")
+  message=$(jq --raw-output ".commits[-1].message" "$GITHUB_EVENT_PATH")
 
   mix coveralls.post --branch "$GITHUB_REF" --committer "$GITHUB_ACTOR" --name "actions" \
       --message "$message" --sha "$GITHUB_SHA"
