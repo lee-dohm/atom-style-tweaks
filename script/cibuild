@@ -27,6 +27,10 @@ shellcheck script/*
 # No need to run the credo linter in CI because we have an extra service installed that runs it
 # separately
 
+echo "---- Event JSON -----"
+cat "$GITHUB_EVENT_PATH"
+echo "---------------------"
+
 echo "==> Running tests…"
 
 if [ -n "$TRAVIS" ]; then
