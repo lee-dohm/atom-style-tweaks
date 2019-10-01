@@ -32,9 +32,10 @@ echo "==> Running tests…"
 if [ -n "$TRAVIS" ]; then
   mix coveralls.travis
 elif [ -n "$ACTIONS" ]; then
+  branch=$(echo "$GITHUB_REF" | sed "s/refs\/heads\///")
   message=$(jq --raw-output ".commits[-1].message" "$GITHUB_EVENT_PATH")
 
-  mix coveralls.post --branch "$GITHUB_REF" --committer "$GITHUB_ACTOR" --name "actions" \
+  mix coveralls.post --branch "$branch" --committer "$GITHUB_ACTOR" --name "actions" \
       --message "$message" --sha "$GITHUB_SHA"
 else
   mix test
