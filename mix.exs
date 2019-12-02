@@ -52,7 +52,7 @@ defmodule AtomTweaks.Mixfile do
       {:phoenix_html, "~> 2.6"},
       {:phoenix_octicons, "~> 0.6"},
       {:phoenix_pubsub, "~> 1.0"},
-      {:phoenix_slime, "~> 0.12.0"},
+      {:phoenix_slime, "~> 0.13.0"},
       {:phoenix, "~> 1.4.6"},
       {:plug_cowboy, "~> 2.0"},
       {:plug_ribbon, "~> 0.2"},
