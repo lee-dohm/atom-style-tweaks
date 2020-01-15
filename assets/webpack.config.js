@@ -24,10 +24,12 @@ module.exports = {
             {
               loader: 'sass-loader',
               options: {
-                includePaths: [
-                  path.resolve(__dirname, 'node_modules')
-                ],
-                outputStyle: 'compressed',
+                sassOptions: {
+                  includePaths: [
+                    path.resolve(__dirname, 'node_modules')
+                  ],
+                  outputStyle: 'compressed'
+                },
                 sourceMap: !isProduction
               }
             }
