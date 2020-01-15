@@ -1,6 +1,5 @@
-brew "elixir"
+brew "asdf"
 brew "heroku"
 brew "jq"
-brew "nodenv"
 brew "postgresql"
 brew "shellcheck"
