@@ -7,9 +7,9 @@ jobs:
     name: Post release notes
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1.0.0
+    - uses: actions/checkout@v2
       with:
-        ref: refs/heads/${{ github.head_ref }}
+        ref: ${{ env.GITHUB_SHA }}
       if: github.event.pull_request.merged
     - name: Extract release notes
       id: extract
