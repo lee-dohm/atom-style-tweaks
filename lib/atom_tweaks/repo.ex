@@ -1,6 +1,6 @@
 defmodule AtomTweaks.Repo do
   @moduledoc """
-  Defines the Atom Tweaks database repository.
+  Functions for interacting with the Atom Tweaks database.
 
   ## Shared options
 

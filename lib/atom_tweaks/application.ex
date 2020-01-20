@@ -1,6 +1,6 @@
 defmodule AtomTweaks.Application do
   @moduledoc """
-  The AtomTweaks application.
+  Contains functions for maintaining the lifecycle of the application.
   """
 
   use Application
