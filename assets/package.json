@@ -6,7 +6,7 @@
     "watch": "webpack --watch-stdin"
   },
   "dependencies": {
-    "@primer/css": "^14.1.0",
+    "@primer/css": "^14.2.0",
     "clipboard": "^2.0.4",
     "highlight.js": "^9.18.0",
     "phoenix": "file:../deps/phoenix",
