@@ -1,6 +1,6 @@
 on:
   pull_request:
-    types: [opened, edited, reopened]
+    types: [opened, edited, reopened, synchronized]
 name: Validate release notes
 jobs:
   validateReleaseNotes:
