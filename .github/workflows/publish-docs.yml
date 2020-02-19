@@ -10,10 +10,11 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Generate docs
-      uses: lee-dohm/generate-elixir-docs@master
+      uses: lee-dohm/generate-elixir-docs@typescript
+      with:
+        tagVersionWithHash: true
       env:
         MIX_ENV: test
-        TAG_VERSION_WITH_HASH: "true"
     - name: Publish docs
       uses: peaceiris/actions-gh-pages@v1.0.1
       env:
