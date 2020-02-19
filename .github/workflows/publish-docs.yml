@@ -14,7 +14,7 @@ jobs:
         otp-version: 22.x
         elixir-version: 1.9.x    
     - name: Generate docs
-      uses: lee-dohm/generate-elixir-docs@typescript
+      uses: lee-dohm/generate-elixir-docs@v1
       with:
         tagVersionWithHash: true
       env:
