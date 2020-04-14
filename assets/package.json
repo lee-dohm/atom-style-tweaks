@@ -16,7 +16,7 @@
     "@types/clipboard": "^2.0.1",
     "@types/highlight.js": "^9.12.3",
     "copy-webpack-plugin": "^5.1.1",
-    "css-loader": "^3.4.2",
+    "css-loader": "^3.5.2",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "node-sass": "^4.13.1",
     "sass-loader": "^8.0.2",
