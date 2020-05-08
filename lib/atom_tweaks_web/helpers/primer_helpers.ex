@@ -101,8 +101,6 @@ defmodule AtomTweaksWeb.PrimerHelpers do
   @spec code_with_heart(atom, Keyword.t()) :: Phoenix.HTML.safe()
   def code_with_heart(app_name, options \\ [])
 
-  def code_with_heart(app_name, options)
-
   def code_with_heart(app_name, options) when is_atom(app_name) and is_list(options) do
     config = Application.get_env(app_name, :code_with_heart)
     name = config[:name]

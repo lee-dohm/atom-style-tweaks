@@ -48,8 +48,9 @@ defmodule AtomTweaksWeb.MarkdownEngine do
   # Represents the Markdown rendering pipeline.
   def render(text, _options) do
     text
-    |> Cmark.to_commonmark(&replace_mention(&1, at_mention_funcs()), [:validate_utf8])
-    |> Cmark.to_html([:safe, :smart])
+    |> Cmark.to_commonmark([:validate_utf8])
+    |> replace_mention(at_mention_funcs())
+    |> Cmark.to_html([:smart])
     |> String.replace(@mention_link_pattern, ~s{<a class="at-mention" href="\\1">\\2</a>})
   end
 
