@@ -42,7 +42,7 @@ defmodule AtomTweaks.Mixfile do
   defp deps do
     [
       # Full dependencies
-      {:cmark, "~> 0.7"},
+      {:cmark, "~> 0.8"},
       {:ex_debug_toolbar, "~> 0.5"},
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.1"},
