@@ -49,7 +49,13 @@ module.exports = {
     filename: 'js/app.js'
   },
   plugins: [
-    new CopyWebpackPlugin([{from: './static'}]),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: './static'
+        }
+      ]
+    }),
     new ExtractTextPlugin('css/app.css')
   ],
   resolve: {

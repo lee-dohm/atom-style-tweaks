@@ -60,7 +60,6 @@ msgstr "Ḉḽḭͼḳ \"Ṅḛẁ\" ṭṓ ḡḛṭ ṡṭαṛṭḛḍ!"
 
 #, elixir-format
 #: lib/atom_tweaks_web/templates/tweak/_copy_tweak_button.html.slime:1
-#: lib/atom_tweaks_web/templates/tweak/_copy_tweak_button.html.slime:1
 msgid "Copy"
 msgstr "Ḉṓṗẏ"
 
@@ -75,11 +74,7 @@ msgid "Created by %{owner_link} about %{time_ago}"
 msgstr "Ḉṛḛαṭḛḍ ḅẏ %{owner_link} αḅṓṵṭ %{time_ago}"
 
 #, elixir-format
-#:
-#: lib/atom_tweaks_web/templates/admin/release_note/_edit_note_button.html.slime:1
-#: lib/atom_tweaks_web/templates/admin/release_note/_edit_note_button.html.slime:1
-#: lib/atom_tweaks_web/templates/tweak/_edit_tweak_button.html.slime:1
-#: lib/atom_tweaks_web/templates/tweak/_edit_tweak_button.html.slime:1
+#: lib/atom_tweaks_web/templates/admin/release_note/_edit_note_button.html.slime:1 lib/atom_tweaks_web/templates/tweak/_edit_tweak_button.html.slime:1
 msgid "Edit"
 msgstr "Ḛḍḭṭ"
 
@@ -172,14 +167,12 @@ msgstr "Ṣṭẏḽḛṡ"
 
 #, elixir-format
 #: lib/atom_tweaks_web/templates/user/_user_info.html.slime:1
-#: lib/atom_tweaks_web/templates/user/_user_info.html.slime:1
 msgid "This person is an Atom Tweaks staff member"
 msgstr "Ṫḥḭṡ ṗḛṛṡṓṇ ḭṡ αṇ Ḁṭṓṃ Ṫẁḛαḳṡ ṡṭαϝϝ ṃḛṃḅḛṛ"
 
 #, elixir-format
 #: lib/atom_tweaks_web/templates/admin/release_note/edit.html.slime:1
-#: lib/atom_tweaks_web/templates/admin/release_note/new.html.slime:1
-#: lib/atom_tweaks_web/templates/tweak/edit.html.slime:1
+#: lib/atom_tweaks_web/templates/admin/release_note/new.html.slime:1 lib/atom_tweaks_web/templates/tweak/edit.html.slime:1
 #: lib/atom_tweaks_web/templates/tweak/new.html.slime:1
 msgid "Title"
 msgstr "Ṫḭṭḽḛ"
@@ -201,12 +194,11 @@ msgstr "Ṳṗḍαṭḛ ṭẁḛαḳ"
 
 #, elixir-format
 #: lib/atom_tweaks_web/templates/user/_user_info.html.slime:1
-#: lib/atom_tweaks_web/templates/user/_user_info.html.slime:1
 msgid "View this person on GitHub"
 msgstr "Ṿḭḛẁ ṭḥḭṡ ṗḛṛṡṓṇ ṓṇ ḠḭṭḤṵḅ"
 
 #, elixir-format
-#: lib/atom_tweaks_web/helpers/primer_helpers.ex:214
+#: lib/atom_tweaks_web/helpers/primer_helpers.ex:212
 msgid "View this project on GitHub"
 msgstr "Ṿḭḛẁ ṭḥḭṡ ṗṛṓĵḛͼṭ ṓṇ ḠḭṭḤṵḅ"
 
@@ -258,8 +250,7 @@ msgstr "Ṅṓ ṛḛḽḛαṡḛ ṇṓṭḛṡ ϝṓṛ ẏṓṵ ṭṓ �
 
 #, elixir-format
 #: lib/atom_tweaks_web/templates/admin/release_note/_release_info.html.slime:1
-#: lib/atom_tweaks_web/templates/admin/release_note/show.html.slime:1
-#: lib/atom_tweaks_web/templates/page/_release_notes_table_row.html.slime:1
+#: lib/atom_tweaks_web/templates/admin/release_note/show.html.slime:1 lib/atom_tweaks_web/templates/page/_release_notes_table_row.html.slime:1
 msgid "Released about %{time_ago}"
 msgstr "Ṛḛḽḛαṡḛḍ αḅṓṵṭ %{time_ago}"
 
