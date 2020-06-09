@@ -23,7 +23,7 @@
         }
       },
       "heroku": {
-        "version": "7.35.1",
+        "version": "7.41.1",
         "bottle": false
       },
       "jq": {
@@ -56,58 +56,62 @@
         "bottle": false
       },
       "postgresql": {
-        "version": "12.1",
+        "version": "12.3_3",
         "bottle": {
           "cellar": "/usr/local/Cellar",
           "prefix": "/usr/local",
           "files": {
             "catalina": {
-              "url": "https://homebrew.bintray.com/bottles/postgresql-12.1.catalina.bottle.tar.gz",
-              "sha256": "309377407d7cb766d238f063c10210c4e48d48fcdadd62560346c2d4af782bc4"
+              "url": "https://homebrew.bintray.com/bottles/postgresql-12.3_3.catalina.bottle.tar.gz",
+              "sha256": "f669793743849ffa5a02fee6942dd0acf73a718ec4291b936bdff1a2907183e8"
             },
             "mojave": {
-              "url": "https://homebrew.bintray.com/bottles/postgresql-12.1.mojave.bottle.tar.gz",
-              "sha256": "2e97d7d591916d79f8e8a5ed0023c6d1e31e27a5b289d31d9b5cdf51e1d3a040"
+              "url": "https://homebrew.bintray.com/bottles/postgresql-12.3_3.mojave.bottle.tar.gz",
+              "sha256": "7d471063e15a2f2e361fa90d102c9f49c78e4d062909eabd801eaff0160e716b"
             },
             "high_sierra": {
-              "url": "https://homebrew.bintray.com/bottles/postgresql-12.1.high_sierra.bottle.tar.gz",
-              "sha256": "754aac4d7055bdd801f91eef7e36ba93ee5fafd931e0a13a02bcd64e71ff34a9"
+              "url": "https://homebrew.bintray.com/bottles/postgresql-12.3_3.high_sierra.bottle.tar.gz",
+              "sha256": "dd4506b7af84a92c98ee3506167e688a68dd44b2cd9cde10b8ec1e0ec5e96b03"
             }
           }
         }
       },
       "shellcheck": {
-        "version": "0.7.0",
+        "version": "0.7.1",
         "bottle": {
           "cellar": ":any_skip_relocation",
           "prefix": "/usr/local",
           "files": {
+            "catalina": {
+              "url": "https://homebrew.bintray.com/bottles/shellcheck-0.7.1.catalina.bottle.1.tar.gz",
+              "sha256": "0cd635d2172d5e6617be8cdfb2723b6aa6feb2aa22e36cb3172d8b6fa012f4a0"
+            },
             "mojave": {
-              "url": "https://homebrew.bintray.com/bottles/shellcheck-0.7.0.mojave.bottle.tar.gz",
-              "sha256": "be8e084d55379a4b5a8bfba78ad298f966f0888e6c3eb7e5202527d3938f3501"
+              "url": "https://homebrew.bintray.com/bottles/shellcheck-0.7.1.mojave.bottle.1.tar.gz",
+              "sha256": "37201a49c0d7a5be49c5d97d4f6f8f5fcfef7d700b4694f74648a1addcd6783d"
             },
             "high_sierra": {
-              "url": "https://homebrew.bintray.com/bottles/shellcheck-0.7.0.high_sierra.bottle.tar.gz",
-              "sha256": "a4e12db223139c82649fdc16a2d04184cbaf5fc413c1135b0a1100a16e33290b"
-            },
-            "sierra": {
-              "url": "https://homebrew.bintray.com/bottles/shellcheck-0.7.0.sierra.bottle.tar.gz",
-              "sha256": "770a22a491ae6316f7b6e56d8039d30693d857336ccc608de865750798480899"
+              "url": "https://homebrew.bintray.com/bottles/shellcheck-0.7.1.high_sierra.bottle.1.tar.gz",
+              "sha256": "1b20aeaba4d5e2e3df5cbe27636d655b6f877ee05a41d25fe1e0b3f9d00afa81"
             }
           }
         }
+      },
+      "asdf": {
+        "version": "0.7.8",
+        "bottle": false
       }
     }
   },
   "system": {
     "macos": {
       "catalina": {
-        "HOMEBREW_VERSION": "2.2.2",
+        "HOMEBREW_VERSION": "2.3.0",
         "HOMEBREW_PREFIX": "/usr/local",
-        "Homebrew/homebrew-core": "c78fb7506eaa66e53a3e4913043450136272a182",
+        "Homebrew/homebrew-core": "eeceeba5aac634dd0e3c2bc1dd77a309b7480e01",
         "CLT": "",
-        "Xcode": "11.3",
-        "macOS": "10.15.2"
+        "Xcode": "11.5",
+        "macOS": "10.15.5"
       }
     }
   }
