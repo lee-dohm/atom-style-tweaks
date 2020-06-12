@@ -11,7 +11,8 @@ contents =
 no_notes_patterns =
   [
     ~R/\Afalse\z/im,
-    ~R/\Ano(\s+release)?\s+note(s)?\z/im
+    ~R/\Ano(\s+release)?\s+note(s)?\z/im,
+    ~R/\Anone\z/im
   ]
 
 if Enum.any?(no_notes_patterns, fn pattern -> contents =~ pattern end) do
