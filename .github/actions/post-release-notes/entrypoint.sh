@@ -1,8 +1,5 @@
 #!/bin/sh
 
-# Exit on failure
-set -e
-
 if [ -z "$RELEASE_NOTES_PATH" ]; then
   RELEASE_NOTES_PATH="__RELEASE_NOTES.md"
 fi
@@ -25,6 +22,9 @@ if [ $? -eq 78 ]; then
   echo "Success: Valid release notes section intentionally containing no release notes"
   exit 0
 fi
+
+# Exit on failure
+set -e
 
 title=$(jq --raw-output .pull_request.title "$GITHUB_EVENT_PATH")
 detail_url=$(jq --raw-output .pull_request.html_url "$GITHUB_EVENT_PATH")
