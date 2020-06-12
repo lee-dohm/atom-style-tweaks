@@ -1,13 +1,14 @@
+name: Validate release notes
+
 on:
   pull_request:
     types: [opened, edited, reopened, synchronized]
-name: Validate release notes
+
 jobs:
   validateReleaseNotes:
-    name: Validate release notes
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
     - name: Extract release notes
-      uses: lee-dohm/extract-release-notes@typescript
+      uses: lee-dohm/extract-release-notes@v2
       if: "github.event.pull_request.user.type != 'Bot'"
