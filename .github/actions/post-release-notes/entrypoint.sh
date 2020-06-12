@@ -21,6 +21,11 @@ fi
 
 /validate-release-notes "$file_path"
 
+if [ $? -eq 78 ]; then
+  echo "Success: Valid release notes section intentionally containing no release notes"
+  exit 0
+fi
+
 title=$(jq --raw-output .pull_request.title "$GITHUB_EVENT_PATH")
 detail_url=$(jq --raw-output .pull_request.html_url "$GITHUB_EVENT_PATH")
 
