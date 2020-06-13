@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.22.1">
+    <meta name="project" content="Atom Tweaks v0.1.0+c1f5afa">
+    <title>AtomTweaksWeb.PrimerHelpers — Atom Tweaks v0.1.0+c1f5afa</title>
+    <link rel="stylesheet" href="dist/elixir-e589b8fad3dab6230c65.css" />
+    <script src="dist/sidebar_items-5abe603f27.js"></script>
+      <script src="docs_config.js"></script>
+    <script async src="dist/app-5c0c23dfec2d63ae33a2.js"></script>
+  </head>
+  <body data-type="modules">
+    <script>try { if(localStorage.getItem('night-mode') === 'true') document.body.className += ' night-mode'; } catch (e) { }</script>
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle">
+  <span class="icon-menu" title="Collapse/expand sidebar"></span>
+</button>
+
+<section class="sidebar">
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button">
+      <span class="icon-search" aria-hidden="true"></span>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button">
+      <span class="icon-cross" title="Cancel search"></span>
+    </button>
+    <label class="search-label">
+      <input name="q" type="text" id="search-list" class="search-input" placeholder="Search..." aria-label="Search" autocomplete="off" />
+    </label>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectDetails">
+      <a href="https://www.atom-tweaks.com" class="sidebar-projectName">
+Atom Tweaks      </a>
+      <h2 class="sidebar-projectVersion">
+        v0.1.0+c1f5afa
+      </h2>
+    </div>
+  </div>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list" href="#full-list">Pages</a></li>
+
+      <li><a id="modules-list" href="#full-list">Modules</a></li>
+
+  </ul>
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+      <h1>
+        <small class="app-vsn">Atom Tweaks v0.1.0+c1f5afa</small>
+AtomTweaksWeb.PrimerHelpers          <a href="https://github.com/lee-dohm/atom-style-tweaks/blob/master/lib/atom_tweaks_web/helpers/primer_helpers.ex#L1" title="View Source" class="view-source" rel="help">
+            <span class="icon-code" aria-hidden="true"></span>
+            <span class="sr-only">View Source</span>
+          </a>
+      </h1>
+
+
+        <section id="moduledoc">
+<p>View helper functions for generating elements that work with
+<a href="https://primer.github.io/">GitHub's Primer</a> CSS framework.</p><p>All functions can be used either within a template or composed together in code. Each function
+should always emit <a href="https://hexdocs.pm/phoenix_html/Phoenix.HTML.html#t:safe/0"><code class="inline">Phoenix.HTML.safe/0</code></a> objects or throw an exception.</p>        </section>
+
+        <section id="summary" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#summary">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+            Summary
+          </h1>
+  <div class="summary-types summary">
+    <h2>
+      <a href="#types">Types</a>
+    </h2>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:app_name/0">app_name()</a>
+  </div>
+    <div class="summary-synopsis"><p>The application name as an atom.</p></div>
+</div>
+  </div>
+  <div class="summary-functions summary">
+    <h2>
+      <a href="#functions">Functions</a>
+    </h2>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#avatar/2">avatar(user, options \\ [])</a>
+  </div>
+    <div class="summary-synopsis"><p>Renders the <code class="inline">avatar</code> element for the <code class="inline">user</code>.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#code_with_heart/0">code_with_heart()</a>
+  </div>
+    <div class="summary-synopsis"><p>Renders the GitHub-style <code class="inline">&lt;&gt; with ♥ by [author link]</code> footer item.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#code_with_heart/2">code_with_heart(app_name, options \\ [])</a>
+  </div>
+    <div class="summary-synopsis"><p>Renders the GitHub-style <code class="inline">&lt;&gt; with ♥ by [author link]</code> footer item.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#code_with_heart/3">code_with_heart(name, url, options)</a>
+  </div>
+    <div class="summary-synopsis"><p>Renders the GitHub-style <code class="inline">&lt;&gt; with ♥ by [author link]</code> footer item.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#counter/1">counter(count)</a>
+  </div>
+    <div class="summary-synopsis"><p>Renders a <code class="inline">Counter</code> element.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#github_link/1">github_link(options \\ [])</a>
+  </div>
+    <div class="summary-synopsis"><p>Renders a link to the project on GitHub.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#github_link/2">github_link(app_name_or_project, options)</a>
+  </div>
+    <div class="summary-synopsis"><p>Renders a link to the project on GitHub.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#link_button/2">link_button(text, options \\ [])</a>
+  </div>
+    <div class="summary-synopsis"><p>Renders a link that visually appears as a button.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#menu/1">menu(block)</a>
+  </div>
+    <div class="summary-synopsis"><p>Renders a menu element.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#menu_item/3">menu_item(text, link, options \\ [])</a>
+  </div>
+    <div class="summary-synopsis"><p>Renders a menu item element.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#underline_nav/2">underline_nav(options \\ [], block)</a>
+  </div>
+    <div class="summary-synopsis"><p>Renders an <code class="inline">UnderlineNav</code> element.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#underline_nav_item/3">underline_nav_item(text, link, options \\ [])</a>
+  </div>
+    <div class="summary-synopsis"><p>Renders an <code class="inline">UnderlineNav-item</code> element.</p></div>
+</div>
+  </div>
+        </section>
+
+        <section id="types" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#types">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+Types          </h1>
+          <div class="types-list">
+<section class="detail" id="t:app_name/0">
+  <div class="detail-header">
+    <a href="#t:app_name/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature">app_name()</h1>
+      <a href="https://github.com/lee-dohm/atom-style-tweaks/blob/master/lib/atom_tweaks_web/helpers/primer_helpers.ex#L20" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+  </div>
+
+  <section class="docstring">
+      <h2>Specs</h2>
+      <div class="specs">
+          <pre>app_name() :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>()</pre>
+      </div>
+
+<p>The application name as an atom.</p>  </section>
+</section>
+          </div>
+        </section>
+        <section id="functions" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#functions">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+Functions          </h1>
+          <div class="functions-list">
+<section class="detail" id="avatar/2">
+    <span id="avatar/1"></span>
+  <div class="detail-header">
+    <a href="#avatar/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">avatar(user, options \\ [])</h1>
+      <a href="https://github.com/lee-dohm/atom-style-tweaks/blob/master/lib/atom_tweaks_web/helpers/primer_helpers.ex#L50" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+  </div>
+
+  <section class="docstring">
+      <h2>Specs</h2>
+      <div class="specs">
+          <pre>avatar(<a href="AtomTweaks.Accounts.User.html#t:t/0">AtomTweaks.Accounts.User.t</a>(), Keword.t()) :: <a href="https://hexdocs.pm/phoenix_html/Phoenix.HTML.html#t:safe/0">Phoenix.HTML.safe</a>()</pre>
+      </div>
+
+<p>Renders the <code class="inline">avatar</code> element for the <code class="inline">user</code>.</p><p><strong>See:</strong><a href="https://github.com/primer/primer/tree/master/modules/primer-avatars#basic-example">Avatar element documentation</a></p><h2 id="avatar/2-options" class="section-heading">
+  <a href="#avatar/2-options" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Options
+</h2>
+<ul><li><code class="inline">:size</code> -- value in pixels to use for both the width and height of the avatar image</li></ul>  </section>
+</section>
+<section class="detail" id="code_with_heart/0">
+  <div class="detail-header">
+    <a href="#code_with_heart/0" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">code_with_heart()</h1>
+      <a href="https://github.com/lee-dohm/atom-style-tweaks/blob/master/lib/atom_tweaks_web/helpers/primer_helpers.ex#L76" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+  </div>
+
+  <section class="docstring">
+      <h2>Specs</h2>
+      <div class="specs">
+          <pre>code_with_heart() :: <a href="https://hexdocs.pm/phoenix_html/Phoenix.HTML.html#t:safe/0">Phoenix.HTML.safe</a>()</pre>
+      </div>
+
+<p>Renders the GitHub-style <code class="inline">&lt;&gt; with ♥ by [author link]</code> footer item.</p><p>Retrieves the author's name and URL from the application configuration for the default application
+for the current module. See <a href="#code_with_heart/2"><code class="inline">code_with_heart/2</code></a> for more information.</p>  </section>
+</section>
+<section class="detail" id="code_with_heart/2">
+    <span id="code_with_heart/1"></span>
+  <div class="detail-header">
+    <a href="#code_with_heart/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">code_with_heart(app_name, options \\ [])</h1>
+      <a href="https://github.com/lee-dohm/atom-style-tweaks/blob/master/lib/atom_tweaks_web/helpers/primer_helpers.ex#L102" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+  </div>
+
+  <section class="docstring">
+      <h2>Specs</h2>
+      <div class="specs">
+          <pre>code_with_heart(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>(), <a href="https://hexdocs.pm/elixir/Keyword.html#t:t/0">Keyword.t</a>()) :: <a href="https://hexdocs.pm/phoenix_html/Phoenix.HTML.html#t:safe/0">Phoenix.HTML.safe</a>()</pre>
+      </div>
+
+<p>Renders the GitHub-style <code class="inline">&lt;&gt; with ♥ by [author link]</code> footer item.</p><p>Retrieves the author's name and URL from the application configuration before passing to
+<a href="#code_with_heart/3"><code class="inline">code_with_heart/3</code></a>. This information can be added to the application configuration by adding the
+following to your <code class="inline">config.exs</code>:</p><pre><code class="nohighlight makeup elixir"><span class="n">config</span><span class="w"> </span><span class="ss">:app_name</span><span class="p">,</span><span class="w">
+  </span><span class="ss">code_with_heart</span><span class="p">:</span><span class="w"> </span><span class="p" data-group-id="6635180012-1">[</span><span class="w">
+    </span><span class="ss">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Author&#39;s name&quot;</span><span class="p">,</span><span class="w">
+    </span><span class="ss">url</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;https://example.com&quot;</span><span class="w">
+  </span><span class="p" data-group-id="6635180012-1">]</span></code></pre><p>Raises a <a href="AtomTweaksWeb.PrimerHelpers.MissingConfigurationError.html"><code class="inline">AtomTweaksWeb.PrimerHelpers.MissingConfigurationError</code></a> if any of the required
+application configuration information is not specified and this function is called.</p><p>If passed two strings instead of an atom and a keyword list, this function will assume that you
+mean to call <a href="#code_with_heart/3"><code class="inline">code_with_heart/3</code></a> with no options and do so for you.</p>  </section>
+</section>
+<section class="detail" id="code_with_heart/3">
+  <div class="detail-header">
+    <a href="#code_with_heart/3" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">code_with_heart(name, url, options)</h1>
+      <a href="https://github.com/lee-dohm/atom-style-tweaks/blob/master/lib/atom_tweaks_web/helpers/primer_helpers.ex#L135" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+  </div>
+
+  <section class="docstring">
+      <h2>Specs</h2>
+      <div class="specs">
+          <pre>code_with_heart(<a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>(), <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>(), <a href="https://hexdocs.pm/elixir/Keyword.html#t:t/0">Keyword.t</a>()) :: <a href="https://hexdocs.pm/phoenix_html/Phoenix.HTML.html#t:safe/0">Phoenix.HTML.safe</a>()</pre>
+      </div>
+
+<p>Renders the GitHub-style <code class="inline">&lt;&gt; with ♥ by [author link]</code> footer item.</p><p>The text in this element is intentionally left untranslated because the form of the element is
+intended to be recognizable in its specific format.</p><h2 id="code_with_heart/3-options" class="section-heading">
+  <a href="#code_with_heart/3-options" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Options
+</h2>
+<p>All options are passed to the underlying HTML <code class="inline">a</code> element.</p><h2 id="code_with_heart/3-examples" class="section-heading">
+  <a href="#code_with_heart/3-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+<pre><code class="nohighlight makeup elixir"><span class="nc">Phoenix.HTML</span><span class="o">.</span><span class="n">safe_to_string</span><span class="p" data-group-id="6770246869-1">(</span><span class="nc">AtomTweaksWeb.PrimerHelpers</span><span class="o">.</span><span class="n">code_with_heart</span><span class="p" data-group-id="6770246869-2">(</span><span class="s">&quot;Author&#39;s Name&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;https://example.com&quot;</span><span class="p" data-group-id="6770246869-2">)</span><span class="p" data-group-id="6770246869-1">)</span><span class="w">
+</span><span class="c1">#=&gt; &quot;&lt;svg .../&gt; with &lt;svg .../&gt; by &lt;a href=&quot;https://example.com&quot;&gt;Author&#39;s Name&lt;/a&gt;&quot;</span></code></pre>  </section>
+</section>
+<section class="detail" id="counter/1">
+  <div class="detail-header">
+    <a href="#counter/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">counter(count)</h1>
+      <a href="https://github.com/lee-dohm/atom-style-tweaks/blob/master/lib/atom_tweaks_web/helpers/primer_helpers.ex#L153" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+  </div>
+
+  <section class="docstring">
+      <h2>Specs</h2>
+      <div class="specs">
+          <pre>counter(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">non_neg_integer</a>()) :: <a href="https://hexdocs.pm/phoenix_html/Phoenix.HTML.html#t:safe/0">Phoenix.HTML.safe</a>()</pre>
+      </div>
+
+<p>Renders a <code class="inline">Counter</code> element.</p><p><strong>See:</strong><a href="https://primer.style/css/components/labels#Counters">Counter element documentation</a></p>  </section>
+</section>
+<section class="detail" id="github_link/1">
+    <span id="github_link/0"></span>
+  <div class="detail-header">
+    <a href="#github_link/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">github_link(options \\ [])</h1>
+      <a href="https://github.com/lee-dohm/atom-style-tweaks/blob/master/lib/atom_tweaks_web/helpers/primer_helpers.ex#L163" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+  </div>
+
+  <section class="docstring">
+      <h2>Specs</h2>
+      <div class="specs">
+          <pre>github_link(<a href="https://hexdocs.pm/elixir/Keyword.html#t:t/0">Keyword.t</a>()) :: <a href="https://hexdocs.pm/phoenix_html/Phoenix.HTML.html#t:safe/0">Phoenix.HTML.safe</a>()</pre>
+      </div>
+
+<p>Renders a link to the project on GitHub.</p><p>Retrieves the project name or URL from the application configuration for the default application.</p>  </section>
+</section>
+<section class="detail" id="github_link/2">
+  <div class="detail-header">
+    <a href="#github_link/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">github_link(app_name_or_project, options)</h1>
+      <a href="https://github.com/lee-dohm/atom-style-tweaks/blob/master/lib/atom_tweaks_web/helpers/primer_helpers.ex#L190" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+  </div>
+
+  <section class="docstring">
+      <h2>Specs</h2>
+      <div class="specs">
+          <pre>github_link(<a href="#t:app_name/0">app_name</a>() | <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>(), <a href="https://hexdocs.pm/elixir/Keyword.html#t:t/0">Keyword.t</a>()) :: <a href="https://hexdocs.pm/phoenix_html/Phoenix.HTML.html#t:safe/0">Phoenix.HTML.safe</a>()</pre>
+      </div>
+
+<p>Renders a link to the project on GitHub.</p><p>If the first parameter is an atom, it retrieves the project name or URL from the application
+configuration. Otherwise, the project can be either the GitHub <code class="inline">owner/project</code> identifier or the
+full GitHub URL.</p><p>This configuration information can be added to the application configuration by adding the
+following to your <code class="inline">config.exs</code>:</p><pre><code class="nohighlight makeup elixir"><span class="n">config</span><span class="w"> </span><span class="ss">:app_name</span><span class="p">,</span><span class="w">
+  </span><span class="ss">github_link</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;owner/name&quot;</span></code></pre><p>If the configuration information is missing and the first parameter is an atom, a
+<a href="AtomTweaksWeb.PrimerHelpers.MissingConfigurationError.html"><code class="inline">AtomTweaksWeb.PrimerHelpers.MissingConfigurationError</code></a> is raised.</p><h2 id="github_link/2-options" class="section-heading">
+  <a href="#github_link/2-options" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Options
+</h2>
+<p>All options are passed to the underlying HTML <code class="inline">a</code> element.</p>  </section>
+</section>
+<section class="detail" id="link_button/2">
+    <span id="link_button/1"></span>
+  <div class="detail-header">
+    <a href="#link_button/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">link_button(text, options \\ [])</h1>
+      <a href="https://github.com/lee-dohm/atom-style-tweaks/blob/master/lib/atom_tweaks_web/helpers/primer_helpers.ex#L231" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+  </div>
+
+  <section class="docstring">
+      <h2>Specs</h2>
+      <div class="specs">
+          <pre>link_button(<a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>(), <a href="https://hexdocs.pm/elixir/Keyword.html#t:t/0">Keyword.t</a>()) :: <a href="https://hexdocs.pm/phoenix_html/Phoenix.HTML.html#t:safe/0">Phoenix.HTML.safe</a>()</pre>
+      </div>
+
+<p>Renders a link that visually appears as a button.</p><h2 id="link_button/2-options" class="section-heading">
+  <a href="#link_button/2-options" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Options
+</h2>
+<ul><li><code class="inline">:to</code> - the URL to link to</li></ul>  </section>
+</section>
+<section class="detail" id="menu/1">
+  <div class="detail-header">
+    <a href="#menu/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">menu(block)</h1>
+      <a href="https://github.com/lee-dohm/atom-style-tweaks/blob/master/lib/atom_tweaks_web/helpers/primer_helpers.ex#L262" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+  </div>
+
+  <section class="docstring">
+      <h2>Specs</h2>
+      <div class="specs">
+          <pre>menu(<a href="https://hexdocs.pm/elixir/Keyword.html#t:t/0">Keyword.t</a>()) :: <a href="https://hexdocs.pm/phoenix_html/Phoenix.HTML.html#t:safe/0">Phoenix.HTML.safe</a>()</pre>
+      </div>
+
+<p>Renders a menu element.</p><p><strong>See:</strong><a href="https://github.com/primer/primer/tree/master/modules/primer-navigation#menu">Menu element documentation</a></p><h2 id="menu/1-example" class="section-heading">
+  <a href="#menu/1-example" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Example
+</h2>
+<p>Slime template:</p><pre><code class="nohighlight makeup elixir"><span class="o">=</span><span class="w"> </span><span class="n">menu</span><span class="w"> </span><span class="k" data-group-id="3675370192-1">do</span><span class="w">
+  </span><span class="o">=</span><span class="w"> </span><span class="n">menu_item</span><span class="p" data-group-id="3675370192-2">(</span><span class="s">&quot;Foo&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;/path/to/foo&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">selected</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="p" data-group-id="3675370192-2">)</span><span class="w">
+  </span><span class="o">=</span><span class="w"> </span><span class="n">menu_item</span><span class="p" data-group-id="3675370192-3">(</span><span class="s">&quot;Bar&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;/path/to/bar&quot;</span><span class="p" data-group-id="3675370192-3">)</span></code></pre><p>generates:</p><pre><code class="html">&lt;nav class=&quot;menu&quot;&gt;
+  &lt;a class=&quot;menu-item selected&quot; href=&quot;/path/to/foo&quot;&gt;Foo&lt;/a&gt;
+  &lt;a class=&quot;menu-item&quot; href=&quot;/path/to/bar&quot;&gt;Bar&lt;/a&gt;
+&lt;/nav&gt;</code></pre>  </section>
+</section>
+<section class="detail" id="menu_item/3">
+    <span id="menu_item/2"></span>
+  <div class="detail-header">
+    <a href="#menu_item/3" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">menu_item(text, link, options \\ [])</h1>
+      <a href="https://github.com/lee-dohm/atom-style-tweaks/blob/master/lib/atom_tweaks_web/helpers/primer_helpers.ex#L279" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+  </div>
+
+  <section class="docstring">
+      <h2>Specs</h2>
+      <div class="specs">
+          <pre>menu_item(<a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>(), <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>(), <a href="https://hexdocs.pm/elixir/Keyword.html#t:t/0">Keyword.t</a>()) :: <a href="https://hexdocs.pm/phoenix_html/Phoenix.HTML.html#t:safe/0">Phoenix.HTML.safe</a>()</pre>
+      </div>
+
+<p>Renders a menu item element.</p><h2 id="menu_item/3-options" class="section-heading">
+  <a href="#menu_item/3-options" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Options
+</h2>
+<ul><li><code class="inline">:octicon</code> - Renders an <a href="https://octicons.github.com">Octicon</a> with the menu item</li><li><code class="inline">:selected</code> - If <code class="inline">true</code>, renders the menu item as selected</li></ul><p>All other options are passed through to the underlying HTML <code class="inline">a</code> element.</p>  </section>
+</section>
+<section class="detail" id="underline_nav/2">
+    <span id="underline_nav/1"></span>
+  <div class="detail-header">
+    <a href="#underline_nav/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">underline_nav(options \\ [], block)</h1>
+      <a href="https://github.com/lee-dohm/atom-style-tweaks/blob/master/lib/atom_tweaks_web/helpers/primer_helpers.ex#L339" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+  </div>
+
+  <section class="docstring">
+      <h2>Specs</h2>
+      <div class="specs">
+          <pre>underline_nav(<a href="https://hexdocs.pm/elixir/Keyword.html#t:t/0">Keyword.t</a>(), <a href="https://hexdocs.pm/elixir/Keyword.html#t:t/0">Keyword.t</a>()) :: <a href="https://hexdocs.pm/phoenix_html/Phoenix.HTML.html#t:safe/0">Phoenix.HTML.safe</a>()</pre>
+      </div>
+
+<p>Renders an <code class="inline">UnderlineNav</code> element.</p><p>The <a href="#underline_nav_item/3"><code class="inline">underline_nav_item/3</code></a> function is used to generate the nav items within the nav element.</p><p><strong>See:</strong><a href="https://github.com/primer/primer/tree/master/modules/primer-navigation#underline-nav">UnderlineNav element documentation</a></p><h2 id="underline_nav/2-options" class="section-heading">
+  <a href="#underline_nav/2-options" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Options
+</h2>
+<p>All options are passed through to the underlying HTML <code class="inline">nav</code> element.</p><h2 id="underline_nav/2-example" class="section-heading">
+  <a href="#underline_nav/2-example" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Example
+</h2>
+<p>Slime template:</p><pre><code class="nohighlight makeup elixir"><span class="o">=</span><span class="w"> </span><span class="n">underline_nav</span><span class="w"> </span><span class="k" data-group-id="2038522746-1">do</span><span class="w">
+  </span><span class="o">=</span><span class="w"> </span><span class="n">underline_nav_item</span><span class="w"> </span><span class="s">&quot;Foo&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;/path/to/foo&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">selected</span><span class="p">:</span><span class="w"> </span><span class="no">true</span><span class="w">
+  </span><span class="o">=</span><span class="w"> </span><span class="n">underline_nav_item</span><span class="w"> </span><span class="s">&quot;Bar&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;/path/to/bar&quot;</span></code></pre><p>generates:</p><pre><code class="html">&lt;nav class=&quot;UnderlineNav&quot;&gt;
+  &lt;div class=&quot;UnderlineNav-body&quot;&gt;
+    &lt;a class=&quot;UnderlineNav-item selected&quot; href=&quot;/path/to/foo&quot;&gt;Foo&lt;/a&gt;
+    &lt;a class=&quot;UnderlineNav-item&quot; href=&quot;/path/to/bar&quot;&gt;Bar&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>  </section>
+</section>
+<section class="detail" id="underline_nav_item/3">
+    <span id="underline_nav_item/2"></span>
+  <div class="detail-header">
+    <a href="#underline_nav_item/3" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">underline_nav_item(text, link, options \\ [])</h1>
+      <a href="https://github.com/lee-dohm/atom-style-tweaks/blob/master/lib/atom_tweaks_web/helpers/primer_helpers.ex#L360" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+  </div>
+
+  <section class="docstring">
+      <h2>Specs</h2>
+      <div class="specs">
+          <pre>underline_nav_item(<a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>(), <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>(), <a href="https://hexdocs.pm/elixir/Keyword.html#t:t/0">Keyword.t</a>()) :: <a href="https://hexdocs.pm/phoenix_html/Phoenix.HTML.html#t:safe/0">Phoenix.HTML.safe</a>()</pre>
+      </div>
+
+<p>Renders an <code class="inline">UnderlineNav-item</code> element.</p><h2 id="underline_nav_item/3-options" class="section-heading">
+  <a href="#underline_nav_item/3-options" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Options
+</h2>
+<ul><li><code class="inline">:counter</code> - When supplied with an integer value, renders a <code class="inline">Counter</code> element</li><li><code class="inline">:selected</code> - When <code class="inline">true</code>, renders this item as selected</li></ul><p>All other options are passed through to the underlying HTML <code class="inline">a</code> element.</p>  </section>
+</section>
+          </div>
+        </section>
+      <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.22.1),
+          </span>
+          <span class="line">
+            designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" rel="noopener" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+          </span>
+        </p>
+        <p>
+          <button class="line footer-button display-shortcuts-help">
+            Display keyboard shortcuts
+          </button>
+          <button class="line footer-button night-mode-toggle">
+            Toggle night mode
+          </button>
+          <button class="line footer-button display-quick-switch">
+            Go to a HexDocs package
+          </button>
+          <button class="line footer-button tooltips-toggle">
+            <span class="tooltips-option-disable">Disable tooltips</span>
+            <span class="tooltips-option-enable">Enable tooltips</span>
+          </button>
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+  </body>
+</html>

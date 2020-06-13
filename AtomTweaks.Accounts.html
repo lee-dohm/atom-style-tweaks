@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.22.1">
+    <meta name="project" content="Atom Tweaks v0.1.0+c1f5afa">
+    <title>AtomTweaks.Accounts — Atom Tweaks v0.1.0+c1f5afa</title>
+    <link rel="stylesheet" href="dist/elixir-e589b8fad3dab6230c65.css" />
+    <script src="dist/sidebar_items-5abe603f27.js"></script>
+      <script src="docs_config.js"></script>
+    <script async src="dist/app-5c0c23dfec2d63ae33a2.js"></script>
+  </head>
+  <body data-type="modules">
+    <script>try { if(localStorage.getItem('night-mode') === 'true') document.body.className += ' night-mode'; } catch (e) { }</script>
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle">
+  <span class="icon-menu" title="Collapse/expand sidebar"></span>
+</button>
+
+<section class="sidebar">
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button">
+      <span class="icon-search" aria-hidden="true"></span>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button">
+      <span class="icon-cross" title="Cancel search"></span>
+    </button>
+    <label class="search-label">
+      <input name="q" type="text" id="search-list" class="search-input" placeholder="Search..." aria-label="Search" autocomplete="off" />
+    </label>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectDetails">
+      <a href="https://www.atom-tweaks.com" class="sidebar-projectName">
+Atom Tweaks      </a>
+      <h2 class="sidebar-projectVersion">
+        v0.1.0+c1f5afa
+      </h2>
+    </div>
+  </div>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list" href="#full-list">Pages</a></li>
+
+      <li><a id="modules-list" href="#full-list">Modules</a></li>
+
+  </ul>
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+      <h1>
+        <small class="app-vsn">Atom Tweaks v0.1.0+c1f5afa</small>
+AtomTweaks.Accounts          <a href="https://github.com/lee-dohm/atom-style-tweaks/blob/master/lib/atom_tweaks/accounts.ex#L1" title="View Source" class="view-source" rel="help">
+            <span class="icon-code" aria-hidden="true"></span>
+            <span class="sr-only">View Source</span>
+          </a>
+      </h1>
+
+
+        <section id="moduledoc">
+<p>Context for handling accounts and their operations.</p>        </section>
+
+        <section id="summary" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#summary">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+            Summary
+          </h1>
+  <div class="summary-functions summary">
+    <h2>
+      <a href="#functions">Functions</a>
+    </h2>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#change_token/1">change_token(token)</a>
+  </div>
+    <div class="summary-synopsis"><p>Create a changeset from the given <code class="inline">token</code>.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#change_user/1">change_user(user)</a>
+  </div>
+    <div class="summary-synopsis"><p>Creates an <a href="https://hexdocs.pm/ecto/Ecto.Changeset.html"><code class="inline">Ecto.Changeset</code></a> for tracking user changes.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#count_stars/1">count_stars(user)</a>
+  </div>
+    <div class="summary-synopsis"><p>Counts the number of stars belonging to <code class="inline">user</code>.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#count_tweaks/1">count_tweaks(user)</a>
+  </div>
+    <div class="summary-synopsis"><p>Counts the number of tweaks belonging to <code class="inline">user</code>.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#create_token/1">create_token(attrs \\ %{})</a>
+  </div>
+    <div class="summary-synopsis"><p>Creates a token for a user.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#delete_token/1">delete_token(token)</a>
+  </div>
+    <div class="summary-synopsis"><p>Deletes the given <code class="inline">token</code>.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#get_token_from_code/1">get_token_from_code(code)</a>
+  </div>
+    <div class="summary-synopsis"><p>Gets the token from the signed token code.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#get_user/1">get_user(name)</a>
+  </div>
+    <div class="summary-synopsis"><p>Gets a user by name.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#get_user!/1">get_user!(name)</a>
+  </div>
+    <div class="summary-synopsis"><p>Gets a user by name.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#list_stars/1">list_stars(user)</a>
+  </div>
+    <div class="summary-synopsis"><p>Lists all tweaks starred by <code class="inline">user</code>.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#list_tokens/1">list_tokens(user)</a>
+  </div>
+    <div class="summary-synopsis"><p>Lists all tokens owned by <code class="inline">user</code>.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#list_users/0">list_users()</a>
+  </div>
+    <div class="summary-synopsis"><p>Lists all users in the database.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#star_tweak/2">star_tweak(user, tweak)</a>
+  </div>
+    <div class="summary-synopsis"><p>Stars <code class="inline">tweak</code> for <code class="inline">user</code>.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#unstar_tweak/2">unstar_tweak(user, tweak)</a>
+  </div>
+    <div class="summary-synopsis"><p>Unstars <code class="inline">tweak</code> for <code class="inline">user</code>.</p></div>
+</div>
+  </div>
+        </section>
+
+        <section id="functions" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#functions">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+Functions          </h1>
+          <div class="functions-list">
+<section class="detail" id="change_token/1">
+  <div class="detail-header">
+    <a href="#change_token/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">change_token(token)</h1>
+      <a href="https://github.com/lee-dohm/atom-style-tweaks/blob/master/lib/atom_tweaks/accounts.ex#L43" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+  </div>
+
+  <section class="docstring">
+      <h2>Specs</h2>
+      <div class="specs">
+          <pre>change_token(AtomTweaks.Accounts.Token.t()) :: <a href="https://hexdocs.pm/ecto/Ecto.Changeset.html#t:t/0">Ecto.Changeset.t</a>()</pre>
+      </div>
+
+<p>Create a changeset from the given <code class="inline">token</code>.</p>  </section>
+</section>
+<section class="detail" id="change_user/1">
+  <div class="detail-header">
+    <a href="#change_user/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">change_user(user)</h1>
+      <a href="https://github.com/lee-dohm/atom-style-tweaks/blob/master/lib/atom_tweaks/accounts.ex#L19" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+  </div>
+
+  <section class="docstring">
+      <h2>Specs</h2>
+      <div class="specs">
+          <pre>change_user(<a href="AtomTweaks.Accounts.User.html#t:t/0">AtomTweaks.Accounts.User.t</a>()) :: <a href="https://hexdocs.pm/ecto/Ecto.Changeset.html#t:t/0">Ecto.Changeset.t</a>()</pre>
+      </div>
+
+<p>Creates an <a href="https://hexdocs.pm/ecto/Ecto.Changeset.html"><code class="inline">Ecto.Changeset</code></a> for tracking user changes.</p>  </section>
+</section>
+<section class="detail" id="count_stars/1">
+  <div class="detail-header">
+    <a href="#count_stars/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">count_stars(user)</h1>
+      <a href="https://github.com/lee-dohm/atom-style-tweaks/blob/master/lib/atom_tweaks/accounts.ex#L27" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+  </div>
+
+  <section class="docstring">
+      <h2>Specs</h2>
+      <div class="specs">
+          <pre>count_stars(<a href="AtomTweaks.Accounts.User.html#t:t/0">AtomTweaks.Accounts.User.t</a>()) :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">non_neg_integer</a>()</pre>
+      </div>
+
+<p>Counts the number of stars belonging to <code class="inline">user</code>.</p>  </section>
+</section>
+<section class="detail" id="count_tweaks/1">
+  <div class="detail-header">
+    <a href="#count_tweaks/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">count_tweaks(user)</h1>
+      <a href="https://github.com/lee-dohm/atom-style-tweaks/blob/master/lib/atom_tweaks/accounts.ex#L35" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+  </div>
+
+  <section class="docstring">
+      <h2>Specs</h2>
+      <div class="specs">
+          <pre>count_tweaks(<a href="AtomTweaks.Accounts.User.html#t:t/0">AtomTweaks.Accounts.User.t</a>()) :: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">non_neg_integer</a>()</pre>
+      </div>
+
+<p>Counts the number of tweaks belonging to <code class="inline">user</code>.</p>  </section>
+</section>
+<section class="detail" id="create_token/1">
+    <span id="create_token/0"></span>
+  <div class="detail-header">
+    <a href="#create_token/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">create_token(attrs \\ %{})</h1>
+      <a href="https://github.com/lee-dohm/atom-style-tweaks/blob/master/lib/atom_tweaks/accounts.ex#L51" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+  </div>
+
+  <section class="docstring">
+      <h2>Specs</h2>
+      <div class="specs">
+          <pre>create_token(Map.t()) ::
+  {:ok, AtomTweaks.Accounts.Token.t()} | {:error, <a href="https://hexdocs.pm/ecto/Ecto.Changeset.html#t:t/0">Ecto.Changeset.t</a>()}</pre>
+      </div>
+
+<p>Creates a token for a user.</p>  </section>
+</section>
+<section class="detail" id="delete_token/1">
+  <div class="detail-header">
+    <a href="#delete_token/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">delete_token(token)</h1>
+      <a href="https://github.com/lee-dohm/atom-style-tweaks/blob/master/lib/atom_tweaks/accounts.ex#L61" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+  </div>
+
+  <section class="docstring">
+      <h2>Specs</h2>
+      <div class="specs">
+          <pre>delete_token(AtomTweaks.Accounts.Token.t()) ::
+  {:ok, AtomTweaks.Accounts.Token.t()} | {:error, <a href="https://hexdocs.pm/ecto/Ecto.Changeset.html#t:t/0">Ecto.Changeset.t</a>()}</pre>
+      </div>
+
+<p>Deletes the given <code class="inline">token</code>.</p>  </section>
+</section>
+<section class="detail" id="get_token_from_code/1">
+  <div class="detail-header">
+    <a href="#get_token_from_code/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">get_token_from_code(code)</h1>
+      <a href="https://github.com/lee-dohm/atom-style-tweaks/blob/master/lib/atom_tweaks/accounts.ex#L71" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+  </div>
+
+  <section class="docstring">
+      <h2>Specs</h2>
+      <div class="specs">
+          <pre>get_token_from_code(<a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()) ::
+  {:ok, AtomTweaks.Accounts.Token.t()} | {:error, :invalid}</pre>
+      </div>
+
+<p>Gets the token from the signed token code.</p>  </section>
+</section>
+<section class="detail" id="get_user/1">
+  <div class="detail-header">
+    <a href="#get_user/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">get_user(name)</h1>
+      <a href="https://github.com/lee-dohm/atom-style-tweaks/blob/master/lib/atom_tweaks/accounts.ex#L84" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+  </div>
+
+  <section class="docstring">
+      <h2>Specs</h2>
+      <div class="specs">
+          <pre>get_user(<a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()) :: <a href="AtomTweaks.Accounts.User.html#t:t/0">AtomTweaks.Accounts.User.t</a>() | nil</pre>
+      </div>
+
+<p>Gets a user by name.</p><p>Returns <code class="inline">nil</code> if no user by that name exists.</p>  </section>
+</section>
+<section class="detail" id="get_user!/1">
+  <div class="detail-header">
+    <a href="#get_user!/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">get_user!(name)</h1>
+      <a href="https://github.com/lee-dohm/atom-style-tweaks/blob/master/lib/atom_tweaks/accounts.ex#L94" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+  </div>
+
+  <section class="docstring">
+      <h2>Specs</h2>
+      <div class="specs">
+          <pre>get_user!(<a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()) :: <a href="AtomTweaks.Accounts.User.html#t:t/0">AtomTweaks.Accounts.User.t</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">no_return</a>()</pre>
+      </div>
+
+<p>Gets a user by name.</p><p>Raises <a href="https://hexdocs.pm/ecto/Ecto.NoResultsError.html"><code class="inline">Ecto.NoResultsError</code></a> if no user by that name exists.</p>  </section>
+</section>
+<section class="detail" id="list_stars/1">
+  <div class="detail-header">
+    <a href="#list_stars/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">list_stars(user)</h1>
+      <a href="https://github.com/lee-dohm/atom-style-tweaks/blob/master/lib/atom_tweaks/accounts.ex#L102" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+  </div>
+
+  <section class="docstring">
+      <h2>Specs</h2>
+      <div class="specs">
+          <pre>list_stars(<a href="AtomTweaks.Accounts.User.html#t:t/0">AtomTweaks.Accounts.User.t</a>()) ::
+  [<a href="AtomTweaks.Tweaks.Tweak.html#t:t/0">AtomTweaks.Tweaks.Tweak.t</a>()] | <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">no_return</a>()</pre>
+      </div>
+
+<p>Lists all tweaks starred by <code class="inline">user</code>.</p>  </section>
+</section>
+<section class="detail" id="list_tokens/1">
+  <div class="detail-header">
+    <a href="#list_tokens/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">list_tokens(user)</h1>
+      <a href="https://github.com/lee-dohm/atom-style-tweaks/blob/master/lib/atom_tweaks/accounts.ex#L112" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+  </div>
+
+  <section class="docstring">
+      <h2>Specs</h2>
+      <div class="specs">
+          <pre>list_tokens(<a href="AtomTweaks.Accounts.User.html#t:t/0">AtomTweaks.Accounts.User.t</a>()) ::
+  [AtomTweaks.Accounts.Token.t()] | <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">no_return</a>()</pre>
+      </div>
+
+<p>Lists all tokens owned by <code class="inline">user</code>.</p>  </section>
+</section>
+<section class="detail" id="list_users/0">
+  <div class="detail-header">
+    <a href="#list_users/0" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">list_users()</h1>
+      <a href="https://github.com/lee-dohm/atom-style-tweaks/blob/master/lib/atom_tweaks/accounts.ex#L122" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+  </div>
+
+  <section class="docstring">
+      <h2>Specs</h2>
+      <div class="specs">
+          <pre>list_users() :: [<a href="AtomTweaks.Accounts.User.html#t:t/0">AtomTweaks.Accounts.User.t</a>()]</pre>
+      </div>
+
+<p>Lists all users in the database.</p>  </section>
+</section>
+<section class="detail" id="star_tweak/2">
+  <div class="detail-header">
+    <a href="#star_tweak/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">star_tweak(user, tweak)</h1>
+      <a href="https://github.com/lee-dohm/atom-style-tweaks/blob/master/lib/atom_tweaks/accounts.ex#L130" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+  </div>
+
+  <section class="docstring">
+      <h2>Specs</h2>
+      <div class="specs">
+          <pre>star_tweak(<a href="AtomTweaks.Accounts.User.html#t:t/0">AtomTweaks.Accounts.User.t</a>(), <a href="AtomTweaks.Tweaks.Tweak.html#t:t/0">AtomTweaks.Tweaks.Tweak.t</a>()) ::
+  {:ok, <a href="AtomTweaks.Tweaks.Star.html#t:t/0">AtomTweaks.Tweaks.Star.t</a>()} | {:error, <a href="https://hexdocs.pm/ecto/Ecto.Changeset.html#t:t/0">Ecto.Changeset.t</a>()}</pre>
+      </div>
+
+<p>Stars <code class="inline">tweak</code> for <code class="inline">user</code>.</p>  </section>
+</section>
+<section class="detail" id="unstar_tweak/2">
+  <div class="detail-header">
+    <a href="#unstar_tweak/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">unstar_tweak(user, tweak)</h1>
+      <a href="https://github.com/lee-dohm/atom-style-tweaks/blob/master/lib/atom_tweaks/accounts.ex#L140" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+  </div>
+
+  <section class="docstring">
+      <h2>Specs</h2>
+      <div class="specs">
+          <pre>unstar_tweak(<a href="AtomTweaks.Accounts.User.html#t:t/0">AtomTweaks.Accounts.User.t</a>(), <a href="AtomTweaks.Tweaks.Tweak.html#t:t/0">AtomTweaks.Tweaks.Tweak.t</a>()) ::
+  {:ok, <a href="AtomTweaks.Tweaks.Star.html#t:t/0">AtomTweaks.Tweaks.Star.t</a>()} | {:error, <a href="https://hexdocs.pm/ecto/Ecto.Changeset.html#t:t/0">Ecto.Changeset.t</a>()}</pre>
+      </div>
+
+<p>Unstars <code class="inline">tweak</code> for <code class="inline">user</code>.</p>  </section>
+</section>
+          </div>
+        </section>
+      <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.22.1),
+          </span>
+          <span class="line">
+            designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" rel="noopener" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+          </span>
+        </p>
+        <p>
+          <button class="line footer-button display-shortcuts-help">
+            Display keyboard shortcuts
+          </button>
+          <button class="line footer-button night-mode-toggle">
+            Toggle night mode
+          </button>
+          <button class="line footer-button display-quick-switch">
+            Go to a HexDocs package
+          </button>
+          <button class="line footer-button tooltips-toggle">
+            <span class="tooltips-option-disable">Disable tooltips</span>
+            <span class="tooltips-option-enable">Enable tooltips</span>
+          </button>
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+  </body>
+</html>

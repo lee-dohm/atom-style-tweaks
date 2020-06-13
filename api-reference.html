@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.22.1">
+    <meta name="project" content="Atom Tweaks v0.1.0+c1f5afa">
+    <title>API Reference — Atom Tweaks v0.1.0+c1f5afa</title>
+    <link rel="stylesheet" href="dist/elixir-e589b8fad3dab6230c65.css" />
+    <script src="dist/sidebar_items-5abe603f27.js"></script>
+      <script src="docs_config.js"></script>
+    <script async src="dist/app-5c0c23dfec2d63ae33a2.js"></script>
+  </head>
+  <body data-type="extras">
+    <script>try { if(localStorage.getItem('night-mode') === 'true') document.body.className += ' night-mode'; } catch (e) { }</script>
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle">
+  <span class="icon-menu" title="Collapse/expand sidebar"></span>
+</button>
+
+<section class="sidebar">
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button">
+      <span class="icon-search" aria-hidden="true"></span>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button">
+      <span class="icon-cross" title="Cancel search"></span>
+    </button>
+    <label class="search-label">
+      <input name="q" type="text" id="search-list" class="search-input" placeholder="Search..." aria-label="Search" autocomplete="off" />
+    </label>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectDetails">
+      <a href="https://www.atom-tweaks.com" class="sidebar-projectName">
+Atom Tweaks      </a>
+      <h2 class="sidebar-projectVersion">
+        v0.1.0+c1f5afa
+      </h2>
+    </div>
+  </div>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list" href="#full-list">Pages</a></li>
+
+      <li><a id="modules-list" href="#full-list">Modules</a></li>
+
+  </ul>
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+<h1>
+  <small class="app-vsn">Atom Tweaks v0.1.0+c1f5afa</small>
+  API Reference
+</h1>
+
+  <section class="details-list">
+    <h2 id="modules" class="section-heading">
+  <a href="#modules" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Modules
+</h2>
+
+    <div class="summary">
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="AtomTweaks.html">AtomTweaks</a>
+  </div>
+    <div class="summary-synopsis"><p>The AtomTweaks module contains <a href="https://hexdocs.pm/phoenix/contexts.html">Phoenix contexts</a> that
+define the domain and business logic for the application.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="AtomTweaks.Accounts.html">AtomTweaks.Accounts</a>
+  </div>
+    <div class="summary-synopsis"><p>Context for handling accounts and their operations.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="AtomTweaks.Accounts.Token.html">AtomTweaks.Accounts.Token</a>
+  </div>
+    <div class="summary-synopsis"><p>Represents a user access token for authenticating against the API.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="AtomTweaks.Accounts.User.html">AtomTweaks.Accounts.User</a>
+  </div>
+    <div class="summary-synopsis"><p>Represents a user of the application.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="AtomTweaks.Application.html">AtomTweaks.Application</a>
+  </div>
+    <div class="summary-synopsis"><p>Contains functions for maintaining the lifecycle of the application.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="AtomTweaks.DataCase.html">AtomTweaks.DataCase</a>
+  </div>
+    <div class="summary-synopsis"><p>This module defines the setup for tests requiring
+access to the application's data layer.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="AtomTweaks.Ecto.Markdown.html">AtomTweaks.Ecto.Markdown</a>
+  </div>
+    <div class="summary-synopsis"><p>An <a href="https://hexdocs.pm/ecto/Ecto.Type.html"><code class="inline">Ecto.Type</code></a> that handles the conversion between a Markdown-formatted string in the database and
+a <a href="AtomTweaks.Markdown.html"><code class="inline">AtomTweaks.Markdown</code></a> struct in memory.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="AtomTweaks.Factory.html">AtomTweaks.Factory</a>
+  </div>
+    <div class="summary-synopsis"><p>Factories for generating fake database records.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="AtomTweaks.Markdown.html">AtomTweaks.Markdown</a>
+  </div>
+    <div class="summary-synopsis"><p>A structure that represents a chunk of Markdown text in memory.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="AtomTweaks.Releases.html">AtomTweaks.Releases</a>
+  </div>
+    <div class="summary-synopsis"><p>Operations on and with releases.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="AtomTweaks.Releases.Note.html">AtomTweaks.Releases.Note</a>
+  </div>
+    <div class="summary-synopsis"><p>Represents a release note record.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="AtomTweaks.Repo.html">AtomTweaks.Repo</a>
+  </div>
+    <div class="summary-synopsis"><p>Functions for interacting with the Atom Tweaks database.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="AtomTweaks.Tweaks.html">AtomTweaks.Tweaks</a>
+  </div>
+    <div class="summary-synopsis"><p>Context for working with tweaks and their operations.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="AtomTweaks.Tweaks.Star.html">AtomTweaks.Tweaks.Star</a>
+  </div>
+    <div class="summary-synopsis"><p>Represents that a user has marked a tweak as a favorite of theirs.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="AtomTweaks.Tweaks.Tweak.html">AtomTweaks.Tweaks.Tweak</a>
+  </div>
+    <div class="summary-synopsis"><p>Represents a tweak.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="AtomTweaksWeb.html">AtomTweaksWeb</a>
+  </div>
+    <div class="summary-synopsis"><p>A module that keeps using definitions for controllers, views and so on.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="AtomTweaksWeb.Admin.ReleaseNoteController.html">AtomTweaksWeb.Admin.ReleaseNoteController</a>
+  </div>
+    <div class="summary-synopsis"><p>Handles all admin release notes resource routes.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="AtomTweaksWeb.Admin.ReleaseNoteView.html">AtomTweaksWeb.Admin.ReleaseNoteView</a>
+  </div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="AtomTweaksWeb.Api.ReleaseNoteController.html">AtomTweaksWeb.Api.ReleaseNoteController</a>
+  </div>
+    <div class="summary-synopsis"><p>Handles all release notes API routes.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="AtomTweaksWeb.Api.ReleaseNoteView.html">AtomTweaksWeb.Api.ReleaseNoteView</a>
+  </div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="AtomTweaksWeb.ApiCase.html">AtomTweaksWeb.ApiCase</a>
+  </div>
+    <div class="summary-synopsis"><p>This module defines the test case to be used by
+tests that require setting up a connection for an API.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="AtomTweaksWeb.ApiHelpers.html">AtomTweaksWeb.ApiHelpers</a>
+  </div>
+    <div class="summary-synopsis"><p>Functions for assisting with API operations.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="AtomTweaksWeb.AuthController.html">AtomTweaksWeb.AuthController</a>
+  </div>
+    <div class="summary-synopsis"><p>Handles authentication for the application via GitHub OAuth2 user flow.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="AtomTweaksWeb.ChannelCase.html">AtomTweaksWeb.ChannelCase</a>
+  </div>
+    <div class="summary-synopsis"><p>This module defines the test case to be used by
+channel tests.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="AtomTweaksWeb.ConnCase.html">AtomTweaksWeb.ConnCase</a>
+  </div>
+    <div class="summary-synopsis"><p>This module defines the test case to be used by
+tests that require setting up a connection.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="AtomTweaksWeb.ControllerHelpers.html">AtomTweaksWeb.ControllerHelpers</a>
+  </div>
+    <div class="summary-synopsis"><p>Helper functions for <code class="inline">Controllers</code>.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="AtomTweaksWeb.Endpoint.html">AtomTweaksWeb.Endpoint</a>
+  </div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="AtomTweaksWeb.ErrorHelpers.html">AtomTweaksWeb.ErrorHelpers</a>
+  </div>
+    <div class="summary-synopsis"><p>Conveniences for translating and building error messages.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="AtomTweaksWeb.ErrorView.html">AtomTweaksWeb.ErrorView</a>
+  </div>
+    <div class="summary-synopsis"><p>View functions for HTTP error states.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="AtomTweaksWeb.ForbiddenUserError.html">AtomTweaksWeb.ForbiddenUserError</a>
+  </div>
+    <div class="summary-synopsis"><p>Exception raised when accessing a route that requires authorizations the current user does not
+have.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="AtomTweaksWeb.ForkController.html">AtomTweaksWeb.ForkController</a>
+  </div>
+    <div class="summary-synopsis"><p>Handles requests for forked tweak records.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="AtomTweaksWeb.ForkView.html">AtomTweaksWeb.ForkView</a>
+  </div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="AtomTweaksWeb.FormHelpers.html">AtomTweaksWeb.FormHelpers</a>
+  </div>
+    <div class="summary-synopsis"><p>Functions for building HTML forms, specifically designed to work with
+<a href="https://primer.style">GitHub Primer</a>.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="AtomTweaksWeb.Gettext.html">AtomTweaksWeb.Gettext</a>
+  </div>
+    <div class="summary-synopsis"><p>A module providing Internationalization with a gettext-based API.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="AtomTweaksWeb.GitHub.html">AtomTweaksWeb.GitHub</a>
+  </div>
+    <div class="summary-synopsis"><p>An OAuth2 strategy for GitHub.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="AtomTweaksWeb.HelperCase.html">AtomTweaksWeb.HelperCase</a>
+  </div>
+    <div class="summary-synopsis"><p>This module defines the test case to be used by tests of view helper functions.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="AtomTweaksWeb.HerokuMetadata.html">AtomTweaksWeb.HerokuMetadata</a>
+  </div>
+    <div class="summary-synopsis"><p>A <a href="https://hexdocs.pm/plug/Plug.html"><code class="inline">Plug</code></a> that adds <a href="https://devcenter.heroku.com/articles/dyno-metadata">Heroku metadata</a> to the
+metadata to be rendered on the page via the <code class="inline">PageMetadata</code> system.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="AtomTweaksWeb.LayoutView.html">AtomTweaksWeb.LayoutView</a>
+  </div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="AtomTweaksWeb.LinkHelpers.html">AtomTweaksWeb.LinkHelpers</a>
+  </div>
+    <div class="summary-synopsis"><p>Functions to assist in rendering links.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="AtomTweaksWeb.MarkdownEngine.html">AtomTweaksWeb.MarkdownEngine</a>
+  </div>
+    <div class="summary-synopsis"><p>Renders Markdown into HTML.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="AtomTweaksWeb.NotLoggedInError.html">AtomTweaksWeb.NotLoggedInError</a>
+  </div>
+    <div class="summary-synopsis"><p>Exception raised when accessing a route that requires being logged in when you're not.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="AtomTweaksWeb.ObsoleteRouteController.html">AtomTweaksWeb.ObsoleteRouteController</a>
+  </div>
+    <div class="summary-synopsis"><p>Handles redirections for obsolete router paths.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="AtomTweaksWeb.OcticonHelpers.html">AtomTweaksWeb.OcticonHelpers</a>
+  </div>
+    <div class="summary-synopsis"><p>Helper functions for displaying <a href="https://octicons.github.com">Octicons</a>.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="AtomTweaksWeb.PageController.html">AtomTweaksWeb.PageController</a>
+  </div>
+    <div class="summary-synopsis"><p>Handles requests for the root-level pages.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="AtomTweaksWeb.PageMetadata.html">AtomTweaksWeb.PageMetadata</a>
+  </div>
+    <div class="summary-synopsis"><p>A system for easily setting metadata for the page before it is rendered.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="AtomTweaksWeb.PageMetadata.Metadata.html">AtomTweaksWeb.PageMetadata.Metadata</a>
+  </div>
+    <div class="summary-synopsis"><p>Defines the metadata protocol.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="AtomTweaksWeb.PageView.html">AtomTweaksWeb.PageView</a>
+  </div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="AtomTweaksWeb.PlugHelpers.html">AtomTweaksWeb.PlugHelpers</a>
+  </div>
+    <div class="summary-synopsis"><p><a href="https://hexdocs.pm/plug/readme.html#the-plug-conn-struct">Function plugs</a> to be used within
+either a router or controller.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="AtomTweaksWeb.PrimerHelpers.html">AtomTweaksWeb.PrimerHelpers</a>
+  </div>
+    <div class="summary-synopsis"><p>View helper functions for generating elements that work with
+<a href="https://primer.github.io/">GitHub's Primer</a> CSS framework.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="AtomTweaksWeb.PrimerHelpers.MissingConfigurationError.html">AtomTweaksWeb.PrimerHelpers.MissingConfigurationError</a>
+  </div>
+    <div class="summary-synopsis"><p>Exception raised when there is an element of required application configuration missing.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="AtomTweaksWeb.RenderHelpers.html">AtomTweaksWeb.RenderHelpers</a>
+  </div>
+    <div class="summary-synopsis"><p>Helper functions for rendering templates.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="AtomTweaksWeb.Router.html">AtomTweaksWeb.Router</a>
+  </div>
+    <div class="summary-synopsis"><p>Routes requests to the website to the appropriate controller.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="AtomTweaksWeb.Router.Helpers.html">AtomTweaksWeb.Router.Helpers</a>
+  </div>
+    <div class="summary-synopsis"><p>Module with named helpers generated from AtomTweaksWeb.Router.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="AtomTweaksWeb.Shared.FooterTests.html">AtomTweaksWeb.Shared.FooterTests</a>
+  </div>
+    <div class="summary-synopsis"><p>Shared tests for the common page footer.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="AtomTweaksWeb.Shared.HeaderTests.html">AtomTweaksWeb.Shared.HeaderTests</a>
+  </div>
+    <div class="summary-synopsis"><p>Shared tests for the common page header.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="AtomTweaksWeb.Shared.UserInfoTests.html">AtomTweaksWeb.Shared.UserInfoTests</a>
+  </div>
+    <div class="summary-synopsis"><p>Shared tests for the user info block on user pages.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="AtomTweaksWeb.SlidingSessionTimeout.html">AtomTweaksWeb.SlidingSessionTimeout</a>
+  </div>
+    <div class="summary-synopsis"><p>Times out the session after a period of inactivity.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="AtomTweaksWeb.StarController.html">AtomTweaksWeb.StarController</a>
+  </div>
+    <div class="summary-synopsis"><p>Handles requests of information about stars.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="AtomTweaksWeb.StarView.html">AtomTweaksWeb.StarView</a>
+  </div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="AtomTweaksWeb.StargazerController.html">AtomTweaksWeb.StargazerController</a>
+  </div>
+    <div class="summary-synopsis"><p>Handles requests for tweak stargazer information.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="AtomTweaksWeb.StargazerView.html">AtomTweaksWeb.StargazerView</a>
+  </div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="AtomTweaksWeb.TimeHelpers.html">AtomTweaksWeb.TimeHelpers</a>
+  </div>
+    <div class="summary-synopsis"><p>View helper functions for displaying time information.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="AtomTweaksWeb.TokenAuthentication.html">AtomTweaksWeb.TokenAuthentication</a>
+  </div>
+    <div class="summary-synopsis"><p>A <a href="https://hexdocs.pm/plug/Plug.html"><code class="inline">Plug</code></a> that authenticates an API connection based on the contents of the <code class="inline">authorization</code> header.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="AtomTweaksWeb.TokenController.html">AtomTweaksWeb.TokenController</a>
+  </div>
+    <div class="summary-synopsis"><p>Handles all requests for user token routes.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="AtomTweaksWeb.TokenView.html">AtomTweaksWeb.TokenView</a>
+  </div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="AtomTweaksWeb.TweakController.html">AtomTweaksWeb.TweakController</a>
+  </div>
+    <div class="summary-synopsis"><p>Handles requests for tweak records.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="AtomTweaksWeb.TweakView.html">AtomTweaksWeb.TweakView</a>
+  </div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="AtomTweaksWeb.UserController.html">AtomTweaksWeb.UserController</a>
+  </div>
+    <div class="summary-synopsis"><p>Handles requests for user resources.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="AtomTweaksWeb.UserSocket.html">AtomTweaksWeb.UserSocket</a>
+  </div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="AtomTweaksWeb.UserView.html">AtomTweaksWeb.UserView</a>
+  </div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="AtomTweaksWeb.WrongUserError.html">AtomTweaksWeb.WrongUserError</a>
+  </div>
+    <div class="summary-synopsis"><p>Exception raised when someone attempts to modify a resource they don't own.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Support.Changeset.html">Support.Changeset</a>
+  </div>
+    <div class="summary-synopsis"><p>Functions for testing <a href="https://hexdocs.pm/ecto/Ecto.Changeset.html"><code class="inline">Ecto.Changeset</code></a> values.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Support.Conn.html">Support.Conn</a>
+  </div>
+    <div class="summary-synopsis"><p>Functions for testing <a href="https://hexdocs.pm/plug/Plug.Conn.html"><code class="inline">Plug.Conn</code></a> values.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Support.Fixture.html">Support.Fixture</a>
+  </div>
+    <div class="summary-synopsis"><p>Functions for handling test fixtures.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Support.HTML.html">Support.HTML</a>
+  </div>
+    <div class="summary-synopsis"><p>Test support functions for working with HTML.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Support.Setup.html">Support.Setup</a>
+  </div>
+    <div class="summary-synopsis"><p>Functions that are designed to be used as chained <code class="inline">setup</code> callbacks.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="Support.TestMetadata.html">Support.TestMetadata</a>
+  </div>
+    <div class="summary-synopsis"><p>A structure to test the support for the <a href="AtomTweaksWeb.PageMetadata.Metadata.html"><code class="inline">AtomTweaksWeb.PageMetadata.Metadata</code></a> protocol.</p></div>
+</div>
+    </div>
+  </section>
+
+      <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.22.1),
+          </span>
+          <span class="line">
+            designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" rel="noopener" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+          </span>
+        </p>
+        <p>
+          <button class="line footer-button display-shortcuts-help">
+            Display keyboard shortcuts
+          </button>
+          <button class="line footer-button night-mode-toggle">
+            Toggle night mode
+          </button>
+          <button class="line footer-button display-quick-switch">
+            Go to a HexDocs package
+          </button>
+          <button class="line footer-button tooltips-toggle">
+            <span class="tooltips-option-disable">Disable tooltips</span>
+            <span class="tooltips-option-enable">Enable tooltips</span>
+          </button>
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+  </body>
+</html>

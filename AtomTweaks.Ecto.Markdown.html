@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.22.1">
+    <meta name="project" content="Atom Tweaks v0.1.0+c1f5afa">
+    <title>AtomTweaks.Ecto.Markdown — Atom Tweaks v0.1.0+c1f5afa</title>
+    <link rel="stylesheet" href="dist/elixir-e589b8fad3dab6230c65.css" />
+    <script src="dist/sidebar_items-5abe603f27.js"></script>
+      <script src="docs_config.js"></script>
+    <script async src="dist/app-5c0c23dfec2d63ae33a2.js"></script>
+  </head>
+  <body data-type="modules">
+    <script>try { if(localStorage.getItem('night-mode') === 'true') document.body.className += ' night-mode'; } catch (e) { }</script>
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle">
+  <span class="icon-menu" title="Collapse/expand sidebar"></span>
+</button>
+
+<section class="sidebar">
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button">
+      <span class="icon-search" aria-hidden="true"></span>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button">
+      <span class="icon-cross" title="Cancel search"></span>
+    </button>
+    <label class="search-label">
+      <input name="q" type="text" id="search-list" class="search-input" placeholder="Search..." aria-label="Search" autocomplete="off" />
+    </label>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectDetails">
+      <a href="https://www.atom-tweaks.com" class="sidebar-projectName">
+Atom Tweaks      </a>
+      <h2 class="sidebar-projectVersion">
+        v0.1.0+c1f5afa
+      </h2>
+    </div>
+  </div>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list" href="#full-list">Pages</a></li>
+
+      <li><a id="modules-list" href="#full-list">Modules</a></li>
+
+  </ul>
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+      <h1>
+        <small class="app-vsn">Atom Tweaks v0.1.0+c1f5afa</small>
+AtomTweaks.Ecto.Markdown          <a href="https://github.com/lee-dohm/atom-style-tweaks/blob/master/lib/atom_tweaks/ecto/markdown.ex#L1" title="View Source" class="view-source" rel="help">
+            <span class="icon-code" aria-hidden="true"></span>
+            <span class="sr-only">View Source</span>
+          </a>
+      </h1>
+
+
+        <section id="moduledoc">
+<p>An <a href="https://hexdocs.pm/ecto/Ecto.Type.html"><code class="inline">Ecto.Type</code></a> that handles the conversion between a Markdown-formatted string in the database and
+a <a href="AtomTweaks.Markdown.html"><code class="inline">AtomTweaks.Markdown</code></a> struct in memory.</p><p>Use this as the type of the database field in the schema:</p><pre><code class="nohighlight makeup elixir"><span class="kd">defmodule</span><span class="w"> </span><span class="nc">AtomTweaks.Tweaks.Tweak</span><span class="w"> </span><span class="k" data-group-id="9531227542-1">do</span><span class="w">
+  </span><span class="kn">use</span><span class="w"> </span><span class="nc">Ecto.Schema</span><span class="w">
+
+  </span><span class="n">schema</span><span class="w"> </span><span class="s">&quot;tweaks&quot;</span><span class="w"> </span><span class="k" data-group-id="9531227542-2">do</span><span class="w">
+    </span><span class="n">field</span><span class="w"> </span><span class="ss">:title</span><span class="p">,</span><span class="w"> </span><span class="ss">:string</span><span class="w">
+    </span><span class="n">field</span><span class="w"> </span><span class="ss">:code</span><span class="p">,</span><span class="w"> </span><span class="ss">:string</span><span class="w">
+    </span><span class="n">field</span><span class="w"> </span><span class="ss">:type</span><span class="p">,</span><span class="w"> </span><span class="ss">:string</span><span class="w">
+    </span><span class="n">field</span><span class="w"> </span><span class="ss">:description</span><span class="p">,</span><span class="w"> </span><span class="nc">AtomTweaks.Ecto.Markdown</span><span class="w">
+    </span><span class="n">belongs_to</span><span class="w"> </span><span class="ss">:user</span><span class="p">,</span><span class="w"> </span><span class="nc">AtomTweaks.Accounts.User</span><span class="p">,</span><span class="w"> </span><span class="ss">foreign_key</span><span class="p">:</span><span class="w"> </span><span class="ss">:created_by</span><span class="p">,</span><span class="w"> </span><span class="ss">type</span><span class="p">:</span><span class="w"> </span><span class="ss">:binary_id</span><span class="w">
+
+    </span><span class="n">timestamps</span><span class="p" data-group-id="9531227542-3">(</span><span class="p" data-group-id="9531227542-3">)</span><span class="w">
+  </span><span class="k" data-group-id="9531227542-2">end</span><span class="w">
+</span><span class="k" data-group-id="9531227542-1">end</span></code></pre><p>All other references in the codebase should be to the <a href="AtomTweaks.Markdown.html"><code class="inline">AtomTweaks.Markdown</code></a> module. See that
+module's documentation on how it is used.</p><p><strong>See:</strong> <a href="https://blog.usejournal.com/beyond-functions-in-elixir-refactoring-for-maintainability-5c73daba77f3" title="">Beyond Functions in Elixir: Refactoring for Maintainability</a> for
+details on this pattern.</p>        </section>
+
+        <section id="summary" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#summary">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+            Summary
+          </h1>
+  <div class="summary-functions summary">
+    <h2>
+      <a href="#functions">Functions</a>
+    </h2>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#cast/1">cast(binary)</a>
+  </div>
+    <div class="summary-synopsis"><p>Casts the given input to the custom type.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#dump/1">dump(binary)</a>
+  </div>
+    <div class="summary-synopsis"><p>Dumps the given term into an Ecto native type.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#load/1">load(binary)</a>
+  </div>
+    <div class="summary-synopsis"><p>Loads the given term into a custom type.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#type/0">type()</a>
+  </div>
+    <div class="summary-synopsis"><p>Returns the underlying schema type for the custom type.</p></div>
+</div>
+  </div>
+        </section>
+
+        <section id="functions" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#functions">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+Functions          </h1>
+          <div class="functions-list">
+<section class="detail" id="cast/1">
+  <div class="detail-header">
+    <a href="#cast/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">cast(binary)</h1>
+      <a href="https://github.com/lee-dohm/atom-style-tweaks/blob/master/lib/atom_tweaks/ecto/markdown.ex#L48" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+  </div>
+
+  <section class="docstring">
+
+<p>Casts the given input to the custom type.</p><p>See: <a href="https://hexdocs.pm/ecto/Ecto.Type.html#c:cast/1"><code class="inline">Ecto.Type.cast/1</code></a></p>  </section>
+</section>
+<section class="detail" id="dump/1">
+  <div class="detail-header">
+    <a href="#dump/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">dump(binary)</h1>
+      <a href="https://github.com/lee-dohm/atom-style-tweaks/blob/master/lib/atom_tweaks/ecto/markdown.ex#L73" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+  </div>
+
+  <section class="docstring">
+
+<p>Dumps the given term into an Ecto native type.</p><p>See: <a href="https://hexdocs.pm/ecto/Ecto.Type.html#c:dump/1"><code class="inline">Ecto.Type.dump/1</code></a></p>  </section>
+</section>
+<section class="detail" id="load/1">
+  <div class="detail-header">
+    <a href="#load/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">load(binary)</h1>
+      <a href="https://github.com/lee-dohm/atom-style-tweaks/blob/master/lib/atom_tweaks/ecto/markdown.ex#L61" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+  </div>
+
+  <section class="docstring">
+
+<p>Loads the given term into a custom type.</p><p>See: <a href="https://hexdocs.pm/ecto/Ecto.Type.html#c:load/1"><code class="inline">Ecto.Type.load/1</code></a></p>  </section>
+</section>
+<section class="detail" id="type/0">
+  <div class="detail-header">
+    <a href="#type/0" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">type()</h1>
+      <a href="https://github.com/lee-dohm/atom-style-tweaks/blob/master/lib/atom_tweaks/ecto/markdown.ex#L40" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+  </div>
+
+  <section class="docstring">
+
+<p>Returns the underlying schema type for the custom type.</p><p>See: <a href="https://hexdocs.pm/ecto/Ecto.Type.html#c:type/0"><code class="inline">Ecto.Type.type/0</code></a></p>  </section>
+</section>
+          </div>
+        </section>
+      <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.22.1),
+          </span>
+          <span class="line">
+            designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" rel="noopener" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+          </span>
+        </p>
+        <p>
+          <button class="line footer-button display-shortcuts-help">
+            Display keyboard shortcuts
+          </button>
+          <button class="line footer-button night-mode-toggle">
+            Toggle night mode
+          </button>
+          <button class="line footer-button display-quick-switch">
+            Go to a HexDocs package
+          </button>
+          <button class="line footer-button tooltips-toggle">
+            <span class="tooltips-option-disable">Disable tooltips</span>
+            <span class="tooltips-option-enable">Enable tooltips</span>
+          </button>
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+  </body>
+</html>

@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.22.1">
+    <meta name="project" content="Atom Tweaks v0.1.0+c1f5afa">
+    <title>AtomTweaks.Tweaks.Tweak — Atom Tweaks v0.1.0+c1f5afa</title>
+    <link rel="stylesheet" href="dist/elixir-e589b8fad3dab6230c65.css" />
+    <script src="dist/sidebar_items-5abe603f27.js"></script>
+      <script src="docs_config.js"></script>
+    <script async src="dist/app-5c0c23dfec2d63ae33a2.js"></script>
+  </head>
+  <body data-type="modules">
+    <script>try { if(localStorage.getItem('night-mode') === 'true') document.body.className += ' night-mode'; } catch (e) { }</script>
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle">
+  <span class="icon-menu" title="Collapse/expand sidebar"></span>
+</button>
+
+<section class="sidebar">
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button">
+      <span class="icon-search" aria-hidden="true"></span>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button">
+      <span class="icon-cross" title="Cancel search"></span>
+    </button>
+    <label class="search-label">
+      <input name="q" type="text" id="search-list" class="search-input" placeholder="Search..." aria-label="Search" autocomplete="off" />
+    </label>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectDetails">
+      <a href="https://www.atom-tweaks.com" class="sidebar-projectName">
+Atom Tweaks      </a>
+      <h2 class="sidebar-projectVersion">
+        v0.1.0+c1f5afa
+      </h2>
+    </div>
+  </div>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list" href="#full-list">Pages</a></li>
+
+      <li><a id="modules-list" href="#full-list">Modules</a></li>
+
+  </ul>
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+      <h1>
+        <small class="app-vsn">Atom Tweaks v0.1.0+c1f5afa</small>
+AtomTweaks.Tweaks.Tweak          <a href="https://github.com/lee-dohm/atom-style-tweaks/blob/master/lib/atom_tweaks/tweaks/tweak.ex#L1" title="View Source" class="view-source" rel="help">
+            <span class="icon-code" aria-hidden="true"></span>
+            <span class="sr-only">View Source</span>
+          </a>
+      </h1>
+
+
+        <section id="moduledoc">
+<p>Represents a tweak.</p><h2 id="module-fields" class="section-heading">
+  <a href="#module-fields" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Fields
+</h2>
+<ul><li><code class="inline">code</code> - Source code of the tweak</li><li><code class="inline">description</code> - Markdown description of what the tweak does</li><li><code class="inline">title</code> - Title of the tweak</li><li><code class="inline">type</code> - The type of the tweak</li></ul><h3 id="module-associations" class="section-heading">
+  <a href="#module-associations" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Associations
+</h3>
+<p>Must be preloaded before they can be used.</p><ul><li><code class="inline">forked_from</code> - The <a href="#content"><code class="inline">AtomTweaks.Tweaks.Tweak</code></a> this tweak was forked from</li><li><code class="inline">forks</code> - The <a href="#content"><code class="inline">AtomTweaks.Tweaks.Tweak</code></a> records that have been forked from this tweak</li><li><code class="inline">stargazers</code> - The <a href="AtomTweaks.Accounts.User.html"><code class="inline">AtomTweaks.Accounts.User</code></a> records that have starred this tweak</li><li><code class="inline">user</code> - The <a href="AtomTweaks.Accounts.User.html"><code class="inline">AtomTweaks.Accounts.User</code></a> that created or forked this tweak</li></ul>        </section>
+
+        <section id="summary" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#summary">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+            Summary
+          </h1>
+  <div class="summary-types summary">
+    <h2>
+      <a href="#types">Types</a>
+    </h2>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:t/0">t()</a>
+  </div>
+</div>
+  </div>
+  <div class="summary-functions summary">
+    <h2>
+      <a href="#functions">Functions</a>
+    </h2>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#filter_by_type/2">filter_by_type(query, type)</a>
+  </div>
+    <div class="summary-synopsis"><p>Filters <code class="inline">query</code> to include only tweaks of <code class="inline">type</code>.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#filter_by_user/2">filter_by_user(query, user)</a>
+  </div>
+    <div class="summary-synopsis"><p>Filters <code class="inline">query</code> to include only tweaks that were created by <code class="inline">user</code>.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#fork_params/2">fork_params(tweak, user)</a>
+  </div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#include_forks/2">include_forks(query, arg2)</a>
+  </div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#validate_fork_by_different_user/2">validate_fork_by_different_user(changeset, original_tweak)</a>
+  </div>
+    <div class="summary-synopsis"><p>Validates that the person forking the tweak is different from the original author of the tweak.</p></div>
+</div>
+  </div>
+        </section>
+
+        <section id="types" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#types">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+Types          </h1>
+          <div class="types-list">
+<section class="detail" id="t:t/0">
+  <div class="detail-header">
+    <a href="#t:t/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature">t()</h1>
+      <a href="https://github.com/lee-dohm/atom-style-tweaks/blob/master/lib/atom_tweaks/tweaks/tweak.ex#L35" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+  </div>
+
+  <section class="docstring">
+      <h2>Specs</h2>
+      <div class="specs">
+          <pre>t() :: %AtomTweaks.Tweaks.Tweak{
+  __meta__: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>(),
+  code: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>(),
+  created_by: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>(),
+  description: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>(),
+  forked_from: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>(),
+  forks: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>(),
+  id: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>(),
+  inserted_at: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>(),
+  parent: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>(),
+  stargazers: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>(),
+  title: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>(),
+  type: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>(),
+  updated_at: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>(),
+  user: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()
+}</pre>
+      </div>
+
+  </section>
+</section>
+          </div>
+        </section>
+        <section id="functions" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#functions">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+Functions          </h1>
+          <div class="functions-list">
+<section class="detail" id="filter_by_type/2">
+  <div class="detail-header">
+    <a href="#filter_by_type/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">filter_by_type(query, type)</h1>
+      <a href="https://github.com/lee-dohm/atom-style-tweaks/blob/master/lib/atom_tweaks/tweaks/tweak.ex#L77" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+  </div>
+
+  <section class="docstring">
+
+<p>Filters <code class="inline">query</code> to include only tweaks of <code class="inline">type</code>.</p><p>If <code class="inline">nil</code> is given for the type, the query is not filtered. This allows for easily building the
+query in a pipeline.</p>  </section>
+</section>
+<section class="detail" id="filter_by_user/2">
+  <div class="detail-header">
+    <a href="#filter_by_user/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">filter_by_user(query, user)</h1>
+      <a href="https://github.com/lee-dohm/atom-style-tweaks/blob/master/lib/atom_tweaks/tweaks/tweak.ex#L86" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+  </div>
+
+  <section class="docstring">
+
+<p>Filters <code class="inline">query</code> to include only tweaks that were created by <code class="inline">user</code>.</p><p>If <code class="inline">nil</code> is given for the user, the query is not filtered. This allows for easily building the
+query in a pipeline.</p>  </section>
+</section>
+<section class="detail" id="fork_params/2">
+  <div class="detail-header">
+    <a href="#fork_params/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">fork_params(tweak, user)</h1>
+      <a href="https://github.com/lee-dohm/atom-style-tweaks/blob/master/lib/atom_tweaks/tweaks/tweak.ex#L89" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+  </div>
+
+  <section class="docstring">
+
+  </section>
+</section>
+<section class="detail" id="include_forks/2">
+  <div class="detail-header">
+    <a href="#include_forks/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">include_forks(query, arg2)</h1>
+      <a href="https://github.com/lee-dohm/atom-style-tweaks/blob/master/lib/atom_tweaks/tweaks/tweak.ex#L95" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+  </div>
+
+  <section class="docstring">
+
+  </section>
+</section>
+<section class="detail" id="validate_fork_by_different_user/2">
+  <div class="detail-header">
+    <a href="#validate_fork_by_different_user/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">validate_fork_by_different_user(changeset, original_tweak)</h1>
+      <a href="https://github.com/lee-dohm/atom-style-tweaks/blob/master/lib/atom_tweaks/tweaks/tweak.ex#L102" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+  </div>
+
+  <section class="docstring">
+      <h2>Specs</h2>
+      <div class="specs">
+          <pre>validate_fork_by_different_user(<a href="https://hexdocs.pm/ecto/Ecto.Changeset.html#t:t/0">Ecto.Changeset.t</a>(), <a href="#t:t/0">t</a>() | <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">binary</a>()) ::
+  <a href="https://hexdocs.pm/ecto/Ecto.Changeset.html#t:t/0">Ecto.Changeset.t</a>()</pre>
+      </div>
+
+<p>Validates that the person forking the tweak is different from the original author of the tweak.</p>  </section>
+</section>
+          </div>
+        </section>
+      <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.22.1),
+          </span>
+          <span class="line">
+            designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" rel="noopener" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+          </span>
+        </p>
+        <p>
+          <button class="line footer-button display-shortcuts-help">
+            Display keyboard shortcuts
+          </button>
+          <button class="line footer-button night-mode-toggle">
+            Toggle night mode
+          </button>
+          <button class="line footer-button display-quick-switch">
+            Go to a HexDocs package
+          </button>
+          <button class="line footer-button tooltips-toggle">
+            <span class="tooltips-option-disable">Disable tooltips</span>
+            <span class="tooltips-option-enable">Enable tooltips</span>
+          </button>
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+  </body>
+</html>

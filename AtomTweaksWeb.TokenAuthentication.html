@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.22.1">
+    <meta name="project" content="Atom Tweaks v0.1.0+c1f5afa">
+    <title>AtomTweaksWeb.TokenAuthentication — Atom Tweaks v0.1.0+c1f5afa</title>
+    <link rel="stylesheet" href="dist/elixir-e589b8fad3dab6230c65.css" />
+    <script src="dist/sidebar_items-5abe603f27.js"></script>
+      <script src="docs_config.js"></script>
+    <script async src="dist/app-5c0c23dfec2d63ae33a2.js"></script>
+  </head>
+  <body data-type="modules">
+    <script>try { if(localStorage.getItem('night-mode') === 'true') document.body.className += ' night-mode'; } catch (e) { }</script>
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle">
+  <span class="icon-menu" title="Collapse/expand sidebar"></span>
+</button>
+
+<section class="sidebar">
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button">
+      <span class="icon-search" aria-hidden="true"></span>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button">
+      <span class="icon-cross" title="Cancel search"></span>
+    </button>
+    <label class="search-label">
+      <input name="q" type="text" id="search-list" class="search-input" placeholder="Search..." aria-label="Search" autocomplete="off" />
+    </label>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectDetails">
+      <a href="https://www.atom-tweaks.com" class="sidebar-projectName">
+Atom Tweaks      </a>
+      <h2 class="sidebar-projectVersion">
+        v0.1.0+c1f5afa
+      </h2>
+    </div>
+  </div>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list" href="#full-list">Pages</a></li>
+
+      <li><a id="modules-list" href="#full-list">Modules</a></li>
+
+  </ul>
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+      <h1>
+        <small class="app-vsn">Atom Tweaks v0.1.0+c1f5afa</small>
+AtomTweaksWeb.TokenAuthentication          <a href="https://github.com/lee-dohm/atom-style-tweaks/blob/master/lib/atom_tweaks_web/token_authentication.ex#L1" title="View Source" class="view-source" rel="help">
+            <span class="icon-code" aria-hidden="true"></span>
+            <span class="sr-only">View Source</span>
+          </a>
+      </h1>
+
+
+        <section id="moduledoc">
+<p>A <a href="https://hexdocs.pm/plug/Plug.html"><code class="inline">Plug</code></a> that authenticates an API connection based on the contents of the <code class="inline">authorization</code> header.</p><p>The plug retrieves a <a href="https://hexdocs.pm/phoenix/Phoenix.Token.html"><code class="inline">Phoenix.Token</code></a>-generated code from the <code class="inline">authorization</code> request header.
+If that code resolves to a valid <a href="AtomTweaks.Accounts.Token.html"><code class="inline">AtomTweaks.Accounts.Token</code></a>, then the token is stored in the
+<a href="https://hexdocs.pm/plug/Plug.Conn.html#module-connection-fields">connection assigns</a> under the
+<code class="inline">:auth_token</code> key. It expects the header to be of the format:</p><pre><code class="text">authorization: token [gigantically long token here]</code></pre><p>Keep in mind that <a href="https://stackoverflow.com/questions/5258977/are-http-headers-case-sensitive" title="">HTTP header keys are case-insensitive</a>.</p><p>Otherwise, if the header is missing or malformatted, a <code class="inline">401 Unauthorized</code> response is returned. If
+the header is present and properly formatted, but the code does not resolve to a valid token, then
+a <code class="inline">403 Forbidden</code> response is returned.</p><p>This only authenticates the connection, ensuring that it has a valid <a href="AtomTweaks.Accounts.Token.html"><code class="inline">AtomTweaks.Accounts.Token</code></a>.
+Each individual controller must ensure that the token contains the proper authorization to perform
+the action that is being requested. See <a href="AtomTweaksWeb.ApiHelpers.html#authorize/2"><code class="inline">AtomTweaksWeb.ApiHelpers.authorize/2</code></a> for more details.</p><h2 id="module-examples" class="section-heading">
+  <a href="#module-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+<pre><code class="nohighlight makeup elixir"><span class="n">pipeline</span><span class="w"> </span><span class="ss">:api</span><span class="w"> </span><span class="k" data-group-id="4489122255-1">do</span><span class="w">
+  </span><span class="n">plug</span><span class="p" data-group-id="4489122255-2">(</span><span class="ss">:accepts</span><span class="p">,</span><span class="w"> </span><span class="p" data-group-id="4489122255-3">[</span><span class="s">&quot;json&quot;</span><span class="p" data-group-id="4489122255-3">]</span><span class="p" data-group-id="4489122255-2">)</span><span class="w">
+  </span><span class="n">plug</span><span class="p" data-group-id="4489122255-4">(</span><span class="nc">AtomTweaksWeb.TokenAuthentication</span><span class="p" data-group-id="4489122255-4">)</span><span class="w">
+</span><span class="k" data-group-id="4489122255-1">end</span></code></pre>        </section>
+
+
+      <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.22.1),
+          </span>
+          <span class="line">
+            designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" rel="noopener" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+          </span>
+        </p>
+        <p>
+          <button class="line footer-button display-shortcuts-help">
+            Display keyboard shortcuts
+          </button>
+          <button class="line footer-button night-mode-toggle">
+            Toggle night mode
+          </button>
+          <button class="line footer-button display-quick-switch">
+            Go to a HexDocs package
+          </button>
+          <button class="line footer-button tooltips-toggle">
+            <span class="tooltips-option-disable">Disable tooltips</span>
+            <span class="tooltips-option-enable">Enable tooltips</span>
+          </button>
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+  </body>
+</html>
