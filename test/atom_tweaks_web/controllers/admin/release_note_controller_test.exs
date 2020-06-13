@@ -186,7 +186,7 @@ defmodule AtomTweaksWeb.Admin.ReleaseNoteControllerTest do
         |> html_response(:ok)
         |> find(".btn.btn-danger")
 
-      assert text(button) == "Cancel"
+      assert text(button) =~ "Cancel"
     end
   end
 

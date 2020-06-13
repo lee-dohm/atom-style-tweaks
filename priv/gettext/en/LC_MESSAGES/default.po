@@ -298,3 +298,8 @@ msgstr ""
 #: lib/atom_tweaks_web/templates/token/index.html.slime:1
 msgid "Record this code, it will only be shown once:"
 msgstr ""
+
+#, elixir-format
+#: lib/atom_tweaks_web/templates/admin/release_note/edit.html.slime:1
+msgid "Delete"
+msgstr ""

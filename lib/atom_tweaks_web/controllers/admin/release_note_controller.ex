@@ -29,7 +29,7 @@ defmodule AtomTweaksWeb.Admin.ReleaseNoteController do
     |> Releases.get_note!()
     |> Releases.delete_note()
     |> case do
-      {:ok, note} -> redirect(conn, to: Routes.admin_release_note_path(conn, :index))
+      {:ok, _note} -> redirect(conn, to: Routes.admin_release_note_path(conn, :index))
       {:error, changeset} -> render(conn, :edit, changeset: changeset)
     end
   end
