@@ -298,3 +298,8 @@ msgstr "Ŷṓṵ ḥαṽḛṇ'ṭ ͼṛḛαṭḛḍ αṇẏ ṭṓḳḛṇ
 #: lib/atom_tweaks_web/templates/token/index.html.slime:1
 msgid "Record this code, it will only be shown once:"
 msgstr "Ṛḛͼṓṛḍ ṭḥḭṡ ͼṓḍḛ, ḭṭ ẁḭḽḽ ṓṇḽẏ ḅḛ ṡḥṓẁṇ ṓṇͼḛ:"
+
+#, elixir-format
+#: lib/atom_tweaks_web/templates/admin/release_note/edit.html.slime:1
+msgid "Delete"
+msgstr "Ḍḛḽḛṭḛ"
