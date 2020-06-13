@@ -4,5 +4,6 @@
   = input(f, :description, using: :markdown, class: "description-textarea", placeholder: "Release notes")
 
   .form-actions
+    = link_button(gettext("Delete"), class: "btn btn-danger float-left", to: Routes.admin_release_note_path(@conn, :delete, @note))
     = submit(gettext("Update release note"), class: "btn btn-primary")
     = link_button(gettext("Cancel"), class: "btn btn-danger", to: Routes.admin_release_note_path(@conn, :show, @note))
