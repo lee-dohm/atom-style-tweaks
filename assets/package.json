@@ -15,7 +15,7 @@
   "devDependencies": {
     "@types/clipboard": "^2.0.1",
     "@types/highlight.js": "^9.12.4",
-    "copy-webpack-plugin": "^6.0.2",
+    "copy-webpack-plugin": "^6.0.3",
     "css-loader": "^3.5.3",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "node-sass": "^4.14.1",
