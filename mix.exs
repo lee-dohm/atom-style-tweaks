@@ -59,7 +59,7 @@ defmodule AtomTweaks.Mixfile do
       # Required for ex_debug_toolbar
       {:poison, "~> 3.0"},
       {:postgrex, ">= 0.0.0"},
-      {:sentry, "~> 7.2.0"},
+      {:sentry, "~> 8.0.1"},
       {:timex, "~> 3.1"},
 
       # Dev dependencies
