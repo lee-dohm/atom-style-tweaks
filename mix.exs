@@ -63,7 +63,7 @@ defmodule AtomTweaks.Mixfile do
       {:timex, "~> 3.1"},
 
       # Dev dependencies
-      {:credo, "~> 1.4.0", only: [:dev, :test], runtime: false},
+      {:credo, "~> 1.5.5", only: [:dev, :test], runtime: false},
       {:dotenv, "~> 3.0.0", only: :dev},
       {:ex_doc, "~> 0.16", only: [:dev, :test], runtime: false},
       {:ex_machina, "~> 2.0", only: :test},
